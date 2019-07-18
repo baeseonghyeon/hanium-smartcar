@@ -1,0 +1,14 @@
+loading...
+{% block content %}
+    {% if user.is_authenticated %}
+        <script>
+        var newURL = window.location.href+'main';
+        window.location.href = newURL;
+        </script>
+    {% else %}
+        <script>
+        var newURL = window.location.href+'user/login';
+        window.location.href = newURL;
+        </script>
+    {% endif %}
+{% endblock %}

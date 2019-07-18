@@ -1,0 +1,46 @@
+{% load static %}
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/port_map.js' %}"></script>
+<script src="{% static 'js/main_print.js' %}"></script>
+<script src="{% static 'js/car_information.js' %}"></script>
+
+{% if user.is_authenticated %}
+    {% else %}
+        <script>
+        window.location.href =  "{% url 'auth' %}";
+        </script>
+{% endif %}
+
+{% if request.user.is_staff %}
+관리자모드
+<br>
+<a href = "car_input/">차량정보입력</a><br>
+{% endif %}<br>
+<!-------------------------------------------------------->
+<a href = "{% url 'logout' %}">로그아웃</a><br>
+<div id="portname"></div>
+<div id="map"></div>
+
+<button onclick="park()">토오오옹신</button>
+
+<br><br><br>
+carnumber:<div id="main_carnumber"></div><br>
+batter:<div id="main_battery"></div><br>
+communication:<div id="main_communication"></div><br>
+<input type="button" onclick="detail()" value="상세정보" />
+<br><br><br>
+
+<!--<script>-->
+    <!--function park(){-->
+       <!--$.ajax({-->
+            <!--type : 'POST',-->
+            <!--url : 'http://192.168.0.9:8080/kimtest1',-->
+            <!--data : {-->
+            <!--},-->
+            <!--dataType:'json',-->
+            <!--success: function(){-->
+            <!--}-->
+        <!--});-->
+<!--}-->
+<!--</script>-->
