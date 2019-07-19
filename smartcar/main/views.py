@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from .forms import CarInputForm, MainInputForm
 from .models import CarInfo, MainInfo
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 @csrf_exempt
 def Car_input(request):
@@ -45,6 +45,30 @@ def Car_detail(request):
     num = request.POST['carNumber']
     return render(request, 'car_detail.html', {'carNumber': num})
 
+@csrf_exempt
+def go():
+    print('go')
+    return HttpResponse('')
+
+@csrf_exempt
+def back():
+    print('back')
+    return HttpResponse('')
+
+
+@csrf_exempt
+def right():
+    print('right')
+    return HttpResponse('')
+
+@csrf_exempt
+def left():
+    print('left')
+    return HttpResponse('')
+
+
+
+@csrf_exempt
 def bfs(start, goal):
     # 맵의 가로세로. 맵 수정 시 변경
     visit = [[0] * 8 for _ in range(8)]
@@ -66,7 +90,6 @@ def bfs(start, goal):
             path_real.append(start)
             path_real.reverse()
             print(path_real)
-
         x = node[0]
         y = node[1]
         visit[x][y] = 1
@@ -77,4 +100,4 @@ def bfs(start, goal):
                 visit[wx][wy] = 1
                 queue.append([wx, wy])
                 # 부모노드, 현재위치
-                path.append([node, [wx,wy]])
+                path.append([node, [wx, wy]])

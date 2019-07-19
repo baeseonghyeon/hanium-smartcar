@@ -26,8 +26,81 @@
 <div id="drivingmode"></div>
 
 <div id="map"></div>
+<!--<button id="path_search" value="경로찾기" onclick="search()"></button>-->
+<!--<div id="path"></div>-->
+<button id="go" onclick="go()">직진</button>
+<button id="back" onclick="back()">후진</button>
+<button id="right" onclick="right()">우회전</button>
+<button id="left" onclick="left()">좌회전</button>
 
 <script>
+function go(){
+        $.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/main/go',
+            dataType:'json',
+            data : {
+                aaa : '1',
+                bbb : '2'
+            },
+            success: function(data){
+            console.log('go');
+            }
+        });
+}
+function back(){
+        $.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/main/back',
+            dataType:'json',
+            data : {
+                aaa : '1',
+                bbb : '2'
+            },
+            success: function(data){
+            console.log('back');
+            }
+        });
+}
+function right(){
+        $.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/main/right',
+            dataType:'json',
+            data : {
+                aaa : '1',
+                bbb : '2'
+            },
+            success: function(data){
+            console.log('right');
+            }
+        });
+}
+function left(){
+        $.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/main/left',
+            dataType:'json',
+            data : {
+                aaa : '1',
+                bbb : '2'
+            },
+            success: function(data){
+            console.log('left');
+            }
+        });
+}
+<!--function search(){-->
+      <!--$.ajax({-->
+                 <!--url : "http://127.0.0.1:8000/main/search_path",-->
+                 <!--dataType : 'json',-->
+                 <!--success : function (data) {-->
+                 <!--});-->
+                 <!--}-->
+      <!--});-->
+<!--}-->
+
+
     var filtered_json = new Array();
     $.ajax({
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
@@ -60,6 +133,4 @@ function find_in_object(my_object, my_criteria){
     });
   });
 }
-
-
 </script>
