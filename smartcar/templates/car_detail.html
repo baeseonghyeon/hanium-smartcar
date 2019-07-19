@@ -17,23 +17,37 @@
 <a href="/main">메인으로가기</a><br>
 <input type="hidden" id="test" value="{{ carNumber }}">
 <div>{{ carNumber }}</div>
-<div id="container"></div>
-<div id="destination"></div>
-<div id="route"></div>
-<div id="speed"></div>
-<div id="battery"></div>
-<div id="communication"></div>
-<div id="drivingmode"></div>
+컨테이너번호:<span id="container"></span><br>
+목적지:<span id="destination"></span><br>
+경로:<span id="route"></span><br>
+속도:<span id="speed"></span><br>
+배터리:<span id="battery"></span><br>
+통신상태:<span id="communication"></span><br>
+주행모드:<span id="drivingmode"></span><br>
 
 <div id="map"></div>
+<button id="manual" onclick="manual()">수동모드</button>
+<button id="auto" onclick="auto()">자동모드</button><br>
 <!--<button id="path_search" value="경로찾기" onclick="search()"></button>-->
 <!--<div id="path"></div>-->
+<div id="control">
 <button id="go" onclick="go()">직진</button>
 <button id="back" onclick="back()">후진</button>
 <button id="right" onclick="right()">우회전</button>
 <button id="left" onclick="left()">좌회전</button>
-
+</div>
 <script>
+$(document).ready(function(){
+    $("#control").fadeOut("fast");
+})
+function manual(){
+    $("#drivingmode").text('수동');
+    $("#control").fadeIn("fast");
+}
+function auto(){
+    $("#drivingmode").text('자동');
+    $("#control").fadeOut('fast');
+}
 function go(){
         $.ajax({
             type : 'POST',
