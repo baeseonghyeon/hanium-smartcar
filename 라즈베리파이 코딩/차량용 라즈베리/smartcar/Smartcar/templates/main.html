@@ -1,0 +1,44 @@
+{% load static %}
+<script src="{% static 'js/jquery.js' %}"></script>
+<link rel="shortcut icon" href="#" />
+
+
+<h1>HI</h1>
+<input type="button" id="ultrasonic" onclick="car_start()">
+<input type="button" id="shutdown" onclick="car_shutdown()">
+
+<script>
+function car_start() {
+
+	console.log('function ok?');
+
+	$.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/kimtest1',
+            data : {
+                    
+            },
+            dataType:'json',
+            success: function(){
+            }
+        });
+}
+</script>
+
+<script>
+function car_start() {
+
+	console.log('function ok?');
+
+	$.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/kimtest1',
+            data : {
+                    
+            },
+            dataType:'json',
+            success: function(){
+            }
+        });
+}
+</script>
