@@ -4,7 +4,6 @@ from django.db import models
 
 class MainInfo(models.Model):
     portinfo = models.CharField(max_length=10, unique=False)
-    portmap = models.CharField(max_length=1000)
 
 class CarInfo(models.Model):
     carnumber = models.ForeignKey(MainInfo, on_delete=models.CASCADE)
@@ -15,3 +14,4 @@ class CarInfo(models.Model):
     battery = models.CharField(max_length=10)
     communication = models.CharField(max_length=10)
     drivingmode = models.CharField(max_length=5)
+

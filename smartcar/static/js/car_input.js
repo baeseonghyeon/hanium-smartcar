@@ -4,7 +4,6 @@ function car_input(){
             url : 'http://127.0.0.1:8000/main/main_input',
             data : {
                     'portinfo' : 'ddddd ',
-                    'portmap' : '000',
             },
             dataType:'json',
             success: function(){

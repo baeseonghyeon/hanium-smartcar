@@ -36,7 +36,6 @@ def Main_input(request):
         else:
             mainin = MainInfo.objects.get(portinfo=request.POST['portinfo'])
             mainin.portinfo = request.POST['portinfo']
-            mainin.portmap = request.POST['portmap']
             mainin.save()
     return HttpResponseRedirect('/')
 
@@ -68,36 +67,3 @@ def left():
 
 
 
-@csrf_exempt
-def bfs(start, goal):
-    # 맵의 가로세로. 맵 수정 시 변경
-    visit = [[0] * 8 for _ in range(8)]
-    queue = []
-    path = []
-    path_real = []
-    dir = [[0, 1], [1, 0], [0, -1], [-1, 0]]
-    queue.append(start)
-    while queue:
-        node = queue.pop(0)
-        if node == goal:
-            path.reverse()
-            temp = path[0][0]
-            path_real.append(path[0][1])
-            for i in range(len(path)):
-                if path[i][1] == temp:
-                    path_real.append(path[i][1])
-                    temp = path[i][0]
-            path_real.append(start)
-            path_real.reverse()
-            print(path_real)
-        x = node[0]
-        y = node[1]
-        visit[x][y] = 1
-        for i in range(4):
-            wx = x + dir[i][0]
-            wy = y + dir[i][1]
-            if visit[wx][wy] == 0 and map[wx][wy] == 1:
-                visit[wx][wy] = 1
-                queue.append([wx, wy])
-                # 부모노드, 현재위치
-                path.append([node, [wx, wy]])

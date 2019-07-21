@@ -11,4 +11,4 @@ class CarInputForm(ModelForm):
 class MainInputForm(ModelForm):
     class Meta:
         model = MainInfo
-        fields = ['portinfo', 'portmap']
+        fields = ['portinfo']
