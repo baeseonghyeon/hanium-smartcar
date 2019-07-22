@@ -1,16 +1,16 @@
-//$(document).ready(function(){
-//    var map_info;
-//     $.ajax({
-//                 url : "http://127.0.0.1:8000/api/MainInfo/?format=json",
-//                 dataType : 'json',
-//                 success : function (data) {
-//                 map_info=data[0].portinfo;
+$(document).ready(function(){
+    var map_info;
+     $.ajax({
+                 url : "http://127.0.0.1:8000/api/MainInfo/?format=json",
+                 dataType : 'json',
+                 success : function (data) {
+                 map_info=data[0].portinfo;
 //                 $("#portname").text(map_info);
-//                 create_car(data);
-//                 }
-//      });
-//
-//});
+                 create_car(data);
+                 }
+      });
+
+});
 
 function create_car(Car){
     car = new Array();

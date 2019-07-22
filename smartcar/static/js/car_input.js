@@ -45,7 +45,6 @@ function input(){
             },
             dataType:'json',
             success: function(){
-            console.log('okokok');
             }
         });
     alert('저장완료!');
