@@ -41,4 +41,16 @@ function view(){
             }
         });
     window.location.reload()
-    }
+}
+
+//function path(){
+//        $.ajax({
+//            type : 'POST',
+//            url : 'http://127.0.0.1:8000/map/path',
+//            data : {
+//            },
+//            dataType:'json',
+//            success: function(){
+//            }
+//        });
+//}

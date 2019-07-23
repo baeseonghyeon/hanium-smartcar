@@ -1,6 +1,5 @@
 {% load static %}
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/car_information.js' %}"></script>
 <script src="{% static 'js/port_map.js' %}"></script>
 {% if user.is_authenticated %}
@@ -37,6 +36,59 @@
 <button id="left" onclick="left()">좌회전</button>
 </div>
 <script>
+
+function go(){
+var a = '1 '
+        $.ajax({
+            type : 'POST',
+            url : 'http://192.168.0.9:8000',
+            dataType:'json',
+            data : {
+            'bbb': a
+            },
+            success: function(){
+            }
+        });
+}
+function back(){
+var a = '4 '
+        $.ajax({
+            type : 'POST',
+            url : 'http://192.168.0.9:8000',
+            dataType:'json',
+            data : {
+            'bbb': a
+            },
+            success: function(){
+            }
+        });
+}
+function right(){
+var a = '2 '
+        $.ajax({
+            type : 'POST',
+            url : 'http://192.168.0.9:8000',
+            dataType:'json',
+            data : {
+            'bbb': a
+            },
+            success: function(){
+            }
+        });
+}
+function left(){
+var a = '3 '
+        $.ajax({
+            type : 'POST',
+            url : 'http://192.168.0.9:8000',
+            dataType:'json',
+            data : {
+            'bbb': a
+            },
+            success: function(){
+            }
+        });
+}
 $(document).ready(function(){
     $("#control").fadeOut("fast");
 })
@@ -48,72 +100,6 @@ function auto(){
     $("#drivingmode").text('자동');
     $("#control").fadeOut('fast');
 }
-function go(){
-        $.ajax({
-            type : 'POST',
-            url : 'http://127.0.0.1:8000/main/go',
-            dataType:'json',
-            data : {
-                aaa : '1',
-                bbb : '2'
-            },
-            success: function(data){
-            console.log('go');
-            }
-        });
-}
-function back(){
-        $.ajax({
-            type : 'POST',
-            url : 'http://127.0.0.1:8000/main/back',
-            dataType:'json',
-            data : {
-                aaa : '1',
-                bbb : '2'
-            },
-            success: function(data){
-            console.log('back');
-            }
-        });
-}
-function right(){
-        $.ajax({
-            type : 'POST',
-            url : 'http://127.0.0.1:8000/main/right',
-            dataType:'json',
-            data : {
-                aaa : '1',
-                bbb : '2'
-            },
-            success: function(data){
-            console.log('right');
-            }
-        });
-}
-function left(){
-        $.ajax({
-            type : 'POST',
-            url : 'http://127.0.0.1:8000/main/left',
-            dataType:'json',
-            data : {
-                aaa : '1',
-                bbb : '2'
-            },
-            success: function(data){
-            console.log('left');
-            }
-        });
-}
-<!--function search(){-->
-      <!--$.ajax({-->
-                 <!--url : "http://127.0.0.1:8000/main/search_path",-->
-                 <!--dataType : 'json',-->
-                 <!--success : function (data) {-->
-                 <!--});-->
-                 <!--}-->
-      <!--});-->
-<!--}-->
-
 
     var filtered_json = new Array();
     $.ajax({
