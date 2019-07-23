@@ -18,7 +18,21 @@ $(document).ready(function map(){
 
                      for(var i=0; i<=19; i++){
                          for(var j=0; j<=19; j++){
-                             $("#map").append(map_array2[i][j]);
+                         var span = document.createElement("span");
+                         span.setAttribute("id", 'design');
+                         if(map_array2[i][j]==0){
+                         span.innerHTML= '길';
+                         }
+                         else if(map_array2[i][j]==1){
+                         span.innerHTML= '벽';
+                         }
+                         else if(map_array2[i][j]==3){
+                         span.innerHTML= '차';
+                         }
+                         else if(map_array2[i][j]==5){
+                         span.innerHTML= '목';
+                         }
+                         $("#map").append(span);
                          }
                         $("#map").append("<br>");
                      }
