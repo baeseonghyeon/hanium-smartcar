@@ -1,99 +1,64 @@
 {% extends './common/base.html' %}
 
 {% block contents %}
-    <nav class="navbar navbar-expand navbar-dark"> <a href="#menu-toggle" id="menu-toggle" class="navbar-brand"><span class="navbar-toggler-icon"></span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-        <div class="nav-info1">exam항구</div>
-        <div class="collapse navbar-collapse" id="navbarsExample02">
-            <ul class="navbar-nav">
-                <li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li>
-                <li class="nav-item"> <a class="nav-link" href="#">Link</a> </li>
-            </ul>
-            <form class="form-inline my-2 my-md-0"> </form>
+
+<!-- not user redirect -->
+{% if user.is_authenticated %}
+{% else %}
+    <script>
+    window.location.href =  "{% url 'auth' %}";
+    </script>
+{% endif %}
+    
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+
+    <div id="main-side1">
+    <!-- <h2>SEC-1</h2>
+    <h3>3 min 42 s</h3>
+        <div></div>
+    <p>200m[50/150]</p>                 -->
+
+    </div>
+    <div id="main-side2">
+
+    </div>
+    <div id="main-side3">
+        carnumber:<span id="main_carnumber"></span><br>
+        battery:<span id="main_battery"></span><br>
+        communication:<span id="main_communication"></span><br>
+        <input type="button" onclick="detail()" value="상세정보" />
+
+        <!-- <div class="row carinfo-warp">
+            <div class="carinfo-box1">
+                <div class="side-carinfo"></div>
+            </div>
+            <div class="carinfo-box1">
+                <div class="side-carinfo"></div>
+            </div>
+            <div class="carinfo-box2">
+                <div class="side-carinfo sm"></div>
+                <div class="side-carinfo sm"></div>
+            </div>
         </div>
-    </nav>
+        <div class="row">car</div> -->
+    </div>
+</div><!-- /#sidebar-wrapper -->
 
-    <div id="wrapper" class="toggled">
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        
+        <input type="text" id="x"/>
+        <input type="text" id="y"/><br>
+        <button onclick="car_point()">차량위치등록</button><br>
+        <input type="text" id="a" />
+        <input type="text" id="b" /><br>
+        <button onclick="destination_point()">목적지등록</button>
+        <!--<button onclick="path()">경로찾기</button>-->
+        <div id="map"></div>
 
-            <div class="main-side1">
-            <h2>SEC-1</h2>
-            <h3>3 min 42 s</h3>
-                <div></div>
-            <p>200m[50/150]</p>                
+    </div>
+</div> <!-- /#page-content-wrapper -->
 
-            </div>
-            <div class="main-side2">
-
-            </div>
-            <div class="main-side3">
-                <div class="row carinfo-warp">
-                    <div class="carinfo-box1">
-                        <div class="side-carinfo"></div>
-                    </div>
-                    <div class="carinfo-box1">
-                        <div class="side-carinfo"></div>
-                    </div>
-                    <div class="carinfo-box2">
-                        <div class="side-carinfo sm"></div>
-                        <div class="side-carinfo sm"></div>
-                    </div>
-                </div>
-                <div class="row">car</div>
-                
-
-            </div>
-
-            <!-- <ul class="sidebar-nav">
-                <li class="sidebar-brand"> <a href="#"> Car info </a> </li>
-                <li> <a href="#">Dashboard</a> </li>
-                <li> <a href="#">Shortcuts</a> </li>
-                <li> <a href="#">Overview</a> </li>
-                <li> <a href="#">Events</a> </li>
-                <li> <a href="#">About</a> </li>
-                <li> <a href="#">Services</a> </li>
-                <li> <a href="#">Contact</a> </li>
-            </ul> -->
-
-        </div> <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-
-                {% if user.is_authenticated %}
-                    {% else %}
-                        <script>
-                        window.location.href =  "{% url 'auth' %}";
-                        </script>
-                {% endif %}
-            
-                {% if request.user.is_staff %}
-                관리자모드
-                <br>
-                <a href = "car_input/">차량정보입력</a><br>
-                {% endif %}<br>
-                <!-------------------------------------------------------->
-                <a href = "{% url 'logout' %}">로그아웃</a><br>
-                <div id="portname">울산항</div>
-            
-                <input type="text" id="x"/>
-                <input type="text" id="y"/><br>
-                <button onclick="car_point()">차량위치등록</button><br>
-                <input type="text" id="a" />
-                <input type="text" id="b" /><br>
-                <button onclick="destination_point()">목적지등록</button>
-                <!--<button onclick="path()">경로찾기</button>-->
-                <div id="map"></div>
-            
-                carnumber:<div id="main_carnumber"></div><br>
-                batter:<div id="main_battery"></div><br>
-                communication:<div id="main_communication"></div><br>
-            
-                <input type="button" onclick="detail()" value="상세정보" />
-
-            </div>
-        </div> <!-- /#page-content-wrapper -->
-
-    </div> <!-- /#wrapper -->
 {% endblock %}

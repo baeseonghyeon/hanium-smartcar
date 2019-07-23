@@ -15,14 +15,16 @@ $(document).ready(function(){
 function create_car(Car){
     car = new Array();
     for(var i=1; i<=Car.length; i++){
-    var button = document.createElement("button");
-    button.setAttribute("id", i-1);
-    button.setAttribute('OnClick', 'car_detail(this.id)');
-//    버튼 디자인부분 ----------------------------------------
-    button.style.width = "70px";
-    button.style.height = "70px";
-    button.innerHTML = 'CAR'+i;
-    document.body.appendChild(button);
+    var cardiv = document.createElement("div");
+    cardiv.setAttribute("id", i-1);
+    cardiv.setAttribute('OnClick', 'car_detail(this.id)');
+//    cardiv 디자인  ----------------------------------------
+    cardiv.style.width = "120px";
+    cardiv.style.height = "120px";
+    cardiv.style.margin = "10px auto";
+    cardiv.innerHTML = 'CAR'+i;
+    document.getElementById('main-side2').appendChild(cardiv);
+    // document.body.appendChild(button);
     }
 }
 

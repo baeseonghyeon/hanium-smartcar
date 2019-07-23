@@ -946,6 +946,8 @@ dl.row > dd + dt {
     padding-left: 0.75rem \9;
 }
 
+/* NAV */
+
 .nav {
     padding-right: 0;
 }
@@ -969,7 +971,10 @@ dl.row > dd + dt {
 #menu-toggle {
     position: absolute;
 }
-
+.nav-item {
+    width: 80px;
+    text-align: center;
+}
 
     .nav-tabs .nav-item + .nav-item {
         margin-right: 0.2rem;
@@ -985,13 +990,9 @@ dl.row > dd + dt {
     margin-right: 0;
 }
 
-
-
-
 ul.navbar-nav {
     direction: ltr;
 }
-
 
 .navbar-nav .nav-link + .nav-link {
     margin-right: 1rem;
@@ -999,6 +1000,11 @@ ul.navbar-nav {
 
 .navbar-nav .nav-item + .nav-item {
     margin-right: 1rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
 }
 
 /* MOBILE SIZE */
@@ -1264,26 +1270,112 @@ body {
   margin-right: 0px;
 }
 
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 350px;
+    margin: 0;
+    padding: 20px;
+    list-style: none;
+  }
+  
+  .sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+  }
+  
+  .sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+  }
+  
+  .sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+  }
+  
+  .sidebar-nav>.sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+  }
+  
+  .sidebar-nav>.sidebar-brand a {
+    color: #999999;
+  }
+  
+  .sidebar-nav>.sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+  }
+  
+  @media(min-width:768px) {
+    #wrapper {
+      padding-left: 0;
+    }
+    #wrapper.toggled {
+      /* padding-right: 250px; */
+    }
+    #sidebar-wrapper {
+      width: 0;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+      width: 350px;
+    }
+    #page-content-wrapper {
+      padding: 20px;
+      position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+      position: relative;
+      margin-right: 0;
+    }
+  }
 
 /* Sidebar innerbox */
-    /* main */
-.main-side1 {
-    flex: 1;
+
+/* main */
+#main-side1 {
+    flex: 0.5;
     background: gray;
     padding: 15px;
 }
-.main-side2 {
-    flex: 2;
+#main-side2 {
+    flex: 10;
     background: lightgray;
+    overflow-y: auto;
 }
-.main-side3 {
-    flex: 2;
+#main-side3 {
+    flex: 6;
     background: beige;
     padding: 15px;
 }
-.main-side3 .col-md-5 {
-    padding: 10px;
+
+/* detail */
+#detail-side1 {
+    flex: 2;
+    background: gray;
+    padding: 15px;
 }
+#detail-side2 {
+    flex: 3;
+    background: lightgray;
+    overflow-y: auto;
+}
+#detail-side3 {
+    flex: 3;
+    background: beige;
+    padding: 15px;
+}
+
 
 /* Sidecar info */
 .carinfo-warp {
@@ -1315,74 +1407,12 @@ body {
     width: 80px;
 }
 
-
-
-/* Sidebar Styles */
-
-.sidebar-nav {
-  position: absolute;
-  top: 0;
-  width: 350px;
-  margin: 0;
-  padding: 20px;
-  list-style: none;
+/* User Sign */
+.sign_box {
+    width: 500px;
+    margin: 10rem auto;
+    text-align: center;
 }
-
-.sidebar-nav li {
-  text-indent: 20px;
-  line-height: 40px;
-}
-
-.sidebar-nav li a {
-  display: block;
-  text-decoration: none;
-  color: #999999;
-}
-
-.sidebar-nav li a:hover {
-  text-decoration: none;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.sidebar-nav li a:active, .sidebar-nav li a:focus {
-  text-decoration: none;
-}
-
-.sidebar-nav>.sidebar-brand {
-  height: 65px;
-  font-size: 18px;
-  line-height: 60px;
-}
-
-.sidebar-nav>.sidebar-brand a {
-  color: #999999;
-}
-
-.sidebar-nav>.sidebar-brand a:hover {
-  color: #fff;
-  background: none;
-}
-
-@media(min-width:768px) {
-  #wrapper {
-    padding-left: 0;
-  }
-  #wrapper.toggled {
-    /* padding-right: 250px; */
-  }
-  #sidebar-wrapper {
-    width: 0;
-  }
-  #wrapper.toggled #sidebar-wrapper {
-    width: 350px;
-  }
-  #page-content-wrapper {
-    padding: 20px;
-    position: relative;
-  }
-  #wrapper.toggled #page-content-wrapper {
-    position: relative;
-    margin-right: 0;
-  }
+.sign_box h1 {
+    margin: 50px auto;
 }
