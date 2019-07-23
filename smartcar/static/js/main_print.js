@@ -17,11 +17,8 @@ function create_car(Car){
     for(var i=1; i<=Car.length; i++){
     var cardiv = document.createElement("div");
     cardiv.setAttribute("id", i-1);
+    cardiv.setAttribute("class", 'cardiv');
     cardiv.setAttribute('OnClick', 'car_detail(this.id)');
-//    cardiv 디자인  ----------------------------------------
-    cardiv.style.width = "120px";
-    cardiv.style.height = "120px";
-    cardiv.style.margin = "10px auto";
     cardiv.innerHTML = 'CAR'+i;
     document.getElementById('main-side2').appendChild(cardiv);
     // document.body.appendChild(button);
