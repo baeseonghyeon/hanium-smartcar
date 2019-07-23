@@ -5,7 +5,6 @@ $(document).ready(function map(){
     for(var i=0;i<=19;i++){
         map_array2[i] = new Array();
     }
-     console.log("여기까지");
      $.ajax({
                  url : "http://127.0.0.1:8000/api/MapInfo/?format=json",
                  dataType : 'json',
@@ -26,7 +25,7 @@ $(document).ready(function map(){
                  }
       });
 });
-function view(){
+function car_point(){
     var xx = document.getElementById("x").value;
     var yy = document.getElementById("y").value;
     $.ajax({
@@ -43,14 +42,35 @@ function view(){
     window.location.reload()
 }
 
-//function path(){
-//        $.ajax({
-//            type : 'POST',
-//            url : 'http://127.0.0.1:8000/map/path',
-//            data : {
-//            },
-//            dataType:'json',
-//            success: function(){
-//            }
-//        });
-//}
+function car_point(){
+    var xx = document.getElementById("x").value;
+    var yy = document.getElementById("y").value;
+    $.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/map/car_point',
+            data : {
+            'xxx' : xx,
+            'yyy' : yy
+            },
+            dataType:'json',
+            success: function(){
+            }
+        });
+    window.location.reload()
+}
+function destination_point(){
+    var aa = document.getElementById("a").value;
+    var bb = document.getElementById("b").value;
+    $.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/map/destination_point',
+            data : {
+            'aaa' : aa,
+            'bbb' : bb
+            },
+            dataType:'json',
+            success: function(){
+            }
+        });
+    window.location.reload()
+}

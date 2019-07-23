@@ -23,7 +23,10 @@
 
 <input type="text" id="x"/>
 <input type="text" id="y"/><br>
-<button onclick="view()">차량위치등록</button>
+<button onclick="car_point()">차량위치등록</button><br>
+<input type="text" id="a" />
+<input type="text" id="b" /><br>
+<button onclick="destination_point()">목적지등록</button>
 <!--<button onclick="path()">경로찾기</button>-->
 <div id="map"></div>
 
@@ -32,16 +35,3 @@ batter:<div id="main_battery"></div><br>
 communication:<div id="main_communication"></div><br>
 
 <input type="button" onclick="detail()" value="상세정보" />
-<!--<script>-->
-    <!--function park(){-->
-       <!--$.ajax({-->
-            <!--type : 'POST',-->
-            <!--url : 'http://192.168.0.9:8080/kimtest1',-->
-            <!--data : {-->
-            <!--},-->
-            <!--dataType:'json',-->
-            <!--success: function(){-->
-            <!--}-->
-        <!--});-->
-<!--}-->
-<!--</script>-->

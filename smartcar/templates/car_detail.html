@@ -2,6 +2,7 @@
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/car_information.js' %}"></script>
 <script src="{% static 'js/port_map.js' %}"></script>
+<script src="{% static 'js/manual_mode.js' %}"></script>
 {% if user.is_authenticated %}
     {% else %}
         <script>
@@ -14,6 +15,7 @@
 {% endif %}
 <br>
 <a href="/main">메인으로가기</a><br>
+
 <input type="hidden" id="test" value="{{ carNumber }}">
 <div>{{ carNumber }}</div>
 컨테이너번호:<span id="container"></span><br>
@@ -27,80 +29,22 @@
 <div id="map"></div>
 <button id="manual" onclick="manual()">수동모드</button>
 <button id="auto" onclick="auto()">자동모드</button><br>
+
 <!--<button id="path_search" value="경로찾기" onclick="search()"></button>-->
 <!--<div id="path"></div>-->
+
+
 <div id="control">
 <button id="go" onclick="go()">직진</button>
 <button id="back" onclick="back()">후진</button>
 <button id="right" onclick="right()">우회전</button>
 <button id="left" onclick="left()">좌회전</button>
 </div>
+
+
+
+
 <script>
-
-function go(){
-var a = '1 '
-        $.ajax({
-            type : 'POST',
-            url : 'http://192.168.0.9:8000',
-            dataType:'json',
-            data : {
-            'bbb': a
-            },
-            success: function(){
-            }
-        });
-}
-function back(){
-var a = '4 '
-        $.ajax({
-            type : 'POST',
-            url : 'http://192.168.0.9:8000',
-            dataType:'json',
-            data : {
-            'bbb': a
-            },
-            success: function(){
-            }
-        });
-}
-function right(){
-var a = '2 '
-        $.ajax({
-            type : 'POST',
-            url : 'http://192.168.0.9:8000',
-            dataType:'json',
-            data : {
-            'bbb': a
-            },
-            success: function(){
-            }
-        });
-}
-function left(){
-var a = '3 '
-        $.ajax({
-            type : 'POST',
-            url : 'http://192.168.0.9:8000',
-            dataType:'json',
-            data : {
-            'bbb': a
-            },
-            success: function(){
-            }
-        });
-}
-$(document).ready(function(){
-    $("#control").fadeOut("fast");
-})
-function manual(){
-    $("#drivingmode").text('수동');
-    $("#control").fadeIn("fast");
-}
-function auto(){
-    $("#drivingmode").text('자동');
-    $("#control").fadeOut('fast');
-}
-
     var filtered_json = new Array();
     $.ajax({
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
