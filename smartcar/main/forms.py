@@ -12,3 +12,8 @@ class MainInputForm(ModelForm):
     class Meta:
         model = MainInfo
         fields = ['portinfo']
+
+class XYInputForm(ModelForm):
+    class Meta:
+        model = CarInfo
+        fields = ['now_x', 'now_y', 'target_x', 'target_y']

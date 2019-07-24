@@ -9,4 +9,5 @@ urlpatterns = [
     path('car_detail', views.Car_detail, name='car_detail'),
     path('car_input', views.Car_input, name='carinput'),
     path('main_input', views.Main_input, name='maininput'),
+    path('xy_input', views.XY_input, name='xy_input')
 ]

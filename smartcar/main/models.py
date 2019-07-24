@@ -14,6 +14,11 @@ class CarInfo(models.Model):
     battery = models.CharField(max_length=10)
     communication = models.CharField(max_length=10)
     drivingmode = models.CharField(max_length=5)
+    now_x = models.CharField(max_length=2, null=True)
+    now_y = models.CharField(max_length=2, null=True)
+    target_x = models.CharField(max_length=2, null=True)
+    target_y = models.CharField(max_length=2, null=True)
+
 
     def __str__(self):
         return self.carnumber

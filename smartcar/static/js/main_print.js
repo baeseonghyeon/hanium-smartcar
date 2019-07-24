@@ -35,6 +35,10 @@ var id = clicked_id;
                     $("#main_carnumber").val(data[clicked_id].carnumber).text(data[clicked_id].carnumber);
                     $("#main_communication").text(data[clicked_id].communication);
                     $("#main_battery").text(data[clicked_id].battery);
+                    $("#x").val(data[clicked_id].now_x);
+                    $("#y").val(data[clicked_id].now_y);
+                    $("#a").val(data[clicked_id].target_x);
+                    $("#b").val(data[clicked_id].target_y);
                  }
       });
 }
