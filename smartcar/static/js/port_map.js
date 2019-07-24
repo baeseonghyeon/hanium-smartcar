@@ -21,20 +21,17 @@ $(document).ready(function map(){
                          var span = document.createElement("span");
                          span.setAttribute("id", 'design');
                          if(map_array2[i][j]==0){
-//                         $("#design").append('<img src="image/black.jpg" width="10" height="10">');
-                         span.innerHTML= '길';
+                         $("#map").append('<img src="/static/img/white.jpg" width="25px" height="25px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }
                          else if(map_array2[i][j]==1){
-//                         $("#design").append('<img src="https://www.w3schools.com/jsref/img_pulpit.jpg" width="10" height="10">');
-                         span.innerHTML= '벽';
+                         $("#map").append('<img src="/static/img/black.jpg" width="25px" height="25px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }
                          else if(map_array2[i][j]==3){
-                         span.innerHTML= '차';
+                         $("#map").append('<img src="/static/img/green.jpg" width="25px" height="25px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }
                          else if(map_array2[i][j]==5){
-                         span.innerHTML= '목';
+                         $("#map").append('<img src="/static/img/red.jpg" width="25px" height="25px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }
-                         $("#map").append(span);
                          }
                         $("#map").append("<br>");
                      }
