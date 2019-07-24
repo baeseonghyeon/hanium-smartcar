@@ -20,7 +20,8 @@ function create_car(Car){
     cardiv.setAttribute("class", 'cardiv');
     cardiv.setAttribute('OnClick', 'car_detail(this.id)');
     cardiv.innerHTML = 'CAR'+i;
-    document.getElementById('main-side2').appendChild(cardiv);
+    $("#main-side2").append(cardiv);
+//    document.getElementById('main-side2').appendChild(cardiv);
     // document.body.appendChild(button);
     }
 }

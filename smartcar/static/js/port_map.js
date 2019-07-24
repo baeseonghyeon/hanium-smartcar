@@ -21,9 +21,11 @@ $(document).ready(function map(){
                          var span = document.createElement("span");
                          span.setAttribute("id", 'design');
                          if(map_array2[i][j]==0){
+//                         $("#design").append('<img src="image/black.jpg" width="10" height="10">');
                          span.innerHTML= '길';
                          }
                          else if(map_array2[i][j]==1){
+//                         $("#design").append('<img src="https://www.w3schools.com/jsref/img_pulpit.jpg" width="10" height="10">');
                          span.innerHTML= '벽';
                          }
                          else if(map_array2[i][j]==3){
@@ -39,23 +41,6 @@ $(document).ready(function map(){
                  }
       });
 });
-function car_point(){
-    var xx = document.getElementById("x").value;
-    var yy = document.getElementById("y").value;
-    $.ajax({
-            type : 'POST',
-            url : 'http://127.0.0.1:8000/map/mapinfo',
-            data : {
-            'xxx' : xx,
-            'yyy' : yy
-            },
-            dataType:'json',
-            success: function(){
-            }
-        });
-    window.location.reload()
-}
-
 function car_point(){
     var xx = document.getElementById("x").value;
     var yy = document.getElementById("y").value;
