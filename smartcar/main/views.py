@@ -44,26 +44,4 @@ def Car_detail(request):
     num = request.POST['carNumber']
     return render(request, 'car_detail.html', {'carNumber': num})
 
-@csrf_exempt
-def go():
-    print('go')
-    return HttpResponse('')
-
-@csrf_exempt
-def back():
-    print('back')
-    return HttpResponse('')
-
-
-@csrf_exempt
-def right():
-    print('right')
-    return HttpResponse('')
-
-@csrf_exempt
-def left():
-    print('left')
-    return HttpResponse('')
-
-
 
