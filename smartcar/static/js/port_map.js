@@ -18,8 +18,6 @@ $(document).ready(function map(){
 
                      for(var i=0; i<=19; i++){
                          for(var j=0; j<=19; j++){
-                         var span = document.createElement("span");
-                         span.setAttribute("id", 'design');
                          if(map_array2[i][j]==0){
                          $("#map").append('<img src="/static/img/white.jpg" width="25px" height="25px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }

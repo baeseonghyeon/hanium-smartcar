@@ -57,7 +57,6 @@ def bfs(request):
     destination2 = ''
     for x in range(20):
         park2[x] = park[x].split(', ')
-    print(park2)
     for x in range(20):
         for y in range(20):
             if park2[x][y] == '3':
@@ -66,6 +65,7 @@ def bfs(request):
             if park2[x][y] == '5':
                 destination1 = x
                 destination2 = y
+    print(park2)
     print(start1)
     print(start2)
     print(destination1)
