@@ -20,19 +20,19 @@ function map(){
                      for(var i=0; i<=11; i++){
                          for(var j=0; j<=11; j++){
                          if(map_array2[i][j]==0){
-                         $("#map").append('<img src="/static/img/white.jpg" width="35px" height="35px" display="block" border="0" padding="0px 0px 0px 0px">');
+                         $("#map").append('<img src="/static/img/white.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }
                          else if(map_array2[i][j]==1){
-                         $("#map").append('<img src="/static/img/black.jpg" width="35px" height="35px" display="block" border="0" padding="0px 0px 0px 0px">');
+                         $("#map").append('<img src="/static/img/black.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }
                          else if(map_array2[i][j]==2){
-                         $("#map").append('<img src="/static/img/blue.jpg" width="35px" height="35px" display="block" border="0" padding="0px 0px 0px 0px">');
+                         $("#map").append('<img src="/static/img/blue.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }
                          else if(map_array2[i][j]==3){
-                         $("#map").append('<img src="/static/img/green.jpg" width="35px" height="35px" display="block" border="0" padding="0px 0px 0px 0px">');
+                         $("#map").append('<img src="/static/img/green.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }
                          else if(map_array2[i][j]==5){
-                         $("#map").append('<img src="/static/img/red.jpg" width="35px" height="35px" display="block" border="0" padding="0px 0px 0px 0px">');
+                         $("#map").append('<img src="/static/img/red.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
                          }
                          }
                         $("#map").append("<br>");
