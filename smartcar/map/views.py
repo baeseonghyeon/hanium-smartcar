@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import MapInfo
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
+from main.models import CarInfo
 
 @csrf_exempt
 def car_point(request):
@@ -12,39 +13,48 @@ def car_point(request):
     yyyy = request.POST['yyy']
     aaaa = request.POST['aaa']
     bbbb = request.POST['bbb']
-    park2 = [[0 for x in range(12)] for y in range(12)]
-    for x in range(12):
+    park2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
         park2[x] = park[x].split(', ')
-    # park2[0][0] = '0'
-    # park2[2][2] = '1'
+    # park2[1][2] = '0'
+    # park2[10][9] = '1'
     # park2[9][9] = '0'
     # park2[11][11] = '0'
-    park2[int(xxxx)-1][int(yyyy)-1] = '3'
-    park2[int(aaaa)-1][int(bbbb)-1] = '5'
-    for x in range(12):
-        for y in range(12):
+    park2[int(xxxx)][int(yyyy)] = '3'
+    park2[int(aaaa)][int(bbbb)] = '5'
+    for x in range(14):
+        for y in range(14):
             soon += park2[x][y]
-            soon += ', '
+            if y != 13:
+                soon += ', '
         soon += 's'
     mapin.map = soon
     mapin.save()
     return HttpResponse('')
 
 @csrf_exempt
-def destination_point(request):
+def reset_xy(request):
+    carnumber = request.POST['carnumber']
     mapin = MapInfo.objects.get(id='1')
-    park = mapin.map.split('s')
+    park = ''
+    park2 = [[0 for x in range(14)] for y in range(14)]
     soon = ''
-    t = request.POST['aaa']
-    z = request.POST['bbb']
-    park2 = [[0 for x in range(12)] for y in range(12)]
-    for x in range(12):
+    carin = CarInfo.objects.get(carnumber=carnumber)
+    park = mapin.map.split('s')
+    for x in range(14):
         park2[x] = park[x].split(', ')
-    park2[int(t)-1][int(z)-1] = '5'
-    for x in range(12):
-        for y in range(12):
+    park2[int(carin.now_x)][int(carin.now_y)] = '0'
+    park2[int(carin.target_x)][int(carin.target_y)] = '0'
+    carin.now_x = ''
+    carin.now_y = ''
+    carin.target_x = ''
+    carin.target_y = ''
+    carin.save()
+    for x in range(14):
+        for y in range(14):
             soon += park2[x][y]
-            soon += ', '
+            if y != 13:
+                soon += ', '
         soon += 's'
     mapin.map = soon
     mapin.save()
@@ -53,25 +63,71 @@ def destination_point(request):
 @csrf_exempt
 def bfs(request):
     db_map = MapInfo.objects.get(id='1')
+    mapin = MapInfo.objects.get(id='1')
     park = db_map.map.split('s')
-    park2 = [[0 for x in range(12)] for y in range(12)]
+    park2 = [[0 for x in range(14)] for y in range(14)]
+    kim = db_map.map.split('s')
+    kim2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
+        kim2[x] = kim[x].split(', ')
+    soon = ''
     start1 = ''
     start2 = ''
     destination1 = ''
     destination2 = ''
-    for x in range(12):
+    for x in range(14):
         park2[x] = park[x].split(', ')
-    for x in range(12):
-        for y in range(12):
-            if park2[x][y] == '3':
+    for x in range(14):
+        for y in range(14):
+            park2[x][y] = int(park2[x][y])
+            if park2[x][y] == 8:
+                park2[x][y] = 1
+            if park2[x][y] == 3:
                 start1 = x
                 start2 = y
-            if park2[x][y] == '5':
+            if park2[x][y] == 5:
                 destination1 = x
                 destination2 = y
-    print(park2)
-    print(start1)
-    print(start2)
-    print(destination1)
-    print(destination2)
+                park2[x][y] = 0
+    visit = [[0] * 14 for _ in range(14)]
+    queue = []
+    path = []
+    path_real = []
+    dir = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+    queue.append([start1, start2])
+    while queue:
+        node = queue.pop(0)
+        if node == [destination1, destination2]:
+            path.reverse()
+            temp = path[0][0]
+            path_real.append(path[0][1])
+            for i in range(len(path)):
+                if path[i][1] == temp:
+                    path_real.append(path[i][1])
+                    temp = path[i][0]
+            path_real.append([start1, start2])
+            path_real.reverse()
+        x = node[0]
+        y = node[1]
+        visit[x][y] = 1
+        for i in range(4):
+            wx = x + dir[i][0]
+            wy = y + dir[i][1]
+            if visit[wx][wy] == 0 and park2[wx][wy] == 0:
+                visit[wx][wy] = 1
+                queue.append([wx, wy])
+                path.append([node, [wx, wy]])
+    for idx, val in enumerate(path_real):
+        if idx != 0:
+            kim2[val[0]][val[1]] = '4'
+    for x in kim2:
+        print(x)
+    for x in range(14):
+        for y in range(14):
+            soon += str(kim2[x][y])
+            if y != 13:
+                soon += ', '
+        soon += 's'
+    mapin.map = soon
+    mapin.save()
     return HttpResponse('')

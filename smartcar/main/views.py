@@ -3,6 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import CarInputForm, MainInputForm, XYInputForm
 from .models import CarInfo, MainInfo
 from django.http import HttpResponseRedirect, HttpResponse
+import tkinter
+from tkinter import messagebox
 
 @csrf_exempt
 def Car_input(request):
