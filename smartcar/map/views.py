@@ -16,10 +16,6 @@ def car_point(request):
     park2 = [[0 for x in range(14)] for y in range(14)]
     for x in range(14):
         park2[x] = park[x].split(', ')
-    # park2[1][2] = '0'
-    # park2[10][9] = '1'
-    # park2[9][9] = '0'
-    # park2[11][11] = '0'
     park2[int(xxxx)][int(yyyy)] = '3'
     park2[int(aaaa)][int(bbbb)] = '5'
     for x in range(14):
@@ -36,7 +32,6 @@ def car_point(request):
 def reset_xy(request):
     carnumber = request.POST['carnumber']
     mapin = MapInfo.objects.get(id='1')
-    park = ''
     park2 = [[0 for x in range(14)] for y in range(14)]
     soon = ''
     carin = CarInfo.objects.get(carnumber=carnumber)
@@ -64,6 +59,10 @@ def reset_xy(request):
 def bfs(request):
     db_map = MapInfo.objects.get(id='1')
     mapin = MapInfo.objects.get(id='1')
+    xxxx = request.POST['xxx']
+    yyyy = request.POST['yyy']
+    aaaa = request.POST['aaa']
+    bbbb = request.POST['bbb']
     park = db_map.map.split('s')
     park2 = [[0 for x in range(14)] for y in range(14)]
     kim = db_map.map.split('s')
@@ -71,10 +70,6 @@ def bfs(request):
     for x in range(14):
         kim2[x] = kim[x].split(', ')
     soon = ''
-    start1 = ''
-    start2 = ''
-    destination1 = ''
-    destination2 = ''
     for x in range(14):
         park2[x] = park[x].split(', ')
     for x in range(14):
@@ -82,13 +77,13 @@ def bfs(request):
             park2[x][y] = int(park2[x][y])
             if park2[x][y] == 8:
                 park2[x][y] = 1
-            if park2[x][y] == 3:
-                start1 = x
-                start2 = y
-            if park2[x][y] == 5:
-                destination1 = x
-                destination2 = y
-                park2[x][y] = 0
+    start1 = int(xxxx)
+    start2 = int(yyyy)
+    destination1 = int(aaaa)
+    destination2 = int(bbbb)
+    park2[destination1][destination2] = 0
+
+    #최단거리 알고리즘
     visit = [[0] * 14 for _ in range(14)]
     queue = []
     path = []

@@ -136,10 +136,25 @@ function xy_reset(){
     }
 }
 function search(){
+    var now_x = document.getElementById("x").value;
+    var now_y = document.getElementById("y").value;
+    var target_x = document.getElementById("a").value;
+    var target_y = document.getElementById("b").value;
+    var number = document.getElementById("main_carnumber").value;
+    if(number==undefined){
+        alert('차량을 선택 후 실행하세요')
+        return 0
+    }
+    else{
         $.ajax({
             type : 'POST',
             url : 'http://127.0.0.1:8000/map/path',
             data : {
+              'carnumber' : number,
+              'xxx' : now_x,
+              'yyy' : now_y,
+              'aaa' : target_x,
+              'bbb' : target_y,
             },
             dataType:'json',
             success: function(){
@@ -148,6 +163,7 @@ function search(){
         sleep(100)
         $("#map *").remove()
         map()
+    }
 }
 function sleep(num){
 			 var now = new Date();
