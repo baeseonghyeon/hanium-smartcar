@@ -2,72 +2,152 @@ from django.shortcuts import render
 from .models import MapInfo
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
+from main.models import CarInfo
 
 @csrf_exempt
 def car_point(request):
     mapin = MapInfo.objects.get(id='1')
     park = mapin.map.split('s')
     soon = ''
-    t = request.POST['xxx']
-    z = request.POST['yyy']
-    park2 = [[0 for x in range(20)] for y in range(20)]
-    for x in range(20):
+    xxxx = request.POST['xxx']
+    yyyy = request.POST['yyy']
+    aaaa = request.POST['aaa']
+    bbbb = request.POST['bbb']
+    park2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
         park2[x] = park[x].split(', ')
-    # park2[1][1] = '0'
-    # park2[18][18] = '0'
-    # park2[1][3] = '0'
-    park2[int(t)-1][int(z)-1] = '3'
-    for x in range(20):
-        for y in range(20):
+    park2[int(xxxx)][int(yyyy)] = '3'
+    park2[int(aaaa)][int(bbbb)] = '5'
+    for x in range(14):
+        for y in range(14):
             soon += park2[x][y]
-            soon += ', '
+            if y != 13:
+                soon += ', '
         soon += 's'
     mapin.map = soon
     mapin.save()
     return HttpResponse('')
 
 @csrf_exempt
-def destination_point(request):
-    mapin = MapInfo.objects.get(id='1')
-    park = mapin.map.split('s')
+def reset_xy(request):
+    carnumber = request.POST['carnumber']
     soon = ''
-    t = request.POST['aaa']
-    z = request.POST['bbb']
-    park2 = [[0 for x in range(20)] for y in range(20)]
-    for x in range(20):
+
+    db_map = MapInfo.objects.get(id='1')
+    kim = db_map.map.split('s')
+    kim2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
+        kim2[x] = kim[x].split(', ')
+
+    carin = CarInfo.objects.get(carnumber=carnumber)
+    park = carin.route.split(']')
+    park3 = len(park) - 1
+    park2 = [[0 for x in range(park3)] for y in range(park3)]
+    for x in range(park3):
         park2[x] = park[x].split(', ')
-    park2[int(t)-1][int(z)-1] = '5'
-    for x in range(20):
-        for y in range(20):
-            soon += park2[x][y]
-            soon += ', '
+
+    for x in range(park3):
+        kim2[int(park2[x][0])][int(park2[x][1])] = '0'
+
+    for x in range(14):
+        for y in range(14):
+            soon += str(kim2[x][y])
+            if y != 13:
+                soon += ', '
         soon += 's'
-    mapin.map = soon
-    mapin.save()
+    db_map.map = soon
+    db_map.save()
+
+    carin.now_x = ''
+    carin.now_y = ''
+    carin.target_x = ''
+    carin.target_y = ''
+    carin.route = ''
+    carin.save()
     return HttpResponse('')
 
 @csrf_exempt
 def bfs(request):
-    db_map = MapInfo.objects.get(id='1')
+    db_map = MapInfo.objects.get(id='1') #알고리즘용
+    mapin = MapInfo.objects.get(id='1') #저장용
+    carnumber = request.POST['carnumber']
+    carin = CarInfo.objects.get(carnumber=carnumber)
+    xxxx = request.POST['xxx']
+    yyyy = request.POST['yyy']
+    aaaa = request.POST['aaa']
+    bbbb = request.POST['bbb']
+    soon = ''
+    ho = ''
+    #알고리즘 적용할 map
     park = db_map.map.split('s')
-    park2 = [[0 for x in range(20)] for y in range(20)]
-    start1 = ''
-    start2 = ''
-    destination1 = ''
-    destination2 = ''
-    for x in range(20):
+    park2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
         park2[x] = park[x].split(', ')
-    print(park2)
-    for x in range(20):
-        for y in range(20):
-            if park2[x][y] == '3':
-                start1 = x
-                start2 = y
-            if park2[x][y] == '5':
-                destination1 = x
-                destination2 = y
-    print(start1)
-    print(start2)
-    print(destination1)
-    print(destination2)
+    for x in range(14):
+        for y in range(14):
+            park2[x][y] = int(park2[x][y])
+            if park2[x][y] == 8:
+                park2[x][y] = 1
+                
+    #db에 저장할 map
+    kim = db_map.map.split('s')
+    kim2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
+        kim2[x] = kim[x].split(', ')
+
+    start1 = int(xxxx)
+    start2 = int(yyyy)
+    destination1 = int(aaaa)
+    destination2 = int(bbbb)
+    park2[destination1][destination2] = 0
+
+    #최단거리 알고리즘
+    visit = [[0] * 14 for _ in range(14)]
+    queue = []
+    path = []
+    path_real = []
+    dir = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+    queue.append([start1, start2])
+    while queue:
+        node = queue.pop(0)
+        if node == [destination1, destination2]:
+            path.reverse()
+            temp = path[0][0]
+            path_real.append(path[0][1])
+            for i in range(len(path)):
+                if path[i][1] == temp:
+                    path_real.append(path[i][1])
+                    temp = path[i][0]
+            path_real.append([start1, start2])
+            path_real.reverse()
+        x = node[0]
+        y = node[1]
+        visit[x][y] = 1
+        for i in range(4):
+            wx = x + dir[i][0]
+            wy = y + dir[i][1]
+            if visit[wx][wy] == 0 and park2[wx][wy] == 0:
+                visit[wx][wy] = 1
+                queue.append([wx, wy])
+                path.append([node, [wx, wy]])
+    print(path_real)
+    #알고리즘 저장
+    for idx, val in enumerate(path_real):
+        kim2[val[0]][val[1]] = '4'
+        ho += str(val[0])
+        ho += ', '
+        ho += str(val[1])
+        ho += ']'
+    for x in kim2:
+        print(x)
+    for x in range(14):
+        for y in range(14):
+            soon += str(kim2[x][y])
+            if y != 13:
+                soon += ', '
+        soon += 's'
+    mapin.map = soon
+    mapin.save()
+    carin.route = ho
+    carin.save()
     return HttpResponse('')

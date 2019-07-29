@@ -14,12 +14,18 @@
 <div id="sidebar-wrapper">
 
     <div id="main-side1">
-        0대(정렬 순)
+        <span id="car_count"></span>대(정렬 순)
     </div>
     <div id="main-side2">
 
     </div>
     <div id="main-side3">
+        현위치:<input type="text" id="x" size="2" />
+        <input type="text" id="y" size="2" /><br>
+        목적지:<input type="text" id="a" size="2" />
+        <input type="text" id="b" size="2" /><br>
+        <button onclick="xy_input()">위치등록</button>
+        <button onclick="xy_reset()">초기화</button><br>
         carnumber:<span id="main_carnumber"></span><br>
         battery:<span id="main_battery"></span><br>
         communication:<span id="main_communication"></span><br>
@@ -28,19 +34,17 @@
 </div><!-- /#sidebar-wrapper -->
 
 <!-- Page Content -->
+<button id="path_search" value="경로찾기" onclick="search()">경로test</button>
 <div id="page-content-wrapper">
     <div class="container-fluid">
-        
-        <input type="text" id="x"/>
-        <input type="text" id="y"/><br>
-        <button onclick="car_point()">차량위치등록</button><br>
-        <input type="text" id="a" />
-        <input type="text" id="b" /><br>
-        <button onclick="destination_point()">목적지등록</button>
+
+        <!--<button onclick="car_point()">차량위치등록</button><br>-->
+
+
+        <!--<button onclick="destination_point()">목적지등록</button>-->
         <!--<button onclick="path()">경로찾기</button>-->
         <div id="map"></div>
 
     </div>
 </div> <!-- /#page-content-wrapper -->
-
 {% endblock %}

@@ -57,3 +57,4 @@ function input(){
     $("#drivingmode").val('');
     $("#carnumber").val('');
 }
+
