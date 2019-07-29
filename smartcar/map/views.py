@@ -31,50 +31,58 @@ def car_point(request):
 @csrf_exempt
 def reset_xy(request):
     carnumber = request.POST['carnumber']
-    xxxx = request.POST['xxx']
-    yyyy = request.POST['yyy']
-    aaaa = request.POST['aaa']
-    bbbb = request.POST['bbb']
     soon = ''
 
-    mapin = MapInfo.objects.get(id='1')
     db_map = MapInfo.objects.get(id='1')
-
-    park2 = [[0 for x in range(14)] for y in range(14)]
-    carin = CarInfo.objects.get(carnumber=carnumber)
-    park = mapin.map.split('s')
+    kim = db_map.map.split('s')
+    kim2 = [[0 for x in range(14)] for y in range(14)]
     for x in range(14):
+        kim2[x] = kim[x].split(', ')
+
+    carin = CarInfo.objects.get(carnumber=carnumber)
+    park = carin.route.split(']')
+    park3 = len(park) - 1
+    park2 = [[0 for x in range(park3)] for y in range(park3)]
+    for x in range(park3):
         park2[x] = park[x].split(', ')
-    park2[int(carin.now_x)][int(carin.now_y)] = '0'
-    park2[int(carin.target_x)][int(carin.target_y)] = '0'
+
+    for x in range(park3):
+        kim2[int(park2[x][0])][int(park2[x][1])] = '0'
+
+    for x in range(14):
+        for y in range(14):
+            soon += str(kim2[x][y])
+            if y != 13:
+                soon += ', '
+        soon += 's'
+    db_map.map = soon
+    db_map.save()
+
     carin.now_x = ''
     carin.now_y = ''
     carin.target_x = ''
     carin.target_y = ''
+    carin.route = ''
     carin.save()
-    for x in range(14):
-        for y in range(14):
-            soon += park2[x][y]
-            if y != 13:
-                soon += ', '
-        soon += 's'
-    mapin.map = soon
-    mapin.save()
     return HttpResponse('')
 
 @csrf_exempt
 def bfs(request):
     db_map = MapInfo.objects.get(id='1') #알고리즘용
     mapin = MapInfo.objects.get(id='1') #저장용
+    carnumber = request.POST['carnumber']
+    carin = CarInfo.objects.get(carnumber=carnumber)
     xxxx = request.POST['xxx']
     yyyy = request.POST['yyy']
     aaaa = request.POST['aaa']
     bbbb = request.POST['bbb']
     soon = ''
-    
+    ho = ''
     #알고리즘 적용할 map
     park = db_map.map.split('s')
     park2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
+        park2[x] = park[x].split(', ')
     for x in range(14):
         for y in range(14):
             park2[x][y] = int(park2[x][y])
@@ -86,8 +94,6 @@ def bfs(request):
     kim2 = [[0 for x in range(14)] for y in range(14)]
     for x in range(14):
         kim2[x] = kim[x].split(', ')
-    for x in range(14):
-        park2[x] = park[x].split(', ')
 
     start1 = int(xxxx)
     start2 = int(yyyy)
@@ -124,13 +130,16 @@ def bfs(request):
                 visit[wx][wy] = 1
                 queue.append([wx, wy])
                 path.append([node, [wx, wy]])
-
+    print(path_real)
     #알고리즘 저장
     for idx, val in enumerate(path_real):
-        if idx != 0:
-            kim2[val[0]][val[1]] = '4'
-    # for x in kim2:
-    #     print(x)
+        kim2[val[0]][val[1]] = '4'
+        ho += str(val[0])
+        ho += ', '
+        ho += str(val[1])
+        ho += ']'
+    for x in kim2:
+        print(x)
     for x in range(14):
         for y in range(14):
             soon += str(kim2[x][y])
@@ -139,4 +148,6 @@ def bfs(request):
         soon += 's'
     mapin.map = soon
     mapin.save()
+    carin.route = ho
+    carin.save()
     return HttpResponse('')

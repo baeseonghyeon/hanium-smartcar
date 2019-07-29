@@ -5,10 +5,11 @@ $(document).ready(function(){
                  dataType : 'json',
                  success : function (data) {
                  map_info=data[0].portinfo;
-//                 $("#portname").text(map_info);
+                 var length = data.length;
+                 $("#car_count").text(data.length)
                  create_car(data);
                  }
-      });
+     });
 
 });
 
