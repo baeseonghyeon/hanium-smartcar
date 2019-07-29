@@ -31,9 +31,16 @@ def car_point(request):
 @csrf_exempt
 def reset_xy(request):
     carnumber = request.POST['carnumber']
-    mapin = MapInfo.objects.get(id='1')
-    park2 = [[0 for x in range(14)] for y in range(14)]
+    xxxx = request.POST['xxx']
+    yyyy = request.POST['yyy']
+    aaaa = request.POST['aaa']
+    bbbb = request.POST['bbb']
     soon = ''
+
+    mapin = MapInfo.objects.get(id='1')
+    db_map = MapInfo.objects.get(id='1')
+
+    park2 = [[0 for x in range(14)] for y in range(14)]
     carin = CarInfo.objects.get(carnumber=carnumber)
     park = mapin.map.split('s')
     for x in range(14):
@@ -57,26 +64,31 @@ def reset_xy(request):
 
 @csrf_exempt
 def bfs(request):
-    db_map = MapInfo.objects.get(id='1')
-    mapin = MapInfo.objects.get(id='1')
+    db_map = MapInfo.objects.get(id='1') #알고리즘용
+    mapin = MapInfo.objects.get(id='1') #저장용
     xxxx = request.POST['xxx']
     yyyy = request.POST['yyy']
     aaaa = request.POST['aaa']
     bbbb = request.POST['bbb']
+    soon = ''
+    
+    #알고리즘 적용할 map
     park = db_map.map.split('s')
     park2 = [[0 for x in range(14)] for y in range(14)]
-    kim = db_map.map.split('s')
-    kim2 = [[0 for x in range(14)] for y in range(14)]
-    for x in range(14):
-        kim2[x] = kim[x].split(', ')
-    soon = ''
-    for x in range(14):
-        park2[x] = park[x].split(', ')
     for x in range(14):
         for y in range(14):
             park2[x][y] = int(park2[x][y])
             if park2[x][y] == 8:
                 park2[x][y] = 1
+                
+    #db에 저장할 map
+    kim = db_map.map.split('s')
+    kim2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
+        kim2[x] = kim[x].split(', ')
+    for x in range(14):
+        park2[x] = park[x].split(', ')
+
     start1 = int(xxxx)
     start2 = int(yyyy)
     destination1 = int(aaaa)
@@ -112,11 +124,13 @@ def bfs(request):
                 visit[wx][wy] = 1
                 queue.append([wx, wy])
                 path.append([node, [wx, wy]])
+
+    #알고리즘 저장
     for idx, val in enumerate(path_real):
         if idx != 0:
             kim2[val[0]][val[1]] = '4'
-    for x in kim2:
-        print(x)
+    # for x in kim2:
+    #     print(x)
     for x in range(14):
         for y in range(14):
             soon += str(kim2[x][y])
