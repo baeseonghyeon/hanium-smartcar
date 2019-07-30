@@ -30,15 +30,26 @@ def car_point(request):
 
 @csrf_exempt
 def reset_xy(request):
+    #차넘버, 출발,도착좌표 받아오기
     carnumber = request.POST['carnumber']
+    xxxx = request.POST['xxx']
+    yyyy = request.POST['yyy']
+    aaaa = request.POST['aaa']
+    bbbb = request.POST['bbb']
     soon = ''
 
+    #맵 2차원 배열로 쪼갬
     db_map = MapInfo.objects.get(id='1')
     kim = db_map.map.split('s')
     kim2 = [[0 for x in range(14)] for y in range(14)]
     for x in range(14):
         kim2[x] = kim[x].split(', ')
 
+    #출발, 도착 좌표 초기화
+    kim2[int(xxxx)][int(yyyy)] = '0'
+    kim2[int(aaaa)][int(bbbb)] = '0'
+
+    #CarInfo의 route값으로 경로 초기화
     carin = CarInfo.objects.get(carnumber=carnumber)
     park = carin.route.split(']')
     park3 = len(park) - 1
