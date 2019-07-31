@@ -6,25 +6,31 @@ from main.models import CarInfo
 
 @csrf_exempt
 def car_point(request):
+    #맵 2차원 배열로 쪼갬
     mapin = MapInfo.objects.get(id='1')
     park = mapin.map.split('s')
-    soon = ''
+    park2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
+        park2[x] = park[x].split(', ')
+    
+    #기존 출발, 도착 좌표 초기화
+    # carin = CarInfo.objects.get(carnumber=request.POST['carnumber'])
+
+    #현재 출발, 도착 좌표 입력
     xxxx = request.POST['xxx']
     yyyy = request.POST['yyy']
     aaaa = request.POST['aaa']
     bbbb = request.POST['bbb']
-    park2 = [[0 for x in range(14)] for y in range(14)]
-    for x in range(14):
-        park2[x] = park[x].split(', ')
+    views_map = ''
     park2[int(xxxx)][int(yyyy)] = '3'
     park2[int(aaaa)][int(bbbb)] = '5'
     for x in range(14):
         for y in range(14):
-            soon += park2[x][y]
+            views_map += park2[x][y]
             if y != 13:
-                soon += ', '
-        soon += 's'
-    mapin.map = soon
+                views_map += ', '
+        views_map += 's'
+    mapin.map = views_map
     mapin.save()
     return HttpResponse('')
 
@@ -60,6 +66,7 @@ def reset_xy(request):
     for x in range(park3):
         kim2[int(park2[x][0])][int(park2[x][1])] = '0'
 
+    #초기화 후 맵 수정, 저장
     for x in range(14):
         for y in range(14):
             soon += str(kim2[x][y])
@@ -69,6 +76,7 @@ def reset_xy(request):
     db_map.map = soon
     db_map.save()
 
+    #도착, 출발, 경로 초기화
     carin.now_x = ''
     carin.now_y = ''
     carin.target_x = ''
@@ -87,8 +95,8 @@ def bfs(request):
     yyyy = request.POST['yyy']
     aaaa = request.POST['aaa']
     bbbb = request.POST['bbb']
-    soon = ''
-    ho = ''
+    views_map = ''
+    views_route = ''
     #알고리즘 적용할 map
     park = db_map.map.split('s')
     park2 = [[0 for x in range(14)] for y in range(14)]
@@ -142,23 +150,65 @@ def bfs(request):
                 queue.append([wx, wy])
                 path.append([node, [wx, wy]])
     print(path_real)
-    #알고리즘 저장
+
+    value = ''
+    path1 = len(path_real)
+    value2 = [[0 for x in range(path1)] for y in range(path1)]
+
+    for idx, val in enumerate(path_real):
+        value += str(val[0])
+        value += ', '
+        value += str(val[1])
+        value += ']'
+
+    value1 = value.split(']')
+    for x in range(path1):
+        value2[x] = value1[x].split(', ')
+
+    for x in range(path1):
+        for y in range(2):
+            value2[x][y] = int(value2[x][y])
+
+    index = 0
+    # while index <= path1+1:
+    #     if value2[index + 2][0] == value2[index][0] + 1:
+    #         if value2[index + 2][1] == value2[index][1] + 1:
+    #             if value2[index + 1][1] > value2[index][1]:
+    #                 print('우회전')
+    #                 index += 2
+    #                 continue
+    #     elif value2[index + 2][0] == value2[index][0] + 1:
+    #         if value2[index + 2][1] == value2[index][1] + 1:
+    #             if value[index + 1][0] > value2[index][0]:
+    #                 print('좌회전')
+    #                 index += 2
+    #                 continue
+    #     elif value2[index][0] == value2[index + 1][0]:
+    #         if value2[index][1] < value2[index + 1][1]:
+    #             print('전진')
+    #     elif value2[index][1] == value2[index + 1][1]:
+    #         if value2[index][0] < value2[index + 1][0]:
+    #             print('전진')
+    #     index += 1
+
+    #경로저장
     for idx, val in enumerate(path_real):
         kim2[val[0]][val[1]] = '4'
-        ho += str(val[0])
-        ho += ', '
-        ho += str(val[1])
-        ho += ']'
-    for x in kim2:
-        print(x)
+        views_route += str(val[0])
+        views_route += ', '
+        views_route += str(val[1])
+        views_route += ']'
+
+    #맵 저장
     for x in range(14):
         for y in range(14):
-            soon += str(kim2[x][y])
+            views_map += str(kim2[x][y])
             if y != 13:
-                soon += ', '
-        soon += 's'
-    mapin.map = soon
+                views_map += ', '
+        views_map += 's'
+
+    mapin.map = views_map
     mapin.save()
-    carin.route = ho
+    carin.route = views_route
     carin.save()
     return HttpResponse('')

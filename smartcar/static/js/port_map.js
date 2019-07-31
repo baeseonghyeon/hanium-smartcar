@@ -54,13 +54,27 @@ function xy_input(){
     var number = document.getElementById("main_carnumber").value;
     if(number==undefined){
         alert('차량을 선택 후 실행하세요')
-        $("#x").val('')
-        $("#y").val('')
-        $("#a").val('')
-        $("#b").val('')
+//        $("#x").val('')
+//        $("#y").val('')
+//        $("#a").val('')
+//        $("#b").val('')
         return 0
     }
     else{
+        $.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/map/car_point',
+            data : {
+             'carnumber' : number,
+             'xxx' : now_x,
+             'yyy' : now_y,
+             'aaa' : target_x,
+             'bbb' : target_y,
+            },
+            dataType:'json',
+            success: function(){
+            }
+        });
         $.ajax({
             type : 'POST',
             url : 'http://127.0.0.1:8000/main/xy_input',
@@ -75,23 +89,10 @@ function xy_input(){
             success: function(){
             }
         });
-        $.ajax({
-            type : 'POST',
-            url : 'http://127.0.0.1:8000/map/car_point',
-            data : {
-             'xxx' : now_x,
-             'yyy' : now_y,
-             'aaa' : target_x,
-             'bbb' : target_y,
-            },
-            dataType:'json',
-            success: function(){
-            }
-        });
-    $("#x").val('')
-    $("#y").val('')
-    $("#a").val('')
-    $("#b").val('')
+//    $("#x").val('')
+//    $("#y").val('')
+//    $("#a").val('')
+//    $("#b").val('')
     sleep(100)
     $("#map *").remove()
     map()
@@ -105,10 +106,10 @@ function xy_reset(){
     var number = document.getElementById("main_carnumber").value;
     if(number==undefined){
         alert('차량을 선택 후 실행하세요')
-        $("#x").val('')
-        $("#y").val('')
-        $("#a").val('')
-        $("#b").val('')
+//        $("#x").val('')
+//        $("#y").val('')
+//        $("#a").val('')
+//        $("#b").val('')
         return 0
     }
     else{
