@@ -170,31 +170,57 @@ def bfs(request):
             value2[x][y] = int(value2[x][y])
 
     #최단경로 pi로 전송할 데이터
-    # index = 0
-    # try:
-    #     while True:
-    #         print(value2[index][0], value2[index][1])
-    #         if value2[index + 2][0] == value2[index][0] + 1:
-    #             if value2[index + 2][1] == value2[index][1] + 1:
-    #                 if value2[index + 1][1] > value2[index][1]:
-    #                     print('우회전')
-    #                     index += 2
-    #                     continue
-    #         elif value2[index + 2][0] == value2[index][0] + 1:
-    #             if value2[index + 2][1] == value2[index][1] + 1:
-    #                 if value[index + 1][0] > value2[index][0]:
-    #                     print('좌회전')
-    #                     index += 2
-    #                     continue
-    #         elif value2[index][0] == value2[index + 1][0]:
-    #             if value2[index][1] < value2[index + 1][1]:
-    #                 print('전진')
-    #         elif value2[index][1] == value2[index + 1][1]:
-    #             if value2[index][0] < value2[index + 1][0]:
-    #                 print('전진')
-    #         index += 1
-    # except IndexError:
-    #     pass
+    index = 0
+    try:
+        while True:
+            print('--------------------')
+            print(value2[index][0], value2[index][1])
+            print(index)
+            if value2[index + 2][0] == value2[index][0] + 1:
+                if value2[index + 2][1] == value2[index][1] + 1:
+                    if value2[index + 1][1] > value2[index][1]:
+                        print('우회전')
+                        index += 2
+                        continue
+            elif value2[index + 2][0] == value2[index][0] - 1:
+                if value2[index + 2][1] == value2[index][1] - 1:
+                    if value2[index][1] > value2[index + 1][1]:
+                        print('우회전')
+                        index += 2
+                        continue
+            elif value2[index + 2][0] == value2[index][0] + 1:
+                if value2[index + 2][1] == value2[index][1] + 1:
+                    if value[index + 1][0] > value2[index][0]:
+                        print('좌회전')
+                        index += 2
+                        continue
+            elif value2[index + 2][0] == value2[index][0] + 1:
+                if value2[index + 2][1] == value2[index][1] - 1:
+                    if value2[index + 1][1] < value2[index][1]:
+                        print('좌회전')
+                        index += 2
+                        continue
+            elif value2[index][0] == value2[index + 1][0]:
+                if value2[index][1] > value2[index + 1][1]:
+                    print('전진')
+                    index += 1
+                    continue
+                elif value2[index][1] < value2[index + 1][1]:
+                    print('전진')
+                    index += 1
+                    continue
+            elif value2[index][1] == value2[index + 1][1]:
+                if value2[index + 1][0] > value2[index][0]:
+                    print('전진')
+                    index += 1
+                    continue
+                elif value2[index][0] > value2[index + 1][0]:
+                    print('전진')
+                    index += 1
+                    continue
+            index += 1
+    except IndexError:
+        pass
 
     #경로저장
     for idx, val in enumerate(path_real):
