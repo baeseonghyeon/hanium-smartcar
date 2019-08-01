@@ -25,21 +25,21 @@ function map(){
                             else if(map_array2[i][j]==1){
                                  $("#map").append('<img src="/static/img/black.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
                             }
-                             else if(map_array2[i][j]==2){
+                            else if(map_array2[i][j]==2){
                                  $("#map").append('<img src="/static/img/blue.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
-                             }
-                             else if(map_array2[i][j]==3){
+                            }
+                            else if(map_array2[i][j]==3){
                                  $("#map").append('<img src="/static/img/green.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
-                             }
-                             else if(map_array2[i][j]==5){
+                            }
+                            else if(map_array2[i][j]==5){
                                  $("#map").append('<img src="/static/img/red.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
-                             }
-                             else if(map_array2[i][j]==8){
+                            }
+                            else if(map_array2[i][j]==8){
                                  $("#map").append();
-                             }
-                             else if(map_array2[i][j]==4){
+                            }
+                            else if(map_array2[i][j]==4){
                                  $("#map").append('<img src="/static/img/pink.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
-                             }
+                            }
                          }
                          $("#map").append("<br>");
                      }
@@ -89,10 +89,6 @@ function xy_input(){
             success: function(){
             }
         });
-//    $("#x").val('')
-//    $("#y").val('')
-//    $("#a").val('')
-//    $("#b").val('')
     sleep(100)
     $("#map *").remove()
     map()
@@ -106,10 +102,6 @@ function xy_reset(){
     var number = document.getElementById("main_carnumber").value;
     if(number==undefined){
         alert('차량을 선택 후 실행하세요')
-//        $("#x").val('')
-//        $("#y").val('')
-//        $("#a").val('')
-//        $("#b").val('')
         return 0
     }
     else{
