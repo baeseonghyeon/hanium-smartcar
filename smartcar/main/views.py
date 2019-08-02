@@ -40,16 +40,6 @@ def Main_input(request):
     return HttpResponseRedirect('/')
 
 @csrf_exempt
-def XY_input(request):
-    mainin = CarInfo.objects.get(carnumber=request.POST['carnumber'])
-    mainin.now_x = request.POST['now_x']
-    mainin.now_y = request.POST['now_y']
-    mainin.target_x = request.POST['target_x']
-    mainin.target_y = request.POST['target_y']
-    mainin.save()
-    return HttpResponseRedirect('/')
-
-@csrf_exempt
 def Car_detail(request):
     num = request.POST['carNumber']
     return render(request, 'car_detail.html', {'carNumber': num})

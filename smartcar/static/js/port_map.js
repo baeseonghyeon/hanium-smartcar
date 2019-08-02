@@ -20,29 +20,32 @@ function map(){
                      for(var i=0; i<=13; i++){
                          for(var j=0; j<=13; j++){
                             if(map_array2[i][j]==0){
-                                 $("#map").append('<img src="/static/img/white.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
+                                 $("#map").append('<img src="/static/img/white.jpg" width="45px" height="45px">');
                             }
                             else if(map_array2[i][j]==1){
-                                 $("#map").append('<img src="/static/img/black.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
+                                 $("#map").append('<img src="/static/img/black.jpg" width="45px" height="45px">');
                             }
                             else if(map_array2[i][j]==2){
-                                 $("#map").append('<img src="/static/img/blue.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
+                                 $("#map").append('<img src="/static/img/blue.jpg" width="45px" height="45px">');
                             }
                             else if(map_array2[i][j]==3){
-                                 $("#map").append('<img src="/static/img/green.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
+                                 $("#map").append('<img src="/static/img/green.jpg" width="45px" height="45px">');
                             }
                             else if(map_array2[i][j]==5){
-                                 $("#map").append('<img src="/static/img/red.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
+                                 $("#map").append('<img src="/static/img/red.jpg" width="45px" height="45px">');
                             }
                             else if(map_array2[i][j]==8){
                                  $("#map").append();
                             }
                             else if(map_array2[i][j]==4){
-                                 $("#map").append('<img src="/static/img/pink.jpg" width="45px" height="45px" display="block" border="0" padding="0px 0px 0px 0px">');
+                                 $("#map").append('<img src="/static/img/pink.jpg" width="45px" height="45px">');
                             }
                          }
                          $("#map").append("<br>");
                      }
+//                     $(".route").wrapAll('<span class="wrap"></span>')
+//                     $(".wrap").append('<marquee direction="RIGHT" id="marquee"></marquee>')
+//                     $("#marquee").append(#car)
                  }
      });
 }
@@ -54,10 +57,6 @@ function xy_input(){
     var number = document.getElementById("main_carnumber").value;
     if(number==undefined){
         alert('차량을 선택 후 실행하세요')
-//        $("#x").val('')
-//        $("#y").val('')
-//        $("#a").val('')
-//        $("#b").val('')
         return 0
     }
     else{
@@ -70,20 +69,6 @@ function xy_input(){
              'yyy' : now_y,
              'aaa' : target_x,
              'bbb' : target_y,
-            },
-            dataType:'json',
-            success: function(){
-            }
-        });
-        $.ajax({
-            type : 'POST',
-            url : 'http://127.0.0.1:8000/main/xy_input',
-            data : {
-                    'carnumber' : number,
-                    'now_x' : now_x,
-                    'now_y' : now_y,
-                    'target_x' : target_x,
-                    'target_y' : target_y,
             },
             dataType:'json',
             success: function(){
