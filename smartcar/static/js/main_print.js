@@ -10,7 +10,6 @@ $(document).ready(function(){
                  create_car(data);
                  }
      });
-
 });
 
 function create_car(Car){

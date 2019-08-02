@@ -50,7 +50,6 @@
       <button id="back" onclick="back()">후진</button>
       <button id="right" onclick="right()">우회전</button>
       <button id="left" onclick="left()">좌회전</button>
-      <button onclick="checkaa()">체크크크ㅡ</button>
       </div>
 
 
@@ -160,16 +159,18 @@ function route(clicked_car){
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
-                    map(data[clicked_car-1].route, data[clicked_car-1].now_x, data[clicked_car-1].now_y)
+                    map(data[clicked_car-1].route, data[clicked_car-1].now_x, data[clicked_car-1].now_y, data[clicked_car-1].target_x, data[clicked_car-1].target_y)
                  }
          });
 }
-function map(route, x, y){
+function map(route, x, y, a, b){
     var car_route1 = new Array()
     var car_route2 = new Array()
     car_route = route
     now_x = Number(x)
     now_y = Number(y)
+    target_x = Number(a)
+    target_y = Number(b)
     car_route1 = car_route.split(']')
     count = car_route1.length - 2
     for(var i = 0; i<=count; i++){
@@ -194,15 +195,21 @@ function map(route, x, y){
                  success : function(data){
                      map_display=data[1].map;
                      map_array=map_display.split('s');
-                    console.log(car_route2)
                      for(var i=0; i<=13; i++){
                        map_array2[i]=map_array[i].split(', ');
                      }
                      for(var i=0; i<=count; i++){
                             map_array2[car_route2[i][0]][car_route2[i][1]]="4"
                      }
-                     map_array2[now_x][now_y]="3"
-
+                     if( now_x != ''){
+                            map_array2[now_x][now_y]="3"
+                     }
+                     if(car_route == ''){
+                        if( target_x !=''){
+                            map_array2[target_x][target_y]="5"
+                        }
+                     }
+                     console.log(map_array2)
                      for(var i=0; i<=13; i++){
                          for(var j=0; j<=13; j++){
                             if(map_array2[i][j]==0){

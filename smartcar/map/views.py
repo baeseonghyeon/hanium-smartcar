@@ -115,6 +115,8 @@ def bfs(request):
             park2[x][y] = int(park2[x][y])
             if park2[x][y] == 8:
                 park2[x][y] = 1
+            if park2[x][y] == 2:
+                park2[x][y] = 1
                 
     #db에 저장할 map
     kim = db_map.map.split('s')
