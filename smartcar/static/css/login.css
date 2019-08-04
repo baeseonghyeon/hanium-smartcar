@@ -1,0 +1,58 @@
+/* User Sign */
+#sign_box {
+    margin: 10rem auto;
+    text-align: center;
+    background: rgba(0,0,0,0.7);
+    padding: 20px 0px;
+    max-width: 500px;
+    border: 2px solid #415062;
+}
+#sign_box h1 {
+    margin: 50px auto;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #b6bcc9;
+}
+.link, .link a {
+    color: #0eac6a;
+    font-size: 0.9rem;
+}
+.link {
+    margin-bottom: 50px;
+    display: inline-block;
+}
+#sign_form label {
+    display: none;
+}
+#sign_form input {
+    width: 300px;
+    height: 50px;
+    font-size: 1rem;
+    padding: 10px;
+    background: #111822;
+    border: 1px solid #415062;
+    color: #9a9ca0;
+}
+#sign_form input:focus {
+    background: #111822;
+}
+#sign_form button[type=submit] {
+    margin-bottom: 30px;
+    width: 280px;
+    height: 50px;
+    background-color: #273244;
+    border-color: #515151;
+    border-radius: 0px;
+    color: #b6bcc9;
+}
+#sign_form button[type=submit]:hover {
+    background-color: #111822;
+}
+
+/* flash notice */
+ul.errorlist.nonfield {
+    list-style: none;
+    color:#F44336;
+    padding: 0px;
+    margin: 10px 60px;
+}
