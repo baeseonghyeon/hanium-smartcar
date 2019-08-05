@@ -1,7 +1,11 @@
 {% extends './common/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<link href="{% static 'css/main.css'%}" rel="stylesheet">
+{% endblock %}
 
 {% block contents %}
-
 <!-- not user redirect -->
 {% if user.is_authenticated %}
 {% else %}
