@@ -2,11 +2,8 @@ from django.db import models
 
 # Create your models here.
 
-class MainInfo(models.Model):
-    portinfo = models.CharField(max_length=10, unique=False)
-
 class CarInfo(models.Model):
-    carnumber = models.ForeignKey(MainInfo, on_delete=models.CASCADE)
+    carnumber = models.CharField(max_length=10)
     container = models.CharField(max_length=20)
     destination = models.CharField(max_length=20)
     route = models.CharField(max_length=300)
@@ -18,8 +15,6 @@ class CarInfo(models.Model):
     now_y = models.CharField(max_length=2, default='0')
     target_x = models.CharField(max_length=2, default='0')
     target_y = models.CharField(max_length=2, default='0')
-
-
     def __str__(self):
         return self.carnumber
 

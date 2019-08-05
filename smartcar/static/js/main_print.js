@@ -1,10 +1,9 @@
 $(document).ready(function(){
     var map_info;
      $.ajax({
-                 url : "http://127.0.0.1:8000/api/MainInfo/?format=json",
+                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
-                 map_info=data[0].portinfo;
                  var length = data.length;
                  $("#car_count").text(data.length)
                  create_car(data);
