@@ -3,6 +3,8 @@
 
 {% block head %}
 <link href="{% static 'css/main.css'%}" rel="stylesheet">
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/car_input.js' %}"></script>
 {% endblock %}
 
 {% block contents %}
@@ -51,4 +53,36 @@
 
     </div>
 </div> <!-- /#page-content-wrapper -->
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">차량등록</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <input type="button" value="차량추가" onclick="car_input()" /><br>
+        Carnumber:<input type="text" id="carnumber" /><br>
+        Container:<input type="text" id="container" /><br>
+        Speed:<input type="text" id="speed" /><br>
+        Battery:<input type="text" id="battery" /><br>
+        Communication:<input type="text" id="communication" /><br>
+        Drivingmode:<input type="text" id="drivingmode" /><br>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <input type="button" class="btn btn-danger" value="저장 후 닫기" onclick="input()" data-dismiss="modal"/>
+        <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+      </div>
+
+    </div>
+  </div>
+</div>
 {% endblock %}

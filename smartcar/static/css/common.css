@@ -1272,6 +1272,7 @@ body {
   flex-direction: column;
   text-align: center;
   border-right: 2px solid #415062;
+  
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -1342,9 +1343,10 @@ body {
     }
     #wrapper.toggled {
       /* padding-right: 250px; */
+    
     }
     #sidebar-wrapper {
-      width: 0;
+      /* width: 0; */
     }
     #wrapper.toggled #sidebar-wrapper {
       width: 350px;

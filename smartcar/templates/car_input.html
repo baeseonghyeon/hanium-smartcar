@@ -1,4 +1,11 @@
-{% load static %}
+{% extends './common/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block contents %}
 <script src="{% static 'js/jquery.js' %}"></script>
 <script src="{% static 'js/car_input.js' %}"></script>
 
@@ -22,6 +29,6 @@ Battery:<input type="text" id="battery" /><br>
 Communication:<input type="text" id="communication" /><br>
 Drivingmode:<input type="text" id="drivingmode" /><br>
 <input type="button" value="저장" onclick="input()" /><br><br>
-
+{% endblock %}
 
 
