@@ -1,4 +1,4 @@
-{% extends './common/base.html' %}
+{% extends './common/base_for_detail.html' %}
 
 {% block contents %}
 
@@ -22,13 +22,10 @@
 
     </div>
     <div id="detail-side2">
-
     </div>
     <div id="detail-side3">
-        <div>{{ carNumber }}</div>
+        <span id="car_number" value="{{ carNumber }}">{{ carNumber }}번차량</span><br>
         컨테이너번호:<span id="container"></span><br>
-        목적지:<span id="destination"></span><br>
-        경로:<span id="route"></span><br>
         속도:<span id="speed"></span><br>
         배터리:<span id="battery"></span><br>
         통신상태:<span id="communication"></span><br>
@@ -47,20 +44,6 @@
       <div id="map"></div>
       <button id="manual" onclick="manual()">수동모드</button>
       <button id="auto" onclick="auto()">자동모드</button><br>
-<script>
-    function search(){
-    $.ajax({
-            type : 'POST',
-            url : 'http://127.0.0.1:8000/map/path',
-            data : {
-            },
-            dataType:'json',
-            success: function(){
-            }
-        });
-    }
-
-</script>
 
       <div id="control">
       <button id="go" onclick="go()">직진</button>
@@ -72,14 +55,11 @@
 
     </div>
 </div> <!-- /#page-content-wrapper -->
-
-
-
-
-
 <script>
 $(document).ready(function(){
-    $("#control").fadeOut("fast");
+    $("#control").fadeOut("fast")
+    var index = $("#test").val()
+    route(index)
 })
 function manual(){
     $("#drivingmode").text('수동');
@@ -90,10 +70,10 @@ function auto(){
     $("#control").fadeOut('fast');
 }
 function go(){
-var a = '1 '
+    var a = '1 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.9:8000',
+            url : 'http://192.168.0.10:8000',
             dataType:'json',
             data : {
             'bbb': a
@@ -103,10 +83,10 @@ var a = '1 '
         });
 }
 function back(){
-var a = '4 '
+    var a = '4 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.9:8000',
+            url : 'http://192.168.0.10:8000',
             dataType:'json',
             data : {
             'bbb': a
@@ -116,10 +96,10 @@ var a = '4 '
         });
 }
 function right(){
-var a = '2 '
+    var a = '2 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.9:8000',
+            url : 'http://192.168.0.10:8000',
             dataType:'json',
             data : {
             'bbb': a
@@ -129,10 +109,10 @@ var a = '2 '
         });
 }
 function left(){
-var a = '3 '
+    var a = '3 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.9:8000',
+            url : 'http://192.168.0.10:8000',
             dataType:'json',
             data : {
             'bbb': a
@@ -147,19 +127,15 @@ var a = '3 '
                  dataType : 'json',
                  success : function (data) {
                     var my_json = JSON.stringify(data)
-                    filtered_json = find_in_object(JSON.parse(my_json), {carnumber: {{ carNumber }} });
+                    filtered_json = find_in_object(JSON.parse(my_json), {id: {{ carNumber }} });
                     var container = filtered_json[0].container;
-                    var destination = filtered_json[0].destination;
-                    var route = filtered_json[0].route;
                     var speed = filtered_json[0].speed;
                     var battery = filtered_json[0].battery;
                     var communication = filtered_json[0].communication;
                     var drivingmode = filtered_json[0].drivingmode;
                     $("#container").text(container);
-                    $("#route").text(route);
                     $("#speed").text(speed);
                     $("#battery").text(battery);
-                    $("#destination").text(destination);
                     $("#communication").text(communication);
                     $("#drivingmode").text(drivingmode);
                  }
@@ -173,7 +149,95 @@ function find_in_object(my_object, my_criteria){
     });
   });
 }
+
+function route(clicked_car){
+    var car_route
+    var count
+    var car_route1 = new Array()
+    var car_route2 = new Array()
+         $.ajax({
+                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+                 dataType : 'json',
+                 success : function (data) {
+                    map(data[clicked_car-1].route, data[clicked_car-1].now_x, data[clicked_car-1].now_y, data[clicked_car-1].target_x, data[clicked_car-1].target_y)
+                 }
+         });
+}
+function map(route, x, y, a, b){
+    var car_route1 = new Array()
+    var car_route2 = new Array()
+    car_route = route
+    now_x = Number(x)
+    now_y = Number(y)
+    target_x = Number(a)
+    target_y = Number(b)
+    car_route1 = car_route.split(']')
+    count = car_route1.length - 2
+    for(var i = 0; i<=count; i++){
+          car_route2[i] = new Array()
+    }
+    for(var i = 0; i<= count; i++){
+          car_route2[i] = car_route1[i].split(', ')
+    }
+    for(var x = 0; x <= count; x++)
+          for(var y = 0; y <= 1; y++){
+               car_route2[x][y] = Number(car_route2[x][y])
+    }
+    var map_display;
+    var map_array = new Array();
+    var map_array2 = new Array();
+    for(var i=0;i<=13;i++){
+        map_array2[i] = new Array();
+    }
+     $.ajax({
+                 url : "http://127.0.0.1:8000/api/MapInfo/?format=json",
+                 dataType : 'json',
+                 success : function(data){
+                     map_display=data[1].map;
+                     map_array=map_display.split('s');
+                     for(var i=0; i<=13; i++){
+                       map_array2[i]=map_array[i].split(', ');
+                     }
+                     for(var i=0; i<=count; i++){
+                            map_array2[car_route2[i][0]][car_route2[i][1]]="4"
+                     }
+                     if( now_x != ''){
+                            map_array2[now_x][now_y]="3"
+                     }
+                     if(car_route == ''){
+                        if( target_x !=''){
+                            map_array2[target_x][target_y]="5"
+                        }
+                     }
+                     console.log(map_array2)
+                     for(var i=0; i<=13; i++){
+                         for(var j=0; j<=13; j++){
+                            if(map_array2[i][j]==0){
+                                 $("#map").append('<img src="/static/img/white.jpg" width="45px" height="45px">');
+                            }
+                            else if(map_array2[i][j]==1){
+                                 $("#map").append('<img src="/static/img/black.jpg" width="45px" height="45px">');
+                            }
+                            else if(map_array2[i][j]==2){
+                                 $("#map").append('<img src="/static/img/blue.jpg" width="45px" height="45px">');
+                            }
+                            else if(map_array2[i][j]==3){
+                                 $("#map").append('<img src="/static/img/green.jpg" width="45px" height="45px">');
+                            }
+                            else if(map_array2[i][j]==5){
+                                 $("#map").append('<img src="/static/img/red.jpg" width="45px" height="45px">');
+                            }
+                            else if(map_array2[i][j]==8){
+                                 $("#map").append();
+                            }
+                            else if(map_array2[i][j]==4){
+                                 $("#map").append('<img src="/static/img/pink.jpg" width="45px" height="45px">');
+                            }
+                         }
+                         $("#map").append("<br>");
+                     }
+                 }
+     });
+}
 </script>
-
-
 {% endblock %}

@@ -1,6 +1,20 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+* { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+html, body {
+    height: 100%;
+}
+
 body {
-    background: #475161;
-    color: white;
+    /* background: #475161; */
+    /* background: #253247; */
+    background: #141e30;
+    color: #b6bcc9;
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    flex: 1;
 }
 
 dd {
@@ -953,8 +967,8 @@ dl.row > dd + dt {
 }
 
 .navbar {
-    background-color: rgba(49, 64, 79, 0.95);
-    border-bottom: 1px solid #46586b;
+    background-color: rgba(37, 50, 71, 0.95);
+    border-bottom: 2px solid #46586b;
 }
 
 .navbar-collapse {
@@ -1005,6 +1019,10 @@ ul.navbar-nav {
 /* Footer */
 footer {
     text-align: center;
+    font-size: 0.8rem;
+    color: #b6bcc9;
+    height: 100px;
+    flex-shrink: 0;
 }
 
 /* MOBILE SIZE */
@@ -1252,7 +1270,8 @@ body {
   transition: all 0.5s ease;
   display: flex;
   flex-direction: column;
-  text-align: center
+  text-align: center;
+  border-right: 2px solid #415062;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -1342,32 +1361,6 @@ body {
 
 /* Sidebar innerbox */
 
-/* main */
-#main-side1 {
-    flex: 0.5;
-    background: #2f3e4d;
-    padding: 15px;
-    border-bottom: 1px solid #364658;
-}
-#main-side2 {
-    flex: 10;
-    background: #38495c;
-    overflow-y: auto;
-}
-#main-side3 {
-    flex: 6;
-    background: #273245;
-    padding: 15px;
-}
-/* main-car select menu */
-.cardiv {
-    width: 150px;
-    height: 120px;
-    margin: 10px auto;
-    border: 1px solid #65c879;
-}
-
-
 /* detail */
 #detail-side1 {
     flex: 2;
@@ -1414,14 +1407,4 @@ body {
 .sm {
     height: 80px;
     width: 80px;
-}
-
-/* User Sign */
-.sign_box {
-    width: 500px;
-    margin: 10rem auto;
-    text-align: center;
-}
-.sign_box h1 {
-    margin: 50px auto;
 }
