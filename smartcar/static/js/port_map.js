@@ -60,11 +60,13 @@ function xy_input(){
     }
 }
 function check_xy(number){
-    num = Number(number)-1
+var num = Number(number)-1
          $.ajax({
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
+                 console.log(num)
+                 console.log(data[num])
                     if(data[num].now_x != ""){
                         alert('이미 좌표 있음')
                     }

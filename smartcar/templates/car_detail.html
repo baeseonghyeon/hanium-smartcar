@@ -127,7 +127,7 @@ function left(){
                  dataType : 'json',
                  success : function (data) {
                     var my_json = JSON.stringify(data)
-                    filtered_json = find_in_object(JSON.parse(my_json), {carnumber: {{ carNumber }} });
+                    filtered_json = find_in_object(JSON.parse(my_json), {id: {{ carNumber }} });
                     var container = filtered_json[0].container;
                     var speed = filtered_json[0].speed;
                     var battery = filtered_json[0].battery;

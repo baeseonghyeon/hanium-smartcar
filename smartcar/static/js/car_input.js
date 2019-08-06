@@ -1,5 +1,5 @@
 function input(){
-    var number_car = document.getElementById("carnumber").value;
+    var name_car = document.getElementById("carname").value;
     var container_car = document.getElementById("container").value;
     var speed_car = document.getElementById("speed").value;
     var battery_car = document.getElementById("battery").value;
@@ -9,7 +9,7 @@ function input(){
             type : 'POST',
             url : 'http://127.0.0.1:8000/main/car_input',
             data : {
-                    'carnumber' : number_car,
+                    'carname' : name_car,
                     'container' : container_car,
                     'speed' : speed_car,
                     'battery' : battery_car,
@@ -21,12 +21,11 @@ function input(){
             }
         });
     alert('저장완료!');
-    $("#carnumber").val('');
     $("#container").val('');
     $("#speed").val('');
     $("#battery").val('');
     $("#communication").val('');
     $("#drivingmode").val('');
-    $("#carnumber").val('');
+    $("#carname").val('');
 }
 

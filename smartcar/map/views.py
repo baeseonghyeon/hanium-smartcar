@@ -33,7 +33,7 @@ def car_point(request):
     mapin.save()
     
     #차량정보에 출발, 도착 위치 저장
-    mainin = CarInfo.objects.get(carnumber=request.POST['carnumber'])
+    mainin = CarInfo.objects.get(id=request.POST['carnumber'])
     mainin.now_x = xxxx
     mainin.now_y = yyyy
     mainin.target_x = aaaa
@@ -44,7 +44,7 @@ def car_point(request):
 @csrf_exempt
 def reset_xy(request):
     #차넘버, 출발,도착좌표 받아오기
-    carnumber = request.POST['carnumber']
+    id = request.POST['carnumber']
     xxxx = request.POST['xxx']
     yyyy = request.POST['yyy']
     aaaa = request.POST['aaa']
@@ -63,7 +63,7 @@ def reset_xy(request):
     kim2[int(aaaa)][int(bbbb)] = '0'
 
     #CarInfo의 route값으로 경로 초기화
-    carin = CarInfo.objects.get(carnumber=carnumber)
+    carin = CarInfo.objects.get(id=id)
     park = carin.route.split(']')
     park3 = len(park) - 1
     park2 = [[0 for x in range(park3)] for y in range(park3)]
@@ -96,8 +96,8 @@ def reset_xy(request):
 def bfs(request):
     db_map = MapInfo.objects.get(id='1') #알고리즘용
     mapin = MapInfo.objects.get(id='1') #저장용
-    carnumber = request.POST['carnumber']
-    carin = CarInfo.objects.get(carnumber=carnumber)
+    id = request.POST['carnumber']
+    carin = CarInfo.objects.get(id=id)
     xxxx = request.POST['xxx']
     yyyy = request.POST['yyy']
     aaaa = request.POST['aaa']
@@ -179,57 +179,57 @@ def bfs(request):
             value2[x][y] = int(value2[x][y])
 
     # #pi로 전송할 데이터 뽑아내기
-    # index = 0
-    # try:
-    #     while True:
-    #         print('--------------------')
-    #         print(value2[index][0], value2[index][1])
-    #         print(index)
-    #         if value2[index + 2][0] == value2[index][0] + 1:
-    #             if value2[index + 2][1] == value2[index][1] + 1:
-    #                 if value2[index + 1][1] > value2[index][1]:
-    #                     print('우회전')
-    #                     index += 2
-    #                     continue
-    #         elif value2[index + 2][0] == value2[index][0] - 1:
-    #             if value2[index + 2][1] == value2[index][1] - 1:
-    #                 if value2[index][1] > value2[index + 1][1]:
-    #                     print('우회전')
-    #                     index += 2
-    #                     continue
-    #         elif value2[index + 2][0] == value2[index][0] + 1:
-    #             if value2[index + 2][1] == value2[index][1] + 1:
-    #                 if value[index + 1][0] > value2[index][0]:
-    #                     print('좌회전')
-    #                     index += 2
-    #                     continue
-    #         elif value2[index + 2][0] == value2[index][0] + 1:
-    #             if value2[index + 2][1] == value2[index][1] - 1:
-    #                 if value2[index + 1][1] < value2[index][1]:
-    #                     print('좌회전')
-    #                     index += 2
-    #                     continue
-    #         elif value2[index][0] == value2[index + 1][0]:
-    #             if value2[index][1] > value2[index + 1][1]:
-    #                 print('전진')
-    #                 index += 1
-    #                 continue
-    #             elif value2[index][1] < value2[index + 1][1]:
-    #                 print('전진')
-    #                 index += 1
-    #                 continue
-    #         elif value2[index][1] == value2[index + 1][1]:
-    #             if value2[index + 1][0] > value2[index][0]:
-    #                 print('전진')
-    #                 index += 1
-    #                 continue
-    #             elif value2[index][0] > value2[index + 1][0]:
-    #                 print('전진')
-    #                 index += 1
-    #                 continue
-    #         index += 1
-    # except IndexError:
-    #     pass
+    index = 0
+    try:
+        while True:
+            print('--------------------')
+            print(value2[index][0], value2[index][1])
+            print(index)
+            if value2[index + 2][0] == value2[index][0] + 1:
+                if value2[index + 2][1] == value2[index][1] + 1:
+                    if value2[index + 1][1] > value2[index][1]:
+                        print('우회전')
+                        index += 2
+                        continue
+            elif value2[index + 2][0] == value2[index][0] - 1:
+                if value2[index + 2][1] == value2[index][1] - 1:
+                    if value2[index][1] > value2[index + 1][1]:
+                        print('우회전')
+                        index += 2
+                        continue
+            elif value2[index + 2][0] == value2[index][0] + 1:
+                if value2[index + 2][1] == value2[index][1] + 1:
+                    if value[index + 1][0] > value2[index][0]:
+                        print('좌회전')
+                        index += 2
+                        continue
+            elif value2[index + 2][0] == value2[index][0] + 1:
+                if value2[index + 2][1] == value2[index][1] - 1:
+                    if value2[index + 1][1] < value2[index][1]:
+                        print('좌회전')
+                        index += 2
+                        continue
+            elif value2[index][0] == value2[index + 1][0]:
+                if value2[index][1] > value2[index + 1][1]:
+                    print('전진')
+                    index += 1
+                    continue
+                elif value2[index][1] < value2[index + 1][1]:
+                    print('전진')
+                    index += 1
+                    continue
+            elif value2[index][1] == value2[index + 1][1]:
+                if value2[index + 1][0] > value2[index][0]:
+                    print('전진')
+                    index += 1
+                    continue
+                elif value2[index][0] > value2[index + 1][0]:
+                    print('전진')
+                    index += 1
+                    continue
+            index += 1
+    except IndexError:
+        pass
 
     #경로저장
     for idx, val in enumerate(path_real):
