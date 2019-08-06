@@ -7,48 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Auto_drive</title>
 
-    <!-- Bootstrap styles CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}" crossorigin="anonymous">
 
     <!-- Custom styles -->
     <link href="{% static 'css/common.css'%}" rel="stylesheet">
+
+    <!-- scripts-->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/main_print.js' %}"></script>
+    <script src="{% static 'js/car_information.js' %}"></script>
+
+    <!-- bootstrap -->
+    <script src="{% static 'js/bootstrap_jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    
+
     {% block head %}
     
     {% endblock %}
 
-    <!-- jquery CDN -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <!-- scripts-->
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/port_map.js' %}"></script>
-    <script src="{% static 'js/main_print.js' %}"></script>
-    <script src="{% static 'js/car_information.js' %}"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand navbar-dark"> <a href="#menu-toggle" id="menu-toggle" class="navbar-brand"><span class="navbar-toggler-icon"></span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-        <div id="portname "class="nav-info1">울산항</div>
 
-        <div class="collapse navbar-collapse" id="navbarsExample02">
-            <ul class="navbar-nav">
-            {% if user.is_authenticated %}
-                {% if request.user.is_staff %}
-                <li class="nav-item active"> <a class="nav-link" href="#" data-toggle="modal" data-target="#myModal">차량등록</a></li>
-                {% endif %}
-                <li class="nav-item "> <a class="nav-link" href="{% url 'logout' %}">로그아웃<span class="sr-only">(current)</span></a> </li>
-            {% endif %}    
-            </ul>
-            <form class="form-inline my-2 my-md-0"> </form>
-        </div>
-    </nav>
-
-    <div id="wrapper" class="toggled">
     {% block contents %}
 
     {% endblock %}
-    </div> <!-- /#wrapper -->
 
 </body>
     <!-- Custom scripts-->

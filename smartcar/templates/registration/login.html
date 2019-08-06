@@ -1,4 +1,4 @@
-{% extends '../common/base_nonav.html' %}
+{% extends '../common/base.html' %}
 {% load staticfiles %}
 
 {% block head %}
@@ -6,16 +6,19 @@
 {% endblock %}
 
 {% block contents %}
-
-<div id="sign_box">
-  <h1>MEMBER LOGIN</h1>
-  <form method="post" id="sign_form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Login</button>
-  </form>
-  <span class="link"><a href="#">회원가입</a> | <a href="#">계정정보 찾기</a></span>
+<div class="container">
+  <div id="sign_box">
+    <h1>MEMBER LOGIN</h1>
+    <form method="post" id="sign_form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <span class="link"><a href="#">회원가입</a> | <a href="#">계정정보 찾기</a></span>
+  </div>
 </div>
+<!-- footer -->
+{% include '../common/footer.html'%}
 
 <script>
 $(document).ready(function(){

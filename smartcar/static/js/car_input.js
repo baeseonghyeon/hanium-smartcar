@@ -20,7 +20,7 @@ function input(){
             success: function(){
             }
         });
-    alert('저장완료!');
+    alert('차량을 성공적으로 등록 하였습니다.');
     $("#container").val('');
     $("#speed").val('');
     $("#battery").val('');

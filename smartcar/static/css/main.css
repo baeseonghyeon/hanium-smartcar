@@ -24,3 +24,15 @@
     margin: 10px auto;
     border: 1px solid #0eac6a;
 }
+
+
+/* car postion */
+.car-position-control-box {
+    width: 200px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 25px;
+    position: absolute;
+    bottom: 70px;
+    right: 25px;
+}

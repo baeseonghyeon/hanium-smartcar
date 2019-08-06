@@ -1,34 +1,49 @@
-{% extends './common/base.html' %}
-{% load staticfiles %}
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-{% block head %}
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">차량등록</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-{% endblock %}
+        <!-- Modal body -->
+        <div class="modal-body">
+            <table>
+                <tr>
+                    <td>Carname</td>
+                    <td><input type="text" id="carname" /></td>
+                </tr>
+                <tr>
+                    <td>Container</td>
+                    <td><input type="text" id="container" /></td>
+                </tr>
+                <tr>
+                    <td>Speed</td>
+                    <td><input type="text" id="speed" /></td>
+                </tr>
+                <tr>
+                    <td>Battery</td>
+                    <td><input type="text" id="battery" /></td>
+                </tr>
+                <tr>
+                    <td>Communication</td>
+                    <td><input type="text" id="communication" /></td>
+                </tr>
+                <tr>
+                    <td>Drivingmode</td>
+                    <td><input type="text" id="drivingmode" /></td>
+                </tr>
+            </table>
+            
+        </div>
 
-{% block contents %}
-<script src="{% static 'js/jquery.js' %}"></script>
-<script src="{% static 'js/car_input.js' %}"></script>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <input type="button" class="btn btn-danger" value="저장 후 닫기" onclick="input()" data-dismiss="modal"/>
+        </div>
 
-{% if user.is_authenticated %}
-    {% else %}
-        <script>
-        window.location.href =  "{% url 'auth' %}";
-        </script>
-{% endif %}
-
-{% if request.user.is_staff %}
-관리자모드
-{% endif %}
-<!-------------------------------------------------------->
-<a href="/main">메인으로가기</a><br>
-<!--<input type="button" value="차량추가" onclick="car_input()" /><br>-->
-Carname:<input type="text" id="carname" /><br>
-Container:<input type="text" id="container" /><br>
-Speed:<input type="text" id="speed" /><br>
-Battery:<input type="text" id="battery" /><br>
-Communication:<input type="text" id="communication" /><br>
-Drivingmode:<input type="text" id="drivingmode" /><br>
-<input type="button" value="저장" onclick="input()" /><br><br>
-{% endblock %}
-
-
+        </div>
+    </div>
+</div>

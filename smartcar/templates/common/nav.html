@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand navbar-dark"> <a href="#menu-toggle" id="menu-toggle" class="navbar-brand"><span class="navbar-toggler-icon"></span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div id="portname "class="nav-info1">울산항</div>
+
+    <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+            {% if request.user.is_staff %}
+            <li class="nav-item active"> <a class="nav-link" href="#" data-toggle="modal" data-target="#myModal">차량등록</a></li>
+            {% endif %}
+            <li class="nav-item "> <a class="nav-link" href="{% url 'logout' %}">로그아웃<span class="sr-only">(current)</span></a> </li>
+        {% endif %}    
+        </ul>
+        <form class="form-inline my-2 my-md-0"> </form>
+    </div>
+</nav>

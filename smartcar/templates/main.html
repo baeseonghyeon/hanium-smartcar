@@ -1,80 +1,71 @@
 {% extends './common/base.html' %}
+
 {% load staticfiles %}
 
+<!-- html header -->
 {% block head %}
 <link href="{% static 'css/main.css'%}" rel="stylesheet">
-<script src="{% static 'js/jquery.js' %}"></script>
+<link href="{% static 'css/map.css'%}" rel="stylesheet">
+
 <script src="{% static 'js/car_input.js' %}"></script>
+<script src="{% static 'js/port_map.js' %}"></script>
 {% endblock %}
 
+<!-- content -->
 {% block contents %}
-<!-- not user redirect -->
-{% if user.is_authenticated %}
-{% else %}
-    <script>
-    window.location.href =  "{% url 'auth' %}";
-    </script>
-{% endif %}
-    
-<!-- Sidebar -->
-<div id="sidebar-wrapper">
 
-    <div id="main-side1">
-        <span id="car_count"></span>대(정렬 순)
-    </div>
-    <div id="main-side2">
+<!-- nav -->
+{% include './common/nav.html' %}
+<div id="wrapper" class="toggled">
+  <!-- not user redirect -->
+  {% if user.is_authenticated %}
+  {% else %}
+      <script>
+      window.location.href =  "{% url 'auth' %}";
+      </script>
+  {% endif %}
+      
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
 
-    </div>
-    <div id="main-side3">
-        carnumber:<span id="main_carnumber"></span><br>
-        battery:<span id="main_battery"></span><br>
-        communication:<span id="main_communication"></span><br>
-        <input type="button" onclick="detail()" value="상세정보" />
-    </div>
-</div><!-- /#sidebar-wrapper -->
-        현위치:<input type="text" id="x" size="2" />
-        <input type="text" id="y" size="2" /><br>
-        목적지:<input type="text" id="a" size="2" />
-        <input type="text" id="b" size="2" /><br>
-        <button onclick="xy_input()">위치등록</button>
-        <button onclick="xy_reset()">초기화</button>
-        <button id="path_search" value="경로찾기" onclick="search()">경로찾기</button><br>
-<!-- Page Content -->
-<div id="page-content-wrapper">
-    <div class="container-fluid">
-        <div id="map"></div>
-    </div>
-</div> <!-- /#page-content-wrapper -->
+      <div id="main-side1">
+          <span id="car_count"></span>대(정렬 순)
+      </div>
+      <div id="main-side2">
 
-<!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">차량등록</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div id="main-side3">
+          carnumber:<span id="main_carnumber"></span><br>
+          carname:<span id="main_carname"></span><br>
+          battery:<span id="main_battery"></span><br>
+          communication:<span id="main_communication"></span><br>
+          <input type="button" onclick="detail()" value="상세정보" />
       </div>
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        <input type="button" value="차량추가" onclick="car_input()" /><br>
-        Carnumber:<input type="text" id="carnumber" /><br>
-        Container:<input type="text" id="container" /><br>
-        Speed:<input type="text" id="speed" /><br>
-        Battery:<input type="text" id="battery" /><br>
-        Communication:<input type="text" id="communication" /><br>
-        Drivingmode:<input type="text" id="drivingmode" /><br>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <input type="button" class="btn btn-danger" value="저장 후 닫기" onclick="input()" data-dismiss="modal"/>
-        <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
-      </div>
-
-    </div>
   </div>
+  <!-- /#sidebar-wrapper -->
+          
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+
+
+  <div id="map"></div>
+
+  <div class="car-position-control-box">
+      현위치:<input type="text" id="x" size="2" />
+      <input type="text" id="y" size="2" /><br>
+      목적지:<input type="text" id="a" size="2" />
+      <input type="text" id="b" size="2" /><br>
+      <button onclick="xy_input()">위치등록</button>
+      <button onclick="xy_reset()">초기화</button>
+      <button id="path_search" value="경로찾기" onclick="search()">경로찾기</button><br>
+  </div>
+  
+  <div>
+
+
+  <!-- Car_input Modal -->
+  {% include './car_input.html' %}
+
 </div>
 {% endblock %}
