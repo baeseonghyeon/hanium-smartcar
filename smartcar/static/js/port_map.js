@@ -1,5 +1,7 @@
 $(document).ready(map())
+//var timer = window.setInterval(function () { map(); }, 1000);
 function map(){
+    $("#map *").remove()
     var map_display;
     var map_array = new Array();
     var map_array2 = new Array();
@@ -20,25 +22,25 @@ function map(){
                      for(var i=0; i<=13; i++){
                          for(var j=0; j<=13; j++){
                             if(map_array2[i][j]==0){
-                                 $("#map").append('<img src="/static/img/white.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route0"><img src="/static/img/white.jpg" width="45px" height="45px"></span>');
                             }
                             else if(map_array2[i][j]==1){
-                                 $("#map").append('<img src="/static/img/black.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route1"><img src="/static/img/black.jpg" width="45px" height="45px"></span>');
                             }
                             else if(map_array2[i][j]==2){
-                                 $("#map").append('<img src="/static/img/blue.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route2"><img src="/static/img/blue.jpg" width="45px" height="45px"></span>');
                             }
                             else if(map_array2[i][j]==3){
-                                 $("#map").append('<img src="/static/img/green.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route3"><img src="/static/img/green.jpg" width="45px" height="45px"></span>');
                             }
                             else if(map_array2[i][j]==5){
-                                 $("#map").append('<img src="/static/img/red.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route5"><img src="/static/img/red.jpg" width="45px" height="45px"></span>');
                             }
                             else if(map_array2[i][j]==8){
                                  $("#map").append();
                             }
                             else if(map_array2[i][j]==4){
-                                 $("#map").append('<img src="/static/img/pink.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route4"><img src="/static/img/pink.jpg" width="45px" height="45px"></span>');
                             }
                          }
                          $("#map").append("<br>");
@@ -60,11 +62,13 @@ function xy_input(){
     }
 }
 function check_xy(number){
-    num = Number(number)-1
+var num = Number(number)-1
          $.ajax({
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
+                 console.log(num)
+                 console.log(data[num])
                     if(data[num].now_x != ""){
                         alert('이미 좌표 있음')
                     }
