@@ -180,6 +180,7 @@ def bfs(request):
 
     # #pi로 전송할 데이터 뽑아내기
     index = 0
+    code = ''
     try:
         while True:
             print('--------------------')
@@ -190,47 +191,53 @@ def bfs(request):
                     if value2[index + 1][1] > value2[index][1]:
                         print('우회전')
                         index += 2
+                        code += '2 '
+                        continue
+                    elif value2[index + 1][0] > value2[index][0]:
+                        print('좌회전')
+                        index += 2
+                        code += '3 '
+                        continue
+                elif value2[index + 2][1] == value2[index][1] - 1:
+                    if value2[index + 1][1] < value2[index][1]:
+                        print('좌회전')
+                        index += 2
+                        code += '3 '
                         continue
             elif value2[index + 2][0] == value2[index][0] - 1:
                 if value2[index + 2][1] == value2[index][1] - 1:
                     if value2[index][1] > value2[index + 1][1]:
                         print('우회전')
                         index += 2
-                        continue
-            elif value2[index + 2][0] == value2[index][0] + 1:
-                if value2[index + 2][1] == value2[index][1] + 1:
-                    if value[index + 1][0] > value2[index][0]:
-                        print('좌회전')
-                        index += 2
-                        continue
-            elif value2[index + 2][0] == value2[index][0] + 1:
-                if value2[index + 2][1] == value2[index][1] - 1:
-                    if value2[index + 1][1] < value2[index][1]:
-                        print('좌회전')
-                        index += 2
+                        code += '2 '
                         continue
             elif value2[index][0] == value2[index + 1][0]:
                 if value2[index][1] > value2[index + 1][1]:
                     print('전진')
+                    code += '1 '
                     index += 1
                     continue
                 elif value2[index][1] < value2[index + 1][1]:
                     print('전진')
+                    code += '1 '
                     index += 1
                     continue
             elif value2[index][1] == value2[index + 1][1]:
                 if value2[index + 1][0] > value2[index][0]:
                     print('전진')
+                    code += '1 '
                     index += 1
                     continue
                 elif value2[index][0] > value2[index + 1][0]:
                     print('전진')
+                    code += '1 '
                     index += 1
                     continue
             index += 1
     except IndexError:
         pass
-
+    code += '1 '
+    print(code)
     #경로저장
     for idx, val in enumerate(path_real):
         if idx == 0:   #출발위치 표시
