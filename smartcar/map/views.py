@@ -33,7 +33,7 @@ def car_point(request):
     mapin.save()
     
     #차량정보에 출발, 도착 위치 저장
-    mainin = CarInfo.objects.get(id=request.POST['carnumber'])
+    mainin = CarInfo.objects.get(id=request.POST['car_number'])
     mainin.now_x = xxxx
     mainin.now_y = yyyy
     mainin.target_x = aaaa
@@ -44,7 +44,7 @@ def car_point(request):
 @csrf_exempt
 def reset_xy(request):
     #차넘버, 출발,도착좌표 받아오기
-    id = request.POST['carnumber']
+    id = request.POST['car_number']
     xxxx = request.POST['xxx']
     yyyy = request.POST['yyy']
     aaaa = request.POST['aaa']
@@ -64,7 +64,7 @@ def reset_xy(request):
 
     #CarInfo의 route값으로 경로 초기화
     carin = CarInfo.objects.get(id=id)
-    park = carin.route.split(']')
+    park = carin.car_route.split(']')
     park3 = len(park) - 1
     park2 = [[0 for x in range(park3)] for y in range(park3)]
     for x in range(park3):
@@ -88,7 +88,7 @@ def reset_xy(request):
     carin.now_y = ''
     carin.target_x = ''
     carin.target_y = ''
-    carin.route = ''
+    carin.car_route = ''
     carin.save()
     return HttpResponse('')
 
@@ -96,7 +96,7 @@ def reset_xy(request):
 def bfs(request):
     db_map = MapInfo.objects.get(id='1') #알고리즘용
     mapin = MapInfo.objects.get(id='1') #저장용
-    id = request.POST['carnumber']
+    id = request.POST['car_number']
     carin = CarInfo.objects.get(id=id)
     xxxx = request.POST['xxx']
     yyyy = request.POST['yyy']
@@ -161,83 +161,83 @@ def bfs(request):
                 path.append([node, [wx, wy]])
     print(path_real)
 
-    #pi로 전송하기 위한 데이터 가공
-    value = ''
-    path1 = len(path_real)
-    value2 = [[0 for x in range(path1)] for y in range(path1)]
-    for idx, val in enumerate(path_real):
-        value += str(val[0])
-        value += ', '
-        value += str(val[1])
-        value += ']'
-    value1 = value.split(']')
-    for x in range(path1):
-        value2[x] = value1[x].split(', ')
+    # #pi로 전송하기 위한 데이터 가공
+    # value = ''
+    # path1 = len(path_real)
+    # value2 = [[0 for x in range(path1)] for y in range(path1)]
+    # for idx, val in enumerate(path_real):
+    #     value += str(val[0])
+    #     value += ', '
+    #     value += str(val[1])
+    #     value += ']'
+    # value1 = value.split(']')
+    # for x in range(path1):
+    #     value2[x] = value1[x].split(', ')
+    #
+    # for x in range(path1):
+    #     for y in range(2):
+    #         value2[x][y] = int(value2[x][y])
 
-    for x in range(path1):
-        for y in range(2):
-            value2[x][y] = int(value2[x][y])
-
-    # #pi로 전송할 데이터 뽑아내기
-    index = 0
-    code = ''
-    try:
-        while True:
-            print('--------------------')
-            print(value2[index][0], value2[index][1])
-            print(index)
-            if value2[index + 2][0] == value2[index][0] + 1:
-                if value2[index + 2][1] == value2[index][1] + 1:
-                    if value2[index + 1][1] > value2[index][1]:
-                        print('우회전')
-                        index += 2
-                        code += '2 '
-                        continue
-                    elif value2[index + 1][0] > value2[index][0]:
-                        print('좌회전')
-                        index += 2
-                        code += '3 '
-                        continue
-                elif value2[index + 2][1] == value2[index][1] - 1:
-                    if value2[index + 1][1] < value2[index][1]:
-                        print('좌회전')
-                        index += 2
-                        code += '3 '
-                        continue
-            elif value2[index + 2][0] == value2[index][0] - 1:
-                if value2[index + 2][1] == value2[index][1] - 1:
-                    if value2[index][1] > value2[index + 1][1]:
-                        print('우회전')
-                        index += 2
-                        code += '2 '
-                        continue
-            elif value2[index][0] == value2[index + 1][0]:
-                if value2[index][1] > value2[index + 1][1]:
-                    print('전진')
-                    code += '1 '
-                    index += 1
-                    continue
-                elif value2[index][1] < value2[index + 1][1]:
-                    print('전진')
-                    code += '1 '
-                    index += 1
-                    continue
-            elif value2[index][1] == value2[index + 1][1]:
-                if value2[index + 1][0] > value2[index][0]:
-                    print('전진')
-                    code += '1 '
-                    index += 1
-                    continue
-                elif value2[index][0] > value2[index + 1][0]:
-                    print('전진')
-                    code += '1 '
-                    index += 1
-                    continue
-            index += 1
-    except IndexError:
-        pass
-    code += '1 '
-    print(code)
+    # # #pi로 전송할 데이터 뽑아내기
+    # index = 0
+    # code = ''
+    # try:
+    #     while True:
+    #         print('--------------------')
+    #         print(value2[index][0], value2[index][1])
+    #         print(index)
+    #         if value2[index + 2][0] == value2[index][0] + 1:
+    #             if value2[index + 2][1] == value2[index][1] + 1:
+    #                 if value2[index + 1][1] > value2[index][1]:
+    #                     print('우회전')
+    #                     index += 2
+    #                     code += '2 '
+    #                     continue
+    #                 elif value2[index + 1][0] > value2[index][0]:
+    #                     print('좌회전')
+    #                     index += 2
+    #                     code += '3 '
+    #                     continue
+    #             elif value2[index + 2][1] == value2[index][1] - 1:
+    #                 if value2[index + 1][1] < value2[index][1]:
+    #                     print('좌회전')
+    #                     index += 2
+    #                     code += '3 '
+    #                     continue
+    #         elif value2[index + 2][0] == value2[index][0] - 1:
+    #             if value2[index + 2][1] == value2[index][1] - 1:
+    #                 if value2[index][1] > value2[index + 1][1]:
+    #                     print('우회전')
+    #                     index += 2
+    #                     code += '2 '
+    #                     continue
+    #         elif value2[index][0] == value2[index + 1][0]:
+    #             if value2[index][1] > value2[index + 1][1]:
+    #                 print('전진')
+    #                 code += '1 '
+    #                 index += 1
+    #                 continue
+    #             elif value2[index][1] < value2[index + 1][1]:
+    #                 print('전진')
+    #                 code += '1 '
+    #                 index += 1
+    #                 continue
+    #         elif value2[index][1] == value2[index + 1][1]:
+    #             if value2[index + 1][0] > value2[index][0]:
+    #                 print('전진')
+    #                 code += '1 '
+    #                 index += 1
+    #                 continue
+    #             elif value2[index][0] > value2[index + 1][0]:
+    #                 print('전진')
+    #                 code += '1 '
+    #                 index += 1
+    #                 continue
+    #         index += 1
+    # except IndexError:
+    #     pass
+    # code += '1 '
+    # print(code)
     #경로저장
     for idx, val in enumerate(path_real):
         if idx == 0:   #출발위치 표시
@@ -247,6 +247,7 @@ def bfs(request):
         views_route += ', '
         views_route += str(val[1])
         views_route += ']'
+    print(views_route)
 
     #맵 저장
     for x in range(14):
@@ -255,9 +256,8 @@ def bfs(request):
             if y != 13:
                 views_map += ', '
         views_map += 's'
-
     mapin.map = views_map
     mapin.save()
-    carin.route = views_route
+    carin.car_route = views_route
     carin.save()
     return HttpResponse('')

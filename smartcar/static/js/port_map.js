@@ -52,7 +52,7 @@ function map(){
      });
 }
 function xy_input(){
-    var number = document.getElementById("main_carnumber").value;
+    var number = document.getElementById("car_number").value;
     if(number==undefined){
         alert('차량을 선택 후 실행하세요')
         return 0
@@ -77,12 +77,12 @@ var num = Number(number)-1
                         var now_y = document.getElementById("y").value;
                         var target_x = document.getElementById("a").value;
                         var target_y = document.getElementById("b").value;
-                        var number = document.getElementById("main_carnumber").value;
+                        var number = document.getElementById("car_number").value;
                                 $.ajax({
                                     type : 'POST',
                                     url : 'http://127.0.0.1:8000/map/car_point',
                                     data : {
-                                        'carnumber' : number,
+                                        'car_number' : number,
                                         'xxx' : now_x,
                                         'yyy' : now_y,
                                         'aaa' : target_x,
@@ -104,7 +104,7 @@ function xy_reset(){
     var now_y = document.getElementById("y").value;
     var target_x = document.getElementById("a").value;
     var target_y = document.getElementById("b").value;
-    var number = document.getElementById("main_carnumber").value;
+    var number = document.getElementById("car_number").value;
     if(number==undefined){
         alert('차량을 선택 후 실행하세요')
         return 0
@@ -114,7 +114,7 @@ function xy_reset(){
             type : 'POST',
             url : 'http://127.0.0.1:8000/map/reset',
             data : {
-              'carnumber' : number,
+              'car_number' : number,
               'xxx' : now_x,
               'yyy' : now_y,
               'aaa' : target_x,
@@ -134,7 +134,7 @@ function xy_reset(){
     }
 }
 function search(){
-    var number = document.getElementById("main_carnumber").value;
+    var number = document.getElementById("car_number").value;
     if(number==undefined){
         alert('차량을 선택 후 실행하세요')
         return 0
@@ -149,7 +149,7 @@ function check_route(number){
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
-                    if(data[num].route != ""){
+                    if(data[num].car_route != ""){
                     alert('이미 경로 있음')
                     }
                     else{
@@ -157,12 +157,12 @@ function check_route(number){
                         var now_y = document.getElementById("y").value;
                         var target_x = document.getElementById("a").value;
                         var target_y = document.getElementById("b").value;
-                        var number = document.getElementById("main_carnumber").value;
+                        var number = document.getElementById("car_number").value;
                             $.ajax({
                                 type : 'POST',
                                 url : 'http://127.0.0.1:8000/map/path',
                                 data : {
-                                    'carnumber' : number,
+                                    'car_number' : number,
                                     'xxx' : now_x,
                                     'yyy' : now_y,
                                     'aaa' : target_x,

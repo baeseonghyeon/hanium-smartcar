@@ -1,5 +1,6 @@
-{% extends './common/base.html' %}
-
+{% load staticfiles %}
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/car_information.js' %}"></script>
 {% block contents %}
 
 {% if user.is_authenticated %}
@@ -8,52 +9,34 @@
         window.location.href =  "{% url 'auth' %}";
         </script>
 {% endif %}
-<!-- {% if request.user.is_staff %}
-관리자모드
-{% endif %} -->
-<div id="sidebar-wrapper">
-
-    <div id="detail-side1">
-    <h2>SEC-1</h2>
-    <h3>3 min 42 s</h3>
-        <div></div>
-    <p>200m[50/150]</p>                
-
-    </div>
-    <div id="detail-side2">
-    </div>
     <div id="detail-side3">
         <span id="car_number" value="{{ carNumber }}">{{ carNumber }}번차량</span><br>
-        컨테이너번호:<span id="container"></span><br>
-        속도:<span id="speed"></span><br>
+        차량번호:<span id="pi_id"></span><br>
+        컨테이너번호:<span id="container_id"></span><br>
+        속도:<span id="car_speed"></span><br>
+        도착시간:<span id="car_arrived_time"></span><br>
+        거리:<span id="car_destination_distance"></span><br>
+        현재상태:<span id="car_now_situation"></span><br>
         배터리:<span id="battery"></span><br>
         통신상태:<span id="communication"></span><br>
-        주행모드:<span id="driving_mode"></span><br>
+        차량타입:<span id="car_type"></span><br>
     </div>
-</div><!-- /#sidebar-wrapper -->
-
-<!-- Page Content -->
-<div id="page-content-wrapper">
-    <div class="container-fluid">
       <br>
       <a href="/main">메인으로가기</a><br>
 
       <input type="hidden" id="test" value="{{ carNumber }}">
 
       <div id="map"></div>
-      <button id="manual" onclick="manual()">수동모드</button>
-      <button id="auto" onclick="auto()">자동모드</button><br>
+      <!--<button id="manual" onclick="manual()">수동모드</button>-->
+      <!--<button id="auto" onclick="auto()">자동모드</button><br>-->
 
-      <div id="control">
-      <button id="go" onclick="go()">직진</button>
-      <button id="back" onclick="back()">후진</button>
-      <button id="right" onclick="right()">우회전</button>
-      <button id="left" onclick="left()">좌회전</button>
-      </div>
+      <!--<div id="control">-->
+      <!--<button id="go" onclick="go()">직진</button>-->
+      <!--<button id="back" onclick="back()">후진</button>-->
+      <!--<button id="right" onclick="right()">우회전</button>-->
+      <!--<button id="left" onclick="left()">좌회전</button>-->
+      <!--</div>-->
 
-
-    </div>
-</div> <!-- /#page-content-wrapper -->
 <script>
 $(document).ready(function(){
     $("#control").fadeOut("fast")
@@ -127,16 +110,20 @@ function left(){
                  success : function (data) {
                     var my_json = JSON.stringify(data)
                     filtered_json = find_in_object(JSON.parse(my_json), {id: {{ carNumber }} });
-                    var container_number = filtered_json[0].container_number;
-                    var speed = filtered_json[0].speed;
-                    var battery = filtered_json[0].battery;
-                    var communication = filtered_json[0].communication;
-                    var driving_mode = filtered_json[0].driving_mode;
-                    $("#container").text(container_number);
-                    $("#speed").text(speed);
-                    $("#battery").text(battery);
-                    $("#communication").text(communication);
-                    $("#drivingmode").text(driving_mode);
+                    var pi_id = filtered_json[0].pi_id;
+                    var container_id = filtered_json[0].container_id;
+                    var car_name = filtered_json[0].car_name;
+                    var car_speed = filtered_json[0].car_speed;
+                    var car_arrived_time = filtered_json[0].car_arrived_time;
+                    var car_destination_distance = filtered_json[0].car_destination_distance;
+                    var car_now_situation = filtered_json[0].car_now_situation
+                    $("#pi_id").text(pi_id);
+                    $("#container_id").text(container_id);
+                    $("#car_name").text(car_name);
+                    $("#car_speed").text(car_speed);
+                    $("#car_arrived_time").text(car_arrived_time);
+                    $("#car_destination_distance").text(car_destination_distance);
+                    $("#car_now_situation").text(car_now_situation);
                  }
       });
 
@@ -158,7 +145,7 @@ function route(clicked_car){
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
-                    map(data[clicked_car-1].route, data[clicked_car-1].now_x, data[clicked_car-1].now_y, data[clicked_car-1].target_x, data[clicked_car-1].target_y)
+                    map(data[clicked_car-1].car_route, data[clicked_car-1].now_x, data[clicked_car-1].now_y, data[clicked_car-1].target_x, data[clicked_car-1].target_y)
                  }
          });
 }
@@ -212,25 +199,25 @@ function map(route, x, y, a, b){
                      for(var i=0; i<=13; i++){
                          for(var j=0; j<=13; j++){
                             if(map_array2[i][j]==0){
-                                 $("#map").append('<span id="route0"></span>');
+                                 $("#map").append('<span id="route0">길</span>');
                             }
                             else if(map_array2[i][j]==1){
-                                 $("#map").append('<span id="route1">CON</span>');
+                                 $("#map").append('<span id="route1">벽</span>');
                             }
                             else if(map_array2[i][j]==2){
-                                 $("#map").append('<span id="route2"></span>');
+                                 $("#map").append('<span id="route2">바</span>');
                             }
                             else if(map_array2[i][j]==3){
-                                 $("#map").append('<span id="route3">CAR</span>');
+                                 $("#map").append('<span id="route3">차</span>');
                             }
                             else if(map_array2[i][j]==5){
-                                 $("#map").append('<span id="route5"></span>');
+                                 $("#map").append('<span id="route5">도</span>');
                             }
                             else if(map_array2[i][j]==8){
                                  $("#map").append();
                             }
                             else if(map_array2[i][j]==4){
-                                 $("#map").append('<span id="route4"></span>');
+                                 $("#map").append('<span id="route4">경</span>');
                             }
                          }
                          $("#map").append("<br>");

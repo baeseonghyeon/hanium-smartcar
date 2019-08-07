@@ -24,6 +24,8 @@ import map.api
 
 router = routers.DefaultRouter()
 router.register('CarInfo', main.api.CarViewSet)
+router.register('PiInfo', main.api.PiViewSet)
+router.register('ContainerInfo', main.api.ContainerViewSet)
 router.register('MapInfo', map.api.MapViewSet)
 
 urlpatterns = [
@@ -31,6 +33,8 @@ urlpatterns = [
 
     path('', TemplateView.as_view(template_name='auth.html'), name='auth'),
     path('api/', include((router.urls, 'CarInfo'), namespace='CarInfo')),
+    path('api/', include((router.urls, 'PiInfo'), namespace='PiInfo')),
+    path('api/', include((router.urls, 'ContainerInfo'), namespace='ContainerInfo')),
     path('api/', include((router.urls, 'MapInfo'), namespace='MapInfo')),
     path('map/', include('map.urls')),
     path('main/', include('main.urls')),

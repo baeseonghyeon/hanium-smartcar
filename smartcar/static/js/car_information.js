@@ -1,6 +1,6 @@
 function detail(){
 
-    var num = document.getElementById("main_carnumber").value;
+    var num = document.getElementById("car_number").value;
     if(num==undefined){
     alert('차량 선택 후 실행하세요')
     }

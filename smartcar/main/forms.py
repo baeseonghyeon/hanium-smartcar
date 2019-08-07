@@ -6,6 +6,6 @@ from django import forms
 class CarInputForm(ModelForm):
     class Meta:
         model = CarInfo
-        fields = ['car_name', 'container_number', 'route', 'speed', 'battery', 'communication', 'driving_mode']
+        fields = ['car_name', 'pi_id']
 
 

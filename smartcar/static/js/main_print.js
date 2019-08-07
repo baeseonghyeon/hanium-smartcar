@@ -31,10 +31,8 @@ var id = clicked_id;
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
-                    $("#main_carnumber").val(data[clicked_id].id).text(data[clicked_id].id);
-                    $("#main_carname").text(data[clicked_id].car_name);
-                    $("#main_communication").text(data[clicked_id].communication);
-                    $("#main_battery").text(data[clicked_id].battery);
+                    $("#car_number").val(data[clicked_id].id).text(data[clicked_id].id);
+                    $("#car_name").text(data[clicked_id].car_name);
                     $("#x").val(data[clicked_id].now_x);
                     $("#y").val(data[clicked_id].now_y);
                     $("#a").val(data[clicked_id].target_x);
