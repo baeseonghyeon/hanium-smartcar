@@ -22,7 +22,7 @@ function map(){
                      for(var i=0; i<=13; i++){
                          for(var j=0; j<=13; j++){
                             if(map_array2[i][j]==0){
-                                 $("#map").append('<span id="route0"></span>');
+                                 $("#map").append('<span id="route0">').append('</span>');
                             }
                             else if(map_array2[i][j]==1){
                                  $("#map").append('<span id="route1">Con</span>');

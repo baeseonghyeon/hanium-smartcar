@@ -19,20 +19,18 @@ class ContainerInfo(models.Model):
 
 
 class CarInfo(models.Model):
-    pi_id = models.ForeignKey(PiInfo, on_delete=models.CASCADE, null=True, unique=True)
-    container_id = models.ForeignKey(ContainerInfo, on_delete=models.CASCADE, null=True, unique=True)
-
+    pi_id = models.ForeignKey(PiInfo, on_delete=models.CASCADE, null=True)
+    container_id = models.ForeignKey(ContainerInfo, on_delete=models.CASCADE, null=True)
     car_name = models.CharField(max_length=20, null=True)
-    car_route = models.CharField(max_length=1000, null=True, default='')
-    car_speed = models.CharField(max_length=5, null=True, default='')
-    car_arrive_time = models.CharField(max_length=20, null=True, default='')
-    car_destination_distance = models.CharField(max_length=20, null=True, default='')
-    car_now_situation = models.CharField(max_length=10, null=True, default='')
-
-    now_x = models.CharField(max_length=2, null=True, default='')
-    now_y = models.CharField(max_length=2, null=True, default='')
-    target_x = models.CharField(max_length=2, null=True, default='')
-    target_y = models.CharField(max_length=2, null=True, default='')
+    car_route = models.CharField(max_length=10000, default='')
+    car_speed = models.CharField(max_length=1000, null=True, default='')
+    car_arrive_time = models.CharField(max_length=1000, null=True, default='')
+    car_destination_distance = models.CharField(max_length=1000, null=True, default='')
+    car_now_situation = models.CharField(max_length=1000, null=True, default='')
+    now_x = models.CharField(max_length=2, default='')
+    now_y = models.CharField(max_length=2, default='')
+    target_x = models.CharField(max_length=2, default='')
+    target_y = models.CharField(max_length=2, default='')
 
 
 

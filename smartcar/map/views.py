@@ -259,5 +259,9 @@ def bfs(request):
     mapin.map = views_map
     mapin.save()
     carin.car_route = views_route
+    carin.car_speed = '30km/h'
+    carin.car_arrive_time = '12분후'
+    carin.car_now_situation = '직진'
+    carin.car_destination_distance = '10km'
     carin.save()
     return HttpResponse('')
