@@ -4,9 +4,8 @@ from django import forms
 
 
 class CarInputForm(ModelForm):
-
     class Meta:
         model = CarInfo
-        fields = ['carname', 'container', 'route', 'speed', 'battery', 'communication', 'drivingmode']
+        fields = ['car_name', 'container_number', 'route', 'speed', 'battery', 'communication', 'driving_mode']
 
 

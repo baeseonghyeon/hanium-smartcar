@@ -32,7 +32,7 @@ var id = clicked_id;
                  dataType : 'json',
                  success : function (data) {
                     $("#main_carnumber").val(data[clicked_id].id).text(data[clicked_id].id);
-                    $("#main_carname").text(data[clicked_id].carname);
+                    $("#main_carname").text(data[clicked_id].car_name);
                     $("#main_communication").text(data[clicked_id].communication);
                     $("#main_battery").text(data[clicked_id].battery);
                     $("#x").val(data[clicked_id].now_x);

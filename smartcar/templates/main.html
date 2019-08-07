@@ -4,9 +4,6 @@
 
 <!-- html header -->
 {% block head %}
-<link href="{% static 'css/main.css'%}" rel="stylesheet">
-<link href="{% static 'css/map.css'%}" rel="stylesheet">
-
 <script src="{% static 'js/car_input.js' %}"></script>
 <script src="{% static 'js/port_map.js' %}"></script>
 {% endblock %}
@@ -56,9 +53,11 @@
       <input type="text" id="y" size="2" /><br>
       목적지:<input type="text" id="a" size="2" />
       <input type="text" id="b" size="2" /><br>
-      <button onclick="xy_input()">위치등록</button>
-      <button onclick="xy_reset()">초기화</button>
-      <button id="path_search" value="경로찾기" onclick="search()">경로찾기</button><br>
+      <button onclick="xy_input()">위치</button>
+      <button onclick="xy_reset()">초</button>
+      <button id="path_search" onclick="search()">경로</button>
+
+
   </div>
   
   <div>

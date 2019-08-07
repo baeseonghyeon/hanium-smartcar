@@ -8,7 +8,6 @@
         window.location.href =  "{% url 'auth' %}";
         </script>
 {% endif %}
-
 <!-- {% if request.user.is_staff %}
 관리자모드
 {% endif %} -->
@@ -29,7 +28,7 @@
         속도:<span id="speed"></span><br>
         배터리:<span id="battery"></span><br>
         통신상태:<span id="communication"></span><br>
-        주행모드:<span id="drivingmode"></span><br>
+        주행모드:<span id="driving_mode"></span><br>
     </div>
 </div><!-- /#sidebar-wrapper -->
 
@@ -62,11 +61,11 @@ $(document).ready(function(){
     route(index)
 })
 function manual(){
-    $("#drivingmode").text('수동');
+    $("#driving_mode").text('수동');
     $("#control").fadeIn("fast");
 }
 function auto(){
-    $("#drivingmode").text('자동');
+    $("#driving_mode").text('자동');
     $("#control").fadeOut('fast');
 }
 function go(){
@@ -128,16 +127,16 @@ function left(){
                  success : function (data) {
                     var my_json = JSON.stringify(data)
                     filtered_json = find_in_object(JSON.parse(my_json), {id: {{ carNumber }} });
-                    var container = filtered_json[0].container;
+                    var container_number = filtered_json[0].container_number;
                     var speed = filtered_json[0].speed;
                     var battery = filtered_json[0].battery;
                     var communication = filtered_json[0].communication;
-                    var drivingmode = filtered_json[0].drivingmode;
-                    $("#container").text(container);
+                    var driving_mode = filtered_json[0].driving_mode;
+                    $("#container").text(container_number);
                     $("#speed").text(speed);
                     $("#battery").text(battery);
                     $("#communication").text(communication);
-                    $("#drivingmode").text(drivingmode);
+                    $("#drivingmode").text(driving_mode);
                  }
       });
 
@@ -213,25 +212,25 @@ function map(route, x, y, a, b){
                      for(var i=0; i<=13; i++){
                          for(var j=0; j<=13; j++){
                             if(map_array2[i][j]==0){
-                                 $("#map").append('<img src="/static/img/white.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route0"></span>');
                             }
                             else if(map_array2[i][j]==1){
-                                 $("#map").append('<img src="/static/img/black.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route1">CON</span>');
                             }
                             else if(map_array2[i][j]==2){
-                                 $("#map").append('<img src="/static/img/blue.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route2"></span>');
                             }
                             else if(map_array2[i][j]==3){
-                                 $("#map").append('<img src="/static/img/green.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route3">CAR</span>');
                             }
                             else if(map_array2[i][j]==5){
-                                 $("#map").append('<img src="/static/img/red.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route5"></span>');
                             }
                             else if(map_array2[i][j]==8){
                                  $("#map").append();
                             }
                             else if(map_array2[i][j]==4){
-                                 $("#map").append('<img src="/static/img/pink.jpg" width="45px" height="45px">');
+                                 $("#map").append('<span id="route4"></span>');
                             }
                          }
                          $("#map").append("<br>");

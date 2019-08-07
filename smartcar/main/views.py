@@ -14,8 +14,8 @@ def Car_input(request):
     battery = request.POST['battery']
     communication = request.POST['communication']
     drivingmode = request.POST['drivingmode']
-    carin = CarInfo(carname=carname, container=container, speed=speed, battery=battery,
-                    communication=communication, drivingmode=drivingmode)
+    carin = CarInfo(car_name=carname, container_number=container, speed=speed, battery=battery,
+                    communication=communication, driving_mode=drivingmode)
     carin.save()
     return HttpResponseRedirect('/')
 
