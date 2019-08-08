@@ -22,34 +22,67 @@ function map(){
                      for(var i=0; i<=13; i++){
                          for(var j=0; j<=13; j++){
                             if(map_array2[i][j]==0){
-                                 $("#map").append('<span id="route0">').append('</span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route0");
+                                 map_span.setAttribute("class", i);
+                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 $("#map").append(map_span);
+//                                 $("#map").append('<span id="route0">').append('</span>');
                             }
                             else if(map_array2[i][j]==1){
-                                 $("#map").append('<span id="route1">Con</span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route1");
+                                 map_span.setAttribute("class", i);
+                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 map_span.innerHTML = 'Con';
+                                 $("#map").append(map_span);
+//                                 $("#map").append('<span id="route1">Con</span>');
                             }
                             else if(map_array2[i][j]==2){
-                                 $("#map").append('<span id="route2"></span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route2");
+                                 map_span.setAttribute("class", i);
+                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 $("#map").append(map_span);
+//                                 $("#map").append('<span id="route2"></span>');
                             }
                             else if(map_array2[i][j]==3){
-                                 $("#map").append('<span id="route3">Car</span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route3");
+                                 map_span.setAttribute("class", i);
+                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 map_span.innerHTML = 'Car';
+                                 $("#map").append(map_span);
+//                                 $("#map").append('<span id="route3">Car</span>');
                             }
                             else if(map_array2[i][j]==5){
-                                 $("#map").append('<span id="route5"></span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route5");
+                                 map_span.setAttribute("class", i);
+                                 $("#map").append(map_span);
+//                                 $("#map").append('<span id="route5"></span>');
                             }
                             else if(map_array2[i][j]==8){
                                  $("#map").append();
                             }
                             else if(map_array2[i][j]==4){
-                                 $("#map").append('<span id="route4"></span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route4");
+                                 map_span.setAttribute("class", i);
+                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 $("#map").append(map_span);
+//                                 $("#map").append('<span id="route4"></span>');
                             }
                          }
                          $("#map").append("<br>");
                      }
-//                     $(".route").wrapAll('<span class="wrap"></span>')
-//                     $(".wrap").append('<marquee direction="RIGHT" id="marquee"></marquee>')
-//                     $("#marquee").append(#car)
                  }
      });
+}
+function position_check(clicked_class){
+    var c_class = clicked_class;
+    console.log('선택한 위치는');
+    console.log(c_class);
 }
 function xy_input(){
     var number = document.getElementById("car_number").value;
