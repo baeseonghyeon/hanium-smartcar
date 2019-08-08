@@ -19,3 +19,20 @@ function detail(){
 	form.submit();
 	}
 }
+function container(){
+var number = document.getElementById("for_container").value;
+var container_number = document.getElementById("container_id").value;
+    $.ajax({
+            type : 'POST',
+            url : 'http://127.0.0.1:8000/main/container_input',
+            data : {
+                    'id' : number,
+                    'container_id' : container_number,
+            },
+            dataType:'json',
+            success: function(){
+            }
+    });
+alert('등록완료')
+$("#container_id").val('')
+}

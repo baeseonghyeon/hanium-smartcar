@@ -1,7 +1,33 @@
+function pi_check(){
+     var pi_id2 = document.getElementById("pi_id").value;
+     var check = 1;
+     $.ajax({
+                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+                 dataType : 'json',
+                 success : function (data) {
+                    if(data.length !=0){
+                        for(var i=0; i<=data.length-1; i++){
+                            if(pi_id2==data[i].pi_id){
+                            alert('이미 등록된 차량입니다.')
+                                $("#pi_id").val('');
+                                $("#car_name").val('');
+                            check = 0
+                            }
+                        }
+                        if(check==1){
+                            input()
+                        }
+                    }
+                    else if(data.length == 0){
+                        input()
+                    }
+                 }
+     });
+}
+
 function input(){
     var name_car = document.getElementById("carname").value;
     var id_pi = document.getElementById("pi_id").value;
-    console.log(name_car)
     $.ajax({
             type : 'POST',
             url : 'http://127.0.0.1:8000/main/car_input',
@@ -12,7 +38,7 @@ function input(){
             dataType:'json',
             success: function(){
             }
-        });
+    });
     alert('차량을 성공적으로 등록 하였습니다.');
     $("#pi_id").val('');
     $("#car_name").val('');

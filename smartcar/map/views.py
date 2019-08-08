@@ -89,6 +89,10 @@ def reset_xy(request):
     carin.target_x = ''
     carin.target_y = ''
     carin.car_route = ''
+    carin.car_speed = ''
+    carin.car_arrive_time = ''
+    carin.car_now_situation = ''
+    carin.car_destination_distance = ''
     carin.save()
     return HttpResponse('')
 
