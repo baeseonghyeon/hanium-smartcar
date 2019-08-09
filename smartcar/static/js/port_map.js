@@ -1,4 +1,23 @@
-$(document).ready(map())
+$(document).ready( function(){map()})
+//function moving(){
+//    $("#route3").insertAfter(".1a2")
+//}
+function moving(){
+    var route
+    var route_array = new Array()
+    $.ajax({
+                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+                 dataType : 'json',
+                 success : function (data) {
+                    for(var i=0; i<=data.length; i++){
+                        if(data[i].car_route != '1'){
+                            route=data[i].car_route
+                        }
+                    }
+                    route_array = route.split(']')
+                 }
+    });
+}
 //var timer = window.setInterval(function () { map(); }, 1000);
 function map(){
     $("#map *").remove()
@@ -23,44 +42,38 @@ function map(){
                          for(var j=0; j<=13; j++){
                             if(map_array2[i][j]==0){
                                  var map_span = document.createElement("span");
+                                 var map_div = document.createElement("div");
                                  map_span.setAttribute("id", "route0");
-                                 map_span.setAttribute("class", i);
-                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 map_span.setAttribute("class", i+'a'+j);
+                                 map_span.setAttribute("onclick", 'position_check(this.className)');
                                  $("#map").append(map_span);
-//                                 $("#map").append('<span id="route0">').append('</span>');
+                                 $(b).wrapInner(map_div);
                             }
                             else if(map_array2[i][j]==1){
                                  var map_span = document.createElement("span");
                                  map_span.setAttribute("id", "route1");
-                                 map_span.setAttribute("class", i);
-                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 map_span.setAttribute("class", i+'a'+j);
                                  map_span.innerHTML = 'Con';
                                  $("#map").append(map_span);
-//                                 $("#map").append('<span id="route1">Con</span>');
                             }
                             else if(map_array2[i][j]==2){
                                  var map_span = document.createElement("span");
                                  map_span.setAttribute("id", "route2");
-                                 map_span.setAttribute("class", i);
-                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 map_span.setAttribute("class", i+'a'+j);
                                  $("#map").append(map_span);
-//                                 $("#map").append('<span id="route2"></span>');
                             }
                             else if(map_array2[i][j]==3){
                                  var map_span = document.createElement("span");
                                  map_span.setAttribute("id", "route3");
-                                 map_span.setAttribute("class", i);
-                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 map_span.setAttribute("class", i+'a'+j);
                                  map_span.innerHTML = 'Car';
                                  $("#map").append(map_span);
-//                                 $("#map").append('<span id="route3">Car</span>');
                             }
                             else if(map_array2[i][j]==5){
                                  var map_span = document.createElement("span");
                                  map_span.setAttribute("id", "route5");
-                                 map_span.setAttribute("class", i);
+                                 map_span.setAttribute("class", i+'a'+j);
                                  $("#map").append(map_span);
-//                                 $("#map").append('<span id="route5"></span>');
                             }
                             else if(map_array2[i][j]==8){
                                  $("#map").append();
@@ -68,10 +81,8 @@ function map(){
                             else if(map_array2[i][j]==4){
                                  var map_span = document.createElement("span");
                                  map_span.setAttribute("id", "route4");
-                                 map_span.setAttribute("class", i);
-                                 map_span.setAttribute("onclick", 'position_check(this.class)');
+                                 map_span.setAttribute("class", i+'a'+j);
                                  $("#map").append(map_span);
-//                                 $("#map").append('<span id="route4"></span>');
                             }
                          }
                          $("#map").append("<br>");
@@ -81,8 +92,9 @@ function map(){
 }
 function position_check(clicked_class){
     var c_class = clicked_class;
-    console.log('선택한 위치는');
-    console.log(c_class);
+    var d_class = c_class.split('a')
+    $("#a").val(d_class[0]);
+    $("#b").val(d_class[1]);
 }
 function xy_input(){
     var number = document.getElementById("car_number").value;
@@ -102,7 +114,7 @@ var num = Number(number)-1
                  success : function (data) {
                  console.log(num)
                  console.log(data[num])
-                    if(data[num].now_x != ""){
+                    if(data[num].target_x != ""){
                         alert('이미 좌표 있음')
                     }
                     else{
@@ -182,7 +194,7 @@ function check_route(number){
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
-                    if(data[num].car_route != ""){
+                    if(data[num].car_route != "1"){
                     alert('이미 경로 있음')
                     }
                     else{

@@ -1,3 +1,23 @@
+function pi_check2(){
+    var pi_id3 = document.getElementById("pi_id").value;
+    var check = 0;
+     $.ajax({
+                 url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
+                 dataType : 'json',
+                 success : function (data) {
+                    for(var i=0; i<=data.length-1; i++){
+                        if(pi_id3 == data[i].pi_id){
+                            pi_check()
+                            check=1
+                            break
+                        }
+                    }
+                    if(check==0){
+                        alert('등록된 pi가 아닙니다.')
+                    }
+                 }
+     });
+}
 function pi_check(){
      var pi_id2 = document.getElementById("pi_id").value;
      var check = 1;

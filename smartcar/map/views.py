@@ -68,8 +68,7 @@ def reset_xy(request):
     park3 = len(park) - 1
     park2 = [[0 for x in range(park3)] for y in range(park3)]
     for x in range(park3):
-        park2[x] = park[x].split(', ')
-
+        park2[x] = park[x].split('a')
     for x in range(park3):
         kim2[int(park2[x][0])][int(park2[x][1])] = '0'
 
@@ -84,11 +83,11 @@ def reset_xy(request):
     db_map.save()
 
     #도착점, 출발점, 경로 초기화
-    carin.now_x = ''
-    carin.now_y = ''
+    carin.now_x = '1'
+    carin.now_y = '1'
     carin.target_x = ''
     carin.target_y = ''
-    carin.car_route = ''
+    carin.car_route = '1'
     carin.car_speed = ''
     carin.car_arrive_time = ''
     carin.car_now_situation = ''
@@ -248,7 +247,7 @@ def bfs(request):
             continue
         kim2[val[0]][val[1]] = '4'
         views_route += str(val[0])
-        views_route += ', '
+        views_route += 'a'
         views_route += str(val[1])
         views_route += ']'
     print(views_route)

@@ -45,7 +45,14 @@
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	border-top: 25px solid #455163;
-	border-bottom: 25px solid #455163; 
+	border-bottom: 25px solid #455163;
+	background-color: #0eac6a;
+}
+#route4_1 {
+	display: inline-block;
+	width: 8.333%; height: 8.333%;
+	border-left: 45px solid #455163;
+	border-right: 45px solid #455163;
 	background-color: #0eac6a;
 }
 
