@@ -3,20 +3,9 @@ $(document).ready( function(){map()})
 //    $("#route3").insertAfter(".1a2")
 //}
 function moving(){
-    var route
-    var route_array = new Array()
-    $.ajax({
-                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-                 dataType : 'json',
-                 success : function (data) {
-                    for(var i=0; i<=data.length; i++){
-                        if(data[i].car_route != '1'){
-                            route=data[i].car_route
-                        }
-                    }
-                    route_array = route.split(']')
-                 }
-    });
+    var obj=$("#route3").offset()
+    $("#route3").css("left", obj.left+1);
+    console.log(obj)
 }
 //var timer = window.setInterval(function () { map(); }, 1000);
 function map(){
