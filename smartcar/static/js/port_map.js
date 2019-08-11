@@ -3,9 +3,17 @@ $(document).ready( function(){map()})
 //    $("#route3").insertAfter(".1a2")
 //}
 function moving(){
-    var obj=$("#route3").offset()
-    $("#route3").css("left", obj.left+1);
-    console.log(obj)
+    moving2()
+
+}
+function moving2(){
+    var i = 98.4
+    for(var j=1; j<=10;j++){
+        $(".carcar").animate({left: i*j}, 500)
+    }
+    for(var j=1; j<=10;j++){
+        $(".carcar").animate({top: "+=54"}, 500)
+    }
 }
 //var timer = window.setInterval(function () { map(); }, 1000);
 function map(){
