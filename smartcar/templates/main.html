@@ -6,74 +6,55 @@
 {% block head %}
 <script src="{% static 'js/car_input.js' %}"></script>
 <script src="{% static 'js/port_map.js' %}"></script>
+<link href="{% static 'css/main.css'%}" rel="stylesheet">
 {% endblock %}
 
-<!-- content -->
+<!-- not user redirect -->
+{% include './common/user_auth.html' %}
+
+<!-- Nav -->
+{% block nav %}
+    {% include './common/nav.html' %}
+{% endblock %}
+
+
 {% block contents %}
+<div id="wrapper" class="toggled">  
 
-<!-- nav -->
-{% include './common/nav.html' %}
-<div id="wrapper" class="toggled">
-  <!-- not user redirect -->
-  {% if user.is_authenticated %}
-  {% else %}
-      <script>
-      window.location.href =  "{% url 'auth' %}";
-      </script>
-  {% endif %}
-      
-  <!-- Sidebar -->
-  <div id="sidebar-wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div id="main-side1">
+            <span id="car_count"></span>대(정렬 순)
+        </div>
+        <div id="main-side2">
 
-      <div id="main-side1">
-          <span id="car_count"></span>대(정렬 순)
-      </div>
-      <div id="main-side2">
-
-      </div>
-      <div id="main-side3">
-          carnumber:<span id="car_number"></span><br>
-          carname:<span id="car_name"></span><br>
-          <input type="button" onclick="detail()" value="상세정보" />
-          <button onclick="moving()">무빙</button>
-      </div>
-
-  </div>
-  <!-- /#sidebar-wrapper -->
+        </div>
+        <div id="main-side3">
+            carnumber:<span id="car_number"></span><br>
+            carname:<span id="car_name"></span><br>
+            <input type="button" onclick="detail()" value="상세정보" />
+            <button onclick="moving()">무빙</button>
+        </div>
+    </div>    
           
-  <!-- Page Content -->
-  <div id="page-content-wrapper">
-  <style>
-      .carcar{
-        position: absolute;
-        top: 58;
-        left: 350;
-        width: 8.333%; height: 8.333%;
-	    background-color: #455163;
-	    border: 2px solid #0eac6a;
-	    border-radius: 5px;
-	    text-align: center;
-      }
-  </style>
-  <div class="carcar">Car</div>
-  <div id="map"></div>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">    
+        <div class="carcar">Car</div>
+        <div id="map"></div>
 
-  <div class="car-position-control-box">
-      현위치:<input type="text" id="x" size="2" />
-      <input type="text" id="y" size="2" /><br>
-      목적지:<input type="text" id="a" size="2" />
-      <input type="text" id="b" size="2" /><br>
-      <button onclick="xy_input()">위치</button>
-      <button onclick="xy_reset()">초</button>
-      <button id="path_search" onclick="search()">경로</button>
+        <div class="car-position-control-box">
+            현위치:<input type="text" id="x" size="2" />
+            <input type="text" id="y" size="2" /><br>
+            목적지:<input type="text" id="a" size="2" />
+            <input type="text" id="b" size="2" /><br>
+            <button onclick="xy_input()">위치</button>
+            <button onclick="xy_reset()">초</button>
+            <button id="path_search" onclick="search()">경로</button>
+        </div>
+    </div>
 
-  </div>
-  
-  <div>
-
-
+</div>
   <!-- Car_input Modal -->
   {% include './car_input.html' %}
 
-</div>
 {% endblock %}

@@ -1,60 +1,79 @@
+{% extends './common/base.html' %}
+
 {% load staticfiles %}
-<script src="{% static 'js/jquery.js' %}"></script>
-<script src="{% static 'js/car_information.js' %}"></script>
-<link href="{% static 'css/map.css'%}" rel="stylesheet">
 
+{% block head %}
+<link href="{% static 'css/detail.css'%}" rel="stylesheet">
+{% endblock %}
+
+<!-- not user redirect -->
+{% include './common/user_auth.html' %}
+
+<!-- Nav -->
+{% block nav %}
+    {% include './common/nav.html' %}
+{% endblock %}
+
+<!-- Sidebar -->
 {% block contents %}
+<div id="wrapper" class="toggled">  
 
-{% if user.is_authenticated %}
-    {% else %}
-        <script>
-        window.location.href =  "{% url 'auth' %}";
-        </script>
-{% endif %}
-    <div id="detail-side3">
-        <span id="car_number" value="{{ carNumber }}">{{ carNumber }}번차량</span><br>
-        차량번호:<span id="pi_id"></span><br>
-        <!-- 경로 찾을때 input-->
-        속도:<span id="car_speed"></span><br>
-        도착시간:<span id="car_arrive_time"></span><br>
-        거리:<span id="car_destination_distance"></span><br>
-        현재상태:<span id="car_now_situation"></span><br>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div id="detail-side1">
+            <!-- 경로 찾을때 input-->
+            
+            도착시간:<span id="car_arrive_time"></span><br>
+            거리:<span id="car_destination_distance"></span><br>
+            
+        </div>
+        <div id="detail-side2">
+            영상정보:<span id="picture"></span><br>
+        </div>
+        <div id="detail-side3">
+            <span id="car_number" value="{{ carNumber }}">{{ carNumber }}번차량</span><br>
+            차량번호:<span id="pi_id"></span><br>
+            
+            속도:<span id="car_speed"></span><br>
+            현재상태:<span id="car_now_situation"></span><br>
+            <!-- 차량 등록때 input-->
+            배터리:<span id="battery"></span><br>
+            통신상태:<span id="communication"></span><br>
+            차량타입:<span id="car_type"></span><br>
+            
 
-        <!-- 차량 등록때 input-->
-        배터리:<span id="battery"></span><br>
-        통신상태:<span id="communication"></span><br>
-        차량타입:<span id="car_type"></span><br>
-        영상정보:<span id="picture"></span><br>
+            <!-- 컨테이너 등록때 input-->
+            <!--컨테이너번호:<span id="container_id"></span><br>-->
+            컨테이너제조사:<span id="container_company"></span><br>
+            컨테이너제품:<span id="container_product"></span><br>
+            컨테이너출하일:<span id="container_shipment_day"></span><br>
 
-        <!-- 컨테이너 등록때 input-->
-        <!--컨테이너번호:<span id="container_id"></span><br>-->
-        컨테이너제조사:<span id="container_company"></span><br>
-        컨테이너제품:<span id="container_product"></span><br>
-        컨테이너출하일:<span id="container_shipment_day"></span><br>
-
-        <!-- exam -->
-        Container-id:<input type="text" id="container_id" />
-        <button onclick="container()">컨테이너등록</button>
-
+            <!-- exam -->
+            Container-id:<input type="text" id="container_id" />
+            <button onclick="container()">컨테이너등록</button>
+        </div>
     </div>
-      <br>
-      <a href="/main">메인으로가기</a><br>
-      <!-- 수동조작 틀-->
-      <button id="manual" onclick="manual()">수동모드</button>
-      <button id="auto" onclick="auto()">자동모드</button><br>
-      <div id="control">
-      <button id="go" onclick="go()">직진</button>
-      <button id="back" onclick="back()">후진</button>
-      <button id="right" onclick="right()">우회전</button>
-      <button id="left" onclick="left()">좌회전</button>
-      </div>
 
+    <!-- Page Content -->
+    <div id="page-content-wrapper"> 
+        <input type="hidden" id="for_container" value="{{ carNumber }}">
+        <div id="map"></div>
 
-      <input type="hidden" id="for_container" value="{{ carNumber }}">
-      <div id="map"></div>
+        <div class="car-position-control-box">
+            <a href="/main">메인으로가기</a><br>
+            <!-- 수동조작 틀-->
+            <button id="manual" onclick="manual()">수동모드</button>
+            <button id="auto" onclick="auto()">자동모드</button><br>
+            <div id="control">
+            <button id="go" onclick="go()">직진</button>
+            <button id="back" onclick="back()">후진</button>
+            <button id="right" onclick="right()">우회전</button>
+            <button id="left" onclick="left()">좌회전</button>
+            </div>
+        </div>
+    </div>   
 
-
-
+</div>
 
 <script>
 $(document).ready(function(){

@@ -1457,3 +1457,14 @@ body {
 .modal-title {
     font-size: 1.3rem;
 }
+
+/* car postion */
+.car-position-control-box {
+    width: 200px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 25px;
+    position: absolute;
+    bottom: 85px;
+    right: 25px;
+}

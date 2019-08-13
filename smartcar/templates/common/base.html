@@ -8,10 +8,12 @@
     <title>Auto_drive</title>
 
     <!-- Bootstrap styles -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/common/bootstrap.css'%}" crossorigin="anonymous">
 
     <!-- Custom styles -->
-    <link href="{% static 'css/common.css'%}" rel="stylesheet">
+    <link href="{% static 'css/common/common.css'%}" rel="stylesheet">
+    <link href="{% static 'css/car.css'%}" rel="stylesheet">
+    <link href="{% static 'css/map.css'%}" rel="stylesheet">
 
     <!-- scripts-->
     <script src="{% static 'js/jquery.js' %}"></script>
@@ -22,18 +24,19 @@
     <script src="{% static 'js/bootstrap_jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
 
-    <!-- map/main css -->
-    <link href="{% static 'css/main.css'%}" rel="stylesheet">
-    <link href="{% static 'css/map.css'%}" rel="stylesheet">
-    
-
     {% block head %}
     
     {% endblock %}
 
 </head>
 <body>
+    
+    <!-- Navbar -->
+    {% block nav %}
 
+    {% endblock %}
+
+    <!-- Contents -->
     {% block contents %}
 
     {% endblock %}

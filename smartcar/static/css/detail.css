@@ -1,0 +1,17 @@
+#detail-side1 {
+    flex: 2;
+    background: #253247;
+    padding: 15px;
+    border-bottom: 1px solid #46586b;
+}
+#detail-side2 {
+    flex: 3;
+    background: #14171C;
+    overflow-y: auto;
+}
+#detail-side3 {
+    flex: 3;
+    background: #273245;
+    padding: 15px;
+    border-top: 1px solid #46586b;
+}
