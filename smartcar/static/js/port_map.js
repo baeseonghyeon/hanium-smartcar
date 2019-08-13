@@ -4,16 +4,115 @@ $(document).ready( function(){map()})
 //}
 function moving(){
     moving2()
-
 }
 function moving2(){
-    var i = 98.4
-    for(var j=1; j<=10;j++){
+    var clicked_car = document.getElementById("car_number").value
+    console.log(clicked_car)
+    var route
+    var route2 = new Array()
+    var route3 = new Array()
+    var exam
+    var index = 0
+     $.ajax({
+                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+                 dataType : 'json',
+                 success : function (data) {
+                    route = data[clicked_car-1].car_route
+                    console.log(route)
+                    route2 = route.split(']')
+                    console.log(route2)
+                    for(var i=0; i<=route2.length-2; i++){
+                        route3 = new Array()
+                    }
+                    for(var i=0; i<=route2.length-2; i++){
+                        route3[i] = route2[i].split('a')
+                    }
+                    console.log(route3)
+                    try {
+                        while(True){
+                            console.log()
+                            if(route3[index + 2][0] == route3[index][0] + 1){
+                                if(route3[index + 2][1] == route3[index][1] + 1){
+                                    if(route3[index + 1][1] > route3[index][1]){
+                                        exam += '우회전'
+                                        index += 2
+                                        continue
+                                    }
+                                    else if(route3[index + 1][0] > route3[index][0]){
+                                        exam += '좌회전'
+                                        index += 2
+                                        continue
+                                    }
+                                }
+                                else if(route3[index + 2][1] == route3[index][1] - 1){
+                                    if(route3[index + 1][1] < route3[index][1]){
+                                        exam+= '좌회전'
+                                        index += 2
+                                        continue
+                                    }
+                                }
+                            }
+                            else if(route3[index + 2][0] == route3[index][0] - 1)
+                                if(route3[index + 2][1] == route3[index][1] - 1)
+                                    if(route3[index][1] > route3[index + 1][1]){
+                                        exam+='우회전'
+                                        index += 2
+                                        continue
+                                    }
+                            else if(route3[index][0] == route3[index + 1][0]){
+                                if(route3[index][1] > route3[index + 1][1]){
+                                    exam +='전진'
+                                    index += 1
+                                    continue
+                                }
+                                else if(route3[index][1] < route3[index + 1][1]){
+                                    exam+='전진'
+                                    index += 1
+                                    continue
+                                }
+                            }
+                            else if(route3[index][1] == route3[index + 1][1]){
+                                if(route3[index + 1][0] > route3[index][0]){
+                                    exam += '전진'
+                                    index += 1
+                                    continue
+                                }
+                                else if(route3[index][0] > route3[index + 1][0]){
+                                    exam+='전진'
+                                    index += 1
+                                    continue
+                                }
+                            }
+                        index += 1
+                        }
+                    } catch(e){
+                            if(e instanceof TypeError){ }
+                            else if(e instanceof RangeError){ }
+                            else if(e instanceof EvalError){ }
+                            else { }
+                      }
+                    console.log(exam)
+                 }
+     });
+    var i = 98.82501220703125
+    var j, k
+    for(j=1; j<=5;j++){
         $(".carcar").animate({left: i*j}, 500)
     }
-    for(var j=1; j<=10;j++){
-        $(".carcar").animate({top: "+=54"}, 500)
+    for(k=1; k<=2;k++){
+        $(".carcar").animate({top: "+=55.125"}, 500)
     }
+    $("#x").val(j-1)
+    $("#y").val(k-1)
+//    $.ajax({
+//            type : 'POST',
+//            url : 'http://127.0.0.1:8000/map/reset',
+//            data : {
+//            },
+//            dataType:'json',
+//            success: function(){
+//            }
+//    });
 }
 //var timer = window.setInterval(function () { map(); }, 1000);
 function map(){
@@ -165,7 +264,7 @@ function xy_reset(){
             dataType:'json',
             success: function(){
             }
-        });
+    });
     $("#x").val('')
     $("#y").val('')
     $("#a").val('')
