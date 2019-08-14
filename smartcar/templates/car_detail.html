@@ -31,26 +31,93 @@
             영상정보:<span id="picture"></span><br>
         </div>
         <div id="detail-side3">
-            <span value="{{ carNumber }}">{{ carNumber }}번차량</span><br>
-            차량번호:<span id="pi_id"></span><br>
-            
-            속도:<span id="car_speed"></span><br>
-            현재상태:<span id="car_now_situation"></span><br>
-            <!-- 차량 등록때 input-->
-            배터리:<span id="battery"></span><br>
-            통신상태:<span id="communication"></span><br>
-            차량타입:<span id="car_type"></span><br>
-            
-            <button onclick="moving()">무빙</button>
-            <!-- 컨테이너 등록때 input-->
-            <!--컨테이너번호:<span id="container_id"></span><br>-->
-            컨테이너제조사:<span id="container_company"></span><br>
-            컨테이너제품:<span id="container_product"></span><br>
-            컨테이너출하일:<span id="container_shipment_day"></span><br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="cercle-l car-now">
+                            <span id="car_now_situation"></span>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="cercle-l">
+                            <span id="car_speed"></span>
+                            <span>KM/H</span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="row">
+                            <div class="cercle-s"><span id="battery"></span></div>
+                        </div>
+                        <div class="row">
+                            <div class="cercle-s"><span id="communication"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div id="car-container">
+                            <span id="container_id"></span>
+                            Click-me
+                        </div>
+                    </div>
+                    <div class=" col-12">
+                        <div id="detail-car">
+                            <span value="{{ carNumber }}">{{ carNumber }}번차량</span>
+                            <span id="pi_id"></span>
+                            <span id="car_type"></span>
+                            Click-me
+                        </div>
+                    </div>
 
-            <!-- exam -->
-            Container-id:<input type="text" id="container_id" />
-            <button onclick="container()">컨테이너등록</button>
+                    <div class="info-wrapper" id="con-info">
+                        <button id="con-info-close">x</button>
+                        <!-- 컨테이너 등록때 input-->
+                        컨테이너제조사:<span id="container_company"></span><br>
+                        컨테이너제품:<span id="container_product"></span><br>
+                        컨테이너출하일:<span id="container_shipment_day"></span><br>
+                        <!-- exam -->
+                        Container-id:<input type="text" id="container_id" />
+                        <button onclick="container()">컨테이너등록</button>
+                    </div>
+
+                    <div class="info-wrapper" id="car-info">
+                        <button id="car-info-close">x</button>
+                        <button onclick="moving()">무빙</button>
+                    </div>
+                </div>
+
+                <script>
+                $(document).ready(function(){
+                    // con
+                    $('#car-container').on('click', function(){
+                        $('#con-info').addClass('info-show');
+                    });
+                    $('#con-info-close').on('click', function(){
+                        $('#con-info').removeClass('info-show');
+                    });
+                    //car
+                    $('#detail-car').on('click', function(){
+                        $('#car-info').addClass('info-show');
+                    });
+                    $('#car-info-close').on('click', function(){
+                        $('#car-info').removeClass('info-show');
+                    });
+                });
+                </script>
+                
+                </div>
+            </div>
+            
+            
+            
+            
+            <!-- 차량 등록때 input-->
+            
+           
+            
+            
+            
+            
         </div>
     </div>
 
