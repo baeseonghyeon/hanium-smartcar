@@ -30,12 +30,42 @@
 
         </div>
         <div id="main-side3">
-            carnumber:<span id="car_number"></span><br>
-            carname:<span id="car_name"></span><br>
-            <input type="button" onclick="detail()" value="상세정보" />
-            <button onclick="moving()">무빙</button>
-            <button onclick="moving222()">출발</button>
-        </div>
+			<div class="container">
+				<p>차량정보</p>
+				<!-- 차 선택을 안했을 때 네임 칸이 비어 있음, 선택된 차량 없음 이라고 네임칸에 넣어주면 좋을듯 함ㄴ -->
+				<h1><span id="car_name"></span></h1>
+				<p>[cartype]</p>
+				<!-- number는 필요 없는 정보, 임시로 숨김 -->
+				<span id="car_number" style="display: none;"></span>
+
+				<div class="row main-car-info">
+					<div class="col-6">
+						<div class="row">
+							<div class="col-6">
+								<div class="cercle-s">battery</div>
+							</div>
+							<div class="col-6 info-text">
+								<p>100%</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="row">
+							<div class="col-6">
+								<div class="cercle-s">data</div>
+							</div>
+							<div class="col-6 info-text">
+								<p>양호</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+					<input type="button" onclick="detail()" value="상세정보" />
+					<button onclick="moving()">무빙</button>
+					<button onclick="moving222()">출발</button>
+			</div>	
+		</div>
     </div>    
     <script>
         function moving222(){

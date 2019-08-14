@@ -2,8 +2,8 @@
 
 /* 
 common color
-green : #0eac6a; 
-
+green : #0eac6a;
+blue : #28b5b8;
 */
 
 * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
@@ -993,7 +993,6 @@ dl.row > dd + dt {
     position: absolute;
 }
 .nav-item {
-    width: 80px;
     text-align: center;
 }
 
@@ -1021,6 +1020,37 @@ ul.navbar-nav {
 
 .navbar-nav .nav-item + .nav-item {
     margin-right: 1rem;
+}
+.nav-item.dropdown {
+	min-width: 150px;
+}
+.dropdown-menu {
+	border: 1px solid #46586b;
+    border-radius: 0;
+	background-color: #253247;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%)
+}
+.dropdown-item {
+	color: #b6bcc9;
+}
+.dropdown-item:hover {
+	color: #28b5b8;
+	background-color: #46586b;
+}
+.dropdown-divider {
+	border-top: 1px solid #46586b;
+}
+.user-name {
+	color: #28b5b8;
+}
+#back-btn {
+	font-size: 1.2rem;
+	margin: 0px 10px;
+	background-color: transparent;
+    border-color: transparent;
+    color: #b6bcc9;
 }
 
 /* Footer */
@@ -1422,6 +1452,12 @@ body {
 
 
 /* modal */
+.modal-dialog {
+	top: 40%;
+    -ms-transform: translateY(-50%)!important;
+	transform: translateY(-50%)!important;
+	/* margin: 0; */
+}
 .modal-content {
     border-radius: 0px;
     border: 2px solid #46586b;
@@ -1435,7 +1471,7 @@ body {
     text-shadow: none;
 }
 .modal-body {
-    color: #0eac6a;
+    color: #28b5b8;
 }
 .modal-footer {
     border-top: 1px solid #46586b;

@@ -6,20 +6,23 @@
 {% endblock %}
 
 {% block contents %}
-<div class="container">
-  <div id="sign_box">
-    <h1>MEMBER LOGIN</h1>
-    <form method="post" id="sign_form">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    <span class="link"><a href="#">회원가입</a> | <a href="#">계정정보 찾기</a></span>
-  </div>
-</div>
+<div class="login-bg-wrapper">
+<div class="login-bg-wrapper-cover"></div>
+  	<div class="container">
+		<div id="sign_box">
+			<h1>SMART PORT</h1>
+			<form method="post" id="sign_form">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit" class="btn btn-primary">Login</button>
+			</form>
+			<span class="link"><a href="#">회원가입</a> | <a href="#">계정정보 찾기</a></span>
+		</div>
+	</div>
+
 <!-- footer -->
 {% include '../common/footer.html'%}
-
+</div>
 <script>
 $(document).ready(function(){
   $('#id_username').attr('placeholder', '아이디');

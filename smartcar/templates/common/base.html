@@ -5,25 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Auto_drive</title>
+    <title>SMART PORT</title>
 
-    <!-- Bootstrap styles -->
-    <link rel="stylesheet" href="{% static 'css/common/bootstrap.css'%}" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/common/bootstrap/bootstrap.css'%}" crossorigin="anonymous">
+    <script src="{% static 'js/bootstrap/bootstrap_jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="{% static 'css/common/fontawesome/all.css'%}">
+    <script src="{% static 'js/fontawesome/all.js' %}"></script>
 
     <!-- Custom styles -->
-    <link href="{% static 'css/common/common.css'%}" rel="stylesheet">
-    <link href="{% static 'css/car.css'%}" rel="stylesheet">
-    <link href="{% static 'css/map.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/common/common.css'%}">
+    <link rel="stylesheet" href="{% static 'css/car.css'%}">
+    <link rel="stylesheet" href="{% static 'css/map.css'%}">
 
-    <!-- scripts-->
+    <!-- Custom scripts-->
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/main_print.js' %}"></script>
     <script src="{% static 'js/car_information.js' %}"></script>
     <script src="{% static 'js/moving.js' %}"></script>
-
-    <!-- bootstrap -->
-    <script src="{% static 'js/bootstrap_jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
 
     {% block head %}
     

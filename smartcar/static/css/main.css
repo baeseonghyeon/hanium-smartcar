@@ -17,10 +17,52 @@
     padding: 15px;
     border-top: 1px solid #46586b;
 }
+#main-side3 h1 {
+	font-size: 1.5rem;
+    color: white;
+}
+	/* carinfo */
+	.main-car-info {
+		height: 70px;
+	}
+	.main-car-info .col-6 {
+		/* padding: 0; */
+		/* display: flex;
+		align-items: center;
+		justify-content: center; */
+	}
+	.cercle-s {
+		border-radius: 100%;
+		border: 1px solid #55616f;
+		background-color: #38495c;
+		width: 60px;
+		height: 60px;
+		margin: 3px auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.info-text {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.info-text p {
+		margin: 0;
+	}
+
+
 /* main-car select menu */
-.cardiv {
-    width: 150px;
+.car_state_div {
+	width: 150px;
     height: 120px;
     margin: 10px auto;
-    border: 1px solid #0eac6a;
+    border: 1px solid #28b5b8;
+}
+.car_name_div {
+    width: 150px;
+    margin: 10px auto;
+	border: 1px solid #28b5b8;
+	background-color: #28b5b8;
+	color: white;
 }

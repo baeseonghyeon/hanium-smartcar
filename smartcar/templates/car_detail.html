@@ -46,10 +46,14 @@
                     </div>
                     <div class="col-2">
                         <div class="row">
-                            <div class="cercle-s"><span id="battery"></span></div>
+                            <div class="cercle-s">
+                                <span id="battery"></span>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="cercle-s"><span id="communication"></span></div>
+                            <div class="cercle-s">
+                                <span id="communication"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,34 +94,23 @@
                 $(document).ready(function(){
                     // con
                     $('#car-container').on('click', function(){
-                        $('#con-info').addClass('info-show');
+                        $('#con-info').fadeIn("fast");
                     });
                     $('#con-info-close').on('click', function(){
-                        $('#con-info').removeClass('info-show');
+                        $('#con-info').fadeOut("fast");
                     });
                     //car
                     $('#detail-car').on('click', function(){
-                        $('#car-info').addClass('info-show');
+                        $('#car-info').fadeIn("fast");
                     });
                     $('#car-info-close').on('click', function(){
-                        $('#car-info').removeClass('info-show');
+                        $('#car-info').fadeOut("fast");
                     });
                 });
                 </script>
                 
                 </div>
             </div>
-            
-            
-            
-            
-            <!-- 차량 등록때 input-->
-            
-           
-            
-            
-            
-            
         </div>
     </div>
 
@@ -126,16 +119,15 @@
         <input type="hidden" id="car_number" value="{{ carNumber }}">
         <div id="map"></div>
 
-        <div class="car-position-control-box">
-            <a href="/main">메인으로가기</a><br>
-            <!-- 수동조작 틀-->
+        <div class="control-wrapper">
+			<!-- 수동조작 틀-->
+			<div id="control">
+				<button class="mode-btn" id="right" onclick="right()"><i class="fas fa-caret-right"></i></button>
+				<button class="mode-btn" id="left" onclick="left()"><i class="fas fa-caret-left"></i></button>
+				<button class="mode-btn" id="straight" onclick="straight()"><i class="fas fa-sort-up"></i></button>
+				<button class="mode-btn" id="back" onclick="back()"><i class="fas fa-sort-down"></i></button>
+			</div>
             <button id="mode" onclick="mode()">자동모드</button><br>
-            <div id="control">
-            <button id="right" onclick="right()">우</button>
-            <button id="left" onclick="left()">좌</button>
-            <button id="straight" onclick="straight()">직</button>
-            <button id="back" onclick="back()">후</button>
-            </div>
         </div>
     </div>   
 
@@ -143,21 +135,24 @@
 
 <script>
 $(document).ready(function(){
-    $("#control").fadeOut("fast")
+    // $("#control").fadeOut("fast")
     var index = $("#car_number").val()
     route(index)
 })
 function mode(){
     if($("#mode").text()=='자동모드'){
-        $("#control").fadeIn("fast")
+		$(".mode-btn").fadeIn("fast")
+		$(".mode-btn").css({'display' : 'flex'})
         $("#mode").text('')
-        $("#mode").text('수동모드')
+		$("#mode").text('수동모드')
+		$('#mode').css({'background-color': 'rgba(33, 150, 243, 0.9)'})	
         return 0
     }
     if($("#mode").text()=='수동모드'){
-        $("#control").fadeOut("fast")
+		$(".mode-btn").fadeOut("fast")
         $("#mode").text('')
-        $("#mode").text('자동모드')
+		$("#mode").text('자동모드')
+		$('#mode').css({'background-color' : 'rgba(14, 172, 106, 0.9)'})
         return 0
     }
 }

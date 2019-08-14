@@ -25,7 +25,7 @@
 #route2 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
-	background-color: #26b6b6;
+	background-color: #03a9f4;
 }
 
 /* 자동차*/
@@ -33,7 +33,7 @@
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #0eac6a;
+	border: 2px solid #28b5b8;
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
@@ -46,14 +46,14 @@
 	width: 8.333%; height: 8.333%;
 	border-top: 25px solid #455163;
 	border-bottom: 25px solid #455163;
-	background-color: #0eac6a;
+	background-color: #28b5b8;
 }
 #route4_1 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	border-left: 45px solid #455163;
 	border-right: 45px solid #455163;
-	background-color: #0eac6a;
+	background-color: #28b5b8;
 }
 
 /* 도착지 */

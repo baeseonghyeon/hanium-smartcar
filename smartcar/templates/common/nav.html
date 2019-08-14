@@ -1,15 +1,38 @@
-<nav class="navbar navbar-expand navbar-dark"> <a href="#menu-toggle" id="menu-toggle" class="navbar-brand"><span class="navbar-toggler-icon"></span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-    <div id="portname "class="nav-info1">울산항</div>
+<nav class="navbar navbar-expand navbar-dark"> <a href="#menu-toggle" id="menu-toggle" class="navbar-brand"></a>{% if not request.path == '/main/' %}<button id="back-btn"><i class="fas fa-chevron-left"></i></button>{% endif %}<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div id="portname "class="nav-info1">portname</div>
 
     <div class="collapse navbar-collapse" id="navbarsExample02">
         <ul class="navbar-nav">
-        {% if user.is_authenticated %}
-            {% if request.user.is_staff %}
-            <li class="nav-item active"> <a class="nav-link" href="#" data-toggle="modal" data-target="#myModal">차량등록</a></li>
-            {% endif %}
-            <li class="nav-item "> <a class="nav-link" href="{% url 'logout' %}">로그아웃<span class="sr-only">(current)</span></a> </li>
+		{% if user.is_authenticated %}
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="user-name">{{ user.username }}</span> 님
+					{% if request.path == '/main/' %}
+						 환영합니다!
+					{% endif %}
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">마이페이지</a>
+					{% if request.user.is_staff %}
+					{% if request.path == '/main/' %}
+					<a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">차량등록</a>
+					{% endif %}
+					{% endif %} 
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="{% url 'logout' %}">로그아웃<span class="sr-only">(current)</span></a>
+				</div>
+			</li>
         {% endif %}    
         </ul>
         <form class="form-inline my-2 my-md-0"> </form>
     </div>
 </nav>
+
+<script>
+	$(document).ready(function(){
+		$('#back-btn').on('click', function (){
+			window.history.back();
+			// window.location.href = '/main';
+		});
+	});	
+</script>

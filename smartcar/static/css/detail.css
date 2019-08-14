@@ -53,12 +53,12 @@
 
 /* car-now */
 .car-now {
-    border: 2px solid #0eac6a;
+    border: 2px solid #28b5b8;
 }
 
 /* car-speed */
 #car_speed {
-    color: #0eac6a;
+    color: #28b5b8;
     font-size: 2rem;
 }
 
@@ -72,8 +72,8 @@
 
 /* detail-car */
 #detail-car {
-    border: 1px solid #0eac6a;
-    background-color: #0eac6a;
+    border: 1px solid #28b5b8;
+    background-color: #28b5b8;
     color: white;
     width: 200px;
     margin: auto;
@@ -95,4 +95,57 @@
 /* car info */
 .info-show {
     display: block!important;
+}
+
+/* control */
+.control-wrapper {
+    padding: 25px;
+    position: absolute;
+    bottom: 0;
+    right: 25px;
+}
+#control {
+	display: block;
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 50px auto;
+}
+#mode {
+	padding: 5px 15px;
+    border-radius: 20px;
+    background-color: rgba(14, 172, 106, 0.9);
+    color: white;
+    font-weight: 700;
+	border: none;
+	display: block;
+	margin: 20px;
+}
+.mode-btn {
+	padding: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	border-radius: 4px;
+	position: absolute;
+	display: none;
+}
+#left {
+	left: 0;
+	top: 35%;		
+}
+#right {
+	right: 0;
+	top: 35%;
+}
+#straight {
+	top: 0;
+	right: 35%;
+}
+#back {
+	bottom: 0;
+	right: 35%;
 }
