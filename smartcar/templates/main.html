@@ -34,12 +34,35 @@
             carname:<span id="car_name"></span><br>
             <input type="button" onclick="detail()" value="상세정보" />
             <button onclick="moving()">무빙</button>
+            <button onclick="moving222()">출발</button>
         </div>
     </div>    
-          
+    <script>
+        function moving222(){
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+            dataType : 'json',
+            success : function (data) {
+                var aa = data[0].car_code
+                console.log(aa)
+        $.ajax({
+            type : 'POST',
+            url : 'http://192.168.0.9:8000/',
+            dataType:'json',
+            data : {
+            'bbb': aa
+            },
+            success: function(){
+            }
+        });
+            }
+        });
+
+
+        }
+    </script>
     <!-- Page Content -->
-    <div id="page-content-wrapper">    
-        <div class="carcar">Car</div>
+    <div id="page-content-wrapper">
         <div id="map"></div>
 
         <div class="car-position-control-box">

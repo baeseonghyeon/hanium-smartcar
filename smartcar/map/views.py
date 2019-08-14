@@ -251,7 +251,7 @@ def bfs(request):
         views_route += str(val[1])
         views_route += ']'
     print(views_route)
-
+    kim2[1][1] = '3'
     #맵 저장
     for x in range(14):
         for y in range(14):
@@ -259,10 +259,12 @@ def bfs(request):
             if y != 13:
                 views_map += ', '
         views_map += 's'
+    print(code)
     mapin.map = views_map
     mapin.save()
     carin.car_route = views_route
     carin.car_speed = '30km/h'
+    carin.car_code = code
     carin.car_arrive_time = '12분후'
     carin.car_now_situation = '직진'
     carin.car_destination_distance = '10km'

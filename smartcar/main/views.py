@@ -28,4 +28,11 @@ def Car_detail(request):
     num = request.POST['carNumber']
     return render(request, 'car_detail.html', {'carNumber': num})
 
+@csrf_exempt
+def position(request):
+    carin = CarInfo.objects.get(id=request.POST['car_number'])
+    carin.position = request.POST['position']
+    carin.save()
+    return HttpResponseRedirect('/')
+
 

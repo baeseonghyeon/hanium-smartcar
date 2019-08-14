@@ -31,7 +31,7 @@
             영상정보:<span id="picture"></span><br>
         </div>
         <div id="detail-side3">
-            <span id="car_number" value="{{ carNumber }}">{{ carNumber }}번차량</span><br>
+            <span value="{{ carNumber }}">{{ carNumber }}번차량</span><br>
             차량번호:<span id="pi_id"></span><br>
             
             속도:<span id="car_speed"></span><br>
@@ -41,7 +41,7 @@
             통신상태:<span id="communication"></span><br>
             차량타입:<span id="car_type"></span><br>
             
-
+            <button onclick="moving()">무빙</button>
             <!-- 컨테이너 등록때 input-->
             <!--컨테이너번호:<span id="container_id"></span><br>-->
             컨테이너제조사:<span id="container_company"></span><br>
@@ -56,19 +56,18 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper"> 
-        <input type="hidden" id="for_container" value="{{ carNumber }}">
+        <input type="hidden" id="car_number" value="{{ carNumber }}">
         <div id="map"></div>
 
         <div class="car-position-control-box">
             <a href="/main">메인으로가기</a><br>
             <!-- 수동조작 틀-->
-            <button id="manual" onclick="manual()">수동모드</button>
-            <button id="auto" onclick="auto()">자동모드</button><br>
+            <button id="mode" onclick="mode()">자동모드</button><br>
             <div id="control">
-            <button id="go" onclick="go()">직진</button>
-            <button id="back" onclick="back()">후진</button>
-            <button id="right" onclick="right()">우회전</button>
-            <button id="left" onclick="left()">좌회전</button>
+            <button id="right" onclick="right()">우</button>
+            <button id="left" onclick="left()">좌</button>
+            <button id="straight" onclick="straight()">직</button>
+            <button id="back" onclick="back()">후</button>
             </div>
         </div>
     </div>   
@@ -78,18 +77,51 @@
 <script>
 $(document).ready(function(){
     $("#control").fadeOut("fast")
-    var index = $("#for_container").val()
+    var index = $("#car_number").val()
     route(index)
 })
-function manual(){
-    $("#driving_mode").text('수동');
-    $("#control").fadeIn("fast");
+function mode(){
+    if($("#mode").text()=='자동모드'){
+        $("#control").fadeIn("fast")
+        $("#mode").text('')
+        $("#mode").text('수동모드')
+        return 0
+    }
+    if($("#mode").text()=='수동모드'){
+        $("#control").fadeOut("fast")
+        $("#mode").text('')
+        $("#mode").text('자동모드')
+        return 0
+    }
 }
-function auto(){
-    $("#driving_mode").text('자동');
-    $("#control").fadeOut('fast');
+function new_position(posi){
+    var index = $("#car_number").val()
+    var position = posi
+    $.ajax({
+        type : 'POST',
+        url : 'http://127.0.0.1:8000/main/position',
+        data : {
+            'car_number' : index,
+            'position' : posi,
+        },
+        dataType:'json',
+        success: function(){
+        }
+    });
 }
-function go(){
+function straight(){
+var index = $("#car_number").val()
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+            dataType : 'json',
+            success : function (data) {
+                var p = data[index-1].position
+                if(p == 3){m11();}
+                if(p == 1){m14();}
+                if(p == 2){m13();}
+                if(p == 4){m12();}
+            }
+        });
     var a = '1 '
         $.ajax({
             type : 'POST',
@@ -103,10 +135,22 @@ function go(){
         });
 }
 function back(){
+    var index = $("#car_number").val()
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+            dataType : 'json',
+            success : function (data) {
+                var p = data[index-1].position
+                if(p == 3){m13();}
+                if(p == 1){m12();}
+                if(p == 2){m11();}
+                if(p == 4){m14();}
+            }
+        });
     var a = '4 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.10:8000',
+            url : 'http://192.168.0.9:8000',
             dataType:'json',
             data : {
             'bbb': a
@@ -116,10 +160,24 @@ function back(){
         });
 }
 function right(){
+    var index = $("#car_number").val()
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+            dataType : 'json',
+            success : function (data) {
+                var p = data[index-1].position
+                if(p == 3){m21(); p=4; new_position(p); return 0}
+                if(p == 1){m23(); p=3; new_position(p); return 0}
+                if(p == 2){m22(); p=1; new_position(p); return 0}
+                if(p == 4){m24(); p=2; new_position(p); return 0}
+                console.log(p)
+            }
+        });
+
     var a = '2 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.10:8000',
+            url : 'http://192.168.0.9:8000',
             dataType:'json',
             data : {
             'bbb': a
@@ -129,10 +187,23 @@ function right(){
         });
 }
 function left(){
+    var index = $("#car_number").val()
+        $.ajax({
+            url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+            dataType : 'json',
+            success : function (data) {
+                var p = data[index-1].position
+                if(p == 3){m31(); p=1; new_position(p); return 0}
+                if(p == 1){m34(); p=2; new_position(p); return 0}
+                if(p == 2){m32(); p=4; new_position(p); return 0}
+                if(p == 4){m33(); p=3; new_position(p); return 0}
+                console.log(p)
+            }
+        });
     var a = '3 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.10:8000',
+            url : 'http://192.168.0.9:8000',
             dataType:'json',
             data : {
             'bbb': a
@@ -264,7 +335,7 @@ function map(route, x, y, a, b){
           car_route2[i] = new Array()
     }
     for(var i = 0; i<= count; i++){
-          car_route2[i] = car_route1[i].split(', ')
+          car_route2[i] = car_route1[i].split('a')
     }
     for(var x = 0; x <= count; x++)
           for(var y = 0; y <= 1; y++){
@@ -299,29 +370,54 @@ function map(route, x, y, a, b){
                      for(var i=0; i<=13; i++){
                          for(var j=0; j<=13; j++){
                             if(map_array2[i][j]==0){
-                                 $("#map").append('<span id="route0"></span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route0");
+                                 map_span.setAttribute("class", i+'a'+j);
+                                 $("#map").append(map_span);
                             }
                             else if(map_array2[i][j]==1){
-                                 $("#map").append('<span id="route1"></span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route1");
+                                 map_span.setAttribute("class", i+'a'+j);
+                                 map_span.innerHTML = 'Con';
+                                 $("#map").append(map_span);
                             }
                             else if(map_array2[i][j]==2){
-                                 $("#map").append('<span id="route2"></span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route2");
+                                 map_span.setAttribute("class", i+'a'+j);
+                                 $("#map").append(map_span);
                             }
                             else if(map_array2[i][j]==3){
-                                 $("#map").append('<span id="route3"></span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route3");
+                                 map_span.setAttribute("class", i+'a'+j);
+                                 $("#map").append(map_span);
+                                 var map_div = document.createElement("div");
+                                 map_div.setAttribute("class", "carcar");
+                                 map_div.innerHTML = 'Car';
+                                 $("#map").append(map_div);
+                                 $("#route3").append(map_div);
                             }
                             else if(map_array2[i][j]==5){
-                                 $("#map").append('<span id="route5"></span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route5");
+                                 map_span.setAttribute("class", i+'a'+j);
+                                 $("#map").append(map_span);
                             }
                             else if(map_array2[i][j]==8){
                                  $("#map").append();
                             }
                             else if(map_array2[i][j]==4){
-                                 $("#map").append('<span id="route4"></span>');
+                                 var map_span = document.createElement("span");
+                                 map_span.setAttribute("id", "route4");
+                                 map_span.setAttribute("class", i+'a'+j);
+                                 $("#map").append(map_span);
                             }
                          }
                          $("#map").append("<br>");
                      }
+
                  }
      });
 }
