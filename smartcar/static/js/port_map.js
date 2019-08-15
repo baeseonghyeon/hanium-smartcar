@@ -78,54 +78,54 @@ function position_check(clicked_class){
     $("#a").val(d_class[0]);
     $("#b").val(d_class[1]);
 }
-function xy_input(){
-    var number = document.getElementById("car_number").value;
-    if(number==undefined){
-        alert('차량을 선택 후 실행하세요')
-        return 0
-    }
-    else{
-        check_xy(number)
-    }
-}
-function check_xy(number){
-var num = Number(number)-1
-         $.ajax({
-                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-                 dataType : 'json',
-                 success : function (data) {
-                 console.log(num)
-                 console.log(data[num])
-                    if(data[num].target_x != ""){
-                        alert('이미 좌표 있음')
-                    }
-                    else{
-                        var now_x = document.getElementById("x").value;
-                        var now_y = document.getElementById("y").value;
-                        var target_x = document.getElementById("a").value;
-                        var target_y = document.getElementById("b").value;
-                        var number = document.getElementById("car_number").value;
-                                $.ajax({
-                                    type : 'POST',
-                                    url : 'http://127.0.0.1:8000/map/car_point',
-                                    data : {
-                                        'car_number' : number,
-                                        'xxx' : now_x,
-                                        'yyy' : now_y,
-                                        'aaa' : target_x,
-                                        'bbb' : target_y,
-                                    },
-                                    dataType:'json',
-                                    success: function(){
-                                    }
-                                });
-                                sleep(100)
-                                $("#map *").remove()
-                                map()
-                    }
-                 }
-         });
-}
+//function xy_input(){
+//    var number = document.getElementById("car_number").value;
+//    if(number==undefined){
+//        alert('차량을 선택 후 실행하세요')
+//        return 0
+//    }
+//    else{
+//        check_xy(number)
+//    }
+//}
+//function check_xy(number){
+//var num = Number(number)-1
+//         $.ajax({
+//                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+//                 dataType : 'json',
+//                 success : function (data) {
+//                 console.log(num)
+//                 console.log(data[num])
+//                    if(data[num].target_x != ""){
+//                        alert('이미 좌표 있음')
+//                    }
+//                    else{
+//                        var now_x = document.getElementById("x").value;
+//                        var now_y = document.getElementById("y").value;
+//                        var target_x = document.getElementById("a").value;
+//                        var target_y = document.getElementById("b").value;
+//                        var number = document.getElementById("car_number").value;
+//                                $.ajax({
+//                                    type : 'POST',
+//                                    url : 'http://127.0.0.1:8000/map/car_point',
+//                                    data : {
+//                                        'car_number' : number,
+//                                        'xxx' : now_x,
+//                                        'yyy' : now_y,
+//                                        'aaa' : target_x,
+//                                        'bbb' : target_y,
+//                                    },
+//                                    dataType:'json',
+//                                    success: function(){
+//                                    }
+//                                });
+//                                sleep(100)
+//                                $("#map *").remove()
+//                                map()
+//                    }
+//                 }
+//         });
+//}
 function xy_reset(){
     var now_x = document.getElementById("x").value;
     var now_y = document.getElementById("y").value;

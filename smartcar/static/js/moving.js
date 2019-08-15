@@ -1,5 +1,7 @@
 function moving(){
     moving2()
+    moving22()
+//    position_refresh()
 }
 function moving2(){
     var clicked_car = document.getElementById("car_number").value
@@ -143,15 +145,42 @@ function moving2(){
                          console.log(move)
                  }
      })
-//    $.ajax({
-//            type : 'POST',
-//            url : 'http://127.0.0.1:8000/map/reset',
-//            data : {
-//            },
-//            dataType:'json',
-//            success: function(){
-//            }
-//    });
+}
+function moving22(){
+    $.ajax({
+        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+        dataType : 'json',
+        success : function (data) {
+            var aa = data[0].car_code
+            $.ajax({
+                type : 'POST',
+                url : 'http://192.168.0.9:8000/',
+                dataType:'json',
+                data : {
+                    'bbb': aa
+                },
+                success: function(){
+                }
+            });
+        }
+    });
+}
+function position_refresh(){
+    var clicked_car = document.getElementById("car_number").value
+    var target_x = document.getElementById("a").value
+    var target_y = document.getElementById("b").value
+    $.ajax({
+        type : 'POST',
+        url : 'http://127.0.0.1:8000/map/refresh',
+        dataType:'json',
+        data : {
+            'car_number': clicked_car,
+            'target_x': target_x,
+            'target_y': target_y
+        },
+        success: function(){
+        }
+    });
 }
 function m11(){
     $(".carcar").animate({left: "+=98.82501220703125"}, 500)

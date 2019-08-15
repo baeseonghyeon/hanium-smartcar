@@ -62,5 +62,6 @@ function input(){
     alert('차량을 성공적으로 등록 하였습니다.');
     $("#pi_id").val('');
     $("#car_name").val('');
+    location.reload();
 }
 
