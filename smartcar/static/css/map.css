@@ -1,6 +1,9 @@
 #map {
-	width:100%;
-	height: 95%;
+	width: 950px;
+	height: 950px;
+	margin: auto;
+	/* width:100%;
+	height: 95%; */
 	line-height: 0;
 }
 
@@ -29,12 +32,12 @@
 	background-color: #03a9f4;
 }
 
-/* 자동차*/
+/* 출발지 */
 #route3 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #28b5b8;
+	border: 2px solid #0eac6a;
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
@@ -61,5 +64,26 @@
 #route5 {
 	display: inline-block;
 	width:8.333%; height: 8.333%;
-	background-color: red;
+	background-color: #455163;
+	border: 2px solid #F44336;
+	border-radius: 5px;
+	text-align: center;
+	vertical-align: bottom;
+    line-height: 4rem;
+}
+
+/* kakao-map */
+#map-kakao {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+    left: 0;
+}
+
+.map-change-btn {
+	position: absolute;
+    right: 0;
+    z-index: 10;
+    top: 0;
 }

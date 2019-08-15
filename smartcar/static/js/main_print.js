@@ -20,10 +20,13 @@ function create_car(Car){
             car = new Array();
             for(var i=1; i<=Car.length; i++){
 				var car_state_div = document.createElement("div");
-                var car_name_div = document.createElement("div");
+				var car_state_img = document.createElement("div");
+				var car_name_div = document.createElement("div");
 				car_state_div.setAttribute("id", i-1);
 				car_name_div.setAttribute("id", i-1);
+				car_state_img.setAttribute("id", i-1);
 				car_state_div.setAttribute("class", 'car_state_div');
+				car_state_img.setAttribute("class", 'car_state_img');
 				car_name_div.setAttribute("class", 'car_name_div');
 				car_state_div.setAttribute('OnClick', 'car_detail(this.id)');
                 car_name_div.setAttribute('OnClick', 'car_detail(this.id)');
@@ -41,7 +44,8 @@ function create_car(Car){
                     }
 				});
 				$("#main-side2").append(car_state_div);
-                $("#main-side2").append(car_name_div);
+				$("#main-side2").append(car_name_div);
+				$(".car_state_div, .car_state_wrapper").append(car_state_img);
             }
         }
     });
@@ -54,7 +58,8 @@ var id = clicked_id;
             dataType : 'json',
             success : function (data) {
             $("#car_number").val(data[clicked_id].id).text(data[clicked_id].id);
-            $("#car_name").text(data[clicked_id].car_name);
+			$("#car_name").text(data[clicked_id].car_name);
+			$(".car_state_wrapper").fadeIn("fast");
             $("#x").val(data[clicked_id].now_x);
             $("#y").val(data[clicked_id].now_y);
             $("#a").val(data[clicked_id].target_x);

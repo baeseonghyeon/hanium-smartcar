@@ -1318,10 +1318,11 @@ body {
 }
 
 #page-content-wrapper {
-    height: 100%;
-  width: 100%;
-  position: absolute;
-  padding: 0!important;
+	background-color: #445163;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	padding: 0!important;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -1508,5 +1509,6 @@ body {
     padding: 25px;
     position: absolute;
     bottom: 85px;
-    right: 25px;
+	right: 25px;
+	z-index: 10;
 }

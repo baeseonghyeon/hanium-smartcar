@@ -38,8 +38,8 @@
 				<!-- number는 필요 없는 정보, 임시로 숨김 -->
 				<span id="car_number" style="display: none;"></span>
 
-				<div class="row">
-					<div class="carstate">
+				<div class="row car_state_container">
+					<div class="car_state_wrapper">
 						 
 					</div>
 				</div>
@@ -74,7 +74,29 @@
     </div>
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <div id="map"></div>
+		<div id="map"></div>
+		<!-- 여기 주석처리하면 지도 살아남 -->
+		<div id="map-kakao"></div>
+		<button class="map-change-btn" onclick="mapchange()">KAKAO MAP</button>
+
+		<script>
+		function mapchange(){
+			if($(".map-change-btn").text()=='KAKAO MAP'){
+				$('#map-kakao').fadeOut('fast');
+				$('#map').fadeIn('fast');
+				$(".map-change-btn").text('')
+				$(".map-change-btn").text('PORT MAP')
+				return 0
+			};
+			if($(".map-change-btn").text()=='PORT MAP'){
+				$('#map').fadeOut('fast');
+				$('#map-kakao').fadeIn('fast');
+				$(".map-change-btn").text('')
+				$(".map-change-btn").text('KAKAO MAP')
+				return 0
+			};
+		};
+		</script>
 
         <div class="car-position-control-box">
             현위치:<input type="text" id="x" size="2" />

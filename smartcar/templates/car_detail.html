@@ -22,9 +22,15 @@
     <div id="sidebar-wrapper">
         <div id="detail-side1">
             <!-- 경로 찾을때 input-->
-            
-            도착시간:<span id="car_arrive_time"></span><br>
-            거리:<span id="car_destination_distance"></span><br>
+			<h1>출발좌표 >> 도착좌표</h1>
+			도착시간:<span id="car_arrive_time"></span><br>
+			<div class="row distance-box">	
+				<div class="distance">
+					<div class="distance-car"></div>
+					<div class="distance-full"></div>
+				</div>			
+			</div>
+            거리:<span id="car_destination_distance"></span>[0/0]<br>
             
         </div>
         <div id="detail-side2">
@@ -58,13 +64,17 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-12">
+                    <div class="col-12" id="con-box">
                         <div id="car-container">
                             <span id="container_id"></span>
                             Click-me
                         </div>
                     </div>
-                    <div class=" col-12">
+                    <div class=" col-12" id="car-box">
+						<div class="cardetail">
+							<div class="wheel left"></div>
+							<div class="wheel right"></div>
+						</div>
                         <div id="detail-car">
                             <span value="{{ carNumber }}">{{ carNumber }}번차량</span>
                             <span id="pi_id"></span>
@@ -93,14 +103,14 @@
                 <script>
                 $(document).ready(function(){
                     // con
-                    $('#car-container').on('click', function(){
+                    $('#con-box').on('click', function(){
                         $('#con-info').fadeIn("fast");
                     });
                     $('#con-info-close').on('click', function(){
                         $('#con-info').fadeOut("fast");
                     });
                     //car
-                    $('#detail-car').on('click', function(){
+                    $('#car-box').on('click', function(){
                         $('#car-info').fadeIn("fast");
                     });
                     $('#car-info-close').on('click', function(){
@@ -117,8 +127,9 @@
     <!-- Page Content -->
     <div id="page-content-wrapper"> 
         <input type="hidden" id="car_number" value="{{ carNumber }}">
-        <div id="map"></div>
-
+		<div id="map"></div>
+		<div id="map-kakao"></div>
+		
         <div class="control-wrapper">
 			<!-- 수동조작 틀-->
 			<div id="control">
