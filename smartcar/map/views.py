@@ -42,6 +42,35 @@ def car_point(request):
     return HttpResponse('')
 
 @csrf_exempt
+def refresh(request):
+    #차량위치정보 변경
+    aa = request.POST['target_x']
+    bb = request.POST['target_y']
+    carin = CarInfo.objects.get(id=request.POST['car_number'])
+    park = carin.car_route.split(']')
+    park2 = [[0 for x in range(len(park)-1)] for y in range(2)]
+
+    for x in range(len(park)-1):
+        park2[x] = park[x].split('a')
+    #맵 변경
+    mapin = MapInfo.objects.get(id=1)
+    kim = mapin.map.split('s')
+    kim2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
+        kim2[x] = kim[x].split(', ')
+    for x in range(len(park)-1):
+        for y in range(2):
+            kim2[x][y] = '0'
+
+    mapin.save()
+    carin.now_x = aa
+    carin.now_y = bb
+    carin.car_route = '1'
+    carin.car_code = '1'
+    carin.save()
+    return HttpResponse('')
+
+@csrf_exempt
 def reset_xy(request):
     #차넘버, 출발,도착좌표 받아오기
     id = request.POST['car_number']
@@ -184,6 +213,7 @@ def bfs(request):
     # # #pi로 전송할 데이터 뽑아내기
     index = 0
     code = ''
+    position = '3'
     try:
         while True:
             print('--------------------')
@@ -191,28 +221,59 @@ def bfs(request):
             print(index)
             if value2[index + 2][0] == value2[index][0] + 1:
                 if value2[index + 2][1] == value2[index][1] + 1:
-                    if value2[index + 1][1] > value2[index][1]:
+                    if value2[index + 1][0] == value2[index][0]:
                         print('우회전')
                         index += 2
                         code += '2 '
+                        position = '4'
                         continue
-                    elif value2[index + 1][0] > value2[index][0]:
+                    elif value2[index + 1][1] == value2[index][1]:
                         print('좌회전')
                         index += 2
                         code += '3 '
-                        continue
-                elif value2[index + 2][1] == value2[index][1] - 1:
-                    if value2[index + 1][1] < value2[index][1]:
-                        print('좌회전')
-                        index += 2
-                        code += '3 '
+                        position = '3'
                         continue
             elif value2[index + 2][0] == value2[index][0] - 1:
                 if value2[index + 2][1] == value2[index][1] - 1:
-                    if value2[index][1] > value2[index + 1][1]:
+                    if value2[index][0] == value2[index + 1][0]:
                         print('우회전')
                         index += 2
                         code += '2 '
+                        position ='1'
+                        continue
+                    elif value2[index][1] == value2[index + 1][1]:
+                        print('좌회전')
+                        index += 2
+                        code += '3 '
+                        position = '2'
+                        continue
+            elif value2[index + 2][0] == value2[index][0] - 1:
+                if value2[index + 2][1] == value2[index][1] + 1:
+                    if value2[index][1] == value2[index + 1][1]:
+                        print('우회전')
+                        index += 2
+                        code += '2 '
+                        position = '3'
+                        continue
+                    elif value2[index][0] == value2[index + 1][0]:
+                        print('좌회전')
+                        index += 2
+                        code += '3 '
+                        position = '1'
+                        continue
+            elif value2[index + 2][0] == value2[index][0] + 1:
+                if value2[index + 2][1] == value2[index][1] - 1:
+                    if value2[index][1] == value2[index + 1][1]:
+                        print('우회전')
+                        index += 2
+                        code += '2 '
+                        position = '4'
+                        continue
+                    elif value2[index][0] == value2[index + 1][0]:
+                        print('좌회전')
+                        index += 2
+                        code += '3 '
+                        position = '2'
                         continue
             elif value2[index][0] == value2[index + 1][0]:
                 if value2[index][1] > value2[index + 1][1]:
@@ -240,7 +301,6 @@ def bfs(request):
     except IndexError:
         pass
     code += '1 '
-    print(code)
     #경로저장
     for idx, val in enumerate(path_real):
         # if idx == 0:   #출발위치 표시
@@ -250,7 +310,6 @@ def bfs(request):
         views_route += 'a'
         views_route += str(val[1])
         views_route += ']'
-    print(views_route)
     kim2[1][1] = '3'
     #맵 저장
     for x in range(14):
@@ -259,9 +318,11 @@ def bfs(request):
             if y != 13:
                 views_map += ', '
         views_map += 's'
-    print(code)
     mapin.map = views_map
     mapin.save()
+    carin.position = position
+    carin.target_x = aaaa
+    carin.target_y = bbbb
     carin.car_route = views_route
     carin.car_speed = '30km/h'
     carin.car_code = code
