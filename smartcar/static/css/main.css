@@ -57,7 +57,11 @@
 	width: 150px;
     height: 120px;
     margin: 10px auto;
-    border: 1px solid #28b5b8;
+	border: 1px solid #28b5b8;
+	background-image: url('../img/car/car.png');
+	background-size: 85%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .car_name_div {
     width: 150px;

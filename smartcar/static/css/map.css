@@ -18,7 +18,8 @@
 	background-color: #253247;
 	text-align: center;
 	vertical-align: bottom;
-    line-height: 3.5rem;
+	line-height: 2;
+	border: 1px solid #55616f;
 }
 
 /* 장애물, 바다 */
