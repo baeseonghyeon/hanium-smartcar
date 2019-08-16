@@ -85,9 +85,16 @@ function map(){
                         }
                             for(k=1; k<=car_data.length; k++){
                                 var map_div = document.createElement("div");
-                                map_div.setAttribute("class", "carcar"+car_count);
+								map_div.setAttribute("class", "carcar"+car_count);
                                 map_div.innerHTML = 'Car'+car_count;
-                                $("#route3_"+car_count).append(map_div);
+								$("#route3_"+car_count).append(map_div);
+								
+								// container 있으면
+								var carcon = document.createElement("div");
+								carcon.setAttribute("class", "carcon"+car_count);
+								$(".carcar"+car_count).append(carcon);
+
+
                                 car_count++
                             }
                         }

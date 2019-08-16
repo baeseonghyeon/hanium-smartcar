@@ -41,6 +41,7 @@
                 <div class="row">
                     <div class="col-5">
                         <div class="cercle-l car-now">
+							<i class="fas fa-arrow-up"></i>
                             <span id="car_now_situation"></span>
                         </div>
                     </div>
@@ -53,12 +54,18 @@
                     <div class="col-2">
                         <div class="row">
                             <div class="cercle-s">
-                                <span id="battery"></span>
+								<span id="battery"></span>
+								<i class="fas fa-battery-empty"></i>
+								<i class="fas fa-battery-quarter"></i>
+								<i class="fas fa-battery-half"></i>
+								<i class="fas fa-battery-three-quarters"></i>
+								<i class="fas fa-battery-full"></i>
                             </div>
                         </div>
                         <div class="row">
                             <div class="cercle-s">
-                                <span id="communication"></span>
+								<span id="communication"></span>
+								<i class="fas fa-signal"></i>
                             </div>
                         </div>
                     </div>
@@ -122,13 +129,13 @@
                 </div>
             </div>
         </div>
-    </div>
+   
 
     <!-- Page Content -->
     <div id="page-content-wrapper"> 
         <input type="hidden" id="car_number" value="{{ carNumber }}">
 		<div id="map"></div>
-		<div id="map-kakao"></div>
+		<!-- <div id="map-kakao"></div> -->
 		
         <div class="control-wrapper">
 			<!-- 수동조작 틀-->
@@ -465,8 +472,15 @@ function map(route, x, y, a, b){
                                  $("#map").append(map_span);
                                  var map_div = document.createElement("div");
                                  map_div.setAttribute("class", "carcar"+index);
-                                 map_div.innerHTML = 'Car';
-                                 $("#route3").append(map_div);
+                                 map_div.innerHTML = 'Car'+index;
+								 $("#route3").append(map_div);
+								 
+								// container 있으면
+								var carcon = document.createElement("div");
+								carcon.setAttribute("class", "carcon");
+								$(".carcar"+index).append(carcon);	
+
+
                             }
                             else if(map_array2[i][j]==5){
                                  var map_span = document.createElement("span");

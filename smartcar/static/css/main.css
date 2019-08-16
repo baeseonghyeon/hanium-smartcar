@@ -41,7 +41,35 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-direction: column;
+		color: #0fac6a;
 	}
+	.signal-4 {
+		width: 15px;
+		height: 80px;
+		overflow-x: hidden;
+		display: inline-block;
+	}
+	.signal-3 {
+		width: 11px;
+		height: 80px;
+		overflow-x: hidden;
+		display: inline-block;
+	}
+	.signal-2 {
+		width: 7px;
+		height: 80px;
+		overflow-x: hidden;
+		display: inline-block;
+	}
+	.signal-1 {
+		width: 3px;
+		height: 80px;
+		overflow-x: hidden;
+		display: inline-block;
+	}
+
+
 	.info-text {
 		display: flex;
 		align-items: center;

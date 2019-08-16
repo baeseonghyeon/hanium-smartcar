@@ -6,6 +6,12 @@
 	border: 2px solid #28b5b8;
 	border-radius: 5px;
 	text-align: center;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	display: flex;
+    align-items: center;
 }
 .carcar2{
 	position: absolute;
@@ -15,4 +21,16 @@
 	border: 2px solid #28b5b8;
 	border-radius: 5px;
 	text-align: center;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	display: flex;
+    align-items: center;
+}
+.carcon {
+	width: 40px;
+    height: 20px;
+    border: 2px solid #925fb1;
+    position: absolute;
 }

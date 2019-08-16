@@ -43,8 +43,10 @@
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
-    line-height: 4rem;
+	line-height: 4rem;
+	position: relative;
 }
+
 #route3_1 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
@@ -53,8 +55,10 @@
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
-    line-height: 4rem;
+	line-height: 4rem;
+	position: relative;
 }
+
 #route3_2 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
@@ -63,7 +67,8 @@
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
-    line-height: 4rem;
+	line-height: 4rem;
+	position: relative;
 }
 
 /* 경로 */
@@ -73,6 +78,7 @@
 	border-top: 25px solid #455163;
 	border-bottom: 25px solid #455163;
 	background-color: #28b5b8;
+	position: relative;
 }
 #route4_1 {
 	display: inline-block;
