@@ -7,6 +7,15 @@ function map(){
     var now_xx = new Array();
     var now_yy = new Array();
     var car_count = 1
+//    배열 모든 값이 같은지 확인
+    Array.prototype.allValuesSame = function() {
+    for(var i = 1; i < this.length; i++)
+    {
+        if(this[i] !== this[0])
+            return false;
+    }
+    return true;
+}
     for(var i=0;i<=13;i++){
         map_array2[i] = new Array();
     }
@@ -31,6 +40,18 @@ function map(){
                         for(var k=0; k<=now_xx.length-1; k++){
                             map_array2[now_xx[k]][now_yy[k]] = '3'+data_car[k].id
                         }
+                        console.log(now_xx.allValuesSame())
+                        console.log(now_yy.allValuesSame())
+                        if(now_xx.allValuesSame()==true){
+                                if(now_yy.allValuesSame()==true){
+                                    map_array2[now_xx[0]][now_yy[0]] = '99'
+                                }
+                                else{
+                                     for(var k=0; k<=now_xx.length-1; k++){
+                                        map_array2[now_xx[k]][now_yy[k]] = '3'+data_car[k].id
+                                     }
+                                }
+                        }
                         for(var i=0; i<=13; i++){
                             for(var j=0; j<=13; j++){
                                 if(map_array2[i][j]==0){
@@ -53,17 +74,47 @@ function map(){
                                     map_span.setAttribute("class", i+'a'+j);
                                     $("#map").append(map_span);
                                 }
-                                else if(map_array2[i][j]==31){
+                                else if(map_array2[i][j]==99){
                                         var map_span = document.createElement("span");
-                                        map_span.setAttribute("id", "route3_"+car_count);
+                                        map_span.setAttribute("id", "route3");
                                         map_span.setAttribute("class", i+'a'+j);
                                         $("#map").append(map_span);
+                                        for(var kk=1; kk<=data_car.length; kk++){
+                                            var map_div = document.createElement("div");
+                                            map_div.setAttribute("class", "carcar"+kk);
+                                            map_div.innerHTML = 'Car'+kk;
+                                            $("#route3").append(map_div);
+                                        }
+                                }
+                                else if(map_array2[i][j]==31){
+                                        var map_span = document.createElement("span");
+                                        map_span.setAttribute("id", "route3_"+1);
+                                        map_span.setAttribute("class", i+'a'+j);
+                                        $("#map").append(map_span);
+                                        var map_div = document.createElement("div");
+                                        map_div.setAttribute("class", "carcar"+1);
+                                        map_div.innerHTML = 'Car'+1;
+                                        $("#route3_"+1).append(map_div);
                                 }
                                  else if(map_array2[i][j]==32){
                                         var map_span = document.createElement("span");
-                                        map_span.setAttribute("id", "route3_"+car_count);
+                                        map_span.setAttribute("id", "route3_"+2);
                                         map_span.setAttribute("class", i+'a'+j);
                                         $("#map").append(map_span);
+                                        var map_div = document.createElement("div");
+                                        map_div.setAttribute("class", "carcar"+2);
+                                        map_div.innerHTML = 'Car'+2;
+                                        $("#route3_"+2).append(map_div);
+                                }
+                                 else if(map_array2[i][j]==33){
+                                        var map_span = document.createElement("span");
+                                        map_span.setAttribute("id", "route3_"+3);
+                                        map_span.setAttribute("class", i+'a'+j);
+                                        $("#map").append(map_span);
+                                        var map_div = document.createElement("div");
+                                        map_div.setAttribute("class", "carcar"+3);
+                                        map_div.innerHTML = 'Car'+3;
+                                        $("#route3_"+3).append(map_div);
                                 }
                                 else if(map_array2[i][j]==5){
                                     var map_span = document.createElement("span");
@@ -83,13 +134,6 @@ function map(){
                             }
                             $("#map").append("<br>");
                         }
-                            for(k=1; k<=car_data.length; k++){
-                                var map_div = document.createElement("div");
-                                map_div.setAttribute("class", "carcar"+car_count);
-                                map_div.innerHTML = 'Car'+car_count;
-                                $("#route3_"+car_count).append(map_div);
-                                car_count++
-                            }
                         }
                     });
 
