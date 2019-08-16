@@ -4,6 +4,8 @@ function map(){
     var map_display;
     var map_array = new Array();
     var map_array2 = new Array();
+    var now_xx = new Array();
+    var now_yy = new Array();
     for(var i=0;i<=13;i++){
         map_array2[i] = new Array();
     }
@@ -17,58 +19,72 @@ function map(){
                      for(var i=0; i<=13; i++){
                        map_array2[i]=map_array[i].split(', ');
                      }
-                     map_array2[1][1] = 3
-                     for(var i=0; i<=13; i++){
-                         for(var j=0; j<=13; j++){
-                            if(map_array2[i][j]==0){
-                                 var map_span = document.createElement("span");
-                                 map_span.setAttribute("id", "route0");
-                                 map_span.setAttribute("class", i+'a'+j);
-                                 map_span.setAttribute("onclick", 'position_check(this.className)');
-                                 $("#map").append(map_span);
+                    $.ajax({
+                        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+                        dataType : 'json',
+                        success : function (data_car) {
+                        for(var i=0; i<=data_car.length -1; i++){
+                            now_xx[i] = Number(data_car[i].now_x)
+                            now_yy[i] = Number(data_car[i].now_y)
+                        }
+                        for(var k=0; k<=now_xx.length-1; k++){
+                            map_array2[now_xx[k]][now_yy[k]] = '3'
+                        }
+                        for(var i=0; i<=13; i++){
+                            for(var j=0; j<=13; j++){
+                                if(map_array2[i][j]==0){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route0");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    map_span.setAttribute("onclick", 'position_check(this.className)');
+                                    $("#map").append(map_span);
+                                }
+                                else if(map_array2[i][j]==1){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route1");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    map_span.innerHTML = 'Con<br>'+i+'-'+j;
+                                    $("#map").append(map_span);
+                                }
+                                else if(map_array2[i][j]==2){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route2");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    $("#map").append(map_span);
+                                }
+                                else if(map_array2[i][j]==3){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route3");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    $("#map").append(map_span);
+                                    for(var k=1; k<=now_xx.length; k++){
+                                        var map_div = document.createElement("div");
+                                        map_div.setAttribute("class", "carcar"+k);
+                                        map_div.innerHTML = 'Car'+k;
+                                        $("#route3").append(map_div);
+                                    }
+                                }
+                                else if(map_array2[i][j]==5){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route5");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    $("#map").append(map_span);
+                                }
+                                else if(map_array2[i][j]==8){
+                                    $("#map").append();
+                                }
+                                else if(map_array2[i][j]==4){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route4");
+                                     map_span.setAttribute("class", i+'a'+j);
+                                     $("#map").append(map_span);
+                                }
                             }
-                            else if(map_array2[i][j]==1){
-                                 var map_span = document.createElement("span");
-                                 map_span.setAttribute("id", "route1");
-                                 map_span.setAttribute("class", i+'a'+j);
-                                 map_span.innerHTML = 'Con<br>'+i+'-'+j;
-                                 $("#map").append(map_span);
-                            }
-                            else if(map_array2[i][j]==2){
-                                 var map_span = document.createElement("span");
-                                 map_span.setAttribute("id", "route2");
-                                 map_span.setAttribute("class", i+'a'+j);
-                                 $("#map").append(map_span);
-                            }
-                            else if(map_array2[i][j]==3){
-                                 var map_span = document.createElement("span");
-                                 map_span.setAttribute("id", "route3");
-                                 map_span.setAttribute("class", i+'a'+j);
-                                 $("#map").append(map_span);
-                                 var map_div = document.createElement("div");
-                                 map_div.setAttribute("class", "carcar");
-                                 map_div.innerHTML = 'Car';
-                                 $("#map").append(map_div);
-                                 $("#route3").append(map_div);
-                            }
-                            else if(map_array2[i][j]==5){
-                                 var map_span = document.createElement("span");
-                                 map_span.setAttribute("id", "route5");
-                                 map_span.setAttribute("class", i+'a'+j);
-                                 $("#map").append(map_span);
-                            }
-                            else if(map_array2[i][j]==8){
-                                 $("#map").append();
-                            }
-                            else if(map_array2[i][j]==4){
-                                 var map_span = document.createElement("span");
-                                 map_span.setAttribute("id", "route4");
-                                 map_span.setAttribute("class", i+'a'+j);
-                                 $("#map").append(map_span);
-                            }
-                         }
-                         $("#map").append("<br>");
-                     }
+                            $("#map").append("<br>");
+                        }
+                        }
+                    });
+
                  }
      });
 }

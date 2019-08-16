@@ -1,4 +1,15 @@
-.carcar{
+.carcar1{
+	position: absolute;
+	top: 58;
+	left: 350;
+	width: 50px;
+    height: 30px;
+	background-color: #455163;
+	border: 2px solid #28b5b8;
+	border-radius: 5px;
+	text-align: center;
+}
+.carcar2{
 	position: absolute;
 	top: 58;
 	left: 350;

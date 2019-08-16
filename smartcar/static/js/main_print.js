@@ -23,22 +23,26 @@ function create_car(Car){
 				var car_state_img = document.createElement("div");
 				var car_name_div = document.createElement("div");
 				car_state_div.setAttribute("id", i-1);
-				car_name_div.setAttribute("id", i-1);
-				car_state_img.setAttribute("id", i-1);
 				car_state_div.setAttribute("class", 'car_state_div');
-				car_state_img.setAttribute("class", 'car_state_img');
-				car_name_div.setAttribute("class", 'car_name_div');
 				car_state_div.setAttribute('OnClick', 'car_detail(this.id)');
+
+				car_state_img.setAttribute("class", 'car_state_img');
+				car_state_img.setAttribute("id", i-1);
+
+				car_name_div.setAttribute("id", i-1);
+                car_name_div.setAttribute("class", 'car_name_div');
                 car_name_div.setAttribute('OnClick', 'car_detail(this.id)');
                 car_name_div.innerHTML = data[i-1].car_name;
-                pi_pi[i-1] = data[i-1].pi_id
+                pi_pi[i-1] = data[i-1].pi_id;
                 $.ajax({
                     url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
                     dataType : 'json',
                     success : function (pi_data) {
-                        for(var j=0; j<=Car.length; j++){
-                            if(pi_pi[j]==pi_data[j].pi_id){
-                                car_name_div.innerHTML=pi_data[j].car_type
+                        for(var i=0; i<=Car.length-1; i++){
+                            for(var j=0; j<=Car.length-1; j++){
+                                if(pi_pi[i]==pi_data[j].pi_id){
+                                    car_name_div.innerHTML=pi_data[j].car_type
+                                }
                             }
                         }
                     }

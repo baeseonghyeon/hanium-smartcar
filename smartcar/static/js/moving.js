@@ -4,6 +4,8 @@ function moving(){
 //    position_refresh()
 }
 function moving2(){
+    console.log($(".1a1").offset())
+    console.log($(".2a1").offset())
     var clicked_car = document.getElementById("car_number").value
     var route
     var route2 = new Array()
@@ -128,19 +130,20 @@ function moving2(){
                             else if(e instanceof EvalError){ }
                             else { }
                       }
+                        console.log(clicked_car)
                          for(var k=0; k<=move.length; k++){
-                            if(move[k]==11){m11()}
-                            if(move[k]==12){m12()}
-                            if(move[k]==13){m13()}
-                            if(move[k]==14){m14()}
-                            if(move[k]==21){m21()}
-                            if(move[k]==22){m22()}
-                            if(move[k]==23){m23()}
-                            if(move[k]==24){m24()}
-                            if(move[k]==31){m31()}
-                            if(move[k]==32){m32()}
-                            if(move[k]==33){m33()}
-                            if(move[k]==34){m34()}
+                            if(move[k]==11){m11(clicked_car)}
+                            if(move[k]==12){m12(clicked_car)}
+                            if(move[k]==13){m13(clicked_car)}
+                            if(move[k]==14){m14(clicked_car)}
+                            if(move[k]==21){m21(clicked_car)}
+                            if(move[k]==22){m22(clicked_car)}
+                            if(move[k]==23){m23(clicked_car)}
+                            if(move[k]==24){m24(clicked_car)}
+                            if(move[k]==31){m31(clicked_car)}
+                            if(move[k]==32){m32(clicked_car)}
+                            if(move[k]==33){m33(clicked_car)}
+                            if(move[k]==34){m34(clicked_car)}
                          }
                          console.log(move)
                  }
@@ -182,47 +185,47 @@ function position_refresh(){
         }
     });
 }
-function m11(){
-    $(".carcar").animate({left: "+=98.82501220703125"}, 500)
+function m11(i){
+        $(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
 }
-function m12(){
-    $(".carcar").animate({top: "+=55.125"}, 500)
+function m12(i){
+        $(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
 }
-function m13(){
-    $(".carcar").animate({left: "-=98.82501220703125"}, 500)
+function m13(i){
+        $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
 }
-function m14(){
-    $(".carcar").animate({top: "-=55.125"}, 500)
+function m14(i){
+        $(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
 }
-function m21(){
-    $(".carcar").animate({left: "+=98.82501220703125"}, 500)
-    $(".carcar").animate({top: "+=55.125"}, 500)
+function m21(i){
+    $(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
+    $(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
 }
-function m22(){
-    $(".carcar").animate({left: "-=98.82501220703125"}, 500)
-    $(".carcar").animate({top: "-=55.125"}, 500)
+function m22(i){
+    $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
+    $(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
 }
-function m23(){
-    $(".carcar").animate({top: "-=55.125"}, 500)
-    $(".carcar").animate({left: "+=98.82501220703125"}, 500)
+function m23(i){
+    $(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
+    $(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
 }
-function m24(){
-    $(".carcar").animate({top: "+=55.125"}, 500)
-    $(".carcar").animate({left: "-=98.82501220703125"}, 500)
+function m24(i){
+    $(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
+    $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
 }
-function m31(){
-    $(".carcar").animate({left: "+=98.82501220703125"}, 500)
-    $(".carcar").animate({top: "-=55.125"}, 500)
+function m31(i){
+    $(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
+    $(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
 }
-function m32(){
-    $(".carcar").animate({left: "-=98.82501220703125"}, 500)
-    $(".carcar").animate({top: "+=55.125"}, 500)
+function m32(i){
+    $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
+    $(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
 }
-function m33(){
-    $(".carcar").animate({top: "+=55.125"}, 500)
-    $(".carcar").animate({left: "+=98.82501220703125"}, 500)
+function m33(i){
+    $(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
+    $(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
 }
-function m34(){
-    $(".carcar").animate({top: "-=55.125"}, 500)
-    $(".carcar").animate({left: "-=98.82501220703125"}, 500)
+function m34(i){
+    $(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
+    $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
 }
