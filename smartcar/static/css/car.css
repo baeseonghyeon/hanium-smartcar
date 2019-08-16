@@ -1,7 +1,5 @@
 .carcar1{
 	position: absolute;
-	top: 58;
-	left: 350;
 	width: 50px;
     height: 30px;
 	background-color: #455163;
@@ -11,8 +9,6 @@
 }
 .carcar2{
 	position: absolute;
-	top: 58;
-	left: 350;
 	width: 50px;
     height: 30px;
 	background-color: #455163;

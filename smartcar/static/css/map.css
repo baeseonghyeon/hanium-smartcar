@@ -45,6 +45,26 @@
 	vertical-align: bottom;
     line-height: 4rem;
 }
+#route3_1 {
+	display: inline-block;
+	width: 8.333%; height: 8.333%;
+	background-color: #455163;
+	border: 2px solid #0eac6a;
+	border-radius: 5px;
+	text-align: center;
+	vertical-align: bottom;
+    line-height: 4rem;
+}
+#route3_2 {
+	display: inline-block;
+	width: 8.333%; height: 8.333%;
+	background-color: #455163;
+	border: 2px solid #0eac6a;
+	border-radius: 5px;
+	text-align: center;
+	vertical-align: bottom;
+    line-height: 4rem;
+}
 
 /* 경로 */
 #route4 {

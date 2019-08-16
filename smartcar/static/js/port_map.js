@@ -6,6 +6,7 @@ function map(){
     var map_array2 = new Array();
     var now_xx = new Array();
     var now_yy = new Array();
+    var car_count = 1
     for(var i=0;i<=13;i++){
         map_array2[i] = new Array();
     }
@@ -28,7 +29,7 @@ function map(){
                             now_yy[i] = Number(data_car[i].now_y)
                         }
                         for(var k=0; k<=now_xx.length-1; k++){
-                            map_array2[now_xx[k]][now_yy[k]] = '3'
+                            map_array2[now_xx[k]][now_yy[k]] = '3'+data_car[k].id
                         }
                         for(var i=0; i<=13; i++){
                             for(var j=0; j<=13; j++){
@@ -52,17 +53,17 @@ function map(){
                                     map_span.setAttribute("class", i+'a'+j);
                                     $("#map").append(map_span);
                                 }
-                                else if(map_array2[i][j]==3){
-                                    var map_span = document.createElement("span");
-                                    map_span.setAttribute("id", "route3");
-                                    map_span.setAttribute("class", i+'a'+j);
-                                    $("#map").append(map_span);
-                                    for(var k=1; k<=now_xx.length; k++){
-                                        var map_div = document.createElement("div");
-                                        map_div.setAttribute("class", "carcar"+k);
-                                        map_div.innerHTML = 'Car'+k;
-                                        $("#route3").append(map_div);
-                                    }
+                                else if(map_array2[i][j]==31){
+                                        var map_span = document.createElement("span");
+                                        map_span.setAttribute("id", "route3_"+car_count);
+                                        map_span.setAttribute("class", i+'a'+j);
+                                        $("#map").append(map_span);
+                                }
+                                 else if(map_array2[i][j]==32){
+                                        var map_span = document.createElement("span");
+                                        map_span.setAttribute("id", "route3_"+car_count);
+                                        map_span.setAttribute("class", i+'a'+j);
+                                        $("#map").append(map_span);
                                 }
                                 else if(map_array2[i][j]==5){
                                     var map_span = document.createElement("span");
@@ -82,6 +83,13 @@ function map(){
                             }
                             $("#map").append("<br>");
                         }
+                            for(k=1; k<=car_data.length; k++){
+                                var map_div = document.createElement("div");
+                                map_div.setAttribute("class", "carcar"+car_count);
+                                map_div.innerHTML = 'Car'+car_count;
+                                $("#route3_"+car_count).append(map_div);
+                                car_count++
+                            }
                         }
                     });
 

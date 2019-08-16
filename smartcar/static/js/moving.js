@@ -1,7 +1,7 @@
 function moving(){
     moving2()
     moving22()
-//    position_refresh()
+    position_refresh()
 }
 function moving2(){
     console.log($(".1a1").offset())
@@ -130,7 +130,6 @@ function moving2(){
                             else if(e instanceof EvalError){ }
                             else { }
                       }
-                        console.log(clicked_car)
                          for(var k=0; k<=move.length; k++){
                             if(move[k]==11){m11(clicked_car)}
                             if(move[k]==12){m12(clicked_car)}
@@ -145,7 +144,6 @@ function moving2(){
                             if(move[k]==33){m33(clicked_car)}
                             if(move[k]==34){m34(clicked_car)}
                          }
-                         console.log(move)
                  }
      })
 }
