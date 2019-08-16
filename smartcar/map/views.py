@@ -61,7 +61,6 @@ def refresh(request):
         kim2[x] = kim[x].split(', ')
     for x in range(len(park)-1):
         kim2[int(park2[x][0])][int(park2[x][1])] = '0'
-        print(park2[x][0], park2[x][1])
     for x in range(14):
         for y in range(14):
             soon += str(kim2[x][y])
@@ -70,9 +69,6 @@ def refresh(request):
         soon += 's'
     mapin.map = soon
     mapin.save()
-    print(park2)
-    for x in range(14):
-        print(kim2[x])
     carin.now_x = aa
     carin.now_y = bb
     carin.target_x = ''
@@ -203,7 +199,6 @@ def bfs(request):
                 visit[wx][wy] = 1
                 queue.append([wx, wy])
                 path.append([node, [wx, wy]])
-    print(path_real)
 
     # #pi로 전송하기 위한 데이터 가공
     value = ''
@@ -221,16 +216,12 @@ def bfs(request):
     for x in range(path1):
         for y in range(2):
             value2[x][y] = int(value2[x][y])
-    print(value2)
     # # #pi로 전송할 데이터 뽑아내기
     index = 0
     code = ''
     position = '3'
     try:
         while True:
-            print('--------------------')
-            print(value2[index][0], value2[index][1])
-            print(index)
             if value2[index + 2][0] == value2[index][0] + 1:
                 if value2[index + 2][1] == value2[index][1] + 1:
                     if value2[index + 1][0] == value2[index][0]:

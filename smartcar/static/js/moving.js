@@ -1,11 +1,9 @@
 function moving(){
     moving2()
-    moving22()
+//    moving22()
     position_refresh()
 }
 function moving2(){
-    console.log($(".1a1").offset())
-    console.log($(".2a1").offset())
     var clicked_car = document.getElementById("car_number").value
     var route
     var route2 = new Array()
@@ -95,7 +93,7 @@ function moving2(){
                                 }
                             if(route3[index][0] == route3[index + 1][0]){
                                 if(route3[index][1] > route3[index + 1][1]){
-                                    move[i]='14'
+                                    move[i]='13'
                                     index += 1
                                     i++
                                     continue
@@ -115,7 +113,7 @@ function moving2(){
                                     continue
                                 }
                                 if(route3[index][0] > route3[index + 1][0]){
-                                    move[i]='13'
+                                    move[i]='14'
                                     index += 1
                                     i++
                                     continue
@@ -130,6 +128,10 @@ function moving2(){
                             else if(e instanceof EvalError){ }
                             else { }
                       }
+                      if(move[move.length-1]==11){ move[move.length]=11}
+                      if(move[move.length-1]==12){ move[move.length]=12}
+                      if(move[move.length-1]==13){ move[move.length]=13}
+                      if(move[move.length-1]==14){ move[move.length]=14}
                          for(var k=0; k<=move.length; k++){
                             if(move[k]==11){m11(clicked_car)}
                             if(move[k]==12){m12(clicked_car)}

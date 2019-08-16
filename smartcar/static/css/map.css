@@ -34,7 +34,7 @@
 	background-color: #03a9f4;
 }
 
-/* 출발지 */
+/* 출발지
 #route3 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
@@ -70,7 +70,41 @@
 	line-height: 4rem;
 	position: relative;
 }
-
+#route3_3 {
+	display: inline-block;
+	width: 8.333%; height: 8.333%;
+	background-color: #455163;
+	border: 2px solid #0eac6a;
+	border-radius: 5px;
+	text-align: center;
+	vertical-align: bottom;
+    line-height: 4rem;
+}
+*/
+#route99{
+	display: inline-block;
+	width: 8.333%; height: 8.333%;
+	background-color: #455163;
+	border: 1px solid #4d5967;
+}
+#route3_1{
+	display: inline-block;
+	width: 8.333%; height: 8.333%;
+	background-color: #455163;
+	border: 1px solid #4d5967;
+}
+#route3_2{
+	display: inline-block;
+	width: 8.333%; height: 8.333%;
+	background-color: #455163;
+	border: 1px solid #4d5967;
+}
+#route3_3{
+	display: inline-block;
+	width: 8.333%; height: 8.333%;
+	background-color: #455163;
+	border: 1px solid #4d5967;
+}
 /* 경로 */
 #route4 {
 	display: inline-block;
