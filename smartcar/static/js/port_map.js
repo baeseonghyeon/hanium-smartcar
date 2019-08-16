@@ -83,7 +83,12 @@ function map(){
                                             var map_div = document.createElement("div");
                                             map_div.setAttribute("class", "carcar"+kk);
                                             map_div.innerHTML = 'Car'+kk;
-                                            $("#route3").append(map_div);
+											$("#route3").append(map_div);
+											
+											// container 있으면
+											// var carcon = document.createElement("div");
+											// carcon.setAttribute("class", "carcon"+car_count);
+											// $(".carcar"+car_count).append(carcon);
                                         }
                                 }
                                 else if(map_array2[i][j]==31){
@@ -134,23 +139,6 @@ function map(){
                             }
                             $("#map").append("<br>");
                         }
-<<<<<<< HEAD
-                            for(k=1; k<=car_data.length; k++){
-                                var map_div = document.createElement("div");
-								map_div.setAttribute("class", "carcar"+car_count);
-                                map_div.innerHTML = 'Car'+car_count;
-								$("#route3_"+car_count).append(map_div);
-								
-								// container 있으면
-								var carcon = document.createElement("div");
-								carcon.setAttribute("class", "carcon"+car_count);
-								$(".carcar"+car_count).append(carcon);
-
-
-                                car_count++
-                            }
-=======
->>>>>>> 156825d48e7fbff92722863f78cf5ad73a1b49b6
                         }
                     });
 
