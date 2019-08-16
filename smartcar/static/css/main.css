@@ -85,6 +85,7 @@
 		border: none;
 		height: 40px;
 		margin-top: 13px;
+		font-size: 1.2rem;
 	}
 	#godetail-btn:hover {
 		background-color: #06979a;
