@@ -47,11 +47,12 @@ def refresh(request):
     aa = request.POST['target_x']
     bb = request.POST['target_y']
     carin = CarInfo.objects.get(id=request.POST['car_number'])
+    soon = ''
     park = carin.car_route.split(']')
-    park2 = [[0 for x in range(len(park)-1)] for y in range(2)]
-
+    park2 = [[0 for x in range(len(park)-1)] for y in range(len(park)-1)]
     for x in range(len(park)-1):
         park2[x] = park[x].split('a')
+
     #맵 변경
     mapin = MapInfo.objects.get(id=1)
     kim = mapin.map.split('s')
@@ -59,12 +60,23 @@ def refresh(request):
     for x in range(14):
         kim2[x] = kim[x].split(', ')
     for x in range(len(park)-1):
-        for y in range(2):
-            kim2[x][y] = '0'
-
+        kim2[int(park2[x][0])][int(park2[x][1])] = '0'
+        print(park2[x][0], park2[x][1])
+    for x in range(14):
+        for y in range(14):
+            soon += str(kim2[x][y])
+            if y != 13:
+                soon += ', '
+        soon += 's'
+    mapin.map = soon
     mapin.save()
+    print(park2)
+    for x in range(14):
+        print(kim2[x])
     carin.now_x = aa
     carin.now_y = bb
+    carin.target_x = ''
+    carin.target_y = ''
     carin.car_route = '1'
     carin.car_code = '1'
     carin.save()

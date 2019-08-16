@@ -6,5 +6,4 @@ urlpatterns = [
     path('reset', views.reset_xy, name='reset'),
     path('path', views.bfs, name='path'),
     path('refresh', views.refresh, name='refresh'),
-
 ]

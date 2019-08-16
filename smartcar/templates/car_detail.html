@@ -189,10 +189,10 @@ var index = $("#car_number").val()
             dataType : 'json',
             success : function (data) {
                 var p = data[index-1].position
-                if(p == 3){m11();}
-                if(p == 1){m14();}
-                if(p == 2){m13();}
-                if(p == 4){m12();}
+                if(p == 3){m11(index);}
+                if(p == 1){m14(index);}
+                if(p == 2){m13(index);}
+                if(p == 4){m12(index);}
             }
         });
     var a = '1 '
@@ -214,10 +214,10 @@ function back(){
             dataType : 'json',
             success : function (data) {
                 var p = data[index-1].position
-                if(p == 3){m13();}
-                if(p == 1){m12();}
-                if(p == 2){m11();}
-                if(p == 4){m14();}
+                if(p == 3){m13(index);}
+                if(p == 1){m12(index);}
+                if(p == 2){m11(index);}
+                if(p == 4){m14(index);}
             }
         });
     var a = '4 '
@@ -239,11 +239,10 @@ function right(){
             dataType : 'json',
             success : function (data) {
                 var p = data[index-1].position
-                if(p == 3){m21(); p=4; new_position(p); return 0}
-                if(p == 1){m23(); p=3; new_position(p); return 0}
-                if(p == 2){m22(); p=1; new_position(p); return 0}
-                if(p == 4){m24(); p=2; new_position(p); return 0}
-                console.log(p)
+                if(p == 3){m21(index); p=4; new_position(p); return 0}
+                if(p == 1){m23(index); p=3; new_position(p); return 0}
+                if(p == 2){m22(index); p=1; new_position(p); return 0}
+                if(p == 4){m24(index); p=2; new_position(p); return 0}
             }
         });
 
@@ -266,11 +265,10 @@ function left(){
             dataType : 'json',
             success : function (data) {
                 var p = data[index-1].position
-                if(p == 3){m31(); p=1; new_position(p); return 0}
-                if(p == 1){m34(); p=2; new_position(p); return 0}
-                if(p == 2){m32(); p=4; new_position(p); return 0}
-                if(p == 4){m33(); p=3; new_position(p); return 0}
-                console.log(p)
+                if(p == 3){m31(index); p=1; new_position(p); return 0}
+                if(p == 1){m34(index); p=2; new_position(p); return 0}
+                if(p == 2){m32(index); p=4; new_position(p); return 0}
+                if(p == 4){m33(index); p=3; new_position(p); return 0}
             }
         });
     var a = '3 '
@@ -370,9 +368,6 @@ function sleep(num){
 
                  }
     });
-
-
-
 function find_in_object(my_object, my_criteria){
   return my_object.filter(function(obj) {
     return Object.keys(my_criteria).every(function(c) {
@@ -390,7 +385,8 @@ function route(clicked_car){
                  url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
-                    map(data[clicked_car-1].car_route, data[clicked_car-1].now_x, data[clicked_car-1].now_y, data[clicked_car-1].target_x, data[clicked_car-1].target_y)
+                    map(data[clicked_car-1].car_route, data[clicked_car-1].now_x, data[clicked_car-1].now_y,
+                    data[clicked_car-1].target_x, data[clicked_car-1].target_y, )
                  }
          });
 }
@@ -402,6 +398,7 @@ function map(route, x, y, a, b){
     now_y = Number(y)
     target_x = Number(a)
     target_y = Number(b)
+    var index = $("#car_number").val()
     car_route1 = car_route.split(']')
     count = car_route1.length - 2
     for(var i = 0; i<=count; i++){
@@ -467,9 +464,8 @@ function map(route, x, y, a, b){
                                  map_span.setAttribute("class", i+'a'+j);
                                  $("#map").append(map_span);
                                  var map_div = document.createElement("div");
-                                 map_div.setAttribute("class", "carcar");
+                                 map_div.setAttribute("class", "carcar"+index);
                                  map_div.innerHTML = 'Car';
-                                 $("#map").append(map_div);
                                  $("#route3").append(map_div);
                             }
                             else if(map_array2[i][j]==5){
