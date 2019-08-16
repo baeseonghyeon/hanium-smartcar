@@ -51,14 +51,12 @@
 		margin: 0;
 	}
 	#godetail-btn {
-		width: 121%;
+		width: 100%;
 		background-color: #28b5b8;
 		color: white;
 		border: none;
 		height: 40px;
-		position: relative;
-		left: -30px;
-		bottom: -4px;
+		margin-top: 13px;
 	}
 	#godetail-btn:hover {
 		background-color: #06979a;
