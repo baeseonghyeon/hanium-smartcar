@@ -50,7 +50,20 @@
 	.info-text p {
 		margin: 0;
 	}
-
+	#godetail-btn {
+		width: 121%;
+		background-color: #28b5b8;
+		color: white;
+		border: none;
+		height: 40px;
+		position: relative;
+		left: -30px;
+		bottom: -4px;
+	}
+	#godetail-btn:hover {
+		background-color: #06979a;
+		transition: 0.3s;
+	}
 
 /* main-car select menu */
 .car_state_div {
