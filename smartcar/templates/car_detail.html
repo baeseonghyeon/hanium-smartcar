@@ -91,18 +91,70 @@
                     </div>
 
                     <div class="info-wrapper" id="con-info">
-                        <button id="con-info-close">x</button>
+						<div class="row">
+							<p>화물정보</p>
+							<button class="info-close-btn" id="con-info-close"><i class="fas fa-times"></i></button>
+						</div>
+                        <div class="row">
+							<h1>컨테이너 코드</h1>
+							<!-- 컨테이너 제조사 -->
+							<h2>[<span id="container_company"></span>]</h2>
+							<!-- 컨테이너 제품 -->
+							<h2><span id="container_product"></span></h2>
+
+							<p>운반정보</p>
+							<div class="con-info-info">
+								<!-- 출발항구 도착항구 -->
+								<h1>출발좌표 >> 도착좌표</h1>
+								<!-- 컨테이너 출하일  -->
+								<span id="container_shipment_day"></span>
+							</div>
+						</div>
                         <!-- 컨테이너 등록때 input-->
-                        컨테이너제조사:<span id="container_company"></span><br>
-                        컨테이너제품:<span id="container_product"></span><br>
-                        컨테이너출하일:<span id="container_shipment_day"></span><br>
                         <!-- exam -->
                         Container-id:<input type="text" id="container_id" />
                         <button onclick="container()">컨테이너등록</button>
                     </div>
 
                     <div class="info-wrapper" id="car-info">
-                        <button id="car-info-close">x</button>
+						<div class="row">
+							<p>차량정보</p>
+							<button class="info-close-btn" id="car-info-close"><i class="fas fa-times"></i></button>
+						</div>
+						<div class="row">
+							<h1 class="mb-3">carname</h1>
+							<h2>[cartype]</h2>
+						</div>
+                        <div class="row">
+							<div class="col-5">
+								<div class="row">
+									<div class="col-6">
+										배터리
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-6">
+										신호
+									</div>
+								</div>
+							</div>
+							<div class="col-2">
+								car
+							</div>
+							<div class="col-5">
+								<div class="row">
+									<div class="col-6">
+										설정
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-6">
+										조작
+									</div>
+								</div>
+							</div>
+						</div>
+						<p>속도 KM/H</p>
                         <button onclick="moving()">무빙</button>
                     </div>
                 </div>

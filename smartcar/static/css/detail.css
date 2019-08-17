@@ -161,6 +161,7 @@
 	right: 10px;
 }
 
+/* side info */
 .info-wrapper {
     position: absolute;
     z-index: 10;
@@ -171,12 +172,49 @@
     left: 0;
     bottom: 0;
     height: 350px;
-    display: none;
+	display: none;
+	text-align: center;
 }
-/* car info */
+.info-wrapper p, h1, h2 {
+	width: 100%;
+}
+.info-wrapper h1 {
+	font-size: 1.4rem;
+    color: white;
+}
+.info-wrapper h2 {
+	font-size: 1.1rem;
+}
 .info-show {
     display: block!important;
 }
+.info-close-btn {
+	background-color: transparent;
+    border: none;
+    color: #748092;
+    font-size: 2rem;
+    position: absolute;
+    right: 14px;
+    top: 4px;
+}
+.info-close-btn:hover {
+	color: #476188;
+	transition: all 0.1s ease 0.1s;
+}
+	/* car info */
+	#con-info {
+		border: 2px solid #28b5b8;
+	}
+
+	/* con info */
+	#con-info {
+		border: 2px solid #925fb1;
+	}
+	.con-info-info {
+		margin: auto;
+		background-color: #925fb1;
+		padding: 10px 25px 5px;
+	}
 
 /* control */
 .control-wrapper {
