@@ -35,4 +35,26 @@ def position(request):
     carin.save()
     return HttpResponseRedirect('/')
 
+@csrf_exempt
+def straight_xy(request):
+    carin = CarInfo.objects.get(id=request.POST['car_number'])
+    posi = carin.position
+    if posi == '3':
+        cc = int(carin.now_y)
+        cc += 1
+        carin.now_y = cc
+    elif posi == '1':
+        cc = int(carin.now_x)
+        cc -= 1
+        carin.now_y = cc
+    elif posi == '2':
+        cc = int(carin.now_y)
+        cc -= 1
+        carin.now_y = cc
+    elif posi == '4':
+        cc = int(carin.now_x)
+        cc += 1
+        carin.now_y = cc
+    carin.save()
+    return HttpResponseRedirect('/')
 

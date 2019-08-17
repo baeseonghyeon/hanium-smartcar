@@ -241,6 +241,19 @@ function new_position(posi){
         }
     });
 }
+function straight_xy(){
+	var index = $("#car_number").val()
+	$.ajax({
+        type : 'POST',
+        url : 'http://127.0.0.1:8000/main/straight_xy',
+        data : {
+            'car_number' : index
+        },
+        dataType:'json',
+        success: function(){
+        }
+    });
+}
 function straight(){
 var index = $("#car_number").val()
         $.ajax({
@@ -248,10 +261,10 @@ var index = $("#car_number").val()
             dataType : 'json',
             success : function (data) {
                 var p = data[index-1].position
-                if(p == 3){m11(index);}
-                if(p == 1){m14(index);}
-                if(p == 2){m13(index);}
-                if(p == 4){m12(index);}
+                if(p == 3){m11(index); straight_xy()}
+                if(p == 1){m14(index); straight_xy()}
+                if(p == 2){m13(index); straight_xy()}
+                if(p == 4){m12(index); straight_xy()}
             }
         });
     var a = '1 '

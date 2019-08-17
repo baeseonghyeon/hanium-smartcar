@@ -10,4 +10,5 @@ urlpatterns = [
     path('car_input', views.Car_input, name='carinput'),
     path('container_input', views.Container_input, name='container_input'),
     path('position', views.position, name='position'),
+    path('straight_xy', views.straight_xy, name='straight_xy'),
 ]
