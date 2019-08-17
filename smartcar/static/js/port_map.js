@@ -40,8 +40,6 @@ function map(){
                         for(var k=0; k<=now_xx.length-1; k++){
                             map_array2[now_xx[k]][now_yy[k]] = '3'+data_car[k].id
                         }
-                        console.log(now_xx.allValuesSame())
-                        console.log(now_yy.allValuesSame())
                         if(now_xx.allValuesSame()==true){
                                 if(now_yy.allValuesSame()==true){
                                     map_array2[now_xx[0]][now_yy[0]] = '99'
