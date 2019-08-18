@@ -1,5 +1,5 @@
 $(document).ready( function(){map()})
-function map(){
+function map(n){
     $("#map *").remove()
     var map_display;
     var map_array = new Array();
@@ -15,7 +15,8 @@ function map(){
             return false;
     }
     return true;
-}
+    }
+
     for(var i=0;i<=13;i++){
         map_array2[i] = new Array();
     }
@@ -79,7 +80,6 @@ function map(){
                                      }
                                 }
                         }
-                        console.log(map_array2[1][1])
                         for(var i=0; i<=13; i++){
                             for(var j=0; j<=13; j++){
                                 if(map_array2[i][j]==0 || map_array2[i][j]==3){
@@ -303,7 +303,7 @@ function check_route(number){
                     }
                     sleep(100)
                     $("#map *").remove()
-                    map()
+                    map(number)
                  }
      });
 }

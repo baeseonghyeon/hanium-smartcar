@@ -5,43 +5,6 @@ from django.http import HttpResponse
 from main.models import CarInfo
 
 @csrf_exempt
-def car_point(request):
-    #맵 2차원 배열로 쪼갬
-    mapin = MapInfo.objects.get(id='1')
-    park = mapin.map.split('s')
-    park2 = [[0 for x in range(14)] for y in range(14)]
-    for x in range(14):
-        park2[x] = park[x].split(', ')
-
-    #현재 출발, 도착 좌표 입력
-    xxxx = request.POST['xxx']
-    yyyy = request.POST['yyy']
-    aaaa = request.POST['aaa']
-    bbbb = request.POST['bbb']
-    views_map = ''
-    park2[int(xxxx)][int(yyyy)] = '3'
-    park2[int(aaaa)][int(bbbb)] = '5'
-
-    #맵에 저장
-    for x in range(14):
-        for y in range(14):
-            views_map += park2[x][y]
-            if y != 13:
-                views_map += ', '
-        views_map += 's'
-    mapin.map = views_map
-    mapin.save()
-    
-    #차량정보에 출발, 도착 위치 저장
-    mainin = CarInfo.objects.get(id=request.POST['car_number'])
-    mainin.now_x = xxxx
-    mainin.now_y = yyyy
-    mainin.target_x = aaaa
-    mainin.target_y = bbbb
-    mainin.save()
-    return HttpResponse('')
-
-@csrf_exempt
 def refresh(request):
     #차량위치정보 변경
     aa = request.POST['target_x']
@@ -130,6 +93,14 @@ def reset_xy(request):
     carin.car_now_situation = ''
     carin.car_destination_distance = ''
     carin.save()
+    return HttpResponse('')
+
+@csrf_exempt
+def reset_xy2(request):
+    carin = CarInfo.objects.get(id=request.POST['car_number'])
+    carin.now_x = '1'
+    carin.now_y = '1'
+    carin.save
     return HttpResponse('')
 
 @csrf_exempt
