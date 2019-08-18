@@ -79,9 +79,10 @@ function map(){
                                      }
                                 }
                         }
+                        console.log(map_array2[1][1])
                         for(var i=0; i<=13; i++){
                             for(var j=0; j<=13; j++){
-                                if(map_array2[i][j]==0){
+                                if(map_array2[i][j]==0 || map_array2[i][j]==3){
                                     var map_span = document.createElement("span");
                                     map_span.setAttribute("id", "route0");
                                     map_span.setAttribute("class", i+'a'+j);

@@ -4,6 +4,7 @@
 
 {% block head %}
 <link href="{% static 'css/detail.css'%}" rel="stylesheet">
+<script src="{% static 'js/for_detail.js' %}"></script>
 {% endblock %}
 
 <!-- not user redirect -->
@@ -226,135 +227,7 @@ function mode(){
         return 0
     }
 }
-function new_position(posi){
-    var index = $("#car_number").val()
-    var position = posi
-    $.ajax({
-        type : 'POST',
-        url : 'http://127.0.0.1:8000/main/position',
-        data : {
-            'car_number' : index,
-            'position' : posi,
-        },
-        dataType:'json',
-        success: function(){
-        }
-    });
-}
-function straight_xy(){
-	var index = $("#car_number").val()
-	$.ajax({
-        type : 'POST',
-        url : 'http://127.0.0.1:8000/main/straight_xy',
-        data : {
-            'car_number' : index
-        },
-        dataType:'json',
-        success: function(){
-        }
-    });
-}
-function straight(){
-var index = $("#car_number").val()
-        $.ajax({
-            url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-            dataType : 'json',
-            success : function (data) {
-                var p = data[index-1].position
-                if(p == 3){m11(index); straight_xy()}
-                if(p == 1){m14(index); straight_xy()}
-                if(p == 2){m13(index); straight_xy()}
-                if(p == 4){m12(index); straight_xy()}
-            }
-        });
-    var a = '1 '
-        $.ajax({
-            type : 'POST',
-            url : 'http://192.168.0.9:8000',
-            dataType:'json',
-            data : {
-            'bbb': a
-            },
-            success: function(){
-            }
-        });
-}
-function back(){
-    var index = $("#car_number").val()
-        $.ajax({
-            url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-            dataType : 'json',
-            success : function (data) {
-                var p = data[index-1].position
-                if(p == 3){m13(index);}
-                if(p == 1){m12(index);}
-                if(p == 2){m11(index);}
-                if(p == 4){m14(index);}
-            }
-        });
-    var a = '4 '
-        $.ajax({
-            type : 'POST',
-            url : 'http://192.168.0.9:8000',
-            dataType:'json',
-            data : {
-            'bbb': a
-            },
-            success: function(){
-            }
-        });
-}
-function right(){
-    var index = $("#car_number").val()
-        $.ajax({
-            url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-            dataType : 'json',
-            success : function (data) {
-                var p = data[index-1].position
-                if(p == 3){m21(index); p=4; new_position(p); return 0}
-                if(p == 1){m23(index); p=3; new_position(p); return 0}
-                if(p == 2){m22(index); p=1; new_position(p); return 0}
-                if(p == 4){m24(index); p=2; new_position(p); return 0}
-            }
-        });
 
-    var a = '2 '
-        $.ajax({
-            type : 'POST',
-            url : 'http://192.168.0.9:8000',
-            dataType:'json',
-            data : {
-            'bbb': a
-            },
-            success: function(){
-            }
-        });
-}
-function left(){
-    var index = $("#car_number").val()
-        $.ajax({
-            url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-            dataType : 'json',
-            success : function (data) {
-                var p = data[index-1].position
-                if(p == 3){m31(index); p=1; new_position(p); return 0}
-                if(p == 1){m34(index); p=2; new_position(p); return 0}
-                if(p == 2){m32(index); p=4; new_position(p); return 0}
-                if(p == 4){m33(index); p=3; new_position(p); return 0}
-            }
-        });
-    var a = '3 '
-        $.ajax({
-            type : 'POST',
-            url : 'http://192.168.0.9:8000',
-            dataType:'json',
-            data : {
-            'bbb': a
-            },
-            success: function(){
-            }
-        });
-}
 function sleep(num){
 			 var now = new Date();
 			 var stop = now.getTime() + num;
@@ -362,7 +235,6 @@ function sleep(num){
 	             now = new Date();
 				 if(now.getTime() > stop)return;
 			 }
-
 }
     var filtered_json = new Array();
     $.ajax({
@@ -541,9 +413,9 @@ function map(route, x, y, a, b){
 								 $("#route3").append(map_div);
 								 
 								// container 있으면
-								var carcon = document.createElement("div");
-								carcon.setAttribute("class", "carcon");
-								$(".carcar"+index).append(carcon);	
+								<!--var carcon = document.createElement("div");-->
+								<!--carcon.setAttribute("class", "carcon");-->
+								<!--$(".carcar"+index).append(carcon);	-->
 
 
                             }

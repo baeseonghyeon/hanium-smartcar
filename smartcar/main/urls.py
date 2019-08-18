@@ -11,4 +11,7 @@ urlpatterns = [
     path('container_input', views.Container_input, name='container_input'),
     path('position', views.position, name='position'),
     path('straight_xy', views.straight_xy, name='straight_xy'),
+    path('back_xy', views.back_xy, name='back_xy'),
+    path('right_xy', views.right_xy, name='right_xy'),
+    path('left_xy', views.left_xy, name='left_xy'),
 ]

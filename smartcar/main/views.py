@@ -32,8 +32,9 @@ def Car_detail(request):
 def position(request):
     carin = CarInfo.objects.get(id=request.POST['car_number'])
     carin.position = request.POST['position']
+    print(request.POST['position'])
     carin.save()
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('')
 
 @csrf_exempt
 def straight_xy(request):
@@ -46,7 +47,7 @@ def straight_xy(request):
     elif posi == '1':
         cc = int(carin.now_x)
         cc -= 1
-        carin.now_y = cc
+        carin.now_x = cc
     elif posi == '2':
         cc = int(carin.now_y)
         cc -= 1
@@ -54,7 +55,99 @@ def straight_xy(request):
     elif posi == '4':
         cc = int(carin.now_x)
         cc += 1
-        carin.now_y = cc
+        carin.now_x = cc
     carin.save()
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('')
 
+@csrf_exempt
+def back_xy(request):
+    carin = CarInfo.objects.get(id=request.POST['car_number'])
+    posi = carin.position
+    if posi == '3':
+        cc = int(carin.now_y)
+        cc -= 1
+        carin.now_y = cc
+    elif posi == '1':
+        cc = int(carin.now_x)
+        cc += 1
+        carin.now_x = cc
+    elif posi == '2':
+        cc = int(carin.now_y)
+        cc += 1
+        carin.now_y = cc
+    elif posi == '4':
+        cc = int(carin.now_x)
+        cc -= 1
+        carin.now_x = cc
+    carin.save()
+    return HttpResponseRedirect('')
+
+@csrf_exempt
+def right_xy(request):
+    carin = CarInfo.objects.get(id=request.POST['car_number'])
+    posi = carin.position
+    if posi == '3':
+        cc = int(carin.now_x)
+        ss = int(carin.now_y)
+        cc += 1
+        ss += 1
+        carin.now_x = cc
+        carin.now_y = ss
+    elif posi == '1':
+        cc = int(carin.now_x)
+        ss = int(carin.now_y)
+        cc -= 1
+        ss += 1
+        carin.now_x = cc
+        carin.now_y = ss
+    elif posi == '2':
+        cc = int(carin.now_x)
+        ss = int(carin.now_y)
+        cc -= 1
+        ss -= 1
+        carin.now_x = cc
+        carin.now_y = ss
+    elif posi == '4':
+        cc = int(carin.now_x)
+        ss = int(carin.now_y)
+        cc += 1
+        ss -= 1
+        carin.now_x = cc
+        carin.now_y = ss
+    carin.save()
+    return HttpResponseRedirect('')
+
+@csrf_exempt
+def left_xy(request):
+    carin = CarInfo.objects.get(id=request.POST['car_number'])
+    posi = carin.position
+    if posi == '3':
+        cc = int(carin.now_x)
+        ss = int(carin.now_y)
+        cc -= 1
+        ss += 1
+        carin.now_x = cc
+        carin.now_y = ss
+    elif posi == '1':
+        cc = int(carin.now_x)
+        ss = int(carin.now_y)
+        cc -= 1
+        ss -= 1
+        carin.now_x = cc
+        carin.now_y = ss
+    elif posi == '2':
+        cc = int(carin.now_x)
+        ss = int(carin.now_y)
+        cc += 1
+        ss -= 1
+        carin.now_x = cc
+        carin.now_y = ss
+    elif posi == '4':
+        cc = int(carin.now_x)
+        ss = int(carin.now_y)
+        cc += 1
+        ss += 1
+        carin.now_x = cc
+        carin.now_y = ss
+    carin.save()
+    return HttpResponseRedirect('')

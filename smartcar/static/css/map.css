@@ -34,7 +34,7 @@
 	background-color: #03a9f4;
 }
 
-/* 출발지
+/* 출발지 */
 #route3 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
@@ -80,7 +80,7 @@
 	vertical-align: bottom;
     line-height: 4rem;
 }
-*/
+
 #route99{
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
