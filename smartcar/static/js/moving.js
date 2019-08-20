@@ -1,7 +1,7 @@
 function moving(){
     moving2()
-//    moving22()
-    position_refresh()
+    moving22()
+//    position_refresh()
 }
 function moving2(){
     var clicked_car = document.getElementById("car_number").value
@@ -150,21 +150,24 @@ function moving2(){
      })
 }
 function moving22(){
+var click_car = document.getElementById("car_number").value
     $.ajax({
         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
         dataType : 'json',
         success : function (data) {
-            var aa = data[0].car_code
-            $.ajax({
-                type : 'POST',
-                url : 'http://192.168.0.9:8000/',
-                dataType:'json',
-                data : {
-                    'bbb': aa
-                },
-                success: function(){
-                }
-            });
+            var bb = data[click_car-1].car_route
+            console.log(bb)
+            var aa = data[click_car-1].car_code
+//            $.ajax({
+//                type : 'POST',
+//                url : 'http://192.168.0.9:8000/',
+//                dataType:'json',
+//                data : {
+//                    'bbb': aa
+//                },
+//                success: function(){
+//                }
+//            });
         }
     });
 }

@@ -30,39 +30,11 @@ function map(n){
                      for(var i=0; i<=13; i++){
                        map_array2[i]=map_array[i].split(', ');
                      }
+                     console.log(map_array2)
                     $.ajax({
                         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                         dataType : 'json',
                         success : function (data_car) {
-                        // 현상황별 경로표시 예시
-//                        console.log(data_car[0].position)
-//                        var posi = data_car[0].position
-//                        console.log(data_car[0].car_code)
-//                        var w = 0
-//                        var code1 = data_car[0].car_code.split(' ')
-//                        console.log(code1)
-//                        for(var ww=0; ww<=code1.length -1; ww++){
-//                        if(posi == 3){
-//                            if(code1[w]==1){console.log('오른쪽직진'); w++;}
-//                            if(code1[w]==2){console.log('우회전'); posi = 4; w++;}
-//                            if(code1[w]==3){console.log('좌회전'); posi = 1; w++;}
-//                        }
-//                        if(posi == 4){
-//                            if(code1[w]==1){console.log('아래쪽직진'); w++;}
-//                            if(code1[w]==2){console.log('우회전'); posi = 2; w++;}
-//                            if(code1[w]==3){console.log('좌회전'); posi = 3; w++;}
-//                        }
-//                        if(posi == 1){
-//                            if(code1[w]==1){console.log('위쪽직진'); w++;}
-//                            if(code1[w]==2){console.log('우회전'); posi = 3; w++;}
-//                            if(code1[w]==3){console.log('좌회전'); posi = 2; w++;}
-//                        }
-//                        if(posi == 2){
-//                            if(code1[w]==1){console.log('왼쪽직진'); w++;}
-//                            if(code1[w]==2){console.log('우회전'); posi = 1; w++;}
-//                            if(code1[w]==3){console.log('좌회전'); posi = 4; w++;}
-//                        }
-//                        }
                         for(var i=0; i<=data_car.length -1; i++){
                             now_xx[i] = Number(data_car[i].now_x)
                             now_yy[i] = Number(data_car[i].now_y)
@@ -73,11 +45,6 @@ function map(n){
                         if(now_xx.allValuesSame()==true){
                                 if(now_yy.allValuesSame()==true){
                                     map_array2[now_xx[0]][now_yy[0]] = '99'
-                                }
-                                else{
-                                     for(var k=0; k<=now_xx.length-1; k++){
-                                        map_array2[now_xx[k]][now_yy[k]] = '3'+data_car[k].id
-                                     }
                                 }
                         }
                         for(var i=0; i<=13; i++){
@@ -158,7 +125,7 @@ function map(n){
                                 else if(map_array2[i][j]==8){
                                     $("#map").append();
                                 }
-                                else if(map_array2[i][j]==4){
+                                else if(map_array2[i][j]==41 || map_array2[i][j]==42 || map_array2[i][j]==43 || map_array2[i][j]==44 || map_array2[i][j]==45 || map_array2[i][j]==46){
                                     var map_span = document.createElement("span");
                                     map_span.setAttribute("id", "route4");
                                     map_span.setAttribute("class", i+'a'+j);
