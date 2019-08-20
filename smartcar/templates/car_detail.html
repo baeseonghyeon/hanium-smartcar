@@ -126,36 +126,60 @@
 							<h1 class="mb-3">carname</h1>
 							<h2>[cartype]</h2>
 						</div>
-                        <div class="row">
+                        <div class="row colorblue m-auto">
 							<div class="col-5">
-								<div class="row">
-									<div class="col-6">
-										배터리
+								<div class="container">
+									<div class="row">
+										<div class="col-6">
+											<div class="cercle-s">
+											배터리
+											</div>
+										</div>
+										<div class="col-6 car-info-text">
+											80%
+										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-6">
-										신호
+									<div class="row">
+										<div class="col-6">
+											<div class="cercle-s">
+											신호
+											</div>
+										</div>
+										<div class="col-6 car-info-text">
+											양호
+										</div>
 									</div>
 								</div>
 							</div>
 							<div class="col-2">
-								car
+								<div class="car-info-car">car</div>
 							</div>
 							<div class="col-5">
-								<div class="row">
-									<div class="col-6">
-										설정
+								<div class="container">
+									<div class="row">
+										<div class="col-6 car-info-text">
+											설정
+										</div>
+										<div class="col-6 p-0">
+											<div class="cercle-s">
+												설정
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-6">
-										조작
+									<div class="row">
+										<div class="col-6 car-info-text">
+											조작
+										</div>
+										<div class="col-6 p-0">
+											<div class="cercle-s">
+												조작
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<p>속도 KM/H</p>
+						<p><span class='colorblue'>속도</span> KM/H</p>
                         <button onclick="moving()">무빙</button>
                     </div>
                 </div>
@@ -163,7 +187,7 @@
                 <script>
                 $(document).ready(function(){
                     // con
-                    $('#con-box').on('click', function(){
+                    $('#con-box').on('click', function(){ 
                         $('#con-info').fadeIn("fast");
                     });
                     $('#con-info-close').on('click', function(){

@@ -202,9 +202,22 @@
 	transition: all 0.1s ease 0.1s;
 }
 	/* car info */
-	#con-info {
+	#car-info {
 		border: 2px solid #28b5b8;
 	}
+		#car-info .col-6 {
+			/* padding: 0px; */
+		}
+		.car-info-text {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.car-info-car {
+			border: 1px solid #28b5b8;
+			padding: 20px 10px;
+			border-radius: 5px;
+		}
 
 	/* con info */
 	#con-info {
