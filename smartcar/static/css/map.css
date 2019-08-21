@@ -39,7 +39,7 @@
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #0eac6a;
+	border: 2px solid #0eac6a!important;
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
@@ -51,7 +51,7 @@
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #0eac6a;
+	border: 2px solid #0eac6a!important;
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
@@ -63,7 +63,7 @@
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #0eac6a;
+	border: 2px solid #0eac6a!important;
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
@@ -74,7 +74,7 @@
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #0eac6a;
+	border: 2px solid #0eac6a!important;
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
@@ -172,7 +172,7 @@
 	display: inline-block;
 	width:8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #F44336;
+	border: 2px solid #F44336!important;
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
