@@ -573,25 +573,25 @@ function map(route, x, y, a, b){
                                 }
                                 else if(map_array2[i][j]==43){
                                     var map_span = document.createElement("span");
-                                    map_span.setAttribute("id", "route41");
+                                    map_span.setAttribute("id", "route43");
                                     map_span.setAttribute("class", i+'a'+j);
                                     $("#map").append(map_span);
                                 }
                                 else if(map_array2[i][j]==44){
                                     var map_span = document.createElement("span");
-                                    map_span.setAttribute("id", "route41");
+                                    map_span.setAttribute("id", "route44");
                                     map_span.setAttribute("class", i+'a'+j);
                                     $("#map").append(map_span);
                                 }
                                 else if(map_array2[i][j]==45){
                                     var map_span = document.createElement("span");
-                                    map_span.setAttribute("id", "route41");
+                                    map_span.setAttribute("id", "route45");
                                     map_span.setAttribute("class", i+'a'+j);
                                     $("#map").append(map_span);
                                 }
                                 else if(map_array2[i][j]==46){
                                     var map_span = document.createElement("span");
-                                    map_span.setAttribute("id", "route41");
+                                    map_span.setAttribute("id", "route46");
                                     map_span.setAttribute("class", i+'a'+j);
                                     $("#map").append(map_span);
                                 }
