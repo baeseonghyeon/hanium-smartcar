@@ -15,4 +15,5 @@ urlpatterns = [
     path('right_xy', views.right_xy, name='right_xy'),
     path('left_xy', views.left_xy, name='left_xy'),
     path('pi_test', views.pi_test, name='pi_test'),
+    path('pi_test2', views.pi_test2, name='pi_test2'),
 ]
