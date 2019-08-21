@@ -20,6 +20,7 @@ def Car_input(request):
 @csrf_exempt
 def pi_test(request):
     route = request.POST['bbb']
+    print(route)
     route1 = route.split(']')
     route2 = [[0 for x in range(len(route1)-1)] for y in range(len(route1)-1)]
     for x in range(len(route1)-1):
@@ -108,12 +109,12 @@ def pi_test(request):
         pi_test2(move[x], request)
         time.sleep(1)
     print("끝")
-    return render(request, 'car_detail.html')
+    return HttpResponseRedirect('/')
 
-def pi_test2(i, request):
+def pi_test2(i):
     aa = i
     print(aa)
-    return render(request, 'main.html', {'i': aa})
+    return HttpResponseRedirect('/')
 
 @csrf_exempt
 def Container_input(request):

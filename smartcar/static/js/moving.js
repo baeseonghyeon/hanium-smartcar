@@ -1,12 +1,15 @@
 function moving(){
-    moving2()
 //    moving22()
+    moving2()
     position_refresh()
 //playAlert = setInterval(function() {
-//   var ii = document.getElementById("iii").value
-//   var move = document.getElementById("move").value
-//    console.log(ii)
-//    console.log(move)
+//    $.ajax({
+//        url : "http://127.0.0.1:8000/main/pi_test2",
+//        dataType : 'json',
+//        success : function (data) {
+//            console.log(data)
+//        }
+//    });
 //}, 1000);
 }
 function moving2(){
