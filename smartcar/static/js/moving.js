@@ -1,13 +1,13 @@
 function moving(){
-//    moving2()
-    moving22()
-//    position_refresh()
-playAlert = setInterval(function() {
-   var ii = document.getElementById("iii").value
-   var move = document.getElementById("move").value
-    console.log(ii)
-    console.log(move)
-}, 1000);
+    moving2()
+//    moving22()
+    position_refresh()
+//playAlert = setInterval(function() {
+//   var ii = document.getElementById("iii").value
+//   var move = document.getElementById("move").value
+//    console.log(ii)
+//    console.log(move)
+//}, 1000);
 }
 function moving2(){
     var clicked_car = document.getElementById("car_number").value
