@@ -125,9 +125,39 @@ function map(n){
                                 else if(map_array2[i][j]==8){
                                     $("#map").append();
                                 }
-                                else if(map_array2[i][j]==41 || map_array2[i][j]==42 || map_array2[i][j]==43 || map_array2[i][j]==44 || map_array2[i][j]==45 || map_array2[i][j]==46){
+                                else if(map_array2[i][j]==41){
                                     var map_span = document.createElement("span");
-                                    map_span.setAttribute("id", "route4");
+                                    map_span.setAttribute("id", "route41");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    $("#map").append(map_span);
+                                }
+                                else if(map_array2[i][j]==42){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route42");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    $("#map").append(map_span);
+                                }
+                                else if(map_array2[i][j]==43){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route41");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    $("#map").append(map_span);
+                                }
+                                else if(map_array2[i][j]==44){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route41");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    $("#map").append(map_span);
+                                }
+                                else if(map_array2[i][j]==45){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route41");
+                                    map_span.setAttribute("class", i+'a'+j);
+                                    $("#map").append(map_span);
+                                }
+                                else if(map_array2[i][j]==46){
+                                    var map_span = document.createElement("span");
+                                    map_span.setAttribute("id", "route41");
                                     map_span.setAttribute("class", i+'a'+j);
                                     $("#map").append(map_span);
                                 }

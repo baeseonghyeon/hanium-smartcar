@@ -1,7 +1,13 @@
 function moving(){
-    moving2()
+//    moving2()
     moving22()
 //    position_refresh()
+playAlert = setInterval(function() {
+   var ii = document.getElementById("iii").value
+   var move = document.getElementById("move").value
+    console.log(ii)
+    console.log(move)
+}, 1000);
 }
 function moving2(){
     var clicked_car = document.getElementById("car_number").value
@@ -158,6 +164,17 @@ var click_car = document.getElementById("car_number").value
             var bb = data[click_car-1].car_route
             console.log(bb)
             var aa = data[click_car-1].car_code
+            console.log(aa)
+            $.ajax({
+                type : 'POST',
+                url : 'http://127.0.0.1:8000/main/pi_test',
+                dataType:'json',
+                data : {
+                    'bbb': bb
+                },
+                success: function(){
+                }
+            });
 //            $.ajax({
 //                type : 'POST',
 //                url : 'http://192.168.0.9:8000/',

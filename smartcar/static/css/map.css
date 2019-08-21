@@ -106,7 +106,7 @@
 	border: 1px solid #4d5967;
 }
 /* 경로 */
-#route4 {
+#route41 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	border-top: 25px solid #455163;
@@ -114,12 +114,13 @@
 	background-color: #28b5b8;
 	position: relative;
 }
-#route4_1 {
+#route42 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
-	border-left: 45px solid #455163;
-	border-right: 45px solid #455163;
+	border-left: 25px solid #455163;
+	border-right: 25px solid #455163;
 	background-color: #28b5b8;
+	position: relative;
 }
 
 /* 도착지 */

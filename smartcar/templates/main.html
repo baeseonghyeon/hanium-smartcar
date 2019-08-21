@@ -19,11 +19,14 @@
 
 
 {% block contents %}
-<div id="wrapper" class="toggled">  
-
+<div id="wrapper" class="toggled">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <div id="main-side1">
+			{{ i }}
+			{{ move }}
+			<input type="hidden" id="iii" value="{{ i }}">
+			<input type="hidden" id="move" value="{{ move }}">
             <span id="car_count"></span>대(정렬 순)
         </div>
         <div id="main-side2">
