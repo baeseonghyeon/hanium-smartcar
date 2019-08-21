@@ -3,6 +3,7 @@ from .models import MapInfo
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from main.models import CarInfo
+import time
 
 @csrf_exempt
 def refresh(request):
@@ -105,6 +106,7 @@ def reset_xy2(request):
 
 @csrf_exempt
 def bfs(request):
+    print(time.time())
     db_map = MapInfo.objects.get(id='1') #알고리즘용
     mapin = MapInfo.objects.get(id='1') #저장용
     id = request.POST['car_number']
@@ -128,7 +130,7 @@ def bfs(request):
                 park2[x][y] = 1
             if park2[x][y] == 2:
                 park2[x][y] = 1
-                
+
     #db에 저장할 map
     kim = db_map.map.split('s')
     kim2 = [[0 for x in range(14)] for y in range(14)]
@@ -141,7 +143,40 @@ def bfs(request):
     destination2 = int(bbbb)
     park2[destination1][destination2] = 0
 
-    #최단거리 알고리즘
+    map_time = [[0 for x in range(14)] for y in range(14)]
+    map = [park2, map_time]
+
+    # #최단거리+시간 알고리즘
+    # visit = [[0] * 14 for _ in range(14)]
+    # queue = []
+    # path = []
+    # path_real = []
+    # dir = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+    # queue.append([start1, start2])
+    # while queue:
+    #     node = queue.pop(0)
+    #     if node == [destination1, destination2]:
+    #         path.reverse()
+    #         temp = path[0][0]
+    #         path_real.append(path[0][1])
+    #         for i in range(len(path)):
+    #             if path[i][1] == temp:
+    #                 path_real.append(path[i][1])
+    #                 temp = path[i][0]
+    #         path_real.append([start1, start2])
+    #         path_real.reverse()
+    #     x = node[0]
+    #     y = node[1]
+    #     visit[x][y] = 1
+    #     for i in range(4):
+    #         wx = x + dir[i][0]
+    #         wy = y + dir[i][1]
+    #         if visit[wx][wy] == 0 and park2[wx][wy] == 0:
+    #             visit[wx][wy] = 1
+    #             queue.append([wx, wy])
+    #             path.append([node, [wx, wy]])
+
+    # 맵의 가로세로. 맵 수정 시 변경
     visit = [[0] * 14 for _ in range(14)]
     queue = []
     path = []
@@ -150,27 +185,40 @@ def bfs(request):
     queue.append([start1, start2])
     while queue:
         node = queue.pop(0)
-        if node == [destination1, destination2]:
-            path.reverse()
-            temp = path[0][0]
-            path_real.append(path[0][1])
-            for i in range(len(path)):
-                if path[i][1] == temp:
-                    path_real.append(path[i][1])
-                    temp = path[i][0]
-            path_real.append([start1, start2])
-            path_real.reverse()
         x = node[0]
         y = node[1]
         visit[x][y] = 1
+        time_now = int(time.time())
         for i in range(4):
             wx = x + dir[i][0]
             wy = y + dir[i][1]
-            if visit[wx][wy] == 0 and park2[wx][wy] == 0:
+            if visit[wx][wy] == 0 and (map[0][wx][wy] != 1 and map[0][wx][wy] != 2) and map[1][wx][wy] < time_now:
                 visit[wx][wy] = 1
                 queue.append([wx, wy])
+                # 부모노드, 현재위치
                 path.append([node, [wx, wy]])
+                if [wx, wy] == [destination1, destination2]:
 
+                    path.reverse()
+                    temp = path[0][0]
+                    path_real.append(path[0][1])
+                    for i in range(len(path)):
+                        if path[i][1] == temp:
+                            path_real.append(path[i][1])
+                            temp = path[i][0]
+                    path_real.append([start1, start2])
+                    path_real.reverse()
+                    # print(path_real)
+                    for j in range(len(path_real)):
+                        # 시간 추가하기 한 칸을 일단 3초로 설정
+                        map[1][path_real[j][0]][path_real[j][1]] = time_now + (0.1 * j)
+
+                    queue.clear()
+                    break
+    for x in range(2):
+        for y in range(14):
+                print(map[x][y])
+    print(path_real)
     # #pi로 전송하기 위한 데이터 가공
     value = ''
     path1 = len(path_real)
@@ -276,7 +324,6 @@ def bfs(request):
         pass
     code += '1 '
     #경로저장
-    print(path_real)
     idx = 0
     try:
         while True:
