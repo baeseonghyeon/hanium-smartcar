@@ -106,54 +106,66 @@
 	border: 1px solid #4d5967;
 }
 /* 경로 */
-#route41 {
-	display: inline-block;
-	width: 8.333%; height: 8.333%;
-	border-top: 25px solid #455163;
-	border-bottom: 25px solid #455163;
-	background-color: #28b5b8;
-	position: relative;
-}
-#route42 {
-	display: inline-block;
-	width: 8.333%; height: 8.333%;
-	border-left: 25px solid #455163;
-	border-right: 25px solid #455163;
-	background-color: #28b5b8;
-	position: relative;
-}
-#route43 {
-	display: inline-block;
-	width: 8.333%; height: 8.333%;
-	border-left: 25px solid #455163;
-	border-right: 25px solid #455163;
-	background-color: #28b5b8;
-	position: relative;
-}
-#route44 {
-	display: inline-block;
-	width: 8.333%; height: 8.333%;
-	border-left: 25px solid #455163;
-	border-right: 25px solid #455163;
-	background-color: #28b5b8;
-	position: relative;
-}
-#route45 {
-	display: inline-block;
-	width: 8.333%; height: 8.333%;
-	border-left: 25px solid #455163;
-	border-right: 25px solid #455163;
-	background-color: #28b5b8;
-	position: relative;
-}
-#route46 {
-	display: inline-block;
-	width: 8.333%; height: 8.333%;
-	border-left: 25px solid #455163;
-	border-right: 25px solid #455163;
-	background-color: #28b5b8;
-	position: relative;
-}
+	/* - */
+	#route41 {
+		display: inline-block;
+		width: 8.333%; height: 8.333%;
+		background-image: url('../img/map/straight.jpg');
+		background-size: contain;
+		position: relative;
+	}
+	/* ㅣ */
+	#route42 {
+		display: inline-block;
+		width: 8.333%; height: 8.333%;
+		background-image: url('../img/map/straight.jpg');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		transform: rotate(90deg);
+		position: relative;
+	}
+	/* ⌝ */
+	#route43 {
+		display: inline-block;
+		width: 8.333%; height: 8.333%;
+		background-image: url('../img/map/turn.jpg');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		position: relative;
+	}
+	/* ⌞ */
+	#route44 {
+		display: inline-block;
+		width: 8.333%; height: 8.333%;
+		background-image: url('../img/map/turn.jpg');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		position: relative;
+		transform: rotate(180deg);
+	}
+	/* ⌜ */
+	#route45 {
+		display: inline-block;
+		width: 8.333%; height: 8.333%;
+		border-left: 25px solid #455163;
+		border-right: 25px solid #455163;
+		background-color: #28b5b8;
+		position: relative;
+	}
+	/* ⌟ */
+	#route46 {
+		display: inline-block;
+		width: 8.333%; height: 8.333%;
+		background-image: url('../img/map/turn.jpg');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		position: relative;
+		transform: rotate(90deg);
+	}
 
 /* 도착지 */
 #route5 {
