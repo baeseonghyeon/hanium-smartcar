@@ -1,4 +1,13 @@
 /* User Sign */
+.logo {
+	background-repeat: no-repeat;
+    width: 200px;
+    height: 100px;
+    background-image: url('../img/common/logo.png');
+    margin: 10px auto 20px;
+    background-size: contain;
+    background-position: center;
+}
 .login-bg-wrapper {
 	background-image: url('../img/bg.jpg');
 	background-repeat: no-repeat;

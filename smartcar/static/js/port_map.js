@@ -26,7 +26,6 @@ function map(n){
                  success : function(data){
                      map_display=data[0].map;
                      map_array=map_display.split('s');
-
                      for(var i=0; i<=13; i++){
                        map_array2[i]=map_array[i].split(', ');
                      }
