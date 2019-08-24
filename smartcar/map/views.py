@@ -145,37 +145,7 @@ def bfs(request):
 
     map_time = [[0 for x in range(14)] for y in range(14)]
     map = [park2, map_time]
-
-    # #최단거리+시간 알고리즘
-    # visit = [[0] * 14 for _ in range(14)]
-    # queue = []
-    # path = []
-    # path_real = []
-    # dir = [[0, 1], [1, 0], [0, -1], [-1, 0]]
-    # queue.append([start1, start2])
-    # while queue:
-    #     node = queue.pop(0)
-    #     if node == [destination1, destination2]:
-    #         path.reverse()
-    #         temp = path[0][0]
-    #         path_real.append(path[0][1])
-    #         for i in range(len(path)):
-    #             if path[i][1] == temp:
-    #                 path_real.append(path[i][1])
-    #                 temp = path[i][0]
-    #         path_real.append([start1, start2])
-    #         path_real.reverse()
-    #     x = node[0]
-    #     y = node[1]
-    #     visit[x][y] = 1
-    #     for i in range(4):
-    #         wx = x + dir[i][0]
-    #         wy = y + dir[i][1]
-    #         if visit[wx][wy] == 0 and park2[wx][wy] == 0:
-    #             visit[wx][wy] = 1
-    #             queue.append([wx, wy])
-    #             path.append([node, [wx, wy]])
-
+    # 알고리즘
     # 맵의 가로세로. 맵 수정 시 변경
     visit = [[0] * 14 for _ in range(14)]
     queue = []
@@ -198,7 +168,6 @@ def bfs(request):
                 # 부모노드, 현재위치
                 path.append([node, [wx, wy]])
                 if [wx, wy] == [destination1, destination2]:
-
                     path.reverse()
                     temp = path[0][0]
                     path_real.append(path[0][1])
@@ -212,13 +181,8 @@ def bfs(request):
                     for j in range(len(path_real)):
                         # 시간 추가하기 한 칸을 일단 3초로 설정
                         map[1][path_real[j][0]][path_real[j][1]] = time_now + (0.1 * j)
-
                     queue.clear()
                     break
-    for x in range(2):
-        for y in range(14):
-                print(map[x][y])
-    print(path_real)
     # #pi로 전송하기 위한 데이터 가공
     value = ''
     path1 = len(path_real)
@@ -327,20 +291,6 @@ def bfs(request):
     idx = 0
     try:
         while True:
-            if path_real[idx][0] == path_real[idx + 1][0]:
-                if path_real[idx][1] + 1 == path_real[idx + 1][1]:
-                    kim2[path_real[idx][0]][path_real[idx][1]] = '41'
-                    idx += 1
-                elif path_real[idx][1] - 1 == path_real[idx + 1][1]:
-                    kim2[path_real[idx][0]][path_real[idx][1]] = '41'
-                    idx += 1
-            if path_real[idx][1] == path_real[idx + 1][1]:
-                if path_real[idx][0] + 1 == path_real[idx + 1][0]:
-                    kim2[path_real[idx][0]][path_real[idx][1]] = '42'
-                    idx += 1
-                elif path_real[idx][0] - 1 == path_real[idx + 1][0]:
-                    kim2[path_real[idx][0]][path_real[idx][1]] = '42'
-                    idx += 1
             if path_real[idx][0] + 1 == path_real[idx + 2][0]:
                 if path_real[idx][1] + 1 == path_real[idx + 2][1]:
                     if path_real[idx][0] == path_real[idx + 1][0]:
@@ -348,11 +298,13 @@ def bfs(request):
                         kim2[path_real[idx + 1][0]][path_real[idx + 1][1]] = '43'
                         kim2[path_real[idx + 2][0]][path_real[idx + 2][1]] = '42'
                         idx += 3
+                        continue
                     elif path_real[idx][1] == path_real[idx + 1][1]:
                         kim2[path_real[idx][0]][path_real[idx][1]] = '42'
                         kim2[path_real[idx + 1][0]][path_real[idx + 1][1]] = '44'
                         kim2[path_real[idx + 2][0]][path_real[idx + 2][1]] = '41'
                         idx += 3
+                        continue
             if path_real[idx][0] - 1 == path_real[idx + 2][0]:
                 if path_real[idx][1] + 1 == path_real[idx + 2][1]:
                     if path_real[idx][1] == path_real[idx + 1][1]:
@@ -360,11 +312,13 @@ def bfs(request):
                         kim2[path_real[idx + 1][0]][path_real[idx + 1][1]] = '45'
                         kim2[path_real[idx + 2][0]][path_real[idx + 2][1]] = '41'
                         idx += 3
+                        continue
                     elif path_real[idx][0] == path_real[idx + 1][0]:
                         kim2[path_real[idx][0]][path_real[idx][1]] = '41'
                         kim2[path_real[idx + 1][0]][path_real[idx + 1][1]] = '46'
                         kim2[path_real[idx + 2][0]][path_real[idx + 2][1]] = '42'
                         idx += 3
+                        continue
             if path_real[idx][0] - 1 == path_real[idx + 2][0]:
                 if path_real[idx][1] - 1 == path_real[idx + 2][1]:
                     if path_real[idx][1] == path_real[idx + 1][1]:
@@ -372,11 +326,13 @@ def bfs(request):
                         kim2[path_real[idx + 1][0]][path_real[idx + 1][1]] = '43'
                         kim2[path_real[idx + 2][0]][path_real[idx + 2][1]] = '41'
                         idx += 3
+                        continue
                     elif path_real[idx][0] == path_real[idx + 1][0]:
                         kim2[path_real[idx][0]][path_real[idx][1]] = '41'
                         kim2[path_real[idx + 1][0]][path_real[idx + 1][1]] = '44'
                         kim2[path_real[idx + 2][0]][path_real[idx + 2][1]] = '42'
                         idx += 3
+                        continue
             if path_real[idx][0] + 1 == path_real[idx + 2][0]:
                 if path_real[idx][1] - 1 == path_real[idx + 2][1]:
                     if path_real[idx][1] == path_real[idx + 1][1]:
@@ -384,13 +340,38 @@ def bfs(request):
                         kim2[path_real[idx + 1][0]][path_real[idx + 1][1]] = '46'
                         kim2[path_real[idx + 2][0]][path_real[idx + 2][1]] = '41'
                         idx += 3
+                        continue
                     elif path_real[idx][0] == path_real[idx + 1][0]:
                         kim2[path_real[idx][0]][path_real[idx][1]] = '41'
                         kim2[path_real[idx + 1][0]][path_real[idx + 1][1]] = '45'
                         kim2[path_real[idx + 2][0]][path_real[idx + 2][1]] = '42'
                         idx += 3
+                        continue
+            if path_real[idx][0] == path_real[idx + 1][0]:
+                if path_real[idx][1] + 1 == path_real[idx + 1][1]:
+                    kim2[path_real[idx][0]][path_real[idx][1]] = '41'
+                    idx += 1
+                    continue
+                elif path_real[idx][1] - 1 == path_real[idx + 1][1]:
+                    kim2[path_real[idx][0]][path_real[idx][1]] = '41'
+                    idx += 1
+                    continue
+            if path_real[idx][1] == path_real[idx + 1][1]:
+                if path_real[idx][0] + 1 == path_real[idx + 1][0]:
+                    kim2[path_real[idx][0]][path_real[idx][1]] = '42'
+                    idx += 1
+                    continue
+                elif path_real[idx][0] - 1 == path_real[idx + 1][0]:
+                    kim2[path_real[idx][0]][path_real[idx][1]] = '42'
+                    idx += 1
+                    continue
     except IndexError:
         pass
+    ix = len(path_real)-3
+    if kim2[path_real[ix][0]][path_real[ix][1]] == '41' or '42':
+        if kim2[path_real[ix + 1][0]][path_real[ix + 1][1]] == '0':
+            kim2[path_real[ix + 1][0]][path_real[ix + 1][1]] = kim2[path_real[ix][0]][path_real[ix][1]]
+            kim2[path_real[ix + 2][0]][path_real[ix + 2][1]] = kim2[path_real[ix][0]][path_real[ix][1]]
     for idx, val in enumerate(path_real):
         views_route += str(val[0])
         views_route += 'a'

@@ -420,8 +420,6 @@ function map(route, x, y, a, b){
         while(1){
             if(car_route2[idx][0] == car_route2[idx + 1][0]){
                 if(car_route2[idx][1] + 1 == car_route2[idx + 1][1]){
-                	console.log(car_route2[idx][0])
-                	console.log(car_route2[idx][1])
                     map_array2[car_route2[idx][0]][car_route2[idx][1]] = '41'
                     idx += 1
                 }
@@ -510,6 +508,15 @@ function map(route, x, y, a, b){
     	else if(e instanceof RangeError){ }
     	else if(e instanceof EvalError){ }
     	else { }
+    }
+    if(car_route2!=0){
+        var ix = car_route2.length - 3
+        if(map_array2[car_route2[ix][0]][car_route2[ix][1]] == '41' || '42'){
+            if(map_array2[car_route2[ix + 1][0]][car_route2[ix + 1][1]] == '0'){
+                map_array2[car_route2[ix + 1][0]][car_route2[ix + 1][1]] = map_array2[car_route2[ix][0]][car_route2[ix][1]]
+                map_array2[car_route2[ix + 2][0]][car_route2[ix + 2][1]] = map_array2[car_route2[ix][0]][car_route2[ix][1]]
+            }
+        }
     }
     map_array2[now_x][now_y] = '3'
                      for(var i=0; i<=13; i++){
