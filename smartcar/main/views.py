@@ -18,103 +18,16 @@ def Car_input(request):
     return HttpResponseRedirect('/')
 
 @csrf_exempt
-def pi_test(request):
-    route = request.POST['bbb']
-    print(route)
-    route1 = route.split(']')
-    route2 = [[0 for x in range(len(route1)-1)] for y in range(len(route1)-1)]
-    for x in range(len(route1)-1):
-        route2[x] = route1[x].split('a')
-    index = 0
-    i = 0
-    move = [0 for x in range(len(route1)-1)]
-    for x in range(len(route1)-1):
-        for y in range(2):
-            route2[x][y] = int(route2[x][y])
-    try:
-        while True:
-            if route2[index + 2][0] == route2[index][0] +1:
-                if route2[index + 2][1] == route2[index][1] + 1:
-                    if route2[index + 1][0] == route2[index][0]:
-                        move[i]='21'
-                        index +=2
-                        i +=1
-                        continue
-                    elif route2[index + 1][1] == route2[index][1]:
-                        move[i] = '33'
-                        index += 2
-                        i += 1
-                        continue
-            if route2[index + 2][0] == route2[index][0] - 1:
-                if route2[index + 2][1] == route2[index][1] +1:
-                    if route2[index][0] == route2[index + 1][0]:
-                        move[i]='31'
-                        index +=2
-                        i+=1
-                        continue
-                    elif route2[index +1][1] == route2[index][1]:
-                        move[i]='23'
-                        index+=2
-                        i+=1
-                        continue
-            if route2[index + 2][0] == route2[index][0] - 1:
-                if route2[index + 2][1] == route2[index][1] - 1:
-                    if route2[index][0] == route2[index + 1][0]:
-                        move[i]='22'
-                        index +=2
-                        i+=1
-                        continue
-                    elif route2[index][1] == route2[index + 1][1]:
-                        move[i]='34'
-                        index+=2
-                        i+=1
-                        continue
-            if route2[index + 2][0] == route2[index][0] + 1:
-                if route2[index + 2][1] == route2[index][1] - 1:
-                    if route2[index + 1][1] == route2[index][1]:
-                        move[i]='24'
-                        index += 2
-                        i+=1
-                        continue
-                    elif route2[index + 1][0] == route2[index][0]:
-                        move[i]='32'
-                        index+=2
-                        i+=1
-                        continue
-            if route2[index][0] == route2[index + 1][0]:
-                if route2[index][1] > route2[index + 1][1]:
-                    move[i]='13'
-                    index +=1
-                    i+=1
-                    continue
-                elif route2[index][1] < route2[index + 1][1]:
-                    move[i]='11'
-                    index+=1
-                    i+=1
-                    continue
-            if route2[index][1] == route2[index + 1][1]:
-                if route2[index + 1][0] > route2[index][0]:
-                    move[i]='12'
-                    index+=1
-                    i+=1
-                    continue
-                elif route2[index][0] > route2[index + 1][0]:
-                    move[i]='14'
-                    index+=1
-                    i+=1
-                    continue
-    except IndexError:
-        pass
-    for x in range(len(move)):
-        pi_test2(move[x], request)
-        time.sleep(1)
-    print("끝")
+def pi_test3(request):
+    data = request.GET
+    pi_con = data.dict()
+    con_id = pi_con['ConInf']
+    carin = CarInfo.objects.get(id=2)
+    if carin.container_id == None:
+        carin.container_id = ContainerInfo.objects.get(container_id=con_id)
+        carin.save()
     return HttpResponseRedirect('/')
 
-def pi_test2(i):
-    aa = i
-    print(aa)
-    return HttpResponseRedirect('/')
 
 @csrf_exempt
 def Container_input(request):
