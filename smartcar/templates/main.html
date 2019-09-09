@@ -116,18 +116,17 @@
 			};
 		};
 		</script>
-
         <div class="car-position-control-box">
             현위치:<input type="text" id="x" size="2" />
             <input type="text" id="y" size="2" /><br>
             목적지:<input type="text" id="a" size="2" />
             <input type="text" id="b" size="2" /><br>
-            <button onclick="xy_reset()">초기화</button>
-            <button id="path_search" onclick="search()">경로탐색</button>
-			<button onclick="moving()">출발</button>
+			<button onclick="sample()">nfc->서버</button>
+            <!--<button onclick="xy_reset()">초기화</button>-->
+            <!--<button id="path_search" onclick="search()">경로탐색</button>-->
+			<!--<button onclick="moving()">출발</button>-->
         </div>
     </div>
-
 </div>
   <!-- Car_input Modal -->
   {% include './car_input.html' %}

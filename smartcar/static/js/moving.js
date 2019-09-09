@@ -1,16 +1,60 @@
-function moving(){
-//    moving22()
-    moving2()
-    position_refresh()
-//playAlert = setInterval(function() {
+$(document).ready(function(){
+playMap = setInterval(function() {
+    $.ajax({
+        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+        dataType : 'json',
+        success : function (data) {
+            if(data[0].car_route != "1"){
+            map()
+            console.log(data[0].car_route)
+            data_car(data[0].car_route)
+            clearInterval(playMap);
+            }
+        }
+    });
+}, 3000);
+// 차 2대일때
+//playMap1 = setInterval(function() {
 //    $.ajax({
-//        url : "http://127.0.0.1:8000/main/pi_test2",
+//        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
 //        dataType : 'json',
 //        success : function (data) {
-//            console.log(data)
+//            if(data[1].car_route != "1"){
+//            map()
+//            console.log(data[1].car_route)
+//            data_car(data[1].car_route)
+//            clearInterval(playMap1);
+//            }
 //        }
 //    });
-//}, 1000);
+//}, 3000);
+})
+function data_car(x){
+	$.ajax({
+        type : 'POST',
+        url : 'http://127.0.0.1:8000/main/pi_test4',
+        dataType:'json',
+        data : {
+            'code': x
+        },
+        success: function(){
+        }
+    });
+}
+function sample(){
+	$.ajax({
+        type : 'POST',
+        url : 'http://127.0.0.1:8000/main/pi_test3',
+        dataType:'json',
+        data : {
+            'sample_car_id': '1',
+			'x': '12',
+			'y': '12',
+			'con_id': 'c1',
+        },
+        success: function(){
+        }
+    });
 }
 function moving2(){
     var clicked_car = document.getElementById("car_number").value
@@ -158,39 +202,7 @@ function moving2(){
                  }
      })
 }
-function moving22(){
-var click_car = document.getElementById("car_number").value
-    $.ajax({
-        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-        dataType : 'json',
-        success : function (data) {
-            var bb = data[click_car-1].car_route
-            console.log(bb)
-            var aa = data[click_car-1].car_code
-            console.log(aa)
-            $.ajax({
-                type : 'POST',
-                url : 'http://127.0.0.1:8000/main/pi_test',
-                dataType:'json',
-                data : {
-                    'bbb': bb
-                },
-                success: function(){
-                }
-            });
-//            $.ajax({
-//                type : 'POST',
-//                url : 'http://192.168.0.9:8000/',
-//                dataType:'json',
-//                data : {
-//                    'bbb': aa
-//                },
-//                success: function(){
-//                }
-//            });
-        }
-    });
-}
+
 function position_refresh(){
     var clicked_car = document.getElementById("car_number").value
     var target_x = document.getElementById("a").value

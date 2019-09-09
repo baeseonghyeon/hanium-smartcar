@@ -1,5 +1,5 @@
 $(document).ready( function(){map()})
-function map(n){
+function map(){
     $("#map *").remove()
     var map_display;
     var map_array = new Array();
@@ -29,7 +29,6 @@ function map(n){
                      for(var i=0; i<=13; i++){
                        map_array2[i]=map_array[i].split(', ');
                      }
-                     console.log(map_array2)
                     $.ajax({
                         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
                         dataType : 'json',
@@ -43,7 +42,9 @@ function map(n){
                         }
                         if(now_xx.allValuesSame()==true){
                                 if(now_yy.allValuesSame()==true){
-                                    map_array2[now_xx[0]][now_yy[0]] = '99'
+                                    if(now_xx != 0){
+                                        map_array2[now_xx[0]][now_yy[0]] = '99'
+                                    }
                                 }
                         }
                         for(var i=0; i<=13; i++){
