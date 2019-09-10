@@ -123,16 +123,20 @@ def pi_test4(request):
                     continue
     except (IndexError, TypeError):
         pass
+    print(move)
+    id = request.POST['car_id']
     for x in range(len(move)):
-        car_pi(move[x], request)
+        car_pi(move[x], 2*x, id, request)
     return HttpResponseRedirect('/')
 
 @csrf_exempt
-def car_pi(code, request):
+def car_pi(code, index, id, request):
     data = {
-        'code': code
+        'code': code,
+        'index': index,
+        'id': id
     }
-    time.sleep(2)
+    time.sleep(3)
     URL = 'http://127.0.0.1:8000/main/pi_test5'
     request = requests.post(URL, params=data)
     return HttpResponseRedirect('/')
@@ -141,6 +145,12 @@ def car_pi(code, request):
 def pi_test5(request):
     data = request.GET
     diction = data.dict()
+    carin = CarInfo.objects.get(id=diction['id'])
+    carin.for_commute = diction['index']
+    carin.now_behavior = diction['code']
+    carin.save()
+    print(diction['id'])
+    print(diction['index'])
     print(diction['code'])
     return HttpResponseRedirect('/')
 
