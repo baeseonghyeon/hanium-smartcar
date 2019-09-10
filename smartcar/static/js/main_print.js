@@ -63,6 +63,16 @@ var id = clicked_id;
             success : function (data) {
             $("#car_number").val(data[clicked_id].id).text(data[clicked_id].id);
 			$("#car_name").text(data[clicked_id].car_name);
+			// $.ajax({
+			// 	url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
+			// 	dataType : 'json',
+			// 	success : function (pi_data) {
+			// 		if(clicked_id==pi_data.pi_id){
+			// 			$("#car_type").text(data[clicked_id].car_type);
+			// 		}
+			// 	}
+			// });
+			
 			$(".car_state_wrapper").fadeIn("fast");
             $("#x").val(data[clicked_id].now_x);
             $("#y").val(data[clicked_id].now_y);
