@@ -1,5 +1,10 @@
 <nav class="navbar navbar-expand navbar-dark"> <a href="#menu-toggle" id="menu-toggle" class="navbar-brand"></a>{% if not request.path == '/main/' %}<button id="back-btn"><i class="fas fa-chevron-left"></i></button>{% endif %}<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-    <div id="portname"class="nav-info1"></div>
+	{% if request.path == '/main/car_detail' %}
+	<div id="nav_carname"class="nav-info1"></div>
+	{% else %}
+	<div id="nav_portname"class="nav-info1"></div>
+	{% endif %}
+	
 
     <div class="collapse navbar-collapse" id="navbarsExample02">
         <ul class="navbar-nav">
@@ -34,12 +39,12 @@
 			window.history.back();
 			// window.location.href = '/main';
 		});
-
+		
 		$.ajax({
                  url : "http://127.0.0.1:8000/api/MapInfo/?format=json",
                  dataType : 'json',
                  success : function (data) {
-				 $("#portname").text(data[1].port_name);
+				 $("#nav_portname").text(data[1].port_name);
                  }
 		});
 	});

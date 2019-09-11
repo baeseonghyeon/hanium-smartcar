@@ -22,7 +22,8 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <div id="detail-side1">
-            <!-- 경로 찾을때 input-->
+			<!-- 경로 찾을때 input-->
+			<h2 id="nav_portname"></h2>
 			<h1>출발좌표 >> 도착좌표</h1>
 			도착시간:<span id="car_arrive_time"></span><br>
 			<div class="row distance-box">	
@@ -83,9 +84,9 @@
 							<div class="wheel right"></div>
 						</div>
                         <div id="detail-car">
-                            <span value="{{ carNumber }}">{{ carNumber }}번차량</span>
-                            <span id="pi_id"></span>
-                            <span id="car_type"></span>
+							<!--  -->
+                            <span class="car_name"></span>
+                            <span class="car_type"></span>
                         </div>
                     </div>
 
@@ -121,8 +122,8 @@
 							<button class="info-close-btn" id="car-info-close"><i class="fas fa-times"></i></button>
 						</div>
 						<div class="row">
-							<h1 class="mb-3">carname</h1>
-							<h2>[cartype]</h2>
+							<h1 class="mb-3 car_name">carname</h1>
+							<h2 class="car_type">[cartype]</h2>
 						</div>
                         <div class="row colorblue m-auto">
 							<div class="col-5">
@@ -274,10 +275,28 @@ function mode(){
                         $("#car_now_situation").text(car_now_situation);
                         $("#car_destination_distance").text(car_destination_distance);
                     }
+					
+					$("#pi_id").text(pi_id).val(pi_id);
+					if(container_id ==! null ) {
+						$("#container_id").text(container_id).val(container_id);
+					} else {
+						$("#container_id").text("컨테이너 없음").css({'background-color': 'transparent', 'color': '#535f6d'});
+						$("#car-container").css({'border': '1px solid #535f6d'})	
+					}
 
-                    $("#pi_id").text(pi_id).val(pi_id);
-                    $("#container_id").text(container_id).val(container_id);
-                    $("#car_name").text(car_name);
+					$.ajax({
+						url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
+						dataType : 'json',
+						success : function (pi_data) {
+							for(var j=0; j<=pi_data.length-1; j++){
+								if(filtered_json[0].pi_id == pi_data[j].pi_id){
+									$(".car_type").text("["+pi_data[j].car_type+"]");
+								}
+							}	
+						}
+					});
+					$(".car_name").text(car_name);
+					$("#nav_carname").text(car_name);
                     $("#car_speed").text(car_speed);
                     $("#car_arrived_time").text(car_arrived_time);
                     $("#car_destination_distance").text(car_destination_distance);

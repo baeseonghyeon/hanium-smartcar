@@ -111,7 +111,7 @@
 	display: none;
 }
 .car_state_img {
-	background-image: url('../img/car/car.png');
+	/* background-image: url('../img/car/car.png'); */
 	background-size: 85%;
     background-repeat: no-repeat;
 	background-position: center;
