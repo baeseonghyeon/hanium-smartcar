@@ -175,9 +175,10 @@
     border-top: 1px solid #46586b;
     left: 0;
     bottom: 0;
-    height: 350px;
+    height: 270px;
 	display: none;
 	text-align: center;
+	bottom: 12px;
 }
 .info-wrapper p, h1, h2 {
 	width: 100%;

@@ -36,7 +36,7 @@
             
         </div>
         <div id="detail-side2">
-            영상정보:<span id="picture"></span><br>
+        	<span id="picture"></span>
         </div>
         <div id="detail-side3">
             <div class="container">
@@ -86,7 +86,8 @@
                         <div id="detail-car">
 							<!--  -->
                             <span class="car_name"></span>
-                            <span class="car_type"></span>
+							<span class="car_type"></span>
+							<span id="pi_id" style="display:none;"></span>
                         </div>
                     </div>
 
@@ -178,30 +179,10 @@
 								</div>
 							</div>
 						</div>
-						<p><span class='colorblue'>속도</span> KM/H</p>
-                        <button onclick="moving()">무빙</button>
+						<p><span class='colorblue'>속도</span>KM/H</p>
+                        <!-- <button onclick="moving()">무빙</button> -->
                     </div>
                 </div>
-
-                <script>
-                $(document).ready(function(){
-                    // con
-                    $('#con-box').on('click', function(){ 
-                        $('#con-info').fadeIn("fast");
-                    });
-                    $('#con-info-close').on('click', function(){
-                        $('#con-info').fadeOut("fast");
-                    });
-                    //car
-                    $('#car-box').on('click', function(){
-                        $('#car-info').fadeIn("fast");
-                    });
-                    $('#car-info-close').on('click', function(){
-                        $('#car-info').fadeOut("fast");
-                    });
-                });
-                </script>
-                
                 </div>
             </div>
         </div>
@@ -228,143 +209,165 @@
 </div>
 
 <script>
-$(document).ready(function(){
-    // $("#control").fadeOut("fast")
-    var index = $("#car_number").val()
-    route(index)
-})
-function mode(){
-    if($("#mode").text()=='자동모드'){
-		$(".mode-btn").fadeIn("fast")
-		$(".mode-btn").css({'display' : 'flex'})
-        $("#mode").text('')
-		$("#mode").text('수동모드')
-		$('#mode').css({'background-color': 'rgba(33, 150, 243, 0.9)'})	
-        return 0
-    }
-    if($("#mode").text()=='수동모드'){
-		$(".mode-btn").fadeOut("fast")
-        $("#mode").text('')
-		$("#mode").text('자동모드')
-		$('#mode').css({'background-color' : 'rgba(14, 172, 106, 0.9)'})
-        return 0
-    }
-}
+	$(document).ready(function(){
+		// $("#control").fadeOut("fast")
+		var index = $("#car_number").val()
+		route(index)
+		
+		//carinfo
+		$('#car-box').on('click', function(){
+			$('#car-info').fadeIn("fast");
+		});
+		$('#car-info-close').on('click', function(){
+			$('#car-info').fadeOut("fast");
+		});
+	})
+
+	function mode(){
+		if($("#mode").text()=='자동모드'){
+			$(".mode-btn").fadeIn("fast")
+			$(".mode-btn").css({'display' : 'flex'})
+			$("#mode").text('')
+			$("#mode").text('수동모드')
+			$('#mode').css({'background-color': 'rgba(33, 150, 243, 0.9)'})	
+			return 0
+		}
+		if($("#mode").text()=='수동모드'){
+			$(".mode-btn").fadeOut("fast")
+			$("#mode").text('')
+			$("#mode").text('자동모드')
+			$('#mode').css({'background-color' : 'rgba(14, 172, 106, 0.9)'})
+			return 0
+		}
+	}
+
     var filtered_json = new Array();
     $.ajax({
-                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-                 dataType : 'json',
-                 success : function (data) {
-                    var my_json = JSON.stringify(data)
-                    filtered_json = find_in_object(JSON.parse(my_json), {id: {{ carNumber }} });
-                    var pi_id = filtered_json[0].pi_id;
-                    var container_id = filtered_json[0].container_id;
-                    var car_name = filtered_json[0].car_name;
-                    var car_speed = filtered_json[0].car_speed;
-                    var car_arrived_time = filtered_json[0].car_arrived_time;
-                    var car_destination_distance = filtered_json[0].car_destination_distance;
-                    var car_now_situation = filtered_json[0].car_now_situation;
-                    var car_speed = filtered_json[0].car_speed;
+		url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+		dataType : 'json',
+		success : function (data) {
+			var my_json = JSON.stringify(data)
+			filtered_json = find_in_object(JSON.parse(my_json), {id: {{ carNumber }} });
+			var pi_id = filtered_json[0].pi_id;
+			var container_id = filtered_json[0].container_id;
+			var car_name = filtered_json[0].car_name;
+			var car_speed = filtered_json[0].car_speed;
+			var car_arrived_time = filtered_json[0].car_arrived_time;
+			var car_destination_distance = filtered_json[0].car_destination_distance;
+			var car_now_situation = filtered_json[0].car_now_situation;
+			var car_speed = filtered_json[0].car_speed;
 
-                    if(car_speed != null){
-                        var car_arrive_time = filtered_json[0].car_arrive_time;
-                        var car_now_situation = filtered_json[0].car_now_situation;
-                        var car_destination_distance = filtered_json[0].car_destination_distance;
-                        $("#car_speed").text(car_speed);
-                        $("#car_arrive_time").text(car_arrive_time);
-                        $("#car_now_situation").text(car_now_situation);
-                        $("#car_destination_distance").text(car_destination_distance);
-                    }
-					
-					$("#pi_id").text(pi_id).val(pi_id);
-					if(container_id ==! null ) {
-						$("#container_id").text(container_id).val(container_id);
-					} else {
-						$("#container_id").text("컨테이너 없음").css({'background-color': 'transparent', 'color': '#535f6d'});
-						$("#car-container").css({'border': '1px solid #535f6d'})	
-					}
+			if(car_speed != null){
+				var car_arrive_time = filtered_json[0].car_arrive_time;
+				var car_now_situation = filtered_json[0].car_now_situation;
+				var car_destination_distance = filtered_json[0].car_destination_distance;
+				$("#car_speed").text(car_speed);
+				$("#car_arrive_time").text(car_arrive_time);
+				$("#car_now_situation").text(car_now_situation);
+				$("#car_destination_distance").text(car_destination_distance);
+			}
+			$("#pi_id").text(pi_id).val(pi_id);
 
-					$.ajax({
-						url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
-						dataType : 'json',
-						success : function (pi_data) {
-							for(var j=0; j<=pi_data.length-1; j++){
-								if(filtered_json[0].pi_id == pi_data[j].pi_id){
-									$(".car_type").text("["+pi_data[j].car_type+"]");
-								}
-							}	
+			// 컨테이너 판단
+			if(container_id ==! null ) {
+				$("#container_id").text(container_id).val(container_id);
+				// coninfo
+				$('#con-box').on('click', function(){ 
+					$('#con-info').fadeIn("fast");
+				});
+				$('#con-info-close').on('click', function(){
+					$('#con-info').fadeOut("fast");
+				});
+			} else {
+				$("#container_id").text("컨테이너 없음").css({'background-color': 'transparent', 'color': '#535f6d'});
+				$("#car-container").css({'border': '1px solid #535f6d'})
+			}
+
+			$.ajax({
+				url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
+				dataType : 'json',
+				success : function (pi_data) {
+					for(var j=0; j<=pi_data.length-1; j++){
+						if(filtered_json[0].pi_id == pi_data[j].pi_id){
+							$(".car_type").text("["+pi_data[j].car_type+"]");
 						}
-					});
-					$(".car_name").text(car_name);
-					$("#nav_carname").text(car_name);
-                    $("#car_speed").text(car_speed);
-                    $("#car_arrived_time").text(car_arrived_time);
-                    $("#car_destination_distance").text(car_destination_distance);
-                    $("#car_now_situation").text(car_now_situation);
-                 }
-      });
+					}	
+				}
+			});
+			$(".car_name").text(car_name);
+			$("#nav_carname").text(car_name);
+			$("#car_speed").text(car_speed);
+			$("#car_arrived_time").text(car_arrived_time);
+			$("#car_destination_distance").text(car_destination_distance);
+			$("#car_now_situation").text(car_now_situation);
+		}	 
+	  });
+	  
     sleep(30)
     $.ajax({
-                 url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
-                 dataType : 'json',
-                 success : function (data) {
+		url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
+		dataType : 'json',
+		success : function (data) {
+			var my_json = JSON.stringify(data)
+			var va = document.getElementById("pi_id").value;
+			filtered_json = find_in_object(JSON.parse(my_json), {pi_id: va});
+			var battery = filtered_json[0].battery;
+			var communication = filtered_json[0].communication;
+			var car_type = filtered_json[0].car_type;
+			var picture = filtered_json[0].picture;
 
-                    var my_json = JSON.stringify(data)
-                    var va = document.getElementById("pi_id").value;
-                    filtered_json = find_in_object(JSON.parse(my_json), {pi_id: va});
-                    var battery = filtered_json[0].battery;
-                    var communication = filtered_json[0].communication;
-                    var car_type = filtered_json[0].car_type;
-                    var picture = filtered_json[0].picture;
-
-                    $("#battery").text(battery);
-                    $("#communication").text(communication);
-                    $("#car_type").text(car_type);
-                    $("#picture").text(picture);
-                 }
-    });
+			$("#battery").text(battery);
+			$("#communication").text(communication);
+			
+			$("#car_type, .car_type").text("["+car_type+"]");
+			$("#picture").text(picture);
+			$("#detail-side2").css({"background-image":"url('"+picture+"')"});
+		}
+	});
+	
     sleep(30)
     $.ajax({
-                 url : "http://127.0.0.1:8000/api/ContainerInfo/?format=json",
-                 dataType : 'json',
-                 success : function (data) {
+		url : "http://127.0.0.1:8000/api/ContainerInfo/?format=json",
+		dataType : 'json',
+		success : function (data) {
 
-                    var my_json = JSON.stringify(data)
-                    var co = document.getElementById("container_id").value;
-                    filtered_json = find_in_object(JSON.parse(my_json), {container_id: co});
-                    if(filtered_json.length != 0){
-                        var container_company = filtered_json[0].container_company;
-                        var container_product = filtered_json[0].container_product;
-                        var container_shipment_day = filtered_json[0].container_shipment_day;
+		var my_json = JSON.stringify(data)
+		var co = document.getElementById("container_id").value;
+		filtered_json = find_in_object(JSON.parse(my_json), {container_id: co});
+		if(filtered_json.length != 0){
+			var container_company = filtered_json[0].container_company;
+			var container_product = filtered_json[0].container_product;
+			var container_shipment_day = filtered_json[0].container_shipment_day;
 
-                        $("#container_company").text(container_company);
-                        $("#container_product").text(container_product);
-                        $("#container_shipment_day").text(container_shipment_day);
-                    }
+			$("#container_company").text(container_company);
+			$("#container_product").text(container_product);
+			$("#container_shipment_day").text(container_shipment_day);
+		}
 
-                 }
-    });
-function find_in_object(my_object, my_criteria){
-  return my_object.filter(function(obj) {
-    return Object.keys(my_criteria).every(function(c) {
-      return obj[c] == my_criteria[c];
-    });
-  });
-}
+		}
+	});
+	
+	function find_in_object(my_object, my_criteria){
+	return my_object.filter(function(obj) {
+		return Object.keys(my_criteria).every(function(c) {
+		return obj[c] == my_criteria[c];
+		});
+	});
+	}
 
-function route(clicked_car){
-    var car_route
-    var count
-    var car_route1 = new Array()
-    var car_route2 = new Array()
-         $.ajax({
-                 url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-                 dataType : 'json',
-                 success : function (data) {
-                    map(data[clicked_car-1].car_route, data[clicked_car-1].now_x, data[clicked_car-1].now_y,
-                    data[clicked_car-1].target_x, data[clicked_car-1].target_y, )
-                 }
-         });
-}
+	function route(clicked_car){
+		var car_route
+		var count
+		var car_route1 = new Array()
+		var car_route2 = new Array()
+		$.ajax({
+			url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+			dataType : 'json',
+			success : function (data) {
+			map(data[clicked_car-1].car_route, data[clicked_car-1].now_x, data[clicked_car-1].now_y,
+			data[clicked_car-1].target_x, data[clicked_car-1].target_y, )
+			}
+		});
+	}
 </script>
 {% endblock %}

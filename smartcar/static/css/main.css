@@ -109,6 +109,9 @@
     width: 100%;
 	margin: auto;
 	display: none;
+	background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .car_state_img {
 	/* background-image: url('../img/car/car.png'); */

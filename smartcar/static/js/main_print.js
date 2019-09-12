@@ -23,18 +23,11 @@ function create_car(Car){
 				var car_state_img = document.createElement("div");
 				var car_name_div = document.createElement("div");
 				var car_state_wrapper = document.createElement("div");
-				// var id = i-1;
 				car_state_div.setAttribute("id", i-1);			
 				car_state_div.setAttribute("class", 'car_state_div'+' '+'div'+(i-1));			
 				car_state_div.setAttribute('OnClick', 'car_detail(this.id)');
-
-				car_state_wrapper.setAttribute("class", 'car_state_wrapper'+' '+'wrap'+(i-1));
-
 				car_state_img.setAttribute("class", 'car_state_img'+' '+'img'+(i-1));
 
-				// car_state_img.setAttribute("id", 'img'+(i-1));
-
-				// car_name_div.setAttribute("id", i-1);
                 car_name_div.setAttribute("class", 'car_name_div'+' '+'name'+(i-1));
                 car_name_div.setAttribute('OnClick', 'car_detail(this.id)');
                 car_name_div.innerHTML = data[i-1].car_name;
@@ -58,16 +51,21 @@ function create_car(Car){
 				
 				$("#main-side2").append(car_state_div);
 				$("#main-side2").append(car_name_div);
-				$(".car_state_container").append(car_state_wrapper);
-				$("."+divid+", ."+wrapid).append(car_state_img);
-				// (".car_state_div, .car_state_wrapper").append(car_state_img);
-				// $(".car_state_wrapper").append(car_state_img);
-				$("."+imgid).css({'background-image': 'url("../static/img/car/car.png")'});
+				$("."+divid).append(car_state_img);
+
+				// 자동차 이미지
+				if(data[i-1].container_id ==! null ) {
+					$("."+imgid).css({'background-image': 'url("../static/img/car/car_con.png")'});
+				} else {
+					$("."+imgid).css({'background-image': 'url("../static/img/car/car.png")'});
+				}
+
             }
         }
     });
 }
 
+// 클릭 했을 때
 function car_detail(clicked_id){
 var id = clicked_id;
         $.ajax({
@@ -76,6 +74,13 @@ var id = clicked_id;
             success : function (data) {
             $("#car_number").val(data[clicked_id].id).text(data[clicked_id].id);
 			$("#car_name").text(data[clicked_id].car_name);
+			
+			// 자동차 이미지
+			if(data[clicked_id].container_id ==! null ) {
+				$(".car_state_wrapper").css({'background-image': 'url("../static/img/car/car_con.png")'});	
+			} else {
+				$(".car_state_wrapper").css({'background-image': 'url("../static/img/car/car.png")'});
+			}
 
 			$.ajax({
 				url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
@@ -90,7 +95,7 @@ var id = clicked_id;
 			});
 
 			$(".car_state_wrapper").fadeIn("fast");
-			
+			 
             $("#x").val(data[clicked_id].now_x);
             $("#y").val(data[clicked_id].now_y);
             $("#a").val(data[clicked_id].target_x);
