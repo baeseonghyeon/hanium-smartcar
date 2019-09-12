@@ -27,7 +27,6 @@ function create_car(Car){
 				car_state_div.setAttribute("class", 'car_state_div'+' '+'div'+(i-1));			
 				car_state_div.setAttribute('OnClick', 'car_detail(this.id)');
 				car_state_img.setAttribute("class", 'car_state_img'+' '+'img'+(i-1));
-
                 car_name_div.setAttribute("class", 'car_name_div'+' '+'name'+(i-1));
                 car_name_div.setAttribute('OnClick', 'car_detail(this.id)');
                 car_name_div.innerHTML = data[i-1].car_name;
@@ -89,6 +88,22 @@ var id = clicked_id;
 					for(var j=0; j<=pi_data.length-1; j++){
 						if(data[clicked_id].pi_id ==pi_data[j].pi_id){
 							$("#car_type").text("["+pi_data[j].car_type+"]");
+
+							$(".car_battery").text(pi_data[j].battery);
+
+							// var battery_icon = document.createElement("i");
+
+							// if (pi_data[j].battery >= 100 ) {
+							// 	battery_icon.setAttribute("class", 'fas fa-battery-full');
+							// } if (pi_data[j].battery >= 80) {
+							// 	battery_icon.setAttribute("class", 'fas fa-battery-three-quarters');
+							// } else {
+								
+							// }
+							
+
+							// $(".fas").append(battery_icon);
+							$(".car_data").text(pi_data[j].communication);
 						}
 					}	
 				}
