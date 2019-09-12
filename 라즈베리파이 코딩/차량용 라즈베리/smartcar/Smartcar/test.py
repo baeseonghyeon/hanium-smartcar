@@ -1,99 +1,108 @@
-#!/usr/bin/env python
-'''
-**********************************************************************
-* Filename    : ultra_sonic_avoidance.py
-* Description : An example for sensor car kit to followe light
-* Author      : Dream
-* Brand       : SunFounder
-* E-mail      : service@sunfounder.com
-* Website     : www.sunfounder.com
-* Update      : Dream    2016-09-27    New release
-**********************************************************************
-'''
-
-from SunFounder_Ultrasonic_Avoidance import Ultrasonic_Avoidance
+from SunFounder_Line_Follower import Line_Follower
 from picar import front_wheels
 from picar import back_wheels
 import time
 import picar
-import random
-
-force_turning = 0    # 0 = random direction, 1 = force left, 2 = force right, 3 = orderdly
 
 picar.setup()
 
-ua = Ultrasonic_Avoidance.Ultrasonic_Avoidance(20)
+REFERENCES = [200, 200, 200, 200, 200]
+forward_speed = 70
+backward_speed = 70
+turning_angle = 45
+
+max_off_track_count = 40
+
+delay = 0.0005
+
 fw = front_wheels.Front_Wheels(db='config')
 bw = back_wheels.Back_Wheels(db='config')
-fw.turning_max = 30
+lf = Line_Follower.Line_Follower()
 
-forward_speed = 70
-backward_speed = 50
-turn_speed = 50
+lf.references = REFERENCES
+fw.ready()
+bw.ready()
+fw.turning_max = 45
 
-back_distance = 15
-turn_distance = 30
+kim = lf.read_analog()
 
-timeout = 10
+flag = True
 
-def right():
-    fw.turn_right()
-    bw.forward()
-    bw.speed = turn_speed
-    time.sleep(0.5)
-    
-def straight():
-    fw.turn_straight()
-    bw.forward()
+for i in range(0,5):
+    lf.references[i] = kim[i] - 3
+print(lf.references)
+
+def main():
+    print('main on')
+    global turning_angle
+    off_track_count = 0
     bw.speed = forward_speed
-    time.sleep(0.5)
 
-def backward():
-    fw.turn_straight()
-    bw.backward()
-    bw.speed = backward_speed
-    time.sleep(0.5)
-    
-def stop():
-    bw.stop()
-    time.sleep(0.5)
-    
-def check_distance():
-    global count
+    a_step = 3
+    b_step = 10
+    c_step = 30
+    d_step = 45
+    bw.forward()
     while True:
-        distance = ua.get_distance()
-        print("distance: %scm" % distance)
-        if distance > 0:
-            count = 0
-            if distance < back_distance: # backward
-                stop()
-            elif distance < turn_distance: # turn
-                right()
+        if flag:
+            lt_status_now = lf.read_digital()
+            print(lt_status_now)
+            # Angle calculate
+            if  lt_status_now == [0,0,1,0,0]:
+                step = 0    
+            elif lt_status_now == [0,1,1,0,0] or lt_status_now == [0,0,1,1,0]:
+                step = a_step
+            elif lt_status_now == [0,1,0,0,0] or lt_status_now == [0,0,0,1,0]:
+                step = b_step
+            elif lt_status_now == [1,1,0,0,0] or lt_status_now == [0,0,0,1,1]:
+                step = c_step
+            elif lt_status_now == [1,0,0,0,0] or lt_status_now == [0,0,0,0,1]:
+                step = d_step
+
+            # Direction calculate
+            if  lt_status_now == [0,0,1,0,0]:
+                off_track_count = 0
+                fw.turn(90)
+            # turn right
+            elif lt_status_now in ([0,1,1,0,0],[0,1,0,0,0],[1,1,0,0,0],[1,0,0,0,0]):
+                off_track_count = 0
+                turning_angle = int(90 - step)
+            # turn left
+            elif lt_status_now in ([0,0,1,1,0],[0,0,0,1,0],[0,0,0,1,1],[0,0,0,0,1]):
+                off_track_count = 0
+                turning_angle = int(90 + step)
+            elif lt_status_now == [0,0,0,0,0]:
+                off_track_count += 1
+                if off_track_count > max_off_track_count:
+                    bw.speed = forward_speed
+                    bw.backward()
+                    
+                    lf.wait_tile_center()
+                    bw.stop()
+
+                    time.sleep(0.2)
+                    bw.speed = forward_speed
+                    bw.forward()
+                    time.sleep(0.2)
+
+                    
+
             else:
-                straight()
-
-        else:                       # forward
-            fw.turn_straight()
-            if count > timeout:  # timeout, stop;
-                bw.stop()
-            else:
-                backward()
-                count += 1     
-
-def start_avoidance():
-    print('start_avoidance')
-    count = 0
-    check_distance()
-
-
-def stop():
+                off_track_count = 0
+        
+            fw.turn(turning_angle)
+            time.sleep(delay)
+        
+def destroy():
     bw.stop()
-    fw.turn_straight()
-
-if __name__ == '__main__':
-    try:
-        start_avoidance()
-    except KeyboardInterrupt:
-        stop()
-
-
+    fw.turn(90)
+    
+@property
+def set_flag(new_flag):
+    flag = new_flag
+    
+try:
+    time.sleep(4)
+    main()
+except KeyboardInterrupt:
+    destroy()

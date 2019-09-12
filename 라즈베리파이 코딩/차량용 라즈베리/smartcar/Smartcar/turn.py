@@ -12,7 +12,7 @@
 '''
 
     
-from .SunFounder_Ultrasonic_Avoidance import Ultrasonic_Avoidance
+from SunFounder_Ultrasonic_Avoidance import Ultrasonic_Avoidance
 from picar import front_wheels
 from picar import back_wheels
 import time
@@ -99,3 +99,7 @@ def kimtest():
     except KeyboardInterrupt:
         stop()
 
+fw.turn_straight()
+time.sleep(1)
+#fw.turn_right()
+time.sleep(1)

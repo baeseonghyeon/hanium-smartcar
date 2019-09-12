@@ -21,9 +21,10 @@ right_dir= 135
 left_to_straight_dir = 98.6
 left_dir = 45
 
-REFERENCES = [200, 200, 200, 200, 200]
+REFERENCES = [287, 288, 270, 270, 285]
 max_off_track_count = 40
-delay = 0.0005
+turning_angle = 45
+delay = 0.01
 lf = Line_Follower.Line_Follower()
 
 
@@ -37,11 +38,12 @@ find_obstacle = 10
 check_obstacle = 0
 flag = 0
 stop_flag = 0
+line_flag = True
 
 kill_threads = False
 
-kim = lf.read_analog()
 URL = 'http://192.168.0.10:8000/kimtest'
+
 
 def check_distance():
     global kill_threads
@@ -81,13 +83,13 @@ def go():
     
     elif flag == 1:
         bw.speed = forward_speed
-        time.sleep(1.39)
+        time.sleep(1.4)
         
     elif flag == 2:
         flag = 1
         fw.turn(right_to_straight_dir)
         bw.speed = forward_speed
-        time.sleep(0.82)
+        time.sleep(1)
         
     elif flag == 3:
         flag =1
@@ -110,13 +112,15 @@ def right():
         fw.turn(right_to_straight_dir)
         bw.forward()
         bw.speed = forward_speed
-        time.sleep(0.13)
+        time.sleep(0.23)
 
     
     fw.turn(right_dir)
+    fw.turn(right_dir)
+    fw.turn(right_dir)
     bw.forward()
     bw.speed = turn_speed
-    time.sleep(4.15)
+    time.sleep(3.6)
     data = 0
 
     
@@ -132,7 +136,7 @@ def left():
     fw.turn(left_dir)
     bw.forward()
     bw.speed = turn_speed
-    time.sleep(3.44)
+    time.sleep(3)
 
 def back():
 
@@ -154,31 +158,46 @@ def stop():
 
 
 def kimtest(aaa):
-    global kill_threads, flag, URL, data
+    global kill_threads, flag, URL, data, lf, line_flag
     kimtest = aaa
     taetest = kimtest.split(' ')
     
-    th = threading.Thread(target=fw_check, name="fw_check")
+    kim = lf.read_analog()
+    for i in range(0,5):
+        lf.references[i] = REFERENCES[i]
+    print(lf.references)
+    th = threading.Thread(target=line_follower, name="line_follower")
     th.setDaemon(True)
     th.start()
     kill_threads = False
-    
+    line_flag = True
+    count = 0
+    time.sleep(0.5)
     for a in taetest:
         if stop_flag == 0:
+            count += 1
             if a == '1':
+                if taetest[count] == 2 or taetest[count] == 3:
+                    line_flag = False
+                    fw.turn(90)
+                line_flag = True
                 print('go')
-                
                 go()
             elif a == '2':
+                line_flag = False
                 print('right')
                 right()
+                line_flag = True
             elif a == '3':
+                line_flag = False
                 print('left')
+                line_flag = True
                 left()
             elif a == '4':
                 print('back')
                 back()
             else:
+                line_flag = False
                 print('stop')
                 stop()
                 kill_threads = True
@@ -216,3 +235,67 @@ def fw_check():
         time.sleep(0.3)
     sys.exit()
     return
+
+def main_line():
+    global turning_angle, lf, line_flag
+    off_track_count = 0
+
+    a_step = 3
+    b_step = 10
+    c_step = 30
+    d_step = 45
+    bw.forward()
+    while True:
+        if line_flag:
+            lt_status_now = lf.read_digital()
+            print(lt_status_now)
+            # Angle calculate
+            if  lt_status_now == [0,0,1,0,0]:
+                step = 0    
+            elif lt_status_now == [0,1,1,0,0] or lt_status_now == [0,0,1,1,0]:
+                step = a_step
+            elif lt_status_now == [0,1,0,0,0] or lt_status_now == [0,0,0,1,0]:
+                step = b_step
+            elif lt_status_now == [1,1,0,0,0] or lt_status_now == [0,0,0,1,1]:
+                step = c_step
+            elif lt_status_now == [1,0,0,0,0] or lt_status_now == [0,0,0,0,1]:
+                step = d_step
+
+            # Direction calculate
+            if  lt_status_now == [0,0,1,0,0]:
+                off_track_count = 0
+                fw.turn(90)
+            # turn right
+            elif lt_status_now in ([0,1,1,0,0],[0,1,0,0,0],[1,1,0,0,0],[1,0,0,0,0]):
+                off_track_count = 0
+                turning_angle = int(90 - step)
+            # turn left
+            elif lt_status_now in ([0,0,1,1,0],[0,0,0,1,0],[0,0,0,1,1],[0,0,0,0,1]):
+                off_track_count = 0
+                turning_angle = int(90 + step)
+            elif lt_status_now == [0,0,0,0,0]:
+                off_track_count += 1
+
+                    
+
+            else:
+                off_track_count = 0
+        
+            fw.turn(turning_angle)
+            time.sleep(delay)
+        URL = 'http://192.168.0.10:8000/test'
+        response = requests.post(URL, {'kim': 'hello'})
+        
+def destroy():
+    bw.stop()
+    fw.turn(90)
+    
+
+def line_follower():
+    
+    try:
+        time.sleep(0.5)
+        main_line()
+
+    except KeyboardInterrupt:
+        destroy()
