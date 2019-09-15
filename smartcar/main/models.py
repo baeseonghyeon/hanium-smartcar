@@ -33,8 +33,9 @@ class CarInfo(models.Model):
     target_x = models.CharField(max_length=2, default='')
     target_y = models.CharField(max_length=2, default='')
     position = models.CharField(max_length=2, default='3')
-    for_commute = models.CharField(max_length=3, default='')
+    for_commute = models.CharField(max_length=3, default='1')
     now_behavior = models.CharField(max_length=2, default='')
+    car_finish = models.CharField(max_length=2, default='')
 
 
 

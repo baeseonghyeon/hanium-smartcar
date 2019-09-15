@@ -371,6 +371,29 @@ function sleep(num){
 				 if(now.getTime() > stop)return;
 			 }
 }
+function emergency_stop(){
+    clearInterval(playCap)
+    $.ajax({
+        type : 'POST',
+        url : 'http://127.0.0.1:8000/main/pi_test4',
+        data : {
+            'finish': 'true'
+        },
+        dataType:'json',
+        success: function(){
+        }
+    });
+    $.ajax({
+        type : 'POST',
+        url : 'http://127.0.0.1:8000/main/pi_test5',
+        data : {
+            'finish': 'true'
+        },
+        dataType:'json',
+        success: function(){
+        }
+    });
+}
 function map(route, x, y, a, b){
     var car_route1 = new Array()
     var car_route2 = new Array()

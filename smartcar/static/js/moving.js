@@ -15,20 +15,26 @@ playMap = setInterval(function() {
 }, 3000);
 var x = 0
 playCap = setInterval(function() {
-    console.log('시작'+x)
     $.ajax({
         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
         dataType : 'json',
         success : function (data) {
+        console.log(data[0].for_commute)
             if(data[0].for_commute == 2*x){
-                console.log(data[0].now_behavior);
+                console.log(data[0].now_behavior+'실행');
+                console.log('x', data[0].now_x)
+                console.log('y', data[0].now_y)
                 x += 1;
-                console.log('중간'+x)
                 moving1(data[0].id, data[0].now_behavior)
+                sleep(100)
+                if(data[0].car_finish == '99'){
+                    console.log('끝!')
+                    map()
+                    clearInterval(playCap)
+                }
             }
         }
     });
-    console.log('끝'+x)
 }, 1000);
 // 차 2대일때
 //playMap1 = setInterval(function() {
@@ -74,7 +80,6 @@ function sample(){
         }
     });
 }
-
 function position_refresh(){
     var clicked_car = document.getElementById("car_number").value
     var target_x = document.getElementById("a").value
@@ -114,3 +119,23 @@ function moving1(i, code){
         if(code==34){$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
                      $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)}
 }
+function m11(i){$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)}
+function m12(i){$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)}
+function m13(i){$(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)}
+function m14(i){$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)}
+function m21(i){$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
+                $(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)}
+function m22(i){$(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
+                $(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)}
+function m23(i){$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
+                $(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)}
+function m24(i){$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
+                $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)}
+function m31(i){$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
+                $(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)}
+function m32(i){$(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
+                $(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)}
+function m33(i){$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
+                $(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)}
+function m34(i){$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
+                $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)}

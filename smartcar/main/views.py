@@ -16,7 +16,13 @@ def Car_input(request):
     carin.pi_id = PiInfo.objects.get(pi_id=pi_id)
     carin.save()
     return HttpResponseRedirect('/')
+@csrf_exempt
+def emergency_stop(request):
+    pi_test4(request).exit(1)
+    pi_test5(request).exit(1)
+    return HttpResponseRedirect('/')
 
+#서버 코드 / nfc에서 데이터를 받음
 @csrf_exempt
 def pi_test3(request):
     # data = request.GET
@@ -37,10 +43,10 @@ def pi_test3(request):
     bfs(request, carin.id, carin.now_x, carin.now_y, destination_x, destination_y)
     return HttpResponseRedirect('/')
 
+#rc_pi코드 / 서버에서 데이터를 받음
 @csrf_exempt
 def pi_test4(request):
     index = 0
-    move = [0 for x in range(20)]
     i = 0
     route = request.POST['code'].split(']')
     route2 = [[0 for x in range(2)] for y in range(len(route)-1)]
@@ -49,6 +55,7 @@ def pi_test4(request):
     for x in range(len(route2)-1):
         for y in range(2):
             route2[x][y] = int(route2[x][y])
+    move = [0 for x in range(len(route2) - 2)]
     try:
         while 1:
             if route2[index + 2][0] == route2[index][0] + 1:
@@ -124,34 +131,158 @@ def pi_test4(request):
     except (IndexError, TypeError):
         pass
     print(move)
-    id = request.POST['car_id']
+    print(len(move))
+    ix = len(move)-1
+    if move[ix-1] == '11' or '12' or '13' or '14':
+        move[ix] = move[ix-1]
+    pi_id = request.POST['car_id']
     for x in range(len(move)):
-        car_pi(move[x], 2*x, id, request)
+        print(x)
+        if x == len(move)-1:
+            print('마지막')
+            car_finish(move[x], 2*x, pi_id, '99', request)
+            break
+        car_pi(move[x], 2*x, pi_id, request)
     return HttpResponseRedirect('/')
 
+#rc_pi수행 코드(finish버전)
 @csrf_exempt
-def car_pi(code, index, id, request):
+def car_finish(code, index, pi_id, finish, request):
     data = {
         'code': code,
         'index': index,
-        'id': id
+        'pi_id': pi_id,
+        'finish': '99'
     }
-    time.sleep(3)
+    time.sleep(2)
+    URL = 'http://127.0.0.1:8000/main/pi_test6'
+    request = requests.post(URL, params=data)
+    return HttpResponseRedirect('/')
+
+#rc_pi수행 코드
+@csrf_exempt
+def car_pi(code, index, pi_id, request):
+    data = {
+        'code': code,
+        'index': index,
+        'pi_id': pi_id
+    }
+    time.sleep(2)
     URL = 'http://127.0.0.1:8000/main/pi_test5'
     request = requests.post(URL, params=data)
     return HttpResponseRedirect('/')
 
+#서버코드 / rc_pi에서 데이터 받음
 @csrf_exempt
 def pi_test5(request):
     data = request.GET
     diction = data.dict()
-    carin = CarInfo.objects.get(id=diction['id'])
+    carin = CarInfo.objects.get(id=diction['pi_id'])
     carin.for_commute = diction['index']
     carin.now_behavior = diction['code']
-    carin.save()
-    print(diction['id'])
+    code = diction['code']
     print(diction['index'])
     print(diction['code'])
+    modify_xx = carin.now_x
+    modify_yy = carin.now_y
+    before_x = carin.now_x
+    before_y = carin.now_y
+    if code == '11':
+        modify_yy = int(before_y) + 1
+    elif code == '12':
+        modify_xx = int(before_x) + 1
+    elif code == '13':
+        modify_yy = int(before_y) - 1
+    elif code == '14':
+        modify_xx = int(before_x) - 1
+    elif code == '21':
+        modify_xx = int(before_x) + 1
+        modify_yy = int(before_y) + 1
+    elif code == '22':
+        modify_xx = int(before_x) - 1
+        modify_yy = int(before_y) - 1
+    elif code == '23':
+        modify_xx = int(before_x) - 1
+        modify_yy = int(before_y) + 1
+    elif code == '24':
+        modify_xx = int(before_x) + 1
+        modify_yy = int(before_y) - 1
+    elif code == '31':
+        modify_xx = int(before_x) - 1
+        modify_yy = int(before_y) + 1
+    elif code == '32':
+        modify_xx = int(before_x) + 1
+        modify_yy = int(before_y) - 1
+    elif code == '33':
+        modify_xx = int(before_x) + 1
+        modify_yy = int(before_y) + 1
+    elif code == '34':
+        modify_xx = int(before_x) - 1
+        modify_yy = int(before_y) - 1
+    carin.now_x = modify_xx
+    carin.now_y = modify_yy
+    carin.save()
+    return HttpResponseRedirect('/')
+
+#서버코드 / rc_pi에서 데이터 받음(finish버전)
+@csrf_exempt
+def pi_test6(request):
+    print('finish함수실행')
+    data = request.GET
+    diction = data.dict()
+    carin = CarInfo.objects.get(id=diction['pi_id'])
+    carin.for_commute = diction['index']
+    carin.now_behavior = diction['code']
+    carin.car_finish = diction['finish']
+    code = diction['code']
+    modify_xx = carin.now_x
+    modify_yy = carin.now_y
+    before_x = carin.now_x
+    before_y = carin.now_y
+    if code == '11':
+        modify_yy = int(before_y) + 1
+    elif code == '12':
+        modify_xx = int(before_x) + 1
+    elif code == '13':
+        modify_yy = int(before_y) - 1
+    elif code == '14':
+        modify_xx = int(before_x) - 1
+    elif code == '21':
+        modify_xx = int(before_x) + 1
+        modify_yy = int(before_y) + 1
+    elif code == '22':
+        modify_xx = int(before_x) - 1
+        modify_yy = int(before_y) - 1
+    elif code == '23':
+        modify_xx = int(before_x) - 1
+        modify_yy = int(before_y) + 1
+    elif code == '24':
+        modify_xx = int(before_x) + 1
+        modify_yy = int(before_y) - 1
+    elif code == '31':
+        modify_xx = int(before_x) - 1
+        modify_yy = int(before_y) + 1
+    elif code == '32':
+        modify_xx = int(before_x) + 1
+        modify_yy = int(before_y) - 1
+    elif code == '33':
+        modify_xx = int(before_x) + 1
+        modify_yy = int(before_y) + 1
+    elif code == '34':
+        modify_xx = int(before_x) - 1
+        modify_yy = int(before_y) - 1
+    carin.now_x = modify_xx
+    carin.now_y = modify_yy
+    carin.car_route = '1'
+    carin.car_code = '1'
+    carin.target_x = ''
+    carin.target_y = ''
+    # carin.now_behavior = ''
+    carin.save()
+    db_map = MapInfo.objects.get(id=1)
+    db_map.map = '8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s'
+    db_map.save()
+    print('finish끝')
     return HttpResponseRedirect('/')
 
 @csrf_exempt
