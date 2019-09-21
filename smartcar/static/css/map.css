@@ -24,14 +24,14 @@
 	text-align: center;
 	vertical-align: bottom;
 	line-height: 2;
-	border: 1px solid #55616f;
+	/* border: 1px solid #55616f; */
 }
 
 /* 장애물, 바다 */
 #route2 {
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
-	background-color: #03a9f4;
+	background-color: #6c7988;
 }
 
 /* 출발지 */

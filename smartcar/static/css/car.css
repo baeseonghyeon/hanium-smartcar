@@ -72,3 +72,14 @@
     border: 2px solid #925fb1;
     position: absolute;
 }
+
+/* car rotate */
+.car-right {
+	transform: rotate(90deg);
+} 
+.car-left {
+	transform: rotate(-90deg);
+}
+.car-back {
+	transform: rotate(-180deg);;
+}

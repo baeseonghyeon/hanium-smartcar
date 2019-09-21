@@ -60,7 +60,7 @@ function map(){
                                     var map_span = document.createElement("span");
                                     map_span.setAttribute("id", "route1");
                                     map_span.setAttribute("class", i+'a'+j);
-                                    map_span.innerHTML = 'Con<br>'+i+'-'+j;
+                                    // map_span.innerHTML = 'Con<br>'+i+'-'+j;
                                     $("#map").append(map_span);
                                 }
                                 else if(map_array2[i][j]==2){

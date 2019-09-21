@@ -8,7 +8,7 @@ $(document).ready(function(){
                  $("#car_count").text(data.length)
                  create_car(data);
                  }
-     });
+	 });
 });
 
 function create_car(Car){
@@ -67,6 +67,19 @@ function create_car(Car){
 // 클릭 했을 때
 function car_detail(clicked_id){
 var id = clicked_id;
+
+if (id == clicked_id) {
+	if ($('#'+id).hasClass('highlight')) {
+		$('#'+id).removeClass('highlight');
+	}
+	else {
+		$('#'+id).addClass('highlight');
+	}
+} else {
+	$('#'+id).addClass('highlight');
+}
+	
+	
         $.ajax({
             url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
             dataType : 'json',
