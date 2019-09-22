@@ -88,9 +88,7 @@ var id = clicked_id;
 					for(var j=0; j<=pi_data.length-1; j++){
 						if(data[clicked_id].pi_id ==pi_data[j].pi_id){
 							$("#car_type").text("["+pi_data[j].car_type+"]");
-
 							$(".car_battery").text(pi_data[j].battery);
-
 							// var battery_icon = document.createElement("i");
 
 							// if (pi_data[j].battery >= 100 ) {

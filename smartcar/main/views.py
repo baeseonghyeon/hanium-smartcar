@@ -5,7 +5,7 @@ from map.models import MapInfo
 from django.http import HttpResponseRedirect, HttpResponse
 import requests
 
-import time
+import time, sys, trace, threading
 
 @csrf_exempt
 def Car_input(request):
@@ -16,26 +16,20 @@ def Car_input(request):
     carin.pi_id = PiInfo.objects.get(pi_id=pi_id)
     carin.save()
     return HttpResponseRedirect('/')
-@csrf_exempt
-def emergency_stop(request):
-    pi_test4(request).exit(1)
-    pi_test5(request).exit(1)
-    return HttpResponseRedirect('/')
 
 #서버 코드 / nfc에서 데이터를 받음
 @csrf_exempt
 def pi_test3(request):
-    # data = request.GET
-    # pi_con = data.dict()
-    # pi_id = pi_con['car_id']
-    # con_id = pi_con['ConInf']
-    # destination_x = pi_con['destination_x']
-    # destination_y = pi_con['destination_y']
-
-    pi_id = request.POST['sample_car_id']
-    con_id = request.POST['con_id']
-    destination_x = request.POST['x']
-    destination_y = request.POST['y']
+    data = request.GET
+    pi_con = data.dict()
+    pi_id = pi_con['car_id']
+    con_id = pi_con['ConInf']
+    destination_x = pi_con['destination_x']
+    destination_y = pi_con['destination_y']
+    # pi_id = request.POST['sample_car_id']
+    # con_id = request.POST['con_id']
+    # destination_x = request.POST['x']
+    # destination_y = request.POST['y']
     carin = CarInfo.objects.get(id=pi_id)
     if carin.container_id == None:
         carin.container_id = ContainerInfo.objects.get(container_id=con_id)
@@ -43,134 +37,145 @@ def pi_test3(request):
     bfs(request, carin.id, carin.now_x, carin.now_y, destination_x, destination_y)
     return HttpResponseRedirect('/')
 
-#rc_pi코드 / 서버에서 데이터를 받음
+#rc_pi코드 / 긴급 제어
 @csrf_exempt
-def pi_test4(request):
-    index = 0
-    i = 0
-    route = request.POST['code'].split(']')
-    route2 = [[0 for x in range(2)] for y in range(len(route)-1)]
-    for x in range(len(route)-1):
-        route2[x] = route[x].split('a')
-    for x in range(len(route2)-1):
-        for y in range(2):
-            route2[x][y] = int(route2[x][y])
-    move = [0 for x in range(len(route2) - 2)]
-    try:
-        while 1:
-            if route2[index + 2][0] == route2[index][0] + 1:
-                if route2[index + 2][1] == route2[index][1] + 1:
-                    if route2[index][0] == route2[index][0]:
-                        move[i] = '21'
-                        index += 2
-                        i += 1
-                        continue
-                    elif route2[index +1][1] == route2[index][1]:
-                        move[i] = '33'
-                        index += 2
-                        i += 1
-                        continue
-            if route2[index + 2][0] == route2[index][0] - 1:
-                if route2[index + 2][1] == route2[index][1] + 1:
-                    if route2[index][0] == route2[index + 1][0]:
-                        move[i] = '31'
-                        index += 2
-                        i += 1
-                        continue
-                    elif route2[index + 1][1] == route2[index][1]:
-                        move[i] = '23'
-                        index += 2
-                        i += 1
-                continue
-            if route2[index + 2][0] == route2[index][0] - 1:
-                if route2[index + 2][1] == route2[index][1] - 1:
-                    if route2[index][0] == route2[index + 1][0]:
-                        move[i] = '22'
-                        index += 2
-                        i += 1
-                        continue
-                    elif route2[index + 1][1] == route2[index][1]:
-                        move[i] = '34'
-                        index += 2
-                        i += 1
-                        continue
-            if route2[index + 2][0] == route2[index][0] + 1:
-                if route2[index + 2][1] == route2[index][1] - 1:
-                    if route2[index + 1][1] == route2[index][1]:
-                        move[i] = '24'
-                        index += 2
-                        i += 1
-                        continue
-                    elif route2[index + 1][0] == route2[index][0]:
-                        move[i] = '32'
-                        index += 2
-                        i += 1
-                        continue
-            if route2[index][0] == route2[index + 1][0]:
-                if route2[index][1] > route2[index + 1][1]:
-                    move[i] = '13'
-                    index += 1
-                    i += 1
-                    continue
-                if route2[index][1] < route2[index + 1][1]:
-                    move[i] = '11'
-                    index += 1
-                    i += 1
-                    continue
-            if route2[index][1] == route2[index + 1][1]:
-                if route2[index + 1][0] > route2[index][0]:
-                    move[i] = '12'
-                    index += 1
-                    i += 1
-                    continue
-                if route2[index][0] > route2[index + 1][0]:
-                    move[i] = '14'
-                    index += 1
-                    i += 1
-                    continue
-    except (IndexError, TypeError):
-        pass
-    print(move)
-    print(len(move))
-    ix = len(move)-1
-    if move[ix-1] == '11' or '12' or '13' or '14':
-        move[ix] = move[ix-1]
-    pi_id = request.POST['car_id']
-    for x in range(len(move)):
-        print(x)
-        if x == len(move)-1:
-            print('마지막')
-            car_finish(move[x], 2*x, pi_id, '99', request)
-            break
-        car_pi(move[x], 2*x, pi_id, request)
+def emer(request):
+    data = request.POST['emer']
+    carin = CarInfo.objects.get(id=1)
+    carin.sample = data
+    carin.save()
     return HttpResponseRedirect('/')
 
-#rc_pi수행 코드(finish버전)
-@csrf_exempt
-def car_finish(code, index, pi_id, finish, request):
-    data = {
-        'code': code,
-        'index': index,
-        'pi_id': pi_id,
-        'finish': '99'
-    }
-    time.sleep(2)
-    URL = 'http://127.0.0.1:8000/main/pi_test6'
-    request = requests.post(URL, params=data)
-    return HttpResponseRedirect('/')
-
-#rc_pi수행 코드
-@csrf_exempt
-def car_pi(code, index, pi_id, request):
-    data = {
-        'code': code,
-        'index': index,
-        'pi_id': pi_id
-    }
-    time.sleep(2)
-    URL = 'http://127.0.0.1:8000/main/pi_test5'
-    request = requests.post(URL, params=data)
-    return HttpResponseRedirect('/')
+# #rc_pi코드 / 서버에서 데이터를 받음
+# @csrf_exempt
+# def pi_test4(request):
+#     index = 0
+#     i = 0
+#     route = request.POST['code'].split(']')
+#     route2 = [[0 for x in range(2)] for y in range(len(route)-1)]
+#     for x in range(len(route)-1):
+#         route2[x] = route[x].split('a')
+#     for x in range(len(route2)-1):
+#         for y in range(2):
+#             route2[x][y] = int(route2[x][y])
+#     move = [0 for x in range(len(route2) - 2)]
+#     try:
+#         while 1:
+#             if route2[index + 2][0] == route2[index][0] + 1:
+#                 if route2[index + 2][1] == route2[index][1] + 1:
+#                     if route2[index][0] == route2[index][0]:
+#                         move[i] = '21'
+#                         index += 2
+#                         i += 1
+#                         continue
+#                     elif route2[index + 1][1] == route2[index][1]:
+#                         move[i] = '33'
+#                         index += 2
+#                         i += 1
+#                         continue
+#             if route2[index + 2][0] == route2[index][0] - 1:
+#                 if route2[index + 2][1] == route2[index][1] + 1:
+#                     if route2[index][0] == route2[index + 1][0]:
+#                         move[i] = '31'
+#                         index += 2
+#                         i += 1
+#                         continue
+#                     elif route2[index + 1][1] == route2[index][1]:
+#                         move[i] = '23'
+#                         index += 2
+#                         i += 1
+#                 continue
+#             if route2[index + 2][0] == route2[index][0] - 1:
+#                 if route2[index + 2][1] == route2[index][1] - 1:
+#                     if route2[index][0] == route2[index + 1][0]:
+#                         move[i] = '22'
+#                         index += 2
+#                         i += 1
+#                         continue
+#                     elif route2[index + 1][1] == route2[index][1]:
+#                         move[i] = '34'
+#                         index += 2
+#                         i += 1
+#                         continue
+#             if route2[index + 2][0] == route2[index][0] + 1:
+#                 if route2[index + 2][1] == route2[index][1] - 1:
+#                     if route2[index + 1][1] == route2[index][1]:
+#                         move[i] = '24'
+#                         index += 2
+#                         i += 1
+#                         continue
+#                     elif route2[index + 1][0] == route2[index][0]:
+#                         move[i] = '32'
+#                         index += 2
+#                         i += 1
+#                         continue
+#             if route2[index][0] == route2[index + 1][0]:
+#                 if route2[index][1] > route2[index + 1][1]:
+#                     move[i] = '13'
+#                     index += 1
+#                     i += 1
+#                     continue
+#                 if route2[index][1] < route2[index + 1][1]:
+#                     move[i] = '11'
+#                     index += 1
+#                     i += 1
+#                     continue
+#             if route2[index][1] == route2[index + 1][1]:
+#                 if route2[index + 1][0] > route2[index][0]:
+#                     move[i] = '12'
+#                     index += 1
+#                     i += 1
+#                     continue
+#                 if route2[index][0] > route2[index + 1][0]:
+#                     move[i] = '14'
+#                     index += 1
+#                     i += 1
+#                     continue
+#     except (IndexError, TypeError):
+#         pass
+#     print(move)
+#     print(len(move))
+#     ix = len(move)-1
+#     if move[ix-1] == '11' or '12' or '13' or '14':
+#         move[ix] = move[ix-1]
+#     pi_id = request.POST['car_id']
+#     for x in range(len(move)):
+#         carin = CarInfo.objects.get(id=1)
+#         if carin.sample == '0':
+#             break
+#         if x == len(move)-1:
+#             print('마지막')
+#             car_finish(move[x], 2*x, pi_id, '99', request)
+#             break
+#         car_pi(move[x], 2*x, pi_id, request)
+#     return HttpResponseRedirect('/')
+#
+# #rc_pi수행 코드(finish버전)
+# @csrf_exempt
+# def car_finish(code, index, pi_id, finish, request):
+#     data = {
+#         'code': code,
+#         'index': index,
+#         'pi_id': pi_id,
+#         'finish': '99'
+#     }
+#     time.sleep(2)
+#     URL = 'http://127.0.0.1:8000/main/pi_test6'
+#     request = requests.post(URL, params=data)
+#     return HttpResponseRedirect('/')
+#
+# #rc_pi수행 코드
+# @csrf_exempt
+# def car_pi(code, index, pi_id, request):
+#     data = {
+#         'code': code,
+#         'index': index,
+#         'pi_id': pi_id,
+#     }
+#     time.sleep(2)
+#     URL = 'http://127.0.0.1:8000/main/pi_test5'
+#     request = requests.post(URL, params=data)
+#     return HttpResponseRedirect('/')
 
 #서버코드 / rc_pi에서 데이터 받음
 @csrf_exempt
@@ -181,46 +186,84 @@ def pi_test5(request):
     carin.for_commute = diction['index']
     carin.now_behavior = diction['code']
     code = diction['code']
-    print(diction['index'])
-    print(diction['code'])
     modify_xx = carin.now_x
     modify_yy = carin.now_y
     before_x = carin.now_x
     before_y = carin.now_y
-    if code == '11':
-        modify_yy = int(before_y) + 1
-    elif code == '12':
-        modify_xx = int(before_x) + 1
-    elif code == '13':
-        modify_yy = int(before_y) - 1
-    elif code == '14':
-        modify_xx = int(before_x) - 1
-    elif code == '21':
-        modify_xx = int(before_x) + 1
-        modify_yy = int(before_y) + 1
-    elif code == '22':
-        modify_xx = int(before_x) - 1
-        modify_yy = int(before_y) - 1
-    elif code == '23':
-        modify_xx = int(before_x) - 1
-        modify_yy = int(before_y) + 1
-    elif code == '24':
-        modify_xx = int(before_x) + 1
-        modify_yy = int(before_y) - 1
-    elif code == '31':
-        modify_xx = int(before_x) - 1
-        modify_yy = int(before_y) + 1
-    elif code == '32':
-        modify_xx = int(before_x) + 1
-        modify_yy = int(before_y) - 1
-    elif code == '33':
-        modify_xx = int(before_x) + 1
-        modify_yy = int(before_y) + 1
-    elif code == '34':
-        modify_xx = int(before_x) - 1
-        modify_yy = int(before_y) - 1
+    position = carin.position
+    if position == '3':
+        if code == '1':
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '11'
+        elif code == '2':
+            modify_xx = int(before_x) + 1
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '21'
+            position = '4'
+        elif code == '3':
+            modify_xx = int(before_x) - 1
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '31'
+            position = '1'
+        elif code == '4':
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '13'
+    elif position == '4':
+        if code == '1':
+            modify_xx = int(before_x) + 1
+            carin.now_behavior = '12'
+        elif code == '2':
+            modify_xx = int(before_x) + 1
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '24'
+            position = '2'
+        elif code == '3':
+            modify_xx = int(before_x) + 1
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '33'
+            position = 3
+        elif code == '4':
+            modify_xx = int(before_x) - 1
+            carin.now_behavior = '14'
+    elif position == '2':
+        if code == '1':
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '13'
+        elif code == '2':
+            modify_xx = int(before_x) - 1
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '22'
+            position = '1'
+        elif code == '3':
+            modify_xx = int(before_x) + 1
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '32'
+            position = '4'
+        elif code == '4':
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '11'
+    elif position == '1':
+        if code == '1':
+            modify_xx = int(before_x) - 1
+            carin.now_behavior = '14'
+        elif code == '2':
+            modify_xx = int(before_x) - 1
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '23'
+            position = '3'
+        elif code == '3':
+            modify_xx = int(before_x) - 1
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '34'
+            position = '2'
+        elif code == '4':
+            modify_xx = int(before_x) + 1
+            carin.now_behavior = '12'
+    print(modify_xx)
+    print(modify_yy)
     carin.now_x = modify_xx
     carin.now_y = modify_yy
+    carin.position = position
     carin.save()
     return HttpResponseRedirect('/')
 
@@ -239,38 +282,77 @@ def pi_test6(request):
     modify_yy = carin.now_y
     before_x = carin.now_x
     before_y = carin.now_y
-    if code == '11':
-        modify_yy = int(before_y) + 1
-    elif code == '12':
-        modify_xx = int(before_x) + 1
-    elif code == '13':
-        modify_yy = int(before_y) - 1
-    elif code == '14':
-        modify_xx = int(before_x) - 1
-    elif code == '21':
-        modify_xx = int(before_x) + 1
-        modify_yy = int(before_y) + 1
-    elif code == '22':
-        modify_xx = int(before_x) - 1
-        modify_yy = int(before_y) - 1
-    elif code == '23':
-        modify_xx = int(before_x) - 1
-        modify_yy = int(before_y) + 1
-    elif code == '24':
-        modify_xx = int(before_x) + 1
-        modify_yy = int(before_y) - 1
-    elif code == '31':
-        modify_xx = int(before_x) - 1
-        modify_yy = int(before_y) + 1
-    elif code == '32':
-        modify_xx = int(before_x) + 1
-        modify_yy = int(before_y) - 1
-    elif code == '33':
-        modify_xx = int(before_x) + 1
-        modify_yy = int(before_y) + 1
-    elif code == '34':
-        modify_xx = int(before_x) - 1
-        modify_yy = int(before_y) - 1
+    position = carin.position
+    if position == '3':
+        if code == '1':
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '11'
+        elif code == '2':
+            modify_xx = int(before_x) + 1
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '21'
+            position = '4'
+        elif code == '3':
+            modify_xx = int(before_x) - 1
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '31'
+            position = '1'
+        elif code == '4':
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '13'
+    elif position == '4':
+        if code == '1':
+            modify_xx = int(before_x) + 1
+            carin.now_behavior = '12'
+        elif code == '2':
+            modify_xx = int(before_x) + 1
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '24'
+            position = '2'
+        elif code == '3':
+            modify_xx = int(before_x) + 1
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '33'
+            position = 3
+        elif code == '4':
+            modify_xx = int(before_x) - 1
+            carin.now_behavior = '14'
+    elif position == '2':
+        if code == '1':
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '13'
+        elif code == '2':
+            modify_xx = int(before_x) - 1
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '22'
+            position = '1'
+        elif code == '3':
+            modify_xx = int(before_x) + 1
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '32'
+            position = '4'
+        elif code == '4':
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '11'
+    elif position == '1':
+        if code == '1':
+            modify_xx = int(before_x) - 1
+            carin.now_behavior = '14'
+        elif code == '2':
+            modify_xx = int(before_x) - 1
+            modify_yy = int(before_y) + 1
+            carin.now_behavior = '23'
+            position = '3'
+        elif code == '3':
+            modify_xx = int(before_x) - 1
+            modify_yy = int(before_y) - 1
+            carin.now_behavior = '34'
+            position = '2'
+        elif code == '4':
+            modify_xx = int(before_x) + 1
+            carin.now_behavior = '12'
+    print(modify_xx)
+    print(modify_yy)
     carin.now_x = modify_xx
     carin.now_y = modify_yy
     carin.car_route = '1'
@@ -509,6 +591,7 @@ def bfs(request, car_id, xxx, yyy, aaa, bbb):
     for x in range(path1):
         for y in range(2):
             value2[x][y] = int(value2[x][y])
+
     #pi로 전송할 데이터 뽑아내기
     index = 0
     code = ''

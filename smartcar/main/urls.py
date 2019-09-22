@@ -14,8 +14,8 @@ urlpatterns = [
     path('right_xy', views.right_xy, name='right_xy'),
     path('left_xy', views.left_xy, name='left_xy'),
     path('pi_test3', views.pi_test3, name='pi_test3'),
-    path('pi_test4', views.pi_test4, name='pi_test4'),
+    # path('pi_test4', views.pi_test4, name='pi_test4'),
     path('pi_test5', views.pi_test5, name='pi_test5'),
     path('pi_test6', views.pi_test6, name='pi_test6'),
-    path('emergency_stop', views.emergency_stop, name='emergency_stop'),
+    path('emer', views.emer, name='emer'),
 ]

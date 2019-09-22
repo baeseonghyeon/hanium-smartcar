@@ -1,7 +1,6 @@
 function new_position(posi){
     var index = $("#car_number").val()
     var position = posi
-    console.log('도착!')
     $.ajax({
         type : 'POST',
         url : 'http://127.0.0.1:8000/main/position',
@@ -28,16 +27,16 @@ var index = $("#car_number").val()
             }
         });
     var a = '1 '
-        <!--$.ajax({-->
-            <!--type : 'POST',-->
-            <!--url : 'http://192.168.0.9:8000',-->
-            <!--dataType:'json',-->
-            <!--data : {-->
-            <!--'bbb': a-->
-            <!--},-->
-            <!--success: function(){-->
-            <!--}-->
-        <!--});-->
+        $.ajax({
+            type : 'POST',
+            url : 'http://192.168.0.9:8000',
+            dataType:'json',
+            data : {
+            'bbb': a
+            },
+            success: function(){
+            }
+        });
 }
 function straight_check(x, y, p){
     var index = $("#car_number").val()
@@ -115,16 +114,16 @@ function back(){
             }
         });
     var a = '4 '
-        <!--$.ajax({-->
-            <!--type : 'POST',-->
-            <!--url : 'http://192.168.0.9:8000',-->
-            <!--dataType:'json',-->
-            <!--data : {-->
-            <!--'bbb': a-->
-            <!--},-->
-            <!--success: function(){-->
-            <!--}-->
-        <!--});-->
+        $.ajax({
+            type : 'POST',
+            url : 'http://192.168.0.9:8000',
+            dataType:'json',
+            data : {
+            'bbb': a
+            },
+            success: function(){
+            }
+        });
 }
 function back_xy(){
 	var index = $("#car_number").val()
@@ -203,16 +202,16 @@ function right(){
         });
 
     var a = '2 '
-        <!--$.ajax({-->
-            <!--type : 'POST',-->
-            <!--url : 'http://192.168.0.9:8000',-->
-            <!--dataType:'json',-->
-            <!--data : {-->
-            <!--'bbb': a-->
-            <!--},-->
-            <!--success: function(){-->
-            <!--}-->
-        <!--});-->
+        $.ajax({
+            type : 'POST',
+            url : 'http://192.168.0.9:8000',
+            dataType:'json',
+            data : {
+            'bbb': a
+            },
+            success: function(){
+            }
+        });
 }
 function right_xy(){
 	var index = $("#car_number").val()
@@ -290,16 +289,16 @@ function left(){
             }
         });
     var a = '3 '
-        <!--$.ajax({-->
-            <!--type : 'POST',-->
-            <!--url : 'http://192.168.0.9:8000',-->
-            <!--dataType:'json',-->
-            <!--data : {-->
-            <!--'bbb': a-->
-            <!--},-->
-            <!--success: function(){-->
-            <!--}-->
-        <!--});-->
+        $.ajax({
+            type : 'POST',
+            url : 'http://192.168.0.9:8000',
+            dataType:'json',
+            data : {
+            'bbb': a
+            },
+            success: function(){
+            }
+        });
 }
 function left_check(x, y, p){
     var index = $("#car_number").val()
@@ -375,19 +374,9 @@ function emergency_stop(){
     clearInterval(playCap)
     $.ajax({
         type : 'POST',
-        url : 'http://127.0.0.1:8000/main/pi_test4',
+        url : 'http://192.168.0.12:8000/emer',
         data : {
-            'finish': 'true'
-        },
-        dataType:'json',
-        success: function(){
-        }
-    });
-    $.ajax({
-        type : 'POST',
-        url : 'http://127.0.0.1:8000/main/pi_test5',
-        data : {
-            'finish': 'true'
+            'emer': '0',
         },
         dataType:'json',
         success: function(){
