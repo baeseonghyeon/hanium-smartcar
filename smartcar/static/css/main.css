@@ -128,3 +128,7 @@
 	background-color: #28b5b8;
 	color: white;
 }
+.highlight {
+	background: rgba(255,255,255,0.2);
+    border: 2px solid #0eac6a;
+}
