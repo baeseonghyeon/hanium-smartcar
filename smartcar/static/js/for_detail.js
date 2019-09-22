@@ -384,6 +384,8 @@ function emergency_stop(){
     });
 }
 function map(route, x, y, a, b){
+    $('#now').text(x+','+y);
+    $('#destination').text(a+','+b);
     var car_route1 = new Array()
     var car_route2 = new Array()
     car_route = route

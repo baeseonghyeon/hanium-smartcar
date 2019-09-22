@@ -12,6 +12,7 @@ playMap = setInterval(function() {
         }
     });
 }, 3000);
+// detail 페이지로 넘어가면 x가 1로 초기화되서 if 코드가 수행안됨
 var x = 1
 playCap = setInterval(function() {
     $.ajax({

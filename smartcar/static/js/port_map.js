@@ -77,6 +77,7 @@ function map(){
                                         for(var kk=1; kk<=data_car.length; kk++){
                                             var map_div = document.createElement("div");
                                             map_div.setAttribute("class", "carcar"+kk);
+                                            map_div.setAttribute("id", "carcar"+(kk-1));
                                             map_div.innerHTML = 'Car'+kk;
 											$("#route3").append(map_div);
 											
