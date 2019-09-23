@@ -19,6 +19,7 @@ playCap = setInterval(function() {
         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
         dataType : 'json',
         success : function (data) {
+            if(data[0].for_commute != 1){x = Number(data[0].for_commute)/2 + 1}
             if(data[0].for_commute == 2*x){
                 x += 1;
                 moving1(data[0].id, data[0].now_behavior)
@@ -62,19 +63,6 @@ function data_car(x, id){
     });
 }
 function sample(){
-//	$.ajax({
-//        type : 'POST',
-//        url : 'http://127.0.0.1:8000/main/pi_test3',
-//        dataType:'json',
-//        data : {
-//            'sample_car_id': '1',
-//			'x': '12',
-//			'y': '12',
-//			'con_id': 'c1',
-//        },
-//        success: function(){
-//        }
-//    });
     $.ajax({
         type : 'POST',
         url : 'http://192.168.0.10:8000/',

@@ -26,16 +26,25 @@ def pi_test3(request):
     con_id = pi_con['ConInf']
     destination_x = pi_con['destination_x']
     destination_y = pi_con['destination_y']
-    # pi_id = request.POST['sample_car_id']
-    # con_id = request.POST['con_id']
-    # destination_x = request.POST['x']
-    # destination_y = request.POST['y']
     carin = CarInfo.objects.get(id=pi_id)
     if carin.container_id == None:
         carin.container_id = ContainerInfo.objects.get(container_id=con_id)
         carin.save()
     bfs(request, carin.id, carin.now_x, carin.now_y, destination_x, destination_y)
-    return HttpResponseRedirect('/')
+
+@csrf_exempt
+def container_remove(request):
+    print('컨테이너 없다!')
+    data = request.GET
+    pi_con = data.dict()
+    pi_id = pi_con['car_id']
+    carin = CarInfo.objects.get(id=pi_id)
+    carin.container_id = ''
+    carin.save()
+    return_start_point()
+
+def return_start_point():
+    print('돌아가아아아아')
 
 #rc_pi코드 / 긴급 제어
 @csrf_exempt
@@ -44,138 +53,6 @@ def emer(request):
     carin = CarInfo.objects.get(id=1)
     carin.sample = data
     carin.save()
-    return HttpResponseRedirect('/')
-
-# #rc_pi코드 / 서버에서 데이터를 받음
-# @csrf_exempt
-# def pi_test4(request):
-#     index = 0
-#     i = 0
-#     route = request.POST['code'].split(']')
-#     route2 = [[0 for x in range(2)] for y in range(len(route)-1)]
-#     for x in range(len(route)-1):
-#         route2[x] = route[x].split('a')
-#     for x in range(len(route2)-1):
-#         for y in range(2):
-#             route2[x][y] = int(route2[x][y])
-#     move = [0 for x in range(len(route2) - 2)]
-#     try:
-#         while 1:
-#             if route2[index + 2][0] == route2[index][0] + 1:
-#                 if route2[index + 2][1] == route2[index][1] + 1:
-#                     if route2[index][0] == route2[index][0]:
-#                         move[i] = '21'
-#                         index += 2
-#                         i += 1
-#                         continue
-#                     elif route2[index + 1][1] == route2[index][1]:
-#                         move[i] = '33'
-#                         index += 2
-#                         i += 1
-#                         continue
-#             if route2[index + 2][0] == route2[index][0] - 1:
-#                 if route2[index + 2][1] == route2[index][1] + 1:
-#                     if route2[index][0] == route2[index + 1][0]:
-#                         move[i] = '31'
-#                         index += 2
-#                         i += 1
-#                         continue
-#                     elif route2[index + 1][1] == route2[index][1]:
-#                         move[i] = '23'
-#                         index += 2
-#                         i += 1
-#                 continue
-#             if route2[index + 2][0] == route2[index][0] - 1:
-#                 if route2[index + 2][1] == route2[index][1] - 1:
-#                     if route2[index][0] == route2[index + 1][0]:
-#                         move[i] = '22'
-#                         index += 2
-#                         i += 1
-#                         continue
-#                     elif route2[index + 1][1] == route2[index][1]:
-#                         move[i] = '34'
-#                         index += 2
-#                         i += 1
-#                         continue
-#             if route2[index + 2][0] == route2[index][0] + 1:
-#                 if route2[index + 2][1] == route2[index][1] - 1:
-#                     if route2[index + 1][1] == route2[index][1]:
-#                         move[i] = '24'
-#                         index += 2
-#                         i += 1
-#                         continue
-#                     elif route2[index + 1][0] == route2[index][0]:
-#                         move[i] = '32'
-#                         index += 2
-#                         i += 1
-#                         continue
-#             if route2[index][0] == route2[index + 1][0]:
-#                 if route2[index][1] > route2[index + 1][1]:
-#                     move[i] = '13'
-#                     index += 1
-#                     i += 1
-#                     continue
-#                 if route2[index][1] < route2[index + 1][1]:
-#                     move[i] = '11'
-#                     index += 1
-#                     i += 1
-#                     continue
-#             if route2[index][1] == route2[index + 1][1]:
-#                 if route2[index + 1][0] > route2[index][0]:
-#                     move[i] = '12'
-#                     index += 1
-#                     i += 1
-#                     continue
-#                 if route2[index][0] > route2[index + 1][0]:
-#                     move[i] = '14'
-#                     index += 1
-#                     i += 1
-#                     continue
-#     except (IndexError, TypeError):
-#         pass
-#     print(move)
-#     print(len(move))
-#     ix = len(move)-1
-#     if move[ix-1] == '11' or '12' or '13' or '14':
-#         move[ix] = move[ix-1]
-#     pi_id = request.POST['car_id']
-#     for x in range(len(move)):
-#         carin = CarInfo.objects.get(id=1)
-#         if carin.sample == '0':
-#             break
-#         if x == len(move)-1:
-#             print('마지막')
-#             car_finish(move[x], 2*x, pi_id, '99', request)
-#             break
-#         car_pi(move[x], 2*x, pi_id, request)
-#     return HttpResponseRedirect('/')
-#
-# #rc_pi수행 코드(finish버전)
-# @csrf_exempt
-# def car_finish(code, index, pi_id, finish, request):
-#     data = {
-#         'code': code,
-#         'index': index,
-#         'pi_id': pi_id,
-#         'finish': '99'
-#     }
-#     time.sleep(2)
-#     URL = 'http://127.0.0.1:8000/main/pi_test6'
-#     request = requests.post(URL, params=data)
-#     return HttpResponseRedirect('/')
-#
-# #rc_pi수행 코드
-# @csrf_exempt
-# def car_pi(code, index, pi_id, request):
-#     data = {
-#         'code': code,
-#         'index': index,
-#         'pi_id': pi_id,
-#     }
-#     time.sleep(2)
-#     URL = 'http://127.0.0.1:8000/main/pi_test5'
-#     request = requests.post(URL, params=data)
-#     return HttpResponseRedirect('/')
 
 #서버코드 / rc_pi에서 데이터 받음
 @csrf_exempt
@@ -265,7 +142,6 @@ def pi_test5(request):
     carin.now_y = modify_yy
     carin.position = position
     carin.save()
-    return HttpResponseRedirect('/')
 
 #서버코드 / rc_pi에서 데이터 받음(finish버전)
 @csrf_exempt
@@ -365,7 +241,6 @@ def pi_test6(request):
     db_map.map = '8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s'
     db_map.save()
     print('finish끝')
-    return HttpResponseRedirect('/')
 
 @csrf_exempt
 def Car_detail(request):
@@ -601,70 +476,58 @@ def bfs(request, car_id, xxx, yyy, aaa, bbb):
             if value2[index + 2][0] == value2[index][0] + 1:
                 if value2[index + 2][1] == value2[index][1] + 1:
                     if value2[index + 1][0] == value2[index][0]:
-                        print('우회전')
                         index += 2
                         code += '2 '
                         continue
                     elif value2[index + 1][1] == value2[index][1]:
-                        print('좌회전')
                         index += 2
                         code += '3 '
                         continue
             elif value2[index + 2][0] == value2[index][0] - 1:
                 if value2[index + 2][1] == value2[index][1] - 1:
                     if value2[index][0] == value2[index + 1][0]:
-                        print('우회전')
                         index += 2
                         code += '2 '
                         continue
                     elif value2[index][1] == value2[index + 1][1]:
-                        print('좌회전')
                         index += 2
                         code += '3 '
                         continue
             elif value2[index + 2][0] == value2[index][0] - 1:
                 if value2[index + 2][1] == value2[index][1] + 1:
                     if value2[index][1] == value2[index + 1][1]:
-                        print('우회전')
                         index += 2
                         code += '2 '
                         continue
                     elif value2[index][0] == value2[index + 1][0]:
-                        print('좌회전')
                         index += 2
                         code += '3 '
                         continue
             elif value2[index + 2][0] == value2[index][0] + 1:
                 if value2[index + 2][1] == value2[index][1] - 1:
                     if value2[index][1] == value2[index + 1][1]:
-                        print('우회전')
                         index += 2
                         code += '2 '
                         continue
                     elif value2[index][0] == value2[index + 1][0]:
-                        print('좌회전')
                         index += 2
                         code += '3 '
                         continue
             elif value2[index][0] == value2[index + 1][0]:
                 if value2[index][1] > value2[index + 1][1]:
-                    print('전진')
                     code += '1 '
                     index += 1
                     continue
                 elif value2[index][1] < value2[index + 1][1]:
-                    print('전진')
                     code += '1 '
                     index += 1
                     continue
             elif value2[index][1] == value2[index + 1][1]:
                 if value2[index + 1][0] > value2[index][0]:
-                    print('전진')
                     code += '1 '
                     index += 1
                     continue
                 elif value2[index][0] > value2[index + 1][0]:
-                    print('전진')
                     code += '1 '
                     index += 1
                     continue
@@ -672,6 +535,7 @@ def bfs(request, car_id, xxx, yyy, aaa, bbb):
     except IndexError:
         pass
     code += '1 '
+
     #경로저장
     idx = 0
     try:

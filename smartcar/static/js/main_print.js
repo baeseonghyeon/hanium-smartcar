@@ -30,25 +30,10 @@ function create_car(Car){
 				var car_name_div = document.createElement("div");
                 car_name_div.setAttribute("class", 'car_name_div'+' '+'name'+(i-1));
                 car_name_div.setAttribute('OnClick', 'car_detail(this.id)');
-                console.log(data[i-1].car_name);
                 car_name_div.innerHTML = data[i-1].car_name;
 
 				var car_state_wrapper = document.createElement("div");
 
-//                pi_pi[i-1] = data[i-1].pi_id;
-//                $.ajax({
-//                    url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
-//                    dataType : 'json',
-//                    success : function (pi_data) {
-//                        for(var i=0; i<=Car.length-1; i++){
-//                            for(var j=0; j<=Car.length-1; j++){
-//                                if(pi_pi[i]==pi_data[j].pi_id){
-//                                    car_name_div.innerHTML=pi_data[j].car_type
-//                                }
-//                            }
-//                        }
-//                    }
-//				});
 				var divid = "div"+(i-1);
 				var wrapid = "wrap"+(i-1);
 				var imgid = "img"+(i-1);
