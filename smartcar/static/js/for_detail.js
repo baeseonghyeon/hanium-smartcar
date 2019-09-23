@@ -68,7 +68,7 @@ function straight_check(x, y, p){
 						alert('이동불가')
 						return 0
 					}
-					m11(index); straight_xy(); return 0
+					m14(index); straight_xy(); return 0
 				}
 				if(position == 2){
 					if(map2[Number(xx)][Number(yy)-1] != 0 ){
@@ -384,8 +384,11 @@ function emergency_stop(){
     });
 }
 function map(route, x, y, a, b){
+
+    //화면에 출발, 도착 위치 표시
     $('#now').text(x+','+y);
     $('#destination').text(a+','+b);
+
     var car_route1 = new Array()
     var car_route2 = new Array()
     car_route = route
@@ -416,18 +419,10 @@ function map(route, x, y, a, b){
                  url : "http://127.0.0.1:8000/api/MapInfo/?format=json",
                  dataType : 'json',
                  success : function(data){
-                     map_display=data[1].map;
+                     map_display=data[0].map;
                      map_array=map_display.split('s');
                      for(var i=0; i<=13; i++){
                        map_array2[i]=map_array[i].split(', ');
-                     }
-                     if( now_x != ''){
-                            map_array2[now_x][now_y]="3"
-                     }
-                     if(car_route == ''){
-                        if( target_x !=''){
-                            map_array2[target_x][target_y]="5"
-                        }
                      }
     var idx = 0
     try{

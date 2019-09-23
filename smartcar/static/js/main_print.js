@@ -31,14 +31,20 @@ function create_car(Car){
 
 				var car_name_div = document.createElement("div");
                 car_name_div.setAttribute("class", 'car_name_div'+' '+'name'+(i-1));
+<<<<<<< HEAD
                 car_name_div.setAttribute('OnClick', 'car_detail(this.id , this)');
                 console.log(data[i-1].car_name);
 				car_name_div.innerHTML = data[0].car_name;
 
 				
 				$('.car_div_name').text(data[0].car_name);
+=======
+                car_name_div.setAttribute('OnClick', 'car_detail(this.id)');
+                car_name_div.innerHTML = data[i-1].car_name;
+>>>>>>> 6d63d338b552ae3552bf1ec40dc532919ed6f13b
 
 
+<<<<<<< HEAD
 //                pi_pi[i-1] = data[i-1].pi_id;
 //                $.ajax({
 //                    url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
@@ -54,6 +60,8 @@ function create_car(Car){
 //                    }
 //				});
 
+=======
+>>>>>>> 6d63d338b552ae3552bf1ec40dc532919ed6f13b
 				var divid = "div"+(i-1);
 				var wrapid = "wrap"+(i-1);
 				var imgid = "img"+(i-1);
