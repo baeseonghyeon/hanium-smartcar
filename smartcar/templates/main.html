@@ -48,11 +48,11 @@
 						<div class="row">
 							<div class="col-6">
 								<div class="cercle-s sbat">
-									<span class="car_battery_icon"></span>
+									<span class="car_battery_icon"><i class="fas fa-battery-empty none"></i></span>
 								</div>
 							</div>
 							<div class="col-6 info-text">
-								<p><span class="car_battery"></span></p>
+								<p><span class="car_battery">0%</span></p>
 							</div>
 						</div>
 					</div>
@@ -60,18 +60,11 @@
 						<div class="row">
 							<div class="col-6">
 								<div class="cercle-s">
-									<span class="car_data"></span>
-									<i class="fas fa-signal"></i>
-									<!-- <span class="signal-5"><i class="fas fa-signal"></i></span> -->
-									<!-- <span class="signal-4"><i class="fas fa-signal"></i></span>
-									<span class="signal-3"><i class="fas fa-signal"></i></span>
-									<span class="signal-2"><i class="fas fa-signal"></i></span> -->
-									<!-- <span class="signal-1"><i class="fas fa-signal"></i></span> -->
-									<!-- <i class="fas fa-signal signal-bg"></i></span> -->
+									<span class="car_data_icon"><i class="fas fa-signal none"></i></span>
 								</div>
 							</div>
 							<div class="col-6 info-text">
-								<span class="car_data"></span>
+								<span class="car_data">끊김</span>
 							</div>
 						</div>
 					</div>
@@ -95,6 +88,7 @@
 				$('#map-kakao').fadeOut('fast');
 				$('#map').fadeIn('fast');
 				$(".map-change-btn").text('')
+				$(".map-change-btn").css({'background-color': 'rgb(40, 181, 184, 0.7)', 'color': 'white'});
 				$(".map-change-btn").text('PORT MAP')
 				return 0
 			};
@@ -102,6 +96,7 @@
 				$('#map').fadeOut('fast');
 				$('#map-kakao').fadeIn('fast');
 				$(".map-change-btn").text('')
+				$(".map-change-btn").css({'background-color': 'rgb(252, 206, 0, 0.7)', 'color': 'black'});
 				$(".map-change-btn").text('KAKAO MAP')
 				return 0
 			};

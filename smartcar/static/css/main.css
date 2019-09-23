@@ -31,6 +31,9 @@
 		align-items: center;
 		justify-content: center; */
 	}
+	.info-text {
+		color: rgb(83, 95, 109); 
+	}
 	.cercle-s {
 		border-radius: 100%;
 		border: 1px solid #55616f;
@@ -42,9 +45,27 @@
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
-		color: #0fac6a;
+		color: rgb(83, 95, 109);
+		font-size: 1.4rem;
 	}
-	.signal-4 {
+
+	.car_data_icon > .low {
+		color: orange;
+	}
+	.car_data_icon > .very-low {
+		color: red;
+	}
+	.car_data_icon > .active {
+		color: #0fac6a; 
+	}  
+	.car_battery_icon > .active {
+		color: #0fac6a; 
+	}
+	.active {
+		color: #0fac6a; 
+	}
+
+	/* .signal-4 {
 		width: 15px;
 		height: 80px;
 		overflow-x: hidden;
@@ -67,7 +88,7 @@
 		height: 80px;
 		overflow-x: hidden;
 		display: inline-block;
-	}
+	} */
 
 
 	.info-text {

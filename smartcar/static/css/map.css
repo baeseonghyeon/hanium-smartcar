@@ -189,8 +189,18 @@
 }
 
 .map-change-btn {
-	position: absolute;
-    right: 0;
     z-index: 10;
-    top: 0;
+    height: 35px;
+    width: 120px;
+	border-radius: 20px;
+	position: absolute;
+	top: 93%;
+	right: 0;
+    left: 50%;
+    margin-left: -50px;
+    border: 1px solid transparent;
+    background-color: #FFC107;
+	color: #243146;
+	line-height: 35px;
+	font-weight: bold;
 }
