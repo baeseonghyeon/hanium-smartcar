@@ -270,6 +270,9 @@
 	border-radius: 4px;
 	position: absolute;
 	display: none;
+	border: 1px solid #263146;
+    background-color: #adb4c1;
+    color: #253247;
 }
 #left {
 	left: 0;

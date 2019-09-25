@@ -25,7 +25,7 @@
 			<!-- 경로 찾을때 input-->
 			<h2 id="nav_portname"></h2>
 			<h1><span id="now"></span> >> <span id="destination"></span></h1>
-			도착시간:<span id="car_arrive_time"></span><br>
+			<span id="car_arrive_time"></span><br>
 			<div class="row distance-box">	
 				<div class="distance">
 					<div class="distance-car"></div>
@@ -56,13 +56,13 @@
                     <div class="col-2">
                         <div class="row">
                             <div class="cercle-s">
-								<span id="car_battery"></span>
-								<span id="car_battery_icon"></span>
+								<!-- <span class="car_battery"></span> -->
+								<span class="car_battery_icon"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="cercle-s">
-								<span id="car_data_icon"></span>
+								<span class="car_data_icon"></span>
 								<!-- <span id="communication"></span>
 								<i class="fas fa-signal"></i> -->
                             </div>
@@ -159,7 +159,7 @@
 										</div>
 										<div class="col-6 p-0">
 											<div class="cercle-s">
-												설정
+												<i class="fas fa-cog"></i>
 											</div>
 										</div>
 									</div>
@@ -169,7 +169,7 @@
 										</div>
 										<div class="col-6 p-0">
 											<div class="cercle-s">
-												조작
+												<i class="fas fa-play-circle"></i>
 											</div>
 										</div>
 									</div>
@@ -320,8 +320,8 @@
 			$("#detail-side2").css({"background-image":"url('"+picture+"')"});
 
 			// 배터리 
-			// $("#car_battery").text(battery);
-			$("#car_battery1").text(battery);
+			$(".car_battery").text(battery+'%');
+			// $(".car_battery1").text(battery);
 			battery = Number(battery)
 				var battery_icon = document.createElement("i");
 				if(battery > 80 ) {
@@ -339,28 +339,28 @@
 				else if(20 > battery) {
 				battery_icon.setAttribute("class", 'fas fa-battery-empty');
 				}
-			$("#car_battery_icon").append(battery_icon);
+			$(".car_battery_icon").append(battery_icon);
 
 			//  통신
 			communication = Number(communication)
 			var communication_icon = document.createElement("i");
 				if(communication > 80 ) {
 					communication_icon.setAttribute("class", 'fas fa-signal active');
-					// $(".car_data").text("양호").addClass('active');
+					$(".car_data").text("양호").addClass('active');
 				}
 				else if(80 >= communication && communication > 50) {
 					communication_icon.setAttribute("class", 'fas fa-signal low');
-					// $(".car_data").text("불안정");
+					$(".car_data").text("불안정");
 				}
 				else if(50 >= communication && communication > 20) {
 					communication_icon.setAttribute("class", 'fas fa-signal very-low');
-					// $(".car_data").text("불안정");
+					$(".car_data").text("불안정");
 				}
 				else if(20 > communication ) {
 					communication_icon.setAttribute("class", 'fas fa-signal none');
-					// $(".car_data").text("불량");
+					$(".car_data").text("불량");
 				}
-			$("#car_data_icon").append(communication_icon);
+			$(".car_data_icon").append(communication_icon);
 
 
 		}
