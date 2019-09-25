@@ -32,6 +32,7 @@ def pi_test3(request):
         carin.save()
     bfs(request, carin.id, carin.now_x, carin.now_y, destination_x, destination_y)
     return HttpResponseRedirect('/')
+
 @csrf_exempt
 def container_remove(request):
     print('컨테이너 없다!')
@@ -39,7 +40,7 @@ def container_remove(request):
     pi_con = data.dict()
     pi_id = pi_con['check_conn']
     carin = CarInfo.objects.get(id=pi_id)
-    carin.container_id = ''
+    carin.container_id = ContainerInfo(container_id="z")
     carin.save()
     return_start_point(pi_id, request)
     return HttpResponseRedirect('/')
@@ -545,7 +546,7 @@ def bfs(request, car_id, xxx, yyy, aaa, bbb):
             index += 1
     except IndexError:
         pass
-    # code += '1 '
+    code += '1 '
 
     #경로저장
     idx = 0
