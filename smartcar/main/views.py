@@ -31,20 +31,27 @@ def pi_test3(request):
         carin.container_id = ContainerInfo.objects.get(container_id=con_id)
         carin.save()
     bfs(request, carin.id, carin.now_x, carin.now_y, destination_x, destination_y)
-
+    return HttpResponseRedirect('/')
 @csrf_exempt
 def container_remove(request):
     print('컨테이너 없다!')
     data = request.GET
     pi_con = data.dict()
-    pi_id = pi_con['car_id']
+    pi_id = pi_con['check_conn']
     carin = CarInfo.objects.get(id=pi_id)
     carin.container_id = ''
     carin.save()
-    return_start_point()
+    return_start_point(pi_id, request)
+    return HttpResponseRedirect('/')
 
-def return_start_point():
-    print('돌아가아아아아')
+def return_start_point(id, request):
+    print('복귀함수 실행')
+    carin = CarInfo.objects.get(id=id)
+    x = int(carin.now_x)
+    y = int(carin.now_y)
+    if x == 12 and y == 12:
+        print('후진3번 우회전 직진 ----')
+    return HttpResponseRedirect('/')
 
 #rc_pi코드 / 긴급 제어
 @csrf_exempt
@@ -53,6 +60,7 @@ def emer(request):
     carin = CarInfo.objects.get(id=1)
     carin.sample = data
     carin.save()
+    return HttpResponseRedirect('/')
 
 #서버코드 / rc_pi에서 데이터 받음
 @csrf_exempt
@@ -136,12 +144,14 @@ def pi_test5(request):
         elif code == '4':
             modify_xx = int(before_x) + 1
             carin.now_behavior = '12'
+    print(diction['index'])
     print(modify_xx)
     print(modify_yy)
     carin.now_x = modify_xx
     carin.now_y = modify_yy
     carin.position = position
     carin.save()
+    return HttpResponseRedirect('')
 
 #서버코드 / rc_pi에서 데이터 받음(finish버전)
 @csrf_exempt
@@ -241,6 +251,7 @@ def pi_test6(request):
     db_map.map = '8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s'
     db_map.save()
     print('finish끝')
+    return HttpResponseRedirect('')
 
 @csrf_exempt
 def Car_detail(request):
@@ -534,7 +545,7 @@ def bfs(request, car_id, xxx, yyy, aaa, bbb):
             index += 1
     except IndexError:
         pass
-    code += '1 '
+    # code += '1 '
 
     #경로저장
     idx = 0

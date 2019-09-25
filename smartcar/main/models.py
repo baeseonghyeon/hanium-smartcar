@@ -19,8 +19,8 @@ class ContainerInfo(models.Model):
 
 
 class CarInfo(models.Model):
-    pi_id = models.ForeignKey(PiInfo, on_delete=models.CASCADE, null=True)
-    container_id = models.ForeignKey(ContainerInfo, on_delete=models.CASCADE, null=True)
+    pi_id = models.ForeignKey(PiInfo, on_delete=models.SET_NULL, null=True, blank=True)
+    container_id = models.ForeignKey(ContainerInfo, on_delete=models.SET_NULL, null=True, blank=True)
     car_name = models.CharField(max_length=20, null=True)
     car_route = models.CharField(max_length=300, default='1')
     car_code = models.CharField(max_length=100, default='1')
