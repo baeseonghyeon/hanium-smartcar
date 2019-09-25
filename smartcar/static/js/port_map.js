@@ -94,7 +94,8 @@ function map(){
                                         map_span.setAttribute("class", i+'a'+j);
                                         $("#map").append(map_span);
                                         var map_div = document.createElement("div");
-                                        map_div.setAttribute("class", "carcar"+1);
+										map_div.setAttribute("class", "carcar"+1);
+										map_div.setAttribute('data-carcar-idx', 1);
                                         map_div.innerHTML = 'Car'+1;
                                         $("#route3_"+1).append(map_div);
                                 }
@@ -104,7 +105,8 @@ function map(){
                                         map_span.setAttribute("class", i+'a'+j);
                                         $("#map").append(map_span);
                                         var map_div = document.createElement("div");
-                                        map_div.setAttribute("class", "carcar"+2);
+										map_div.setAttribute("class", "carcar"+2);
+										map_div.setAttribute('data-carcar-idx', 2);
                                         map_div.innerHTML = 'Car'+2;
                                         $("#route3_"+2).append(map_div);
                                 }
@@ -114,7 +116,8 @@ function map(){
                                         map_span.setAttribute("class", i+'a'+j);
                                         $("#map").append(map_span);
                                         var map_div = document.createElement("div");
-                                        map_div.setAttribute("class", "carcar"+3);
+										map_div.setAttribute("class", "carcar"+3);
+										map_div.setAttribute('data-carcar-idx', 3);
                                         map_div.innerHTML = 'Car'+3;
                                         $("#route3_"+3).append(map_div);
                                 }

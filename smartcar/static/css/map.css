@@ -51,7 +51,7 @@
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #0eac6a!important;
+	/* border: 2px solid #0eac6a!important; */
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
@@ -63,7 +63,7 @@
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #0eac6a!important;
+	/* border: 2px solid #0eac6a!important; */
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
@@ -74,7 +74,7 @@
 	display: inline-block;
 	width: 8.333%; height: 8.333%;
 	background-color: #455163;
-	border: 2px solid #0eac6a!important;
+	/* border: 2px solid #0eac6a!important; */
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: bottom;
@@ -105,6 +105,11 @@
 	background-color: #455163;
 	border: 1px solid #4d5967;
 }
+/* 맵선택 */
+.map-high {
+	border: 2px solid #0eac6a!important;
+}
+
 /* 경로 */
 	/* - */
 	#route41 {
