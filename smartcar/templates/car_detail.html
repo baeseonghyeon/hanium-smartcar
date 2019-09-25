@@ -62,8 +62,9 @@
                         </div>
                         <div class="row">
                             <div class="cercle-s">
-								<span id="communication"></span>
-								<i class="fas fa-signal"></i>
+								<span id="car_data_icon"></span>
+								<!-- <span id="communication"></span>
+								<i class="fas fa-signal"></i> -->
                             </div>
                         </div>
                     </div>
@@ -128,21 +129,21 @@
 									<div class="row">
 										<div class="col-6">
 											<div class="cercle-s">
-											배터리
+												<span class="car_battery_icon"></span>
 											</div>
 										</div>
 										<div class="col-6 car-info-text">
-											<span id="car_battery1"></span>
+											<span class="car_battery"></span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-6">
 											<div class="cercle-s">
-											신호
+											<span class="car_data_icon"></span>
 											</div>
 										</div>
 										<div class="col-6 car-info-text">
-											양호
+											<span class="car_data"></span>
 										</div>
 									</div>
 								</div>
@@ -312,32 +313,56 @@
 			var car_type = filtered_json[0].car_type;
 			var picture = filtered_json[0].picture;
 
-			$("#communication").text(communication);
+			
 
 			$("#car_type, .car_type").text("["+car_type+"]");
 			$("#picture").text(picture);
 			$("#detail-side2").css({"background-image":"url('"+picture+"')"});
 
-							$("#car_battery").text(battery);
-							$("#car_battery1").text(battery);
-							battery = Number(battery)
-							 var battery_icon = document.createElement("i");
-							 if(battery > 80 ) {
-							 	battery_icon.setAttribute("class", 'fas fa-battery-full');
-							 }
-							 else if(80 >= battery && battery > 60) {
-							 	battery_icon.setAttribute("class", 'fas fa-battery-three-quarters');
-							 }
-							 else if(60 >= battery && battery > 40) {
-							 	battery_icon.setAttribute("class", 'fas fa-battery-half');
-							 }
-							 else if(40 >= battery && battery > 20) {
-							 	battery_icon.setAttribute("class", 'fas fa-battery-quarter');
-							 }
-							 else if(20 > battery) {
-							 	battery_icon.setAttribute("class", 'fas fa-battery-empty');
-							 }
-							$("#car_battery_icon").append(battery_icon);
+			// 배터리 
+			// $("#car_battery").text(battery);
+			$("#car_battery1").text(battery);
+			battery = Number(battery)
+				var battery_icon = document.createElement("i");
+				if(battery > 80 ) {
+				battery_icon.setAttribute("class", 'fas fa-battery-full');
+				}
+				else if(80 >= battery && battery > 60) {
+				battery_icon.setAttribute("class", 'fas fa-battery-three-quarters');
+				}
+				else if(60 >= battery && battery > 40) {
+				battery_icon.setAttribute("class", 'fas fa-battery-half');
+				}
+				else if(40 >= battery && battery > 20) {
+				battery_icon.setAttribute("class", 'fas fa-battery-quarter');
+				}
+				else if(20 > battery) {
+				battery_icon.setAttribute("class", 'fas fa-battery-empty');
+				}
+			$("#car_battery_icon").append(battery_icon);
+
+			//  통신
+			communication = Number(communication)
+			var communication_icon = document.createElement("i");
+				if(communication > 80 ) {
+					communication_icon.setAttribute("class", 'fas fa-signal active');
+					// $(".car_data").text("양호").addClass('active');
+				}
+				else if(80 >= communication && communication > 50) {
+					communication_icon.setAttribute("class", 'fas fa-signal low');
+					// $(".car_data").text("불안정");
+				}
+				else if(50 >= communication && communication > 20) {
+					communication_icon.setAttribute("class", 'fas fa-signal very-low');
+					// $(".car_data").text("불안정");
+				}
+				else if(20 > communication ) {
+					communication_icon.setAttribute("class", 'fas fa-signal none');
+					// $(".car_data").text("불량");
+				}
+			$("#car_data_icon").append(communication_icon);
+
+
 		}
 	});
 	

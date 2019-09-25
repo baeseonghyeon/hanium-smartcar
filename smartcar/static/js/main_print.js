@@ -32,27 +32,8 @@ function create_car(Car){
 				var car_name_div = document.createElement("div");
                 car_name_div.setAttribute("class", 'car_name_div'+' '+'name'+(i-1));
                 car_name_div.setAttribute('OnClick', 'car_detail(this.id , this)');
-                console.log(data[i-1].car_name);
-				car_name_div.innerHTML = data[0].car_name;
-
-				
-				$('.car_div_name').text(data[0].car_name);
-
-
-//                pi_pi[i-1] = data[i-1].pi_id;
-//                $.ajax({
-//                    url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
-//                    dataType : 'json',
-//                    success : function (pi_data) {
-//                        for(var i=0; i<=Car.length-1; i++){
-//                            for(var j=0; j<=Car.length-1; j++){
-//                                if(pi_pi[i]==pi_data[j].pi_id){
-//                                    car_name_div.innerHTML=pi_data[j].car_type
-//                                }
-//                            }
-//                        }
-//                    }
-//				});
+				car_name_div.innerHTML = data[i-1].car_name;
+				$('.car_div_name').text(data[i-1].car_name);
 
 				var divid = "div"+(i-1);
 				var wrapid = "wrap"+(i-1);
@@ -88,31 +69,20 @@ function car_detail(clicked_id ,elem){
 			if(!item.hasClass('highlight'))
 			{
 				item.addClass("highlight");
+				$('[class^=carcar][data-carcar-idx='+(idx+1)+']').addClass("highlight");
+				$('#route3_'+(idx+1)+'').addClass("map-high");
+				$('.name'+idx+'').addClass("highlight");
 			}
 		}
 		else{
 			// highlight 없앰
 			item.removeClass("highlight");
+			$('[class^=carcar][data-carcar-idx='+(idx+1)+']').removeClass("highlight");
+			$('#route3_'+(idx+1)+'').removeClass("map-high");
+			$('.name'+idx+'').removeClass("highlight");
 		}
 	});
-
-	carcar_states.map(function(idx , item){	
-		item = $(item);
-		console.log(curIdx);
-		console.log(item);
-		if(curIdx === Number(item.attr("data-carcar-idx"))){
-			// highlight
-			if(!item.hasClass('highlight'))
-			{
-				item.addClass("highlight");
-			}
-		}
-		else{
-			// highlight 없앰
-			item.removeClass("highlight");
-		}
-	});
-	
+		
 	var id = clicked_id
 	
         $.ajax({
