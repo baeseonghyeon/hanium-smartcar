@@ -7,6 +7,7 @@ playMap = setInterval(function() {
             if(data[0].car_route != "1"){
             map()
             data_car(data[0].car_code, data[0].id)
+            playReturn()
             clearInterval(playMap);
             }
         }
@@ -14,12 +15,13 @@ playMap = setInterval(function() {
 }, 3000);
 // detail 페이지로 넘어가면 x가 1로 초기화되서 if 코드가 수행안됨
 var x = 1
+var y = 1
 playCap = setInterval(function() {
     $.ajax({
         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
         dataType : 'json',
         success : function (data) {
-//            if(data[0].for_commute != 1){x = Number(data[0].for_commute)/2 + 1}
+//            x = Number(data[0].for_commute)/2 + 1
             if(data[0].for_commute == 2*x){
                 x += 1;
                 moving1(data[0].id, data[0].now_behavior)
@@ -27,12 +29,13 @@ playCap = setInterval(function() {
                     sleep(1000)
                     console.log('끝!')
                     map()
+                    playcapReturn()
                     clearInterval(playCap)
                 }
             }
         }
     });
-}, 100);
+}, 300);
 // 차 2대일때
 //playMap1 = setInterval(function() {
 //    $.ajax({
@@ -49,6 +52,41 @@ playCap = setInterval(function() {
 //    });
 //}, 3000);
 })
+function playReturn(){
+playReturn = setInterval(function() {
+    $.ajax({
+        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+        dataType : 'json',
+        success : function (data) {
+            if(data[0].container_id == "z"){
+            map()
+            data_car(data[0].car_code, data[0].id)
+            clearInterval(playReturn);
+            }
+        }
+    });
+}, 3000);
+}
+function playcapReturn(){
+playCapReturn = setInterval(function() {
+    $.ajax({
+        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+        dataType : 'json',
+        success : function (data) {
+            if(data[0].for_commute == 2*y){
+                y += 1;
+                moving1(data[0].id, data[0].now_behavior)
+                if(data[0].car_finish == '99'){
+                    sleep(1000)
+                    console.log('끝!')
+                    map()
+                    clearInterval(playCapReturn)
+                }
+            }
+        }
+    });
+}, 300);
+}
 function data_car(x, id){
 	$.ajax({
         type : 'POST',

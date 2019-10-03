@@ -41,17 +41,56 @@ def container_remove(request):
     pi_id = pi_con['check_conn']
     carin = CarInfo.objects.get(id=pi_id)
     carin.container_id = ContainerInfo(container_id="z")
+    x = carin.now_x
+    y = carin.now_y
+    code = ''
+    print(carin.now_x)
+    print(carin.now_y)
+    print(type(carin.now_x))
+    print(type(carin.now_y))
+    db_map = MapInfo.objects.get(id=1)
+    map_array = db_map.map.split('s')
+    map_array2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
+        map_array2[x] = map_array[x].split(', ')
+    if x == '12' and y == '12':
+        print('12,12 실행')
+        code = '4 4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == '11' and y == '12':
+        code = '4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 10 and y == 12:
+        code = '4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 9 and y == 12:
+        code = '2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 12 and y == 11:
+        code = '4 4 4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 11 and y == 11:
+        code = '4 4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 10 and y == 11:
+        code = '4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 9 and y == 11:
+        code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 12 and y == 7:
+        code = '4 4 4 2 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 11 and y == 7:
+        code = '4 4 2 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 10 and y == 7:
+        code = '4 2 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 9 and y == 7:
+        code = '2 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 12 and y == 6:
+        code = '4 4 4 2 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 11 and y == 6:
+        code = '4 4 2 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 10 and y == 6:
+        code = '4 2 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 9 and y == 6:
+        code = '2 1 1 1 2 1 1 1 1 1 1 1 2'
+    else:
+        print('잡힌거없음')
+    carin.car_code = code
     carin.save()
-    return_start_point(pi_id, request)
-    return HttpResponseRedirect('/')
-
-def return_start_point(id, request):
-    print('복귀함수 실행')
-    carin = CarInfo.objects.get(id=id)
-    x = int(carin.now_x)
-    y = int(carin.now_y)
-    if x == 12 and y == 12:
-        print('후진3번 우회전 직진 ----')
+    db_map.save()
     return HttpResponseRedirect('/')
 
 #rc_pi코드 / 긴급 제어
@@ -161,91 +200,14 @@ def pi_test6(request):
     data = request.GET
     diction = data.dict()
     carin = CarInfo.objects.get(id=diction['pi_id'])
-    carin.for_commute = diction['index']
-    carin.now_behavior = diction['code']
     carin.car_finish = diction['finish']
-    code = diction['code']
-    modify_xx = carin.now_x
-    modify_yy = carin.now_y
-    before_x = carin.now_x
-    before_y = carin.now_y
-    position = carin.position
-    if position == '3':
-        if code == '1':
-            modify_yy = int(before_y) + 1
-            carin.now_behavior = '11'
-        elif code == '2':
-            modify_xx = int(before_x) + 1
-            modify_yy = int(before_y) + 1
-            carin.now_behavior = '21'
-            position = '4'
-        elif code == '3':
-            modify_xx = int(before_x) - 1
-            modify_yy = int(before_y) + 1
-            carin.now_behavior = '31'
-            position = '1'
-        elif code == '4':
-            modify_yy = int(before_y) - 1
-            carin.now_behavior = '13'
-    elif position == '4':
-        if code == '1':
-            modify_xx = int(before_x) + 1
-            carin.now_behavior = '12'
-        elif code == '2':
-            modify_xx = int(before_x) + 1
-            modify_yy = int(before_y) - 1
-            carin.now_behavior = '24'
-            position = '2'
-        elif code == '3':
-            modify_xx = int(before_x) + 1
-            modify_yy = int(before_y) + 1
-            carin.now_behavior = '33'
-            position = 3
-        elif code == '4':
-            modify_xx = int(before_x) - 1
-            carin.now_behavior = '14'
-    elif position == '2':
-        if code == '1':
-            modify_yy = int(before_y) - 1
-            carin.now_behavior = '13'
-        elif code == '2':
-            modify_xx = int(before_x) - 1
-            modify_yy = int(before_y) - 1
-            carin.now_behavior = '22'
-            position = '1'
-        elif code == '3':
-            modify_xx = int(before_x) + 1
-            modify_yy = int(before_y) - 1
-            carin.now_behavior = '32'
-            position = '4'
-        elif code == '4':
-            modify_yy = int(before_y) + 1
-            carin.now_behavior = '11'
-    elif position == '1':
-        if code == '1':
-            modify_xx = int(before_x) - 1
-            carin.now_behavior = '14'
-        elif code == '2':
-            modify_xx = int(before_x) - 1
-            modify_yy = int(before_y) + 1
-            carin.now_behavior = '23'
-            position = '3'
-        elif code == '3':
-            modify_xx = int(before_x) - 1
-            modify_yy = int(before_y) - 1
-            carin.now_behavior = '34'
-            position = '2'
-        elif code == '4':
-            modify_xx = int(before_x) + 1
-            carin.now_behavior = '12'
-    print(modify_xx)
-    print(modify_yy)
-    carin.now_x = modify_xx
-    carin.now_y = modify_yy
     carin.car_route = '1'
     carin.car_code = '1'
     carin.target_x = ''
     carin.target_y = ''
+    carin.car_finish = '99'
+    print(carin.now_x)
+    print(carin.now_y)
     # carin.now_behavior = ''
     carin.save()
     db_map = MapInfo.objects.get(id=1)

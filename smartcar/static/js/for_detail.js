@@ -26,13 +26,16 @@ var index = $("#car_number").val()
                 if(p == 4){straight_check(data[index-1].now_x, data[index-1].now_y, p);}
             }
         });
+}
+function straight_moving(){
+    var index = $("#car_number").val()
     var a = '1 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.9:8000',
+            url : 'http://192.168.0.12:8000/handling_car',
             dataType:'json',
             data : {
-            'bbb': a
+            'code': a,
             },
             success: function(){
             }
@@ -61,28 +64,28 @@ function straight_check(x, y, p){
 						alert('이동불가')
 						return 0
 					}
-					m11(index); straight_xy(); return 0
+					straight_moving(); m11(index); straight_xy(); return 0
 				}
 				if(position == 1){
 					if(map2[Number(xx)-1][Number(yy)] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					m14(index); straight_xy(); return 0
+					straight_moving(); m14(index); straight_xy(); return 0
 				}
 				if(position == 2){
 					if(map2[Number(xx)][Number(yy)-1] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					 m13(index); straight_xy(); return 0
+					 straight_moving(); m13(index); straight_xy(); return 0
 				}
 				if(position == 4){
 					if(map2[Number(xx)+1][Number(yy)] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					 m12(index); straight_xy(); return 0
+					 straight_moving(); m12(index); straight_xy(); return 0
 				}
             }
         	});
@@ -113,13 +116,16 @@ function back(){
                 if(p == 4){back_check(data[index-1].now_x, data[index-1].now_y, p);}
             }
         });
+}
+function back_moving(){
+    var index = $("#car_number").val()
     var a = '4 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.9:8000',
+            url : 'http://192.168.0.12:8000/handling_car',
             dataType:'json',
             data : {
-            'bbb': a
+            'code': a,
             },
             success: function(){
             }
@@ -161,28 +167,28 @@ function back_check(x, y, p){
 						alert('이동불가')
 						return 0
 					}
-					 m13(index); back_xy(); return 0
+					 back_moving(); m13(index); back_xy(); return 0
 				}
 				if(position == 1){
 					if(map2[Number(xx)+1][Number(yy)] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					 m12(index); back_xy(); return 0
+					 back_moving(); m12(index); back_xy(); return 0
 				}
 				if(position == 2){
 					if(map2[Number(xx)][Number(yy)+1] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					  m11(index); back_xy(); return 0
+					  back_moving(); m11(index); back_xy(); return 0
 				}
 				if(position == 4){
 					if(map2[Number(xx)-1][Number(yy)] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					  m14(index); back_xy(); return 0
+					  back_moving(); m14(index); back_xy(); return 0
 				}
             }
         	});
@@ -200,14 +206,16 @@ function right(){
                 if(p == 4){right_check(data[index-1].now_x, data[index-1].now_y, p);}
             }
         });
-
+}
+function right_moving(){
+    var index = $("#car_number").val()
     var a = '2 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.9:8000',
+            url : 'http://192.168.0.12:8000/handling_car',
             dataType:'json',
             data : {
-            'bbb': a
+            'code': a,
             },
             success: function(){
             }
@@ -249,28 +257,28 @@ function right_check(x, y, p){
 						alert('이동불가')
 						return 0
 					}
-					m21(index); position=4; right_xy(); sleep(100); new_position(position); sleep(100); return 0
+					right_moving(); m21(index); position=4; right_xy(); sleep(100); new_position(position); sleep(100); return 0
 				}
 				if(position == 1){
 					if(map2[Number(xx)-1][Number(yy)+1] != 0 || map2[Number(xx)-1][Number(yy)] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					m23(index); position=3; right_xy(); sleep(100); new_position(position); sleep(100); return 0
+					right_moving(); m23(index); position=3; right_xy(); sleep(100); new_position(position); sleep(100); return 0
 				}
 				if(position == 2){
 					if(map2[Number(xx)-1][Number(yy)-1] != 0 || map2[Number(xx)][Number(yy)+1] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					m22(index); position=1; right_xy(); sleep(100); new_position(position); sleep(100); return 0
+					right_moving(); m22(index); position=1; right_xy(); sleep(100); new_position(position); sleep(100); return 0
 				}
 				if(position == 4){
 					if(map2[Number(xx)+1][Number(yy)-1] != 0 || map2[Number(xx)+1][Number(yy)] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					m24(index); position=2; right_xy(); sleep(100); new_position(position); sleep(100); return 0
+					right_moving(); m24(index); position=2; right_xy(); sleep(100); new_position(position); sleep(100); return 0
 				}
             }
         	});
@@ -288,13 +296,16 @@ function left(){
                 if(p == 4){left_check(data[index-1].now_x, data[index-1].now_y, p);}
             }
         });
+}
+function left_moving(){
+    var index = $("#car_number").val()
     var a = '3 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.9:8000',
+            url : 'http://192.168.0.12:8000/handling_car',
             dataType:'json',
             data : {
-            'bbb': a
+            'code': a,
             },
             success: function(){
             }
@@ -323,28 +334,28 @@ function left_check(x, y, p){
 						alert('이동불가')
 						return 0
 					}
-					m31(index); position=1; left_xy(); sleep(100); new_position(position); sleep(100); return 0
+					left_moving(); m31(index); position=1; left_xy(); sleep(100); new_position(position); sleep(100); return 0
 				}
 				if(position == 1){
 					if(map2[Number(xx)-1][Number(yy)-1] != 0 || map2[Number(xx)-1][Number(yy)] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					m34(index); position=2; left_xy(); sleep(100); new_position(position); sleep(100); return 0
+					left_moving(); m34(index); position=2; left_xy(); sleep(100); new_position(position); sleep(100); return 0
 				}
 				if(position == 2){
 					if(map2[Number(xx)+1][Number(yy)-1] != 0 || map2[Number(xx)][Number(yy)-1] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					m32(index); position=4; left_xy(); sleep(100); new_position(position); sleep(100); return 0
+					left_moving(); m32(index); position=4; left_xy(); sleep(100); new_position(position); sleep(100); return 0
 				}
 				if(position == 4){
 					if(map2[Number(xx)+1][Number(yy)+1] != 0 || map2[Number(xx)+1][Number(yy)] != 0 ){
 						alert('이동불가')
 						return 0
 					}
-					m33(index); position=3; left_xy(); sleep(100); new_position(position); sleep(100); return 0
+					left_moving(); m33(index); position=3; left_xy(); sleep(100); new_position(position); sleep(100); return 0
 				}
             }
         	});

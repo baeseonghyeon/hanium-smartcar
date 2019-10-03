@@ -18,5 +18,4 @@ urlpatterns = [
     path('pi_test6', views.pi_test6, name='pi_test6'),
     path('emer', views.emer, name='emer'),
     path('container_remove', views.container_remove, name='container_remove'),
-    path('return_start_point', views.return_start_point, name='return_start_point'),
 ]
