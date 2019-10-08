@@ -366,7 +366,7 @@ function left_xy(){
         type : 'POST',
         url : 'http://127.0.0.1:8000/main/left_xy',
         data : {
-            'car_number' : index
+			'car_number' : index
         },
         dataType:'json',
         success: function(){
@@ -566,15 +566,30 @@ function map(route, x, y, a, b){
                                  map_span.setAttribute("class", i+'a'+j);
                                  $("#map").append(map_span);
                                  var map_div = document.createElement("div");
-                                 map_div.setAttribute("class", "carcar"+index);
+								 map_div.setAttribute("class", "carcar"+index);
+								 $.ajax({
+									url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+									dataType : 'json',
+									success : function (data) {
+										map_div.setAttribute('data-car-direction', data[index].position);
+									}
+								 });
+								 map_div.setAttribute('data-carcar-idx', index);
+								 
                                  map_div.innerHTML = 'Car'+index;
 								 $("#route3").append(map_div);
 
-								// container 있으면
-								<!--var carcon = document.createElement("div");-->
-								<!--carcon.setAttribute("class", "carcon");-->
-								<!--$(".carcar"+index).append(carcon);	-->
-
+								//  로드 방향설정
+								if ($(".carcar"+index).attr('data-car-direction') == 1) {
+									$(".carcar"+index).css('transform','rotate(-90deg)');
+								}
+								else if ($(".carcar"+index).attr('data-car-direction') == 2) {
+									$(".carcar"+index).css('transform','rotate(-180deg)');
+								}
+								else if ($(".carcar"+index).attr('data-car-direction') == 4) {
+									$(".carcar"+index).css('transform','rotate(90deg)');
+									console.log('현재 차량의 방향은 4');
+								}
 
                             }
                             else if(map_array2[i][j]==5){

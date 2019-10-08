@@ -78,6 +78,7 @@ function map(){
                                             var map_div = document.createElement("div");
 											map_div.setAttribute("class", "carcar"+kk);
 											map_div.setAttribute('data-carcar-idx', kk);
+											map_div.setAttribute('data-car-direction', data_car[kk].position);
                                             map_div.setAttribute("id", "carcar"+(kk-1));
                                             map_div.innerHTML = 'Car'+kk;
 											$("#route3").append(map_div);
@@ -96,8 +97,21 @@ function map(){
                                         var map_div = document.createElement("div");
 										map_div.setAttribute("class", "carcar"+1);
 										map_div.setAttribute('data-carcar-idx', 1);
-                                        map_div.innerHTML = 'Car'+1;
-                                        $("#route3_"+1).append(map_div);
+										map_div.setAttribute('data-car-direction', data_car[0].position);
+										map_div.innerHTML = 'Car'+1;
+										
+										$("#route3_"+1).append(map_div);
+										if ($(".carcar"+1).attr('data-car-direction') == 1) {
+											console.log('1번 차량 방향은 3이맞음')
+											$(".carcar"+1).css('transform','rotate(-90deg)');
+										}
+										else if ($(".carcar"+1).attr('data-car-direction') == 2) {
+											$(".carcar"+1).css('transform','rotate(-180deg)');
+										}
+										else if ($(".carcar"+1).attr('data-car-direction') == 4) {
+											$(".carcar"+1).css('transform','rotate(90deg)');
+										}
+										
                                 }
                                  else if(map_array2[i][j]==32){
                                         var map_span = document.createElement("span");
@@ -107,8 +121,20 @@ function map(){
                                         var map_div = document.createElement("div");
 										map_div.setAttribute("class", "carcar"+2);
 										map_div.setAttribute('data-carcar-idx', 2);
+										map_div.setAttribute('data-car-direction', data_car[1].position);
                                         map_div.innerHTML = 'Car'+2;
-                                        $("#route3_"+2).append(map_div);
+										$("#route3_"+2).append(map_div);
+										if ($(".carcar"+2).attr('data-car-direction') == 1) {
+											console.log('1번 차량 방향은 3이맞음')
+											$(".carcar"+2).css('transform','rotate(-90deg)');
+										}
+										else if ($(".carcar"+2).attr('data-car-direction') == 2) {
+											$(".carcar"+2).css('transform','rotate(-180deg)');
+										}
+										else if ($(".carcar"+2).attr('data-car-direction') == 4) {
+											$(".carcar"+2).css('transform','rotate(90deg)');
+										}
+		
                                 }
                                  else if(map_array2[i][j]==33){
                                         var map_span = document.createElement("span");
@@ -117,9 +143,20 @@ function map(){
                                         $("#map").append(map_span);
                                         var map_div = document.createElement("div");
 										map_div.setAttribute("class", "carcar"+3);
+										map_div.setAttribute('data-car-direction', data_car[2].position);
 										map_div.setAttribute('data-carcar-idx', 3);
                                         map_div.innerHTML = 'Car'+3;
-                                        $("#route3_"+3).append(map_div);
+										$("#route3_"+3).append(map_div);
+										if ($(".carcar"+3).attr('data-car-direction') == 1) {
+											console.log('1번 차량 방향은 3이맞음')
+											$(".carcar"+3).css('transform','rotate(-90deg)');
+										}
+										else if ($(".carcar"+3).attr('data-car-direction') == 2) {
+											$(".carcar"+3).css('transform','rotate(-180deg)');
+										}
+										else if ($(".carcar"+3).attr('data-car-direction') == 4) {
+											$(".carcar"+3).css('transform','rotate(90deg)');
+										}
                                 }
                                 else if(map_array2[i][j]==5){
                                     var map_span = document.createElement("span");

@@ -274,6 +274,12 @@
     background-color: #adb4c1;
     color: #253247;
 }
+.dr-desc {
+	font-size: 0.5rem!important;
+	font-weight: 900;
+	position: absolute;
+	bottom: 1px;
+}
 #left {
 	left: 0;
 	top: 35%;		
@@ -289,4 +295,7 @@
 #back {
 	bottom: 0;
 	right: 35%;
+}
+#back .dr-desc {
+	bottom: 16px!important;
 }
