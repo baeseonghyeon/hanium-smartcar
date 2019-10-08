@@ -54,8 +54,19 @@ def container_remove(request):
     for x in range(14):
         map_array2[x] = map_array[x].split(', ')
     if x == '12' and y == '12':
-        print('12,12 실행')
+        print('첫번째12,12 실행')
         code = '4 4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 12 and y == 12:
+        print('두번째12,12 실행')
+        code = '4 4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == '12':
+        if y == '12':
+            print('세번째12,12 실행')
+            code = '4 4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
+    elif x == 12:
+        if y == 12:
+            print('네번째12,12 실행')
+            code = '4 4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
     elif x == '11' and y == '12':
         code = '4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2'
     elif x == 10 and y == 12:
@@ -88,7 +99,10 @@ def container_remove(request):
         code = '2 1 1 1 2 1 1 1 1 1 1 1 2'
     else:
         print('잡힌거없음')
+    # code = '1 1 1 '
+    code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
     carin.car_code = code
+    carin.car_finish = '1'
     carin.save()
     db_map.save()
     return HttpResponseRedirect('/')
@@ -184,12 +198,16 @@ def pi_test5(request):
         elif code == '4':
             modify_xx = int(before_x) + 1
             carin.now_behavior = '12'
-    print(diction['index'])
-    print(modify_xx)
-    print(modify_yy)
     carin.now_x = modify_xx
     carin.now_y = modify_yy
     carin.position = position
+    index = int(carin.for_index)
+    index += 1
+    carin.for_index = index
+    print(diction['index'])
+    print(modify_xx)
+    print(modify_yy)
+    print('db index:', carin.for_index)
     carin.save()
     return HttpResponseRedirect('')
 
@@ -200,19 +218,43 @@ def pi_test6(request):
     data = request.GET
     diction = data.dict()
     carin = CarInfo.objects.get(id=diction['pi_id'])
+    carin.for_commute = diction['index']
+    db_map = MapInfo.objects.get(id=1)
+    route = carin.car_route.split(']')
+    route2 = [0 for x in range(len(route)-1)]
+    for x in range(len(route)-1):
+        route2[x] = route[x].split('a')
+    map_array = db_map.map.split('s')
+    map_array2 = [[0 for x in range(14)] for y in range(14)]
+    for x in range(14):
+        map_array2[x] = map_array[x].split(', ')
+    try:
+        for x in range(len(route)-1):
+            for y in range(1):
+                map_array2[int(route2[x][y])][int(route2[x][y + 1])] = '0'
+    except IndexError:
+        pass
+    views_map = ''
+    for x in range(14):
+        for y in range(14):
+            views_map += str(map_array2[x][y])
+            if y != 13:
+                views_map += ', '
+        views_map += 's'
+    db_map.map = views_map
+    db_map.save()
     carin.car_finish = diction['finish']
-    carin.car_route = '1'
-    carin.car_code = '1'
     carin.target_x = ''
     carin.target_y = ''
     carin.car_finish = '99'
+    # carin.for_commute = '1'
+    # carin.for_index = '1'
     print(carin.now_x)
     print(carin.now_y)
     # carin.now_behavior = ''
+    carin.car_route = '1'
+    carin.car_code = '1'
     carin.save()
-    db_map = MapInfo.objects.get(id=1)
-    db_map.map = '8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s'
-    db_map.save()
     print('finish끝')
     return HttpResponseRedirect('')
 
