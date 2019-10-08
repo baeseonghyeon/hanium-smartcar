@@ -24,7 +24,7 @@
         <div id="detail-side1">
 			<!-- 경로 찾을때 input-->
 			<h2 id="nav_portname"></h2>
-			<h1><span id="now"></span> >> <span id="destination"></span></h1>
+			<!--<h1><span id="now"></span> >> <span id="destination"></span></h1>-->
 			<span id="car_arrive_time"></span><br>
 			<div class="row distance-box">	
 				<div class="distance">
@@ -32,11 +32,11 @@
 					<div class="distance-full"></div>
 				</div>			
 			</div>
-            거리:<span id="car_destination_distance"></span>[0/0]<br>
+            <!--거리:<span id="car_destination_distance"></span>[0/0]<br>-->
             
         </div>
         <div id="detail-side2">
-        	<span id="picture"></span>
+        	<!--<span id="picture"></span>-->
         </div>
         <div id="detail-side3">
             <div class="container">
@@ -199,7 +199,7 @@
 				<button class="mode-btn" id="straight" onclick="straight()"><i class="fas fa-sort-up"></i></button>
 				<button class="mode-btn" id="back" onclick="back()"><i class="fas fa-sort-down"></i></button>
 			</div>
-            <button id="mode" onclick="mode();emergency_stop();">자동모드</button><br>
+            <button id="mode" onclick="mode();">자동모드</button><br>
         </div>
     </div>   
 
@@ -209,6 +209,7 @@
 	$(document).ready(function(){
 		// $("#control").fadeOut("fast")
 		var index = $("#car_number").val()
+		console.log(index)
 		route(index)
 		
 		//carinfo

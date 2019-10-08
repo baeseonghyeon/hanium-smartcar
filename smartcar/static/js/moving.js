@@ -1,4 +1,13 @@
 $(document).ready(function(){
+playMap()
+//playMap2()
+playCap()
+//playCap2()
+playReturn()
+//playReturn2()
+})
+function playMap(){
+// 컨테이너 적재여부 검사
 playMap = setInterval(function() {
     $.ajax({
         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
@@ -7,85 +16,119 @@ playMap = setInterval(function() {
             if(data[0].car_route != "1"){
             map()
             data_car(data[0].car_code, data[0].id)
-            playReturn()
+//            playCap()
             clearInterval(playMap);
             }
         }
     });
 }, 3000);
-// detail 페이지로 넘어가면 x가 1로 초기화되서 if 코드가 수행안됨
-var x = 1
-var y = 1
+}
+function playMap2(){
+// 컨테이너 적재여부 검사
+playMap = setInterval(function() {
+    $.ajax({
+        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+        dataType : 'json',
+        success : function (data) {
+            if(data[1].car_route != "1"){
+            map()
+            data_car(data[1].car_code, data[1].id)
+//            playCap()
+            clearInterval(playMap2);
+            }
+        }
+    });
+}, 3000);
+}
+function playCap(){
+//차량으로부터 수행코드 받음
+var xxx = 1
 playCap = setInterval(function() {
     $.ajax({
         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
         dataType : 'json',
         success : function (data) {
-//            x = Number(data[0].for_commute)/2 + 1
-            if(data[0].for_commute == 2*x){
-                x += 1;
+//            var x = int(Number(data[0].for_index)/2) + 1
+            sleep(50)
+            console.log('밖'+xxx)
+            if(data[0].for_commute == 2*xxx){
+                console.log('안'+xxx)
                 moving1(data[0].id, data[0].now_behavior)
+                xxx += 1
                 if(data[0].car_finish == '99'){
-                    sleep(1000)
+                    console.log('finish들어옴')
                     console.log('끝!')
+                    xxx = 1
                     map()
-                    playcapReturn()
-                    clearInterval(playCap)
                 }
             }
         }
     });
-}, 300);
-// 차 2대일때
-//playMap1 = setInterval(function() {
-//    $.ajax({
-//        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-//        dataType : 'json',
-//        success : function (data) {
-//            if(data[1].car_route != "1"){
-//            map()
-//            console.log(data[1].car_route)
-//            data_car(data[1].car_route)
-//            clearInterval(playMap1);
-//            }
-//        }
-//    });
-//}, 3000);
-})
+}, 800);
+}
+function playCap2(){
+//차량으로부터 수행코드 받음
+var yyy = 1
+playCap = setInterval(function() {
+    $.ajax({
+        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+        dataType : 'json',
+        success : function (data) {
+//            var x = int(Number(data[0].for_index)/2) + 1
+            sleep(50)
+            if(data[1].for_commute == 2*yyy){
+                moving1(data[1].id, data[1].now_behavior)
+                yyy += 1
+                sleep(50)
+                if(data[1].car_finish == '99'){
+                    console.log('finish들어옴')
+                    sleep(1000)
+                    console.log('끝!')
+                    map()
+//                    playReturn()
+                }
+            }
+        }
+    });
+}, 800);
+}
 function playReturn(){
+//컨테이너 떨어졌는지 검사
 playReturn = setInterval(function() {
     $.ajax({
         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
         dataType : 'json',
         success : function (data) {
             if(data[0].container_id == "z"){
+            sleep(100)
             map()
             data_car(data[0].car_code, data[0].id)
+            console.log(data[0].car_code)
+            console.log(data[0].id)
             clearInterval(playReturn);
             }
         }
     });
 }, 3000);
 }
-function playcapReturn(){
-playCapReturn = setInterval(function() {
+function playReturn2(){
+//컨테이너 떨어졌는지 검사
+playReturn = setInterval(function() {
     $.ajax({
         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
         dataType : 'json',
         success : function (data) {
-            if(data[0].for_commute == 2*y){
-                y += 1;
-                moving1(data[0].id, data[0].now_behavior)
-                if(data[0].car_finish == '99'){
-                    sleep(1000)
-                    console.log('끝!')
-                    map()
-                    clearInterval(playCapReturn)
-                }
+            if(data[1].container_id == "z"){
+            sleep(100)
+            map()
+            data_car(data[1].car_code, data[1].id)
+            console.log(data[1].car_code)
+            console.log(data[1].id)
+            clearInterval(playReturn);
             }
         }
     });
-}, 300);
+}, 3000);
 }
 function data_car(x, id){
 	$.ajax({
