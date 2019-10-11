@@ -107,13 +107,17 @@ function map(){
 										}
 										else if ($(".carcar"+1).attr('data-car-direction') == 2) {
 											$(".carcar"+1).css('transform','rotate(-180deg)');
+											$(".carcar"+1).css('top','20px');
+											$(".carcar"+1).css('left','12px');
 										}
 										else if ($(".carcar"+1).attr('data-car-direction') == 4) {
 											$(".carcar"+1).css('transform','rotate(90deg)');
+											$(".carcar"+1).css('top','20px');
+											$(".carcar"+1).css('left','12px');
 										}
 										
                                 }
-                                 else if(map_array2[i][j]==32){
+                                else if(map_array2[i][j]==32){
                                         var map_span = document.createElement("span");
                                         map_span.setAttribute("id", "route3_"+2);
                                         map_span.setAttribute("class", i+'a'+j);
@@ -125,16 +129,18 @@ function map(){
                                         map_div.innerHTML = 'Car'+2;
 										$("#route3_"+2).append(map_div);
 										if ($(".carcar"+2).attr('data-car-direction') == 1) {
-											console.log('1번 차량 방향은 3이맞음')
 											$(".carcar"+2).css('transform','rotate(-90deg)');
 										}
 										else if ($(".carcar"+2).attr('data-car-direction') == 2) {
 											$(".carcar"+2).css('transform','rotate(-180deg)');
+											$(".carcar"+2).css('top','20px');
+											$(".carcar"+2).css('left','12px');
 										}
 										else if ($(".carcar"+2).attr('data-car-direction') == 4) {
 											$(".carcar"+2).css('transform','rotate(90deg)');
+											$(".carcar"+2).css('top','20px');
+											$(".carcar"+2).css('left','12px');
 										}
-		
                                 }
                                  else if(map_array2[i][j]==33){
                                         var map_span = document.createElement("span");
@@ -153,9 +159,13 @@ function map(){
 										}
 										else if ($(".carcar"+3).attr('data-car-direction') == 2) {
 											$(".carcar"+3).css('transform','rotate(-180deg)');
+											$(".carcar"+3).css('top','20px');
+											$(".carcar"+3).css('left','12px');
 										}
 										else if ($(".carcar"+3).attr('data-car-direction') == 4) {
 											$(".carcar"+3).css('transform','rotate(90deg)');
+											$(".carcar"+3).css('top','20px');
+											$(".carcar"+3).css('left','12px');
 										}
                                 }
                                 else if(map_array2[i][j]==5){

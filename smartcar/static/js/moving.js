@@ -192,7 +192,7 @@ function moving1(i, code){
 					 $(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)}
 		// ⌜>
 		if(code==23){$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
-		$(".carcar"+i).css('transform','rotate(-90deg)'),
+					$(".carcar"+i).css('transform','rotate(-90deg)'),
 					 $(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)}
 		// <⌟
 		if(code==24){$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
@@ -211,8 +211,8 @@ function moving1(i, code){
 					 $(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)}
 		// <⌝
 		if(code==34){$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
-		$(".carcar"+i).css('transform','rotate(-90deg)'),
-                     $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)}
+					$(".carcar"+i).css('transform','rotate(180deg)'),
+                    $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)}
 }
 function m11(i){$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)}
 function m12(i){$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)}
@@ -220,33 +220,41 @@ function m13(i){$(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)}
 function m14(i){$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)}
 // ⌝ down
 function m21(i){$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
-$(".carcar"+i).css('transform','rotate(90deg)'),
-				$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)}
+				$(".carcar"+i).css('transform','rotate(90deg)'),
+				$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
+			}
 // ⌞ up					
 function m22(i){$(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
-$(".carcar"+i).css('transform','rotate(90deg)'),
-				$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)}
+				$(".carcar"+i).css('transform','rotate(-90deg)'),
+				$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
+			}
 // ⌜>				
 function m23(i){$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
-$(".carcar"+i).css('transform','rotate(0deg)'),
-				$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)}
+				$(".carcar"+i).css('transform','rotate(0deg)'),
+				$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
+			}
 // <⌟				
 function m24(i){$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
-$(".carcar"+i).css('transform','rotate(180deg)'),
-				$(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)}
+				$(".carcar"+i).css('transform','rotate(180deg)'),
+				$(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
+			}
 // ⌟up				
 function m31(i){$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
-$(".carcar"+i).css('transform','rotate(-90deg)'),
-				$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)}
+				$(".carcar"+i).css('transform','rotate(-90deg)'),
+				$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
+			}
 // ⌜down
 function m32(i){$(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
-$(".carcar"+i).css('transform','rotate(90deg)'),
-				$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)}
+				$(".carcar"+i).css('transform','rotate(90deg)'),
+				$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
+			}
 // ⌞>				
 function m33(i){$(".carcar"+i).animate({top: "+=79.1625366210938"}, 500)
-$(".carcar"+i).css('transform','rotate(0deg)'),
-				$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)}
+				$(".carcar"+i).css('transform','rotate(0deg)'),
+				$(".carcar"+i).animate({left: "+=79.1625366210938"}, 500)
+			}
 // <⌝
 function m34(i){$(".carcar"+i).animate({top: "-=79.1625366210938"}, 500)
-$(".carcar"+i).css('transform','rotate(-90deg)'),
-                $(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)}
+				$(".carcar"+i).css('transform','rotate(180deg)'),
+				$(".carcar"+i).animate({left: "-=79.1625366210938"}, 500)
+			}
