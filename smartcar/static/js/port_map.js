@@ -78,7 +78,7 @@ function map(){
                                             var map_div = document.createElement("div");
 											map_div.setAttribute("class", "carcar"+kk);
 											map_div.setAttribute('data-carcar-idx', kk);
-											map_div.setAttribute('data-car-direction', data_car[kk].position);
+//											map_div.setAttribute('data-car-direction', data_car[kk].position);
                                             map_div.setAttribute("id", "carcar"+(kk-1));
                                             map_div.innerHTML = 'Car'+kk;
 											$("#route3").append(map_div);

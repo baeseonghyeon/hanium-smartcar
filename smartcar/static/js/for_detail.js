@@ -396,8 +396,8 @@ function emergency_stop(){
 }
 function map(route, x, y, a, b){
 
-//    $('#now').text(x+','+y);
-//    $('#destination').text(a+','+b);
+    $('#now').text(x+','+y);
+    $('#destination').text(a+','+b);
 
     var car_route1 = new Array()
     var car_route2 = new Array()
@@ -644,19 +644,19 @@ function map(route, x, y, a, b){
      });
 }
 function check_position(){
-//    var index = $("#car_number").val();
-//    $.ajax({
-//        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
-//        dataType : 'json',
-//        success : function (data) {
-//                    x = data[index-1].now_x;
-//                    y = data[index-1].now_y;
-//                    a = data[index-1].target_x;
-//                    b = data[index-1].target_y;
-////                    $('#now').html('');
-//                    $('#now').html(x+','+y);
-////                    $('#destination').html('');
-//                    $('#destination').html(a+','+b);
-//                }
-//            });
+    var index = $("#car_number").val();
+    $.ajax({
+        url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+        dataType : 'json',
+        success : function (data) {
+                    x = data[index-1].now_x;
+                    y = data[index-1].now_y;
+                    a = data[index-1].target_x;
+                    b = data[index-1].target_y;
+//                    $('#now').html('');
+                    $('#now').html(x+','+y);
+//                    $('#destination').html('');
+                    $('#destination').html(a+','+b);
+                }
+            });
 }
