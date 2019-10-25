@@ -6,6 +6,17 @@ playCap()
 playReturn()
 //playReturn2()
 })
+function camera(){
+    $.ajax({
+        type : 'POST',
+        url : 'http://192.168.0.12:8000/cam',
+        dataType:'json',
+        data : {
+        },
+        success: function(){
+        }
+    });
+}
 function playMap(){
 // 컨테이너 적재여부 검사
 playMap = setInterval(function() {
@@ -42,24 +53,50 @@ playMap = setInterval(function() {
 }
 function playCap(){
 //차량으로부터 수행코드 받음
-var xxx = 1
 playCap = setInterval(function() {
     $.ajax({
         url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
         dataType : 'json',
         success : function (data) {
-//            var x = int(Number(data[0].for_index)/2) + 1
+            var xxx = Number(data[0].for_index);
+            var yyy = Number(data[0].for_commute)
+            console.log('xxx값')
+            console.log(xxx)
+            console.log(typeof(xxx))
+            console.log('commute값')
+            console.log(yyy)
+            console.log(typeof(yyy))
             sleep(50)
-            console.log('밖'+xxx)
-            if(data[0].for_commute == 2*xxx){
-                console.log('안'+xxx)
+            if(yyy == 2*xxx){
+                console.log('안에 들어옴')
                 moving1(data[0].id, data[0].now_behavior)
-                xxx += 1
                 if(data[0].car_finish == '99'){
                     console.log('finish들어옴')
                     console.log('끝!')
-                    xxx = 1
+                $.ajax({
+                    type : 'POST',
+                    url : 'http://127.0.0.1:8000/main/reset_index',
+                    dataType:'json',
+                    data : {
+                    'id': data[0].id,
+                    },
+                    success: function(){
+                    }
+                });
                     map()
+                }
+                else{
+                console.log('else실행')
+                $.ajax({
+                    type : 'POST',
+                    url : 'http://127.0.0.1:8000/main/change_index',
+                    dataType:'json',
+                    data : {
+                    'id': data[0].id,
+                    },
+                    success: function(){
+                    }
+                });
                 }
             }
         }

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'main',
     'map',
+    'openapi',
     'user.apps.UserConfig',
 
 ]
@@ -132,3 +133,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 LOGIN_REDIRECT_URL = 'auth'
 LOGOUT_REDIRECT_URL = 'auth'
+APPEND_SLASH=False

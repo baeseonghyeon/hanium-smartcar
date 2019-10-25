@@ -18,4 +18,6 @@ urlpatterns = [
     path('pi_test6', views.pi_test6, name='pi_test6'),
     path('emer', views.emer, name='emer'),
     path('container_remove', views.container_remove, name='container_remove'),
+    path('change_index', views.change_index, name='change_index'),
+    path('reset_index', views.reset_index, name='reset_index'),
 ]

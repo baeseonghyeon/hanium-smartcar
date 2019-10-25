@@ -34,6 +34,24 @@ def pi_test3(request):
     return HttpResponseRedirect('/')
 
 @csrf_exempt
+def change_index(request):
+    carin = CarInfo.objects.get(id=request.POST['id'])
+    index = int(carin.for_index)
+    index += 1
+    carin.for_index = str(index)
+    print(index, '로 변경 완료!')
+    carin.save()
+    return HttpResponseRedirect('/')
+
+@csrf_exempt
+def reset_index(request):
+    carin = CarInfo.objects.get(id=request.POST['id'])
+    index = '1'
+    carin.for_index = index
+    carin.save()
+    return HttpResponseRedirect('/')
+
+@csrf_exempt
 def container_remove(request):
     print('컨테이너 없다!')
     data = request.GET
@@ -99,8 +117,8 @@ def container_remove(request):
         code = '2 1 1 1 2 1 1 1 1 1 1 1 2'
     else:
         print('잡힌거없음')
-    # code = '1 1 1 '
-    code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+    code = '1 1 1 '
+    # code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
     carin.car_code = code
     carin.car_finish = '1'
     carin.save()
@@ -201,13 +219,8 @@ def pi_test5(request):
     carin.now_x = modify_xx
     carin.now_y = modify_yy
     carin.position = position
-    index = int(carin.for_index)
-    index += 1
-    carin.for_index = index
-    print(diction['index'])
     print(modify_xx)
     print(modify_yy)
-    print('db index:', carin.for_index)
     carin.save()
     return HttpResponseRedirect('')
 

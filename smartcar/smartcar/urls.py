@@ -38,5 +38,6 @@ urlpatterns = [
     path('api/', include((router.urls, 'MapInfo'), namespace='MapInfo')),
     path('map/', include('map.urls')),
     path('main/', include('main.urls')),
+    path('openapi/', include('openapi.urls')),
     path('user/', include('django.contrib.auth.urls')),
 ]
