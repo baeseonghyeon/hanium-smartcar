@@ -15,8 +15,6 @@ def Car_input(request):
     carin.car_name = car_name
     carin.pi_id = PiInfo.objects.get(pi_id=pi_id)
     carin.save()
-    # url = "192.168.0.12:8000/cam_on"
-    # response = requests.post(url, params="", allow_redirects=False)
     return HttpResponseRedirect('/')
 
 #서버 코드 / nfc에서 데이터를 받음
