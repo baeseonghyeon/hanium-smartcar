@@ -1,0 +1,123 @@
+{% extends './common/base.html' %}
+
+{% load staticfiles %}
+
+<!-- html header -->
+{% block head %}
+<script src="{% static 'js/car_input.js' %}"></script>
+<script src="{% static 'js/port_map.js' %}"></script>
+<link href="{% static 'css/main.css'%}" rel="stylesheet">
+{% endblock %}
+
+<!-- not user redirect -->
+{% include './common/user_auth.html' %}
+
+<!-- Nav -->
+{% block nav %}
+    {% include './common/nav.html' %}
+{% endblock %}
+
+
+{% block contents %}
+<div id="wrapper" class="toggled">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div id="main-side1">
+			<span id="car_count"></span>대 (등록 순)
+			<!-- (정렬 순) -->
+        </div>
+        <div id="main-side2">
+
+        </div>
+        <div id="main-side3">
+			<div class="container">
+				<p class="mb-2">차량정보</p>
+				<h1><span id="car_name">선택된 차량 없음</span></h1>
+				<p id="car_type">[선택된 차량 없음]</p>
+				<!-- number는 필요 없는 정보, 임시로 숨김 -->
+				<span id="car_number" style="display: none;"></span>
+
+				<div class="row car_state_container">
+					<div class="car_state_wrapper">
+						 
+					</div>
+				</div>
+
+				<div class="row main-car-info">
+					<div class="col-6">
+						<div class="row">
+							<div class="col-6">
+								<div class="cercle-s sbat">
+									<span class="car_battery_icon"><i class="fas fa-battery-empty none"></i></span>
+								</div>
+							</div>
+							<div class="col-6 info-text">
+								<p><span class="car_battery">0%</span></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="row">
+							<div class="col-6">
+								<div class="cercle-s">
+									<span class="car_data_icon"><i class="fas fa-signal none"></i></span>
+								</div>
+							</div>
+							<div class="col-6 info-text">
+								<span class="car_data">끊김</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+					<input type="button" id="godetail-btn" onclick="detail()" value="상세정보" />
+
+			</div>	
+		</div>
+    </div>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+		<div id="map"></div>
+		<!-- 여기 주석처리하면 지도 살아남 -->
+		<!-- <div id="map-kakao"></div> -->
+		<!--<button class="map-change-btn" onclick="mapchange()">KAKAO MAP</button>-->
+
+		<script>
+		function mapchange(){
+			if($(".map-change-btn").text()=='KAKAO MAP'){
+				$('#map-kakao').fadeOut('fast');
+				$('#map').fadeIn('fast');
+				$(".map-change-btn").text('')
+				$(".map-change-btn").css({'background-color': 'rgb(40, 181, 184, 0.7)', 'color': 'white'});
+				$(".map-change-btn").text('PORT MAP')
+				return 0
+			};
+			if($(".map-change-btn").text()=='PORT MAP'){
+				$('#map').fadeOut('fast');
+				$('#map-kakao').fadeIn('fast');
+				$(".map-change-btn").text('')
+				$(".map-change-btn").css({'background-color': 'rgb(252, 206, 0, 0.7)', 'color': 'black'});
+				$(".map-change-btn").text('KAKAO MAP')
+				return 0
+			};
+		};
+		</script>
+         <div class="car-position-control-box">
+            <!--&lt;!&ndash;&lt;!&ndash;현위치:<input type="text" id="x" size="2" />&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<input type="text" id="y" size="2" /><br>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;목적지:<input type="text" id="a" size="2" />&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<input type="text" id="b" size="2" /><br>&ndash;&gt;&ndash;&gt;-->
+			<button onclick="normal()">0정상</button>
+			<button onclick="slow()">1서행</button>
+			<button onclick="stop()">2멈춤</button>
+			<button onclick="turn()">3우회</button>
+            <!--&lt;!&ndash;&lt;!&ndash;<button onclick="xy_reset()">초기화</button>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<button id="path_search" onclick="search()">경로탐색</button>&ndash;&gt;&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash;<button onclick="moving()">출발</button>&ndash;&gt;&ndash;&gt;-->
+        </div>
+    </div>
+</div>
+  <!-- Car_input Modal -->
+  {% include './car_input.html' %}
+
+{% endblock %}

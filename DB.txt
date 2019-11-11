@@ -1,0 +1,35 @@
+class CarInfo(models.Model):
+	pi_id = models.ForeignKey(PiInfo, unique=True, on_delete = models.CASCADE)
+	container_id = models.ForeignKey(ContainerInfo, unique=True, on_delete = models.CASCADE)
+	car_name = models.CharField(max_length=20)
+	car_route = models.CharField(max_length=100, null=True, default='')
+	car_speed = models.CharField(max_length=5, null=True)
+	car_arrive_time = models.CharField(max_length=20, null=True)
+	car_destination_distance = models.CharField(max_length=20, null=True)
+	car_now_situation = models.CharField(max_length=10, null=True)
+	now_x = models.CharField(max_length=2, null=True, default='')
+	now_y = models.CharField(max_length=2, null=True, default='')
+	target_x = models.CharField(max_length=2, null=True, default='')
+	target_y = models.CharField(max_length=2, null=True, default='')
+
+class PiInfo(models.Model):
+	pi_id = models.CharField(max_length=10, primary_key=True)
+	battery = models.CharField(max_length=10)
+	communication = models.CharField(max_length=10)
+	car_type = models.CharField(max_length=10)
+	picture = models.URLField(max_length=200)
+
+class ContainerInfo(models.Model):
+	container_id = models.CharField(max_length=10, primary_key=True)
+	destination = models.CharField(max_length=10)
+	container_company = models.CharField(max_length=10)
+	container_product = models.CharField(max_length=10)
+	container_shipment_day = models.CharField(max_length=10)
+
+class PortInfo(models.Models):
+	portname = models.CharField(max_length=10, primary_key=True)
+	map = models.CharField(max_length=1000)
+
+class UserInfo(models.Model):
+	portname = models.ForeignKey(PortInfo, unique=True, on_delete=models.CASCADE)
+	username = models.CharField(max_length=10, primary_key=True)

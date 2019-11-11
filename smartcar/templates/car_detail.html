@@ -1,0 +1,413 @@
+{% extends './common/base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+<link href="{% static 'css/detail.css'%}" rel="stylesheet">
+<script src="{% static 'js/for_detail.js' %}"></script>
+{% endblock %}
+
+<!-- not user redirect -->
+{% include './common/user_auth.html' %}
+
+<!-- Nav -->
+{% block nav %}
+    {% include './common/nav.html' %}
+{% endblock %}
+
+<!-- Sidebar -->
+{% block contents %}
+<div id="wrapper" class="toggled">  
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <div id="detail-side1">
+			<!-- 경로 찾을때 input-->
+			<h2 id="nav_portname"></h2>
+			<!--<h1><span id="now"></span> >> <span id="destination"></span></h1>-->
+			<span id="car_arrive_time"></span><br>
+			<div class="row distance-box">	
+				<div class="distance">
+					<div class="distance-car"></div>
+					<div class="distance-full"></div>
+				</div>			
+			</div>
+            <!--거리:<span id="car_destination_distance"></span>[0/0]<br>-->
+            
+        </div>
+        <div id="detail-side2">
+        	<img src="http://192.168.0.10:5000/stream.mjpg" id="camera" style="max-width: 100%; height: 100%;" />
+        </div>
+        <div id="detail-side3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="cercle-l car-now">
+							<i class="fas fa-arrow-up"></i>
+                            <span id="car_now_situation"></span>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="cercle-l">
+                            <span id="car_speed">11</span>
+                            <span>KM/H</span>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="row">
+                            <div class="cercle-s">
+								<!-- <span class="car_battery"></span> -->
+								<span class="car_battery_icon"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cercle-s">
+								<span class="car_data_icon"></span>
+								<!-- <span id="communication"></span>
+								<i class="fas fa-signal"></i> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12" id="con-box">
+                        <div id="car-container">
+                            <span id="container_id"></span>
+                        </div>
+                    </div>
+                    <div class=" col-12" id="car-box">
+						<div class="cardetail">
+							<div class="wheel left"></div>
+							<div class="wheel right"></div>
+						</div>
+                        <div id="detail-car">
+							<!--  -->
+                            <span class="car_name"></span>
+							<span class="car_type"></span>
+							<span id="pi_id" style="display:none;"></span>
+                        </div>
+                    </div>
+
+                    <div class="info-wrapper" id="con-info">
+						<div class="row">
+							<p>화물정보</p>
+							<button class="info-close-btn" id="con-info-close"><i class="fas fa-times"></i></button>
+						</div>
+                        <div class="row">
+							<h1>컨테이너 코드</h1>
+							<!-- 컨테이너 제조사 -->
+							<h2>[<span id="container_company"></span>]</h2>
+							<!-- 컨테이너 제품 -->
+							<h2><span id="container_product"></span></h2>
+
+							<p>운반정보</p>
+							<div class="con-info-info">
+								<!-- 출발항구 도착항구 -->
+								<!--<h1>출발좌표 >> 도착좌표</h1>-->
+								<!-- 컨테이너 출하일  -->
+								<span id="container_shipment_day"></span>
+							</div>
+						</div>
+                        <!-- 컨테이너 등록때 input-->
+                        <!-- exam -->
+                        Container-id:<input type="text" id="container_id" />
+                        <button onclick="container()">컨테이너등록</button>
+                    </div>
+
+                    <div class="info-wrapper" id="car-info">
+						<div class="row">
+							<p>차량정보</p>
+							<button class="info-close-btn" id="car-info-close"><i class="fas fa-times"></i></button>
+						</div>
+						<div class="row">
+							<h1 class="mb-3 car_name">carname</h1>
+							<h2 class="car_type">[cartype]</h2>
+						</div>
+                        <div class="row colorblue m-auto">
+							<div class="col-5">
+								<div class="container">
+									<div class="row">
+										<div class="col-6">
+											<div class="cercle-s">
+												<span class="car_battery_icon"></span>
+											</div>
+										</div>
+										<div class="col-6 car-info-text">
+											<span class="car_battery"></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-6">
+											<div class="cercle-s">
+											<span class="car_data_icon"></span>
+											</div>
+										</div>
+										<div class="col-6 car-info-text">
+											<span class="car_data"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-2">
+								<div class="car-info-car">car</div>
+							</div>
+							<div class="col-5">
+								<div class="container">
+									<div class="row">
+										<div class="col-6 car-info-text">
+											설정
+										</div>
+										<div class="col-6 p-0">
+											<div class="cercle-s">
+												<i class="fas fa-cog"></i>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-6 car-info-text">
+											조작
+										</div>
+										<div class="col-6 p-0">
+											<div class="cercle-s">
+												<i class="fas fa-play-circle"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p><span class='colorblue'>속도</span>KM/H</p>
+                        <!-- <button onclick="moving()">무빙</button> -->
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+   
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper"> 
+        <input type="hidden" id="car_number" value="{{ carNumber }}">
+		<div id="map"></div>
+		<!-- <div id="map-kakao"></div> -->
+		
+        <div class="control-wrapper">
+			<!-- 수동조작 틀-->
+			<div id="control">
+				<button class="mode-btn" id="right" onclick="right()"><i class="fas fa-caret-right"></i><span class="dr-desc">우회전</span></button>
+				<button class="mode-btn" id="left" onclick="left()"><i class="fas fa-caret-left"></i><span class="dr-desc">좌회전</span></button>
+				<button class="mode-btn" id="straight" onclick="straight()"><i class="fas fa-sort-up"></i><span class="dr-desc">직진</span></button>
+				<button class="mode-btn" id="back" onclick="back()"><i class="fas fa-sort-down"></i><span class="dr-desc">후진</span></button>
+			</div>
+            <button id="mode" onclick="mode();">자동모드</button><br>
+        </div>
+    </div>   
+
+</div>
+
+<script>
+	$(document).ready(function(){
+		// $("#control").fadeOut("fast")
+		var index = $("#car_number").val()
+		route(index)
+		
+		//carinfo
+		$('#car-box').on('click', function(){
+			$('#car-info').fadeIn("fast");
+		});
+		$('#car-info-close').on('click', function(){
+			$('#car-info').fadeOut("fast");
+		});
+	})
+	function mode(){
+		if($("#mode").text()=='자동모드'){
+			$(".mode-btn").fadeIn("fast")
+			$(".mode-btn").css({'display' : 'flex'})
+			$("#mode").text('')
+			$("#mode").text('수동모드')
+			$('#mode').css({'background-color': 'rgba(33, 150, 243, 0.9)'})	
+			return 0
+		}
+		if($("#mode").text()=='수동모드'){
+			$(".mode-btn").fadeOut("fast")
+			$("#mode").text('')
+			$("#mode").text('자동모드')
+			$('#mode').css({'background-color' : 'rgba(14, 172, 106, 0.9)'})
+			return 0
+		}
+	}
+
+    var filtered_json = new Array();
+    $.ajax({
+		url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+		dataType : 'json',
+		success : function (data) {
+			var my_json = JSON.stringify(data)
+			filtered_json = find_in_object(JSON.parse(my_json), {id: {{ carNumber }} });
+			var pi_id = filtered_json[0].pi_id;
+			var container_id = filtered_json[0].container_id;
+			var car_name = filtered_json[0].car_name;
+			var car_speed = filtered_json[0].car_speed;
+			var car_arrived_time = filtered_json[0].car_arrived_time;
+			var car_destination_distance = filtered_json[0].car_destination_distance;
+			var car_now_situation = filtered_json[0].car_now_situation;
+			var car_speed = filtered_json[0].car_speed;
+
+			if(car_speed != null){
+				var car_arrive_time = filtered_json[0].car_arrive_time;
+				var car_now_situation = filtered_json[0].car_now_situation;
+				var car_destination_distance = filtered_json[0].car_destination_distance;
+				$("#car_speed").text(car_speed);
+				$("#car_arrive_time").text(car_arrive_time);
+				$("#car_now_situation").text(car_now_situation);
+				$("#car_destination_distance").text(car_destination_distance);
+			}
+			$("#pi_id").text(pi_id).val(pi_id);
+
+			// 컨테이너 판단
+			if(container_id ==! null ) {
+				$("#container_id").text(container_id).val(container_id);
+				// coninfo
+				$('#con-box').on('click', function(){ 
+					$('#con-info').fadeIn("fast");
+				});
+				$('#con-info-close').on('click', function(){
+					$('#con-info').fadeOut("fast");
+				});
+			} else {
+				$("#container_id").text("컨테이너 없음").css({'background-color': 'transparent', 'color': '#535f6d'});
+				$("#car-container").css({'border': '1px solid #535f6d'})
+			}
+
+			$.ajax({
+				url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
+				dataType : 'json',
+				success : function (pi_data) {
+					for(var j=0; j<=pi_data.length-1; j++){
+						if(filtered_json[0].pi_id == pi_data[j].pi_id){
+							$(".car_type").text("["+pi_data[j].car_type+"]");
+						}
+					}	
+				}
+			});
+			$(".car_name").text(car_name);
+			$("#nav_carname").text(car_name);
+			$("#car_speed").text(car_speed);
+			$("#car_arrived_time").text(car_arrived_time);
+			$("#car_destination_distance").text(car_destination_distance);
+			$("#car_now_situation").text(car_now_situation);
+		}	 
+	  });
+	  
+    sleep(30)
+    $.ajax({
+		url : "http://127.0.0.1:8000/api/PiInfo/?format=json",
+		dataType : 'json',
+		success : function (data) {
+			var my_json = JSON.stringify(data)
+			var va = document.getElementById("pi_id").value;
+			filtered_json = find_in_object(JSON.parse(my_json), {pi_id: va});
+			var battery = filtered_json[0].battery;
+			var communication = filtered_json[0].communication;
+			var car_type = filtered_json[0].car_type;
+			var picture = filtered_json[0].picture;
+
+			
+
+			$("#car_type, .car_type").text("["+car_type+"]");
+			$("#picture").text(picture);
+			$("#detail-side2").css({"background-image":"url('"+picture+"')"});
+
+			// 배터리 
+			$(".car_battery").text(battery+'%');
+			// $(".car_battery1").text(battery);
+			battery = Number(battery)
+				var battery_icon = document.createElement("i");
+				if(battery > 80 ) {
+				battery_icon.setAttribute("class", 'fas fa-battery-full');
+				}
+				else if(80 >= battery && battery > 60) {
+				battery_icon.setAttribute("class", 'fas fa-battery-three-quarters');
+				}
+				else if(60 >= battery && battery > 40) {
+				battery_icon.setAttribute("class", 'fas fa-battery-half');
+				}
+				else if(40 >= battery && battery > 20) {
+				battery_icon.setAttribute("class", 'fas fa-battery-quarter');
+				}
+				else if(20 > battery) {
+				battery_icon.setAttribute("class", 'fas fa-battery-empty');
+				}
+			$(".car_battery_icon").append(battery_icon);
+
+			//  통신
+			communication = Number(communication)
+			var communication_icon = document.createElement("i");
+				if(communication > 80 ) {
+					communication_icon.setAttribute("class", 'fas fa-signal active');
+					$(".car_data").text("양호").addClass('active');
+				}
+				else if(80 >= communication && communication > 50) {
+					communication_icon.setAttribute("class", 'fas fa-signal low');
+					$(".car_data").text("불안정");
+				}
+				else if(50 >= communication && communication > 20) {
+					communication_icon.setAttribute("class", 'fas fa-signal very-low');
+					$(".car_data").text("불안정");
+				}
+				else if(20 > communication ) {
+					communication_icon.setAttribute("class", 'fas fa-signal none');
+					$(".car_data").text("불량");
+				}
+			$(".car_data_icon").append(communication_icon);
+
+
+		}
+	});
+	
+    sleep(30)
+    $.ajax({
+		url : "http://127.0.0.1:8000/api/ContainerInfo/?format=json",
+		dataType : 'json',
+		success : function (data) {
+
+		var my_json = JSON.stringify(data)
+		var co = document.getElementById("container_id").value;
+		filtered_json = find_in_object(JSON.parse(my_json), {container_id: co});
+		if(filtered_json.length != 0){
+			var container_company = filtered_json[0].container_company;
+			var container_product = filtered_json[0].container_product;
+			var container_shipment_day = filtered_json[0].container_shipment_day;
+
+			$("#container_company").text(container_company);
+			$("#container_product").text(container_product);
+			$("#container_shipment_day").text(container_shipment_day);
+		}
+
+		}
+	});
+	
+	function find_in_object(my_object, my_criteria){
+	return my_object.filter(function(obj) {
+		return Object.keys(my_criteria).every(function(c) {
+		return obj[c] == my_criteria[c];
+		});
+	});
+	}
+
+	function route(clicked_car){
+		var car_route
+		var count
+		var car_route1 = new Array()
+		var car_route2 = new Array()
+		$.ajax({
+			url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
+			dataType : 'json',
+			success : function (data) {
+			map(data[clicked_car-1].car_route, data[clicked_car-1].now_x, data[clicked_car-1].now_y,
+			data[clicked_car-1].target_x, data[clicked_car-1].target_y, )
+			}
+		});
+	}
+</script>
+{% endblock %}

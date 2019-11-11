@@ -1,0 +1,17 @@
+
+{% load staticfiles %}
+
+<h1>HI</h1>
+<input type="button" id="ultrasonic" onclick="car_start()">
+<input type="button" id="shutdown" onclick="car_shutdown()">
+
+<script src="{% static 'js/jquery.js' %}"/>
+
+<script>
+$.ajax({
+	type:'POST',
+	url : 'http://192.168.0.10:8000'
+	success : function() {
+	}
+});
+</script>

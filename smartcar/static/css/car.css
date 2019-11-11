@@ -1,0 +1,142 @@
+.carcar1{
+	/* position: absolute; */
+	width: 50px;
+    height: 30px;
+	background-color: #455163;
+	border: 2px solid #28b5b8;
+	border-radius: 5px;
+	text-align: center;
+	/*top: 50%;
+	left: 50%;*/
+	transform: translate(25%, 75%);
+	-ms-transform: translate(25%, 75%);
+	/* transform: translate(-50%, -50%); */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
+	position : relative;
+	/* transition: transform .5s; */
+	-webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+
+    -ms-animation-name: spin;
+    -ms-animation-duration: 4000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+}
+.carcar1::after, .carcar2::after, .carcar3::after{
+	content: "";
+    width: 0px;
+    height: 0px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #28b4b8;
+    display: block;
+    position: absolute;
+    right: -13px;
+}
+.carcar2{
+	position: absolute;
+	width: 50px;
+    height: 30px;
+	background-color: #455163;
+	border: 2px solid #28b5b8;
+	border-radius: 5px;
+	text-align: center;
+	justify-content: center;
+	/*top: 50%;
+	left: 50%;*/
+	/* -ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); */
+	transform: translate(25%, 75%);
+	-ms-transform: translate(25%, 75%);
+	display: flex;
+	align-items: center;
+	z-index: 100;
+	/* transition: transform .5s; */
+	-webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+
+    -ms-animation-name: spin;
+    -ms-animation-duration: 4000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+}
+.carcar3{
+	position: absolute;
+	width: 50px;
+    height: 30px;
+	background-color: #455163;
+	border: 2px solid #28b5b8;
+	border-radius: 5px;
+	text-align: center;
+	justify-content: center;
+	/*top: 50%;
+	left: 50%;*/
+	/* -ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); */
+	transform: translate(25%, 75%);
+	-ms-transform: translate(25%, 75%);
+	display: flex;
+	align-items: center;
+	z-index: 100;
+	/* transition: transform .5s; */
+	-webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+
+    -ms-animation-name: spin;
+    -ms-animation-duration: 4000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+}
+.carcon {
+	width: 40px;
+    height: 20px;
+    border: 2px solid #925fb1;
+    position: absolute;
+}
+
+/* car rotate */
+.car-right {
+	transform: rotate(90deg);
+} 
+.car-left {
+	transform: rotate(-90deg);
+}
+.car-back {
+	transform: rotate(-180deg);
+}
