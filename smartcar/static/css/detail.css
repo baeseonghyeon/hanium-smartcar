@@ -3,7 +3,10 @@
     flex: 2;
     background: #253247;
     padding: 15px;
-    border-bottom: 1px solid #46586b;
+	border-bottom: 1px solid #46586b;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 #detail-side1 h1 {
 	font-size: 1.5rem;
@@ -17,7 +20,7 @@
 .distance-box {
 	width: 100%;
     height: 60px;
-    margin: 20px auto;
+    margin: 20px auto 0;
 }
 .distance {
 	width: 270px;
@@ -58,7 +61,8 @@
     flex: 3.4;
     background: #273245;
     padding: 15px;
-    border-top: 1px solid #46586b;
+	border-top: 1px solid #46586b;
+	position: relative;
 }
 	#detail-side3 .col-5 {
 		display: flex;
@@ -178,7 +182,8 @@
     height: 270px;
 	display: none;
 	text-align: center;
-	bottom: 12px;
+	height: 100%;
+	align-items: center;
 }
 .info-wrapper p, h1, h2 {
 	width: 100%;
@@ -298,4 +303,8 @@
 }
 #back .dr-desc {
 	bottom: 16px!important;
+}
+.time {
+	position: absolute;
+	left: 5px;
 }

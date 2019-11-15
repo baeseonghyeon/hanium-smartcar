@@ -36,6 +36,7 @@
             
         </div>
         <div id="detail-side2">
+			<span class="time">{{ time }}</span>
         	<img src="http://192.168.0.10:5000/stream.mjpg" id="camera" style="max-width: 100%; height: 100%;" />
         </div>
         <div id="detail-side3">
@@ -115,68 +116,70 @@
                     </div>
 
                     <div class="info-wrapper" id="car-info">
-						<div class="row">
-							<p>차량정보</p>
-							<button class="info-close-btn" id="car-info-close"><i class="fas fa-times"></i></button>
-						</div>
-						<div class="row">
-							<h1 class="mb-3 car_name">carname</h1>
-							<h2 class="car_type">[cartype]</h2>
-						</div>
-                        <div class="row colorblue m-auto">
-							<div class="col-5">
-								<div class="container">
-									<div class="row">
-										<div class="col-6">
-											<div class="cercle-s">
-												<span class="car_battery_icon"></span>
-											</div>
-										</div>
-										<div class="col-6 car-info-text">
-											<span class="car_battery"></span>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-6">
-											<div class="cercle-s">
-											<span class="car_data_icon"></span>
-											</div>
-										</div>
-										<div class="col-6 car-info-text">
-											<span class="car_data"></span>
-										</div>
-									</div>
-								</div>
+						<div class="container">
+							<div class="row">
+								<p>차량정보</p>
+								<button class="info-close-btn" id="car-info-close"><i class="fas fa-times"></i></button>
 							</div>
-							<div class="col-2">
-								<div class="car-info-car">car</div>
+							<div class="row">
+								<h1 class="mb-3 car_name">carname</h1>
+								<h2 class="car_type">[cartype]</h2>
 							</div>
-							<div class="col-5">
-								<div class="container">
-									<div class="row">
-										<div class="col-6 car-info-text">
-											설정
-										</div>
-										<div class="col-6 p-0">
-											<div class="cercle-s">
-												<i class="fas fa-cog"></i>
+							<div class="row colorblue m-auto">
+								<div class="col-5">
+									<div class="container">
+										<div class="row">
+											<div class="col-6">
+												<div class="cercle-s">
+													<span class="car_battery_icon"></span>
+												</div>
+											</div>
+											<div class="col-6 car-info-text">
+												<span class="car_battery"></span>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-6 car-info-text">
-											조작
-										</div>
-										<div class="col-6 p-0">
-											<div class="cercle-s">
-												<i class="fas fa-play-circle"></i>
+										<div class="row">
+											<div class="col-6">
+												<div class="cercle-s">
+												<span class="car_data_icon"></span>
+												</div>
+											</div>
+											<div class="col-6 car-info-text">
+												<span class="car_data"></span>
 											</div>
 										</div>
 									</div>
 								</div>
+								<div class="col-2">
+									<div class="car-info-car">car</div>
+								</div>
+								<div class="col-5">
+									<div class="container">
+										<div class="row">
+											<div class="col-6 car-info-text">
+												설정
+											</div>
+											<div class="col-6 p-0">
+												<div class="cercle-s">
+													<i class="fas fa-cog"></i>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-6 car-info-text">
+												조작
+											</div>
+											<div class="col-6 p-0">
+												<div class="cercle-s">
+													<i class="fas fa-play-circle"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
+							<p><span class='colorblue'>속도</span>KM/H</p>
 						</div>
-						<p><span class='colorblue'>속도</span>KM/H</p>
                         <!-- <button onclick="moving()">무빙</button> -->
                     </div>
                 </div>
@@ -213,7 +216,7 @@
 		
 		//carinfo
 		$('#car-box').on('click', function(){
-			$('#car-info').fadeIn("fast");
+			$('#car-info').fadeIn("fast").css({'display' : 'flex'});
 		});
 		$('#car-info-close').on('click', function(){
 			$('#car-info').fadeOut("fast");

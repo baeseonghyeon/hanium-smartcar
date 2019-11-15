@@ -7,6 +7,8 @@ import requests
 
 import time, sys, trace, threading
 
+from datetime import datetime
+
 @csrf_exempt
 def Car_input(request):
     car_name = request.POST['car_name']
@@ -306,10 +308,12 @@ def for_turn(request):
     carin.car_code = '1'
     carin.save()
 
+
+
 @csrf_exempt
 def Car_detail(request):
     num = request.POST['carNumber']
-    return render(request, 'car_detail.html', {'carNumber': num})
+    return render(request, 'car_detail.html', {'carNumber': num, 'time': datetime.now() })
 
 @csrf_exempt
 def position(request):

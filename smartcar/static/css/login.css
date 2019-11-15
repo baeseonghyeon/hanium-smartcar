@@ -12,6 +12,11 @@
 	background-image: url('../img/bg.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
+	height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .login-bg-wrapper-cover {
 	background: rgba(0,0,0,0.8);
@@ -23,14 +28,17 @@
 .login-bg-wrapper .container, footer {
 	z-index: 10;
 	position: relative;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #sign_box {
-    margin: 10rem auto;
+    margin: auto;
     text-align: center;
     background: rgba(0,0,0,0.85);
-    padding: 20px;
-    max-width: 500px;
+	padding: 20px;
+	width: 500px;
     border: 2px solid #415062;
 }
 #sign_box h1 {
