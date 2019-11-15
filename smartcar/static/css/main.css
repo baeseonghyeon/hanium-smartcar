@@ -2,7 +2,7 @@
 
 #main-side1 {
     flex: 0.5;
-    background: #253247;
+    background: #141e30;
     padding: 15px;
     border-bottom: 1px solid #46586b;
 }
@@ -13,7 +13,7 @@
 }
 #main-side3 {
     flex: 7;
-    background: #273245;
+    background: #141e30;
     padding: 15px;
 	border-top: 1px solid #46586b;
 	display: flex;
@@ -39,7 +39,7 @@
 	.cercle-s {
 		border-radius: 100%;
 		border: 1px solid #55616f;
-		background-color: #38495c;
+		background-color: #22334d;
 		width: 60px;
 		height: 60px;
 		margin: 3px auto;
