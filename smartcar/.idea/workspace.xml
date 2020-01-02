@@ -1,212 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d6c0a41-b358-4494-9ee0-22e48d95ee29" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="4d6c0a41-b358-4494-9ee0-22e48d95ee29" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../AGV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DB.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DB셋팅, 외래키 v3.hwp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SmartCar timetable.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pip freeze v1.hwp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pip.text" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/camtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/camtest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/cccc.py" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/cccc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/openapi/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/car_input.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/car_input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/for_detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/for_detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/moving.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/moving.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/car_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/car_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/라즈베리파이 설정법v3.hwp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/EGG-INFO/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/EGG-INFO/SOURCES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/EGG-INFO/dependency_links.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/EGG-INFO/entry_points.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/EGG-INFO/not-zip-safe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/EGG-INFO/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/PCF8591.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/SunFounder_PCA9685/PCA9685.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/SunFounder_PCA9685/Servo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/SunFounder_PCA9685/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/SunFounder_TB6612/TB6612.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/SunFounder_TB6612/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/back_wheels.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/filedb.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/SunFounder_PiCar-1.0.1-py3.5.egg/picar/front_wheels.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/.bashrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Line_Follower/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Line_Follower/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Line_Follower/Line_Follower.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Line_Follower/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Line_Follower/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Line_Follower/show" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Ultrasonic_Avoidance/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Ultrasonic_Avoidance/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Ultrasonic_Avoidance/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Ultrasonic_Avoidance/Ultrasonic_Avoidance.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Ultrasonic_Avoidance/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/SunFounder_Ultrasonic_Avoidance/show" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/distance_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/kimtest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/move.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/shutdown.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/split_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/templates/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/test_line_module.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/threading_line.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/threading_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/turn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/ultra_sonic_avoid.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/Smartcar/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../라즈베리파이 코딩/차량용 라즈베리/smartcar/static/js/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../박순호 smartcar 서버정리 v1.hwp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../방향1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../방향2.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../방향3.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../한정우 - 컨테이너 지도 배열.hwp" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/openapi/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="308" column="16" lean-forward="true" selection-start-line="308" selection-start-column="16" selection-end-line="308" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/openapi/yahait.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/car_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="36" column="7" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#2;n#div#1;n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/main.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1539">
-              <caret line="81" column="43" lean-forward="true" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1273">
-              <caret line="67" column="5" lean-forward="true" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/login.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/static/css/map.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1881" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/detail.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/moving.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/openapi/camtest.py" />
-        <option value="$PROJECT_DIR$/openapi/selenium.py" />
-        <option value="$PROJECT_DIR$/openapi/crawl.py" />
-        <option value="$PROJECT_DIR$/smartcar/settings.py" />
-        <option value="$PROJECT_DIR$/smartcar/urls.py" />
-        <option value="$PROJECT_DIR$/templates/auth.html" />
-        <option value="$PROJECT_DIR$/static/css/detail.css" />
-        <option value="$PROJECT_DIR$/static/css/car.css" />
-        <option value="$PROJECT_DIR$/static/js/port_map.js" />
-        <option value="$PROJECT_DIR$/static/js/car_input.js" />
-        <option value="$PROJECT_DIR$/static/js/for_detail.js" />
-        <option value="$PROJECT_DIR$/openapi/cccc.py" />
-        <option value="$PROJECT_DIR$/openapi/urls.py" />
-        <option value="$PROJECT_DIR$/main/views.py" />
-        <option value="$PROJECT_DIR$/main/urls.py" />
-        <option value="$PROJECT_DIR$/static/js/moving.js" />
-        <option value="$PROJECT_DIR$/openapi/views.py" />
-        <option value="$PROJECT_DIR$/templates/car_detail.html" />
-        <option value="$PROJECT_DIR$/templates/main.html" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="width" value="980" />
     <option name="height" value="1040" />
   </component>
+  <component name="ProjectId" id="1Vpg5FYsg7I2kfW2rAwK8WYrJrW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="smartcar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smartcar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smartcar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smartcar" type="462c0819:PsiDirectoryNode" />
-              <item name="openapi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smartcar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smartcar" type="462c0819:PsiDirectoryNode" />
-              <item name="smartcar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smartcar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smartcar" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smartcar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smartcar" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smartcar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smartcar" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="smartcar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smartcar" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\SmartCar\smartcar\openapi" />
       <recent name="C:\SmartCar\smartcar\static\img" />
       <recent name="C:\Users\ghtns\Desktop\SmartCar\smartcar\static\img" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\SmartCar\smartcar\openapi" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.cccc">
     <configuration name="camtest" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -272,6 +176,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="ddd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="smartcar" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/openapi" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/openapi/ddd.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="selenium" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="smartcar" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -293,36 +218,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="smartcar" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/openapi" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/openapi/views.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.cccc" />
+        <item itemvalue="Python.camtest" />
+        <item itemvalue="Python.ddd" />
         <item itemvalue="Python.crawl" />
         <item itemvalue="Python.selenium" />
-        <item itemvalue="Python.views" />
-        <item itemvalue="Python.camtest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -346,284 +262,10 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.499002" visible="true" weight="0.122934565" />
-      <window_info id="Structure" order="1" sideWeight="0.500998" side_tool="true" weight="0.122934565" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32998565" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.33049646" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32765958" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32765958" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.40709218" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32765958" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/openapi/cam" />
-    <entry file="file://$PROJECT_DIR$/openapi/01.jpg" />
-    <entry file="file://$PROJECT_DIR$/openapi/02.jpg" />
-    <entry file="file://$PROJECT_DIR$/openapi/03.jpg" />
-    <entry file="file://$PROJECT_DIR$/user/views.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/forms.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/apps.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/migrations/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/img/map/straight.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/map/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/auth.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openapi/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/style.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/kakao_map.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/map/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/car.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smartcar/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/smartcar/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openapi/yahait.png" />
-    <entry file="file://$PROJECT_DIR$/static/img/yahait.png" />
-    <entry file="file://$PROJECT_DIR$/openapi/crawl.py" />
-    <entry file="file://$PROJECT_DIR$/static/js/car_input.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1216">
-          <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/for_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12597">
-          <caret line="663" column="17" selection-start-line="663" selection-start-column="17" selection-end-line="663" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/selenium/webdriver/remote/webdriver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2477">
-          <caret line="1030" selection-start-line="1030" selection-end-line="1030" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openapi/camtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openapi/cccc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openapi/model.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openapi/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openapi/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/img/bg.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/img/yahait.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/car_input.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/main_print.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2502">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/port_map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="312" column="5" lean-forward="true" selection-start-line="312" selection-start-column="5" selection-end-line="312" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="308" column="16" lean-forward="true" selection-start-line="308" selection-start-column="16" selection-end-line="308" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/moving.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/car_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="36" column="7" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#2;n#div#1;n#div#1;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openapi/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openapi/yahait.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1539">
-          <caret line="81" column="43" lean-forward="true" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1273">
-          <caret line="67" column="5" lean-forward="true" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/detail.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/login.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/map.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1881" />
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="459" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1577955274075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="459" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1577955274075" />
   </component>
 </project>

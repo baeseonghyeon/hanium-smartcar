@@ -981,7 +981,7 @@ dl.row > dd + dt {
 }
 
 .navbar {
-    background-color: rgb(20, 30, 48, 0.95);
+    background-color: rgba(37, 50, 71, 0.95);
     border-bottom: 2px solid #46586b;
 }
 
@@ -1034,7 +1034,7 @@ ul.navbar-nav {
 .dropdown-menu {
 	border: 1px solid #46586b;
     border-radius: 0;
-	background-color: #141e30;
+	background-color: #253247;
     left: 50%;
     -webkit-transform: translate(-50%);
     transform: translate(-50%)
@@ -1044,7 +1044,7 @@ ul.navbar-nav {
 }
 .dropdown-item:hover {
 	color: #28b5b8;
-	background-color: #253247;
+	background-color: #46586b;
 }
 .dropdown-divider {
 	border-top: 1px solid #46586b;

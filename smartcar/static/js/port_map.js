@@ -1,4 +1,5 @@
 $(document).ready( function(){map()})
+//차량정보와 맵정보를 db에서 꺼내 화면에 출력
 function map(){
     $("#map *").remove()
     var map_display;

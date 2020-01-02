@@ -1,18 +1,23 @@
 from PIL import Image
-import io
-from textwrap import wrap
-def main():
-    with open('./02.jpg', 'rb') as f:
-        data = f.read()
-        print(type(data))
-        print(data)
-        data3 = data.encode('utf-8')
-        data2 = wrap(data3, 50)
-        print(data2)
-        image_data = data
-        image = Image.open(io.BytesIO(image_data))
-        img = image.convert('RGB')
-        img.save('03.jpg')
-        print(img)
-        img.show()
-main()
+import os, glob, numpy as np
+from keras.models import load_model
+
+image_w = 64
+image_h = 64
+
+pixels = image_h * image_w * 3
+
+X = []
+img = Image.open("C:\SmartCar\smartcar\openapi/yahait4.jpg")
+img = img.convert("RGB")
+img = img.resize((image_w, image_h))
+data = np.asarray(img)
+X.append(data)
+
+X = np.array(X)
+X = X.astype(float) / 255
+model1 = load_model('C:\SmartCar\smartcar\openapi/111601.model')
+
+prediction1 = model1.predict(X)
+np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
+print(prediction1)

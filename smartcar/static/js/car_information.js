@@ -1,3 +1,4 @@
+// 메인화면에서 선택된 차량의 정보를 디테일 페이지로 넘김
 function detail(){
 
     var num = document.getElementById("car_number").value;
@@ -19,7 +20,10 @@ function detail(){
 	form.submit();
 	}
 }
+
+//컨테이너 등록 함수
 function container(){
+
 var number = document.getElementById("for_container").value;
 var container_number = document.getElementById("container_id").value;
     $.ajax({

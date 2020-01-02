@@ -1,3 +1,4 @@
+//바뀐 방향을 적용하는 함수
 function new_position(posi){
     var index = $("#car_number").val()
     var position = posi
@@ -13,6 +14,8 @@ function new_position(posi){
         }
     });
 }
+
+//직진을 수행하기 위한 함수
 function straight(){
 var index = $("#car_number").val()
         $.ajax({
@@ -27,12 +30,14 @@ var index = $("#car_number").val()
             }
         });
 }
+
+//직진코드를 차량에 보내는 함수
 function straight_moving(){
     var index = $("#car_number").val()
     var a = '1 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.12:8000/handling_car',
+            url : 'http://192.168.0.19:8000/handling_car',
             dataType:'json',
             data : {
             'code': a,
@@ -41,6 +46,8 @@ function straight_moving(){
             }
         });
 }
+
+//진직을 수행할 수 있는지 검사하는 함수
 function straight_check(x, y, p){
     var index = $("#car_number").val()
 	var xx = x
@@ -90,6 +97,8 @@ function straight_check(x, y, p){
             }
         	});
 }
+
+//화면상에서 이동하는 함수
 function straight_xy(){
 	var index = $("#car_number").val()
 	$.ajax({
@@ -103,6 +112,8 @@ function straight_xy(){
         }
     });
 }
+
+//후진을 위한 함수
 function back(){
     var index = $("#car_number").val()
         $.ajax({
@@ -117,12 +128,14 @@ function back(){
             }
         });
 }
+
+//후진코드를 차량에 전송하는 함수
 function back_moving(){
     var index = $("#car_number").val()
     var a = '4 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.12:8000/handling_car',
+            url : 'http://192.168.0.19:8000/handling_car',
             dataType:'json',
             data : {
             'code': a,
@@ -131,6 +144,8 @@ function back_moving(){
             }
         });
 }
+
+//화면상에서 이동하기 위한 함수
 function back_xy(){
 	var index = $("#car_number").val()
 	$.ajax({
@@ -144,6 +159,8 @@ function back_xy(){
         }
     });
 }
+
+//후진할 수 있는지 검사하는 함수
 function back_check(x, y, p){
     var index = $("#car_number").val()
 	var xx = x
@@ -193,6 +210,8 @@ function back_check(x, y, p){
             }
         	});
 }
+
+//우회전 하기 위한 함수
 function right(){
     var index = $("#car_number").val()
         $.ajax({
@@ -207,12 +226,14 @@ function right(){
             }
         });
 }
+
+//우회전 코드를 차량서버에 전송하는 함수
 function right_moving(){
     var index = $("#car_number").val()
     var a = '2 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.12:8000/handling_car',
+            url : 'http://192.168.0.19:8000/handling_car',
             dataType:'json',
             data : {
             'code': a,
@@ -221,6 +242,8 @@ function right_moving(){
             }
         });
 }
+
+//화면상에서 움직이기 위한 함수
 function right_xy(){
 	var index = $("#car_number").val()
 	$.ajax({
@@ -234,6 +257,8 @@ function right_xy(){
         }
     });
 }
+
+//우회전 할 수 있는지 검사하는 함수
 function right_check(x, y, p){
     var index = $("#car_number").val()
 	var xx = x
@@ -283,6 +308,8 @@ function right_check(x, y, p){
             }
         	});
 }
+
+//좌회전 수행을 위한 함수
 function left(){
     var index = $("#car_number").val()
         $.ajax({
@@ -297,12 +324,14 @@ function left(){
             }
         });
 }
+
+//좌회전코드를 차량에 전송하는 함수
 function left_moving(){
     var index = $("#car_number").val()
     var a = '3 '
         $.ajax({
             type : 'POST',
-            url : 'http://192.168.0.12:8000/handling_car',
+            url : 'http://192.168.0.19:8000/handling_car',
             dataType:'json',
             data : {
             'code': a,
@@ -311,6 +340,21 @@ function left_moving(){
             }
         });
 }
+//화면상에서 왼쪽으로 움직이는 코드를 차량에 전송
+function left_xy(){
+	var index = $("#car_number").val()
+	$.ajax({
+        type : 'POST',
+        url : 'http://127.0.0.1:8000/main/left_xy',
+        data : {
+			'car_number' : index
+        },
+        dataType:'json',
+        success: function(){
+        }
+    });
+}
+//왼쪽으로 움직일수 있는지 유효성 검사
 function left_check(x, y, p){
     var index = $("#car_number").val()
 	var xx = x
@@ -360,19 +404,8 @@ function left_check(x, y, p){
             }
         	});
 }
-function left_xy(){
-	var index = $("#car_number").val()
-	$.ajax({
-        type : 'POST',
-        url : 'http://127.0.0.1:8000/main/left_xy',
-        data : {
-			'car_number' : index
-        },
-        dataType:'json',
-        success: function(){
-        }
-    });
-}
+
+//time sleep 함수
 function sleep(num){
 			 var now = new Date();
 			 var stop = now.getTime() + num;
@@ -381,6 +414,8 @@ function sleep(num){
 				 if(now.getTime() > stop)return;
 			 }
 }
+
+//긴급 제동을 수행하는 함수
 function emergency_stop(){
     clearInterval(playCap)
     $.ajax({
@@ -394,6 +429,8 @@ function emergency_stop(){
         }
     });
 }
+
+//db에서 차량의 경로, 위치를 파악해 맵에 표시함
 function map(route, x, y, a, b){
 
     $('#now').text(x+','+y);

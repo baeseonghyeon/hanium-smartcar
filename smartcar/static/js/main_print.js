@@ -1,4 +1,5 @@
 $(document).ready(function(){
+   //차량의 대수 확인
     var map_info;
      $.ajax({
 		url : "http://127.0.0.1:8000/api/CarInfo/?format=json",
@@ -11,6 +12,7 @@ $(document).ready(function(){
 	 });
 });
 
+//db에서 차량정보를 꺼내와 화면에 출력함
 function create_car(Car){
     var pi_pi = new Array()
     $.ajax({
@@ -55,7 +57,7 @@ function create_car(Car){
     });
 }
 
-// 클릭 했을 때
+// 차량을 클릭했을때 하이라이트와 세부정보 출력
 function car_detail(clicked_id ,elem){
 	let curElem = $(elem);
 	let curIdx = Number(curElem.attr('data-car-idx'));

@@ -1,9 +1,9 @@
 #map {
 	width: 94vh;
 	height: 94vh;
-	/* width: 950px; */
-	/* height: 950px; */
 	margin: auto;
+	/* width:100%;
+	height: 95%; */
 	line-height: 0;
 	border: 1px solid #4d5967;
 }

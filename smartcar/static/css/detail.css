@@ -1,7 +1,7 @@
 /* side1 */
 #detail-side1 {
     flex: 2;
-    background: #141e30;
+    background: #253247;
     padding: 15px;
 	border-bottom: 1px solid #46586b;
 	display: flex;
@@ -59,7 +59,7 @@
 	align-items: center;
 	justify-content: center;
     flex: 3.4;
-    background: #141e30;
+    background: #273245;
     padding: 15px;
 	border-top: 1px solid #46586b;
 	position: relative;
@@ -173,7 +173,7 @@
 .info-wrapper {
     position: absolute;
     z-index: 10;
-    background: #131e2f;
+    background: #273245;
     width: 100%;
     padding: 15px;
     border-top: 1px solid #46586b;
@@ -307,5 +307,4 @@
 .time {
 	position: absolute;
 	left: 5px;
-	color: white;
 }

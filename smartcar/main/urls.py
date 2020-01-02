@@ -20,5 +20,7 @@ urlpatterns = [
     path('container_remove', views.container_remove, name='container_remove'),
     path('change_index', views.change_index, name='change_index'),
     path('reset_index', views.reset_index, name='reset_index'),
+    path('reset_data', views.reset_data, name='reset_data'),
     path('for_turn', views.for_turn, name='for_turn'),
+    path('sample_change', views.sample_change, name='sample_change'),
 ]

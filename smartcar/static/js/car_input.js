@@ -1,3 +1,4 @@
+//차량등록 유효성 검사
 function pi_check2(){
     var pi_id3 = document.getElementById("pi_id").value;
     var check = 0;
@@ -18,6 +19,8 @@ function pi_check2(){
                  }
      });
 }
+
+//차량서버 유효성 검사
 function pi_check(){
      var pi_id2 = document.getElementById("pi_id").value;
      var check = 1;
@@ -45,6 +48,7 @@ function pi_check(){
      });
 }
 
+//차량 등록
 function input(){
     var name_car = document.getElementById("carname").value;
     var id_pi = document.getElementById("pi_id").value;
@@ -59,18 +63,9 @@ function input(){
             success: function(){
             }
     });
-    $.ajax({
-            type : 'POST',
-            url : 'http://127.0.0.1:8000/openapi/img',
-            data : {
-            },
-            dataType:'json',
-            success: function(){
-            }
-    });
+    //첫 차량 등록시 nfc서버를 동작시킴
     if(id_pi=='211'){
-    sample()
-    sample2()
+        sample()
     }
     alert('차량을 성공적으로 등록 하였습니다.');
     $("#pi_id").val('');

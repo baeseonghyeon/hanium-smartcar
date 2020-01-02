@@ -16,7 +16,13 @@ def Car_input(request):
     carin = CarInfo.objects.create()
     carin.car_name = car_name
     carin.pi_id = PiInfo.objects.get(pi_id=pi_id)
+    if pi_id == '213':
+        carin.now_x = '2'
+        carin.now_y = '1'
     carin.save()
+    # if pi_id == '211':
+    #     carin.now_x = '1'
+    #     carin.now_y = '1'
     return HttpResponseRedirect('/')
 
 #서버 코드 / nfc에서 데이터를 받음
@@ -31,12 +37,30 @@ def pi_test3(request):
     print(destination_x)
     print(destination_y)
     carin = CarInfo.objects.get(id=pi_id)
-    if carin.container_id == None:
+    if carin.container_id == None or 't':
         carin.container_id = ContainerInfo.objects.get(container_id=con_id)
         carin.save()
     print(carin.now_x)
     print(carin.now_y)
     bfs(request, carin.id, carin.now_x, carin.now_y, destination_x, destination_y)
+    return HttpResponseRedirect('/')
+
+@csrf_exempt
+def sample_change(request):
+    carin = CarInfo.objects.get(id=request.POST['id'])
+    carin.sample = '2'
+    carin.save()
+    return HttpResponseRedirect('/')
+
+#차량 수행용 코드 초기화
+@csrf_exempt
+def reset_data(request):
+    carin = CarInfo.objects.get(id=request.POST['id'])
+    carin.container_id = ContainerInfo(container_id="t")
+    carin.sample = '1'
+    carin.car_finish = '1'
+    carin.for_commute = '1'
+    carin.save()
     return HttpResponseRedirect('/')
 
 @csrf_exempt
@@ -52,8 +76,9 @@ def change_index(request):
 @csrf_exempt
 def reset_index(request):
     carin = CarInfo.objects.get(id=request.POST['id'])
-    index = '1'
-    carin.for_index = index
+    carin.car_finish = '1'
+    carin.for_commute = '1'
+    carin.for_index = '1'
     carin.save()
     return HttpResponseRedirect('/')
 
@@ -72,53 +97,117 @@ def container_remove(request):
     print(now_y)
     print(type(now_x))
     print(type(now_y))
+    print('id타입')
+    print(type(pi_id))
     db_map = MapInfo.objects.get(id=1)
     map_array = db_map.map.split('s')
     map_array2 = [[0 for x in range(14)] for y in range(14)]
-    for x in range(14):
-        map_array2[x] = map_array[x].split(', ')
-    if now_x == '12' and now_y == '12':
-        code = '4 4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '11' and now_y == '12':
-        code = '4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '10' and now_y == '12':
-        code = '4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '9' and now_y == '12':
-        code = '2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '8' and now_y == '12':
-        code = '2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
-    elif now_x == '12' and now_y == '11':
-        code = '4 4 4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '11' and now_y == '11':
-        code = '4 4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '10' and now_y == '11':
-        code = '4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '9' and now_y == '11':
-        code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '8' and now_y == '11':
-        code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
-    elif now_x == '12' and now_y == '7':
-        code = '4 4 4 2 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '11' and now_y == '7':
-        code = '4 4 2 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '10' and now_y == '7':
-        code = '4 2 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '9' and now_y == '7':
-        code = '2 1 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '8' and now_y == '7':
-        code = '2 1 1 1 1 2 1 1 1 1 1 1 2 '
-    elif now_x == '12' and now_y == '6':
-        code = '4 4 4 2 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '11' and now_y == '6':
-        code = '4 4 2 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '10' and now_y == '6':
-        code = '4 2 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '9' and now_y == '6':
-        code = '2 1 1 1 2 1 1 1 1 1 1 1 2 '
-    elif now_x == '8' and now_y == '6':
-        code = '2 1 1 1 2 1 1 1 1 1 1 2 '
-    else:
-        print('잡힌거없음')
+    if pi_id == '1':
+        for x in range(14):
+            map_array2[x] = map_array[x].split(', ')
+        if now_x == '12' and now_y == '12':
+            code = '4 4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '11' and now_y == '12':
+            code = '4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '10' and now_y == '12':
+            code = '4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '9' and now_y == '12':
+            code = '2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '8' and now_y == '12':
+            code = '2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '7' and now_y == '12':
+            code = '2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 2 '
+        elif now_x == '12' and now_y == '11':
+            code = '4 4 4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '11' and now_y == '11':
+            code = '4 4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '10' and now_y == '11':
+            code = '4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '9' and now_y == '11':
+            code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '8' and now_y == '11':
+            code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '7' and now_y == '11':
+            code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 2 '
+        elif now_x == '12' and now_y == '7':
+            code = '4 4 4 2 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '11' and now_y == '7':
+            code = '4 4 2 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '10' and now_y == '7':
+            code = '4 2 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '9' and now_y == '7':
+            code = '2 1 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '8' and now_y == '7':
+            code = '2 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '7' and now_y == '7':
+            code = '2 1 1 1 1 2 1 1 1 1 1 2 '
+        elif now_x == '12' and now_y == '6':
+            code = '4 4 4 2 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '11' and now_y == '6':
+            code = '4 4 2 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '10' and now_y == '6':
+            code = '4 2 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '9' and now_y == '6':
+            code = '2 1 1 1 2 1 1 1 1 1 1 1 2 '
+        elif now_x == '8' and now_y == '6':
+            code = '2 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '7' and now_y == '6':
+            code = '2 1 1 1 2 1 1 1 1 1 2 '
+        else:
+            print('잡힌거없음')
+    if pi_id == '2':
+        for x in range(14):
+            map_array2[x] = map_array[x].split(', ')
+        if now_x == '12' and now_y == '12':
+            code = '4 4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '11' and now_y == '12':
+            code = '4 4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '10' and now_y == '12':
+            code = '4 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '9' and now_y == '12':
+            code = '2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '8' and now_y == '12':
+            code = '2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 2 '
+        elif now_x == '7' and now_y == '12':
+            code = '2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 2 '
+        elif now_x == '12' and now_y == '11':
+            code = '4 4 4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '11' and now_y == '11':
+            code = '4 4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '10' and now_y == '11':
+            code = '4 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '9' and now_y == '11':
+            code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '8' and now_y == '11':
+            code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 2 '
+        elif now_x == '7' and now_y == '11':
+            code = '2 1 1 1 1 1 1 1 1 2 1 1 1 1 2 '
+        elif now_x == '12' and now_y == '7':
+            code = '4 4 4 2 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '11' and now_y == '7':
+            code = '4 4 2 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '10' and now_y == '7':
+            code = '4 2 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '9' and now_y == '7':
+            code = '2 1 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '8' and now_y == '7':
+            code = '2 1 1 1 1 2 1 1 1 1 1 2 '
+        elif now_x == '7' and now_y == '7':
+            code = '2 1 1 1 1 2 1 1 1 1 2 '
+        elif now_x == '12' and now_y == '6':
+            code = '4 4 4 2 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '11' and now_y == '6':
+            code = '4 4 2 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '10' and now_y == '6':
+            code = '4 2 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '9' and now_y == '6':
+            code = '2 1 1 1 2 1 1 1 1 1 1 2 '
+        elif now_x == '8' and now_y == '6':
+            code = '2 1 1 1 2 1 1 1 1 1 2 '
+        elif now_x == '7' and now_y == '6':
+            code = '2 1 1 1 2 1 1 1 1 2 '
+        else:
+            print('잡힌거없음')
     print(code)
     carin.car_code = code
     carin.car_finish = '1'
@@ -134,6 +223,7 @@ def emer(request):
     carin.sample = data
     carin.save()
     return HttpResponseRedirect('/')
+
 
 #서버코드 / rc_pi에서 데이터 받음
 @csrf_exempt
@@ -269,6 +359,7 @@ def pi_test6(request):
     print('finish끝')
     return HttpResponseRedirect('')
 
+#우회수행을 위한 함수
 @csrf_exempt
 def for_turn(request):
     data = request.GET
@@ -308,13 +399,13 @@ def for_turn(request):
     carin.car_code = '1'
     carin.save()
 
-
-
+# 메인 -> 디테일 화면 전환 함수
 @csrf_exempt
 def Car_detail(request):
     num = request.POST['carNumber']
     return render(request, 'car_detail.html', {'carNumber': num, 'time': datetime.now() })
 
+#입력받은 방향정보를 db에 저장
 @csrf_exempt
 def position(request):
     carin = CarInfo.objects.get(id=request.POST['car_number'])
@@ -322,6 +413,7 @@ def position(request):
     carin.save()
     return HttpResponseRedirect('')
 
+#직진 수행 후 변경되는 값 db에 저장
 @csrf_exempt
 def straight_xy(request):
     carin = CarInfo.objects.get(id=request.POST['car_number'])
@@ -345,6 +437,7 @@ def straight_xy(request):
     carin.save()
     return HttpResponseRedirect('')
 
+#후진 수행 후 변경되는 값 db에 저장
 @csrf_exempt
 def back_xy(request):
     carin = CarInfo.objects.get(id=request.POST['car_number'])
@@ -368,6 +461,7 @@ def back_xy(request):
     carin.save()
     return HttpResponseRedirect('')
 
+#우회전 수행 후 변경되는 값 db에 저장
 @csrf_exempt
 def right_xy(request):
     carin = CarInfo.objects.get(id=request.POST['car_number'])
@@ -403,6 +497,7 @@ def right_xy(request):
     carin.save()
     return HttpResponseRedirect('')
 
+#좌회전 수행 후 변경되는 값 db에 저장
 @csrf_exempt
 def left_xy(request):
     carin = CarInfo.objects.get(id=request.POST['car_number'])
@@ -438,6 +533,7 @@ def left_xy(request):
     carin.save()
     return HttpResponseRedirect('')
 
+#목적지까지의 최단경로 출력
 @csrf_exempt
 def bfs(request, car_id, xxx, yyy, aaa, bbb):
     db_map = MapInfo.objects.get(id='1') #알고리즘용
