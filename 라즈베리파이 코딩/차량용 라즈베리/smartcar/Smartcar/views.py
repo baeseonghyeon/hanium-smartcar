@@ -1,37 +1,34 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-#from . import split_test
-from . import threading_line
+from .models import emergency
+from . import car_main
+import requests, json
 
-# Create your views here.
+
 @csrf_exempt
 def main(request):
-#    aaa=request.POST['bbb']
-#    aaa = '1 1 1 1 1 2 1 1 2 1 1 1 2 1 2 1 1 1 '
-    #a = turn.kimtest()
-    aaa = '1 1 '
-    a = threading_line.kimtest(aaa)
+    print('main on')
+    path=request.POST['code']
+    car_id = request.POST['car_id']
+    emer = request.POST['emergency']
+    a = car_main.main(path, car_id, emer)
     a
     return render(request, 'main.html')
 
+
 @csrf_exempt
-def test(request):
-    bbb = request.POST['data']
-    aaa = '1 '
-    a = threading_line.kimtest(aaa)
+def handling_car(request):
+    path = request.POST['code']
+    a = car_main.handling_car(path)
     a
-    return HttpResponse('')
+    return HttpResponseRedirect('/')
 
-
-#@csrf_exempt
-#def kimtest1(request):
-#    a = split_test.kimtest()
-#    a
-#    print('num1 ok')
-#    return render(request, 'main.html')
-#
-#@csrf_exempt
-#def kimtest2(request):
-#    print('num2 ok')
-#    return render(request, '')
+@csrf_exempt
+def OpenCV(request):
+    data = request.GET
+    ir_remote = data.dict()
+    controll = ir_remote['data']
+    a = car_main.change_OpenCV_flag(controll)
+    a
+    return HttpResponse('/')
