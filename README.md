@@ -1,6 +1,6 @@
 # SmartCar
 
-### 1. [Django Server Settings](./wiki/Django Server Settings.md)
+### 1. [Django Server Settings](./wiki/Django_Server_Settings.md)
 
 ### 2. [raspberry_Pi](./wiki/raspberry_Pi.md)
 
