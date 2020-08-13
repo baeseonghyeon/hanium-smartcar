@@ -1,3 +1,39 @@
+# DB Settings
+
+1. **mysql정보**
+   - MYSQL 8.0
+   - root계정
+   - 비밀번호 :  1111
+   - smartcar database 생성
+2. **데이터베이스/테이블 생성**
+
+```
+(mysql) create database smartcar
+(django) python manage.py makemigrations
+(django) python manage.py migrate
+```
+
+3. **insert**
+   - 127.0.0.1/8000/api/MapInfo 의 Map에 입력 후 저장
+
+```
+8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 0, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 8s8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8s
+```
+
+4. **외래키 관련 삭제방법**
+
+```
+SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE table1;
+TRUNCATE table2;
+
+SET FOREIGN_KEY_CHECKS = 1;
+```
+
+5. **Model**
+
+```
 class CarInfo(models.Model):
 	pi_id = models.ForeignKey(PiInfo, unique=True, on_delete = models.CASCADE)
 	container_id = models.ForeignKey(ContainerInfo, unique=True, on_delete = models.CASCADE)
@@ -33,3 +69,6 @@ class PortInfo(models.Models):
 class UserInfo(models.Model):
 	portname = models.ForeignKey(PortInfo, unique=True, on_delete=models.CASCADE)
 	username = models.CharField(max_length=10, primary_key=True)
+	
+```
+
