@@ -1,4 +1,4 @@
-# Smart Car
+# SmartCar
 
 ### 1. [Django Server Settings](./wiki/Django_Server_Settings.md)
 
